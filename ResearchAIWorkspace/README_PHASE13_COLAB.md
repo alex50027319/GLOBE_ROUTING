@@ -21,6 +21,12 @@ Google Drive의 `MyDrive` 아래에서 zip을 풀면 다음 구조가 됩니다.
 /content/drive/MyDrive/ResearchAIWorkspace
 ```
 
+노트북으로 실행하려면 다음 파일을 Colab에서 열면 됩니다.
+
+```text
+implementations/lite_globe/colab/phase13_risk_switch_lite_globe_p_plus.ipynb
+```
+
 압축 해제:
 
 ```bash
