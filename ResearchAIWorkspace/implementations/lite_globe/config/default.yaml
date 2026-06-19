@@ -1,0 +1,24 @@
+environment:
+  num_nodes: 12
+  max_nodes: 32
+  area_size: 1000.0
+  communication_radius: 350.0
+  max_episode_steps: 64
+  packet_ttl: 20
+  max_queue_size: 16
+  stochastic_link_loss: 0.0
+
+mobility:
+  model: random_waypoint
+  min_speed: 2.0
+  max_speed: 12.0
+  time_step: 1.0
+  waypoint_tolerance: 1.0
+
+reward:
+  delivery: 10.0
+  delay: 0.1
+  failure: 5.0
+
+runtime:
+  seed: 42

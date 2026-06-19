@@ -1,0 +1,13 @@
+pymupdf
+python-docx
+pandas
+pyyaml
+tqdm
+tabulate
+openpyxl
+
+# Optional:
+# rich
+# networkx
+# matplotlib
+# scikit-learn

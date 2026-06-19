@@ -1,0 +1,19 @@
+dataset:
+  episodes: 120
+  train_fraction: 0.7
+  validation_fraction: 0.15
+
+model:
+  hidden_dim: 64
+
+distillation:
+  learning_rate: 0.001
+  batch_size: 128
+  epochs: 100
+  temperature: 1.0
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+
+runtime:
+  device: auto
+  seed: 42

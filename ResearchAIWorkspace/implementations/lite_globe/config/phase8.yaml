@@ -1,0 +1,19 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42, 77, 123, 314, 2718]
+  evaluation_episodes: 200
+  hidden_dim: 64
+
+training:
+  dataset_episodes_per_stage: 300
+  distillation_epochs: 150
+  oracle_coefficient: 0.75
+  teacher_action_coefficient: 0.05
+  early_stopping_patience: 15
+  initial_prior_strength: 8.0
+  calibration_episodes_per_stage: 80
+  structural_hole_episodes_per_variant: 100
+  calibration_pdr_tolerance: 0.01
+  prior_pretraining_epochs: 40

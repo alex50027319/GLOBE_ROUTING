@@ -1,0 +1,21 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42, 77, 123, 314, 2718]
+  evaluation_episodes: 200
+  hidden_dim: 64
+
+calibration:
+  calibration_episodes_per_stage: 60
+  calibration_pdr_tolerance: 0.005
+  switch_thresholds: [0.05, 0.10]
+  margin_gates: [0.04]
+  lifetime_gates: [0.20, 0.30]
+  onward_gates: [0.20, 0.30]
+  topk_onward_gates: [0.20]
+  redundancy_gates: [0.00, 0.18]
+  loss_keep_gates: [0.70, 0.82]
+  predictive_margins: [0.08]
+  energy_tie_weights: [0.20, 0.35]
+  drop_suppression_bonuses: [6.0, 8.0]
