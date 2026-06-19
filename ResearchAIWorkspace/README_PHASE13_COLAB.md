@@ -31,7 +31,9 @@ implementations/lite_globe/colab/phase13_risk_switch_lite_globe_p_plus.ipynb
 
 ```bash
 %cd /content/drive/MyDrive
-!unzip -q phase13_colab_upload.zip
+!rm -rf ResearchAIWorkspace
+!mkdir -p ResearchAIWorkspace
+!unzip -q phase13_colab_bundle.zip -d ResearchAIWorkspace
 ```
 
 설치:
