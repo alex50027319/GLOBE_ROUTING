@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
+from dataclasses import asdict, replace
 import json
 from pathlib import Path
 import platform
@@ -57,7 +57,25 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", choices=("auto", "cpu", "cuda", "mps"))
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--seeds",
+        type=str,
+        default=None,
+        help=(
+            "Comma-separated training seeds to run, e.g. 123,314,2718. "
+            "Overrides the config training_seeds for chunked Colab runs."
+        ),
+    )
     return parser.parse_args()
+
+
+def _parse_seed_subset(raw: str | None) -> tuple[int, ...] | None:
+    if raw is None:
+        return None
+    seeds = tuple(int(item.strip()) for item in raw.split(",") if item.strip())
+    if not seeds:
+        raise ValueError("--seeds was provided but no seed values were parsed")
+    return seeds
 
 
 def _config(raw: dict, smoke: bool) -> Phase13Config:
@@ -161,6 +179,9 @@ def main() -> None:
     args = parse_args()
     raw = yaml.safe_load(args.config.read_text(encoding="utf-8"))
     config = _config(raw, args.smoke)
+    seed_subset = _parse_seed_subset(args.seeds)
+    if seed_subset is not None:
+        config = replace(config, training_seeds=seed_subset)
     device = _device(args.device or raw["runtime"]["device"])
     rows = run_phase13_campaign(
         config,

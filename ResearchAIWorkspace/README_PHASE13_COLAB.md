@@ -63,6 +63,39 @@ implementations/lite_globe/colab/phase13_risk_switch_lite_globe_p_plus.ipynb
   --output-dir artifacts/lite_globe/phase13
 ```
 
+## Seed 단위로 나눠 실행
+
+Colab A100 세션이 오래 유지되지 않거나 이미 일부 seed 결과가 있는 경우에는
+전체 5개 seed를 한 번에 돌리지 말고 seed chunk로 나눠 실행한다. 예를 들어
+`42`, `77` 결과가 이미 있으면 나머지 seed만 실행한다.
+
+로컬 `colab-cli`에서 실행:
+
+```bash
+python scripts/colab_run.py \
+  --phase 13 \
+  --gpu A100 \
+  --session globe-phase13-seeds-123-314-2718 \
+  --seeds 123,314,2718 \
+  --exec-timeout 86400
+```
+
+위 명령의 결과 zip은 다음 경로에 저장된다.
+
+```text
+artifacts/lite_globe/phase13_seeds_123_314_2718_results.zip
+```
+
+여러 seed chunk를 합쳐 최종 Phase13 리포트를 다시 만들려면 다음 스크립트를 사용한다.
+
+```bash
+python scripts/merge_phase13_artifacts.py \
+  --inputs \
+    artifacts/lite_globe/phase13_seeds_42_77_results.zip \
+    artifacts/lite_globe/phase13_seeds_123_314_2718_results.zip \
+  --output-dir artifacts/lite_globe/phase13_merged
+```
+
 결과 압축:
 
 ```bash

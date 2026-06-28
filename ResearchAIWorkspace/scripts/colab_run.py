@@ -61,6 +61,15 @@ def parse_args() -> argparse.Namespace:
         default=43200.0,
         help="Colab exec timeout in seconds. Default: 43200 (12 hours).",
     )
+    parser.add_argument(
+        "--seeds",
+        type=str,
+        default=None,
+        help=(
+            "Comma-separated training seeds for chunked runs, "
+            "for example 123,314,2718."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -96,7 +105,16 @@ def main() -> int:
     session_name = args.session or f"colab-routing-phase{phase}"
     bundle_filename = f"phase{phase}_colab_bundle.zip"
     bundle_path = ROOT / "artifacts" / "lite_globe" / bundle_filename
-    results_zip_filename = f"phase{phase}_results.zip"
+    seed_suffix = ""
+    if args.seeds:
+        normalized_seeds = "_".join(
+            item.strip() for item in args.seeds.split(",") if item.strip()
+        )
+        if not normalized_seeds:
+            print("Error: --seeds was provided but no seed values were parsed.")
+            return 1
+        seed_suffix = f"_seeds_{normalized_seeds}"
+    results_zip_filename = f"phase{phase}{seed_suffix}_results.zip"
     local_results_path = ROOT / "artifacts" / "lite_globe" / results_zip_filename
     remote_content_dir = "content"
 
@@ -146,13 +164,15 @@ def main() -> int:
 
     # 3. Create execution config arguments for the remote bootstrap script
     device = "cpu" if args.cpu else "cuda"
-    output_dir = f"artifacts/lite_globe/phase{phase}"
+    output_dir = f"artifacts/lite_globe/phase{phase}{seed_suffix}"
     if args.smoke:
         output_dir += "_smoke"
 
     remote_args = ["--device", device, "--resume", "--output-dir", output_dir]
     if args.smoke:
         remote_args.append("--smoke")
+    if args.seeds:
+        remote_args.extend(["--seeds", args.seeds])
 
     config_data = {
         "bundle_filename": bundle_filename,
