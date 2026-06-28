@@ -92,6 +92,7 @@ def main() -> int:
     bundle_path = ROOT / "artifacts" / "lite_globe" / bundle_filename
     results_zip_filename = f"phase{phase}_results.zip"
     local_results_path = ROOT / "artifacts" / "lite_globe" / results_zip_filename
+    remote_content_dir = "content"
 
     print(f"=== Starting Colab Orchestration for Phase {phase} ===")
     print(f"Session Name: {session_name}")
@@ -165,16 +166,37 @@ def main() -> int:
         # Upload config, bootstrap script, and bundle zip
         print("Uploading workspace config and scripts to Colab VM...")
         subprocess.run(
-            [colab_bin, "upload", "-s", session_name, str(local_config_path), "colab_args.json"],
+            [
+                colab_bin,
+                "upload",
+                "-s",
+                session_name,
+                str(local_config_path),
+                f"{remote_content_dir}/colab_args.json",
+            ],
             check=True,
         )
         subprocess.run(
-            [colab_bin, "upload", "-s", session_name, str(ROOT / "scripts" / "colab_bootstrap.py"), "colab_bootstrap.py"],
+            [
+                colab_bin,
+                "upload",
+                "-s",
+                session_name,
+                str(ROOT / "scripts" / "colab_bootstrap.py"),
+                f"{remote_content_dir}/colab_bootstrap.py",
+            ],
             check=True,
         )
         print(f"Uploading project bundle {bundle_filename} (this may take a moment)...")
         subprocess.run(
-            [colab_bin, "upload", "-s", session_name, str(bundle_path), bundle_filename],
+            [
+                colab_bin,
+                "upload",
+                "-s",
+                session_name,
+                str(bundle_path),
+                f"{remote_content_dir}/{bundle_filename}",
+            ],
             check=True,
         )
 
@@ -190,7 +212,14 @@ def main() -> int:
         print("Downloading results ZIP...")
         local_results_path.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(
-            [colab_bin, "download", "-s", session_name, results_zip_filename, str(local_results_path)],
+            [
+                colab_bin,
+                "download",
+                "-s",
+                session_name,
+                f"{remote_content_dir}/{results_zip_filename}",
+                str(local_results_path),
+            ],
             check=True,
         )
         print(f"Results successfully saved locally to: {local_results_path}")
