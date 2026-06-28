@@ -188,6 +188,7 @@ def main() -> int:
 
     # 4. Upload files, execute, download results
     success = False
+    remote_execution_completed = False
     try:
         # Upload config, bootstrap script, and bundle zip
         print("Uploading workspace config and scripts to Colab VM...")
@@ -242,21 +243,39 @@ def main() -> int:
             ],
             check=True,
         )
+        remote_execution_completed = True
 
         # Download results
         print("Downloading results ZIP...")
         local_results_path.parent.mkdir(parents=True, exist_ok=True)
-        subprocess.run(
-            [
-                colab_bin,
-                "download",
-                "-s",
-                session_name,
-                f"{remote_content_dir}/{results_zip_filename}",
-                str(local_results_path),
-            ],
-            check=True,
-        )
+        download_candidates = [
+            f"{remote_content_dir}/{results_zip_filename}",
+            results_zip_filename,
+        ]
+        last_download_error: subprocess.CalledProcessError | None = None
+        for remote_results_path in download_candidates:
+            try:
+                subprocess.run(
+                    [
+                        colab_bin,
+                        "download",
+                        "-s",
+                        session_name,
+                        remote_results_path,
+                        str(local_results_path),
+                    ],
+                    check=True,
+                )
+                last_download_error = None
+                break
+            except subprocess.CalledProcessError as error:
+                print(
+                    "Download attempt failed for "
+                    f"{remote_results_path}; trying fallback if available."
+                )
+                last_download_error = error
+        if last_download_error is not None:
+            raise last_download_error
         print(f"Results successfully saved locally to: {local_results_path}")
         success = True
 
@@ -268,13 +287,19 @@ def main() -> int:
             os.remove(local_config_path)
 
         # Stop session if not keeping
-        if not args.keep:
+        if not args.keep and not (remote_execution_completed and not success):
             print(f"Stopping Colab session '{session_name}' to save compute units...")
             try:
                 subprocess.run([colab_bin, "stop", "-s", session_name], check=True)
                 print("Session stopped.")
             except subprocess.CalledProcessError:
                 print("Warning: Failed to stop Colab session. Please check with 'colab sessions' and stop it manually if needed.")
+        elif remote_execution_completed and not success:
+            print(
+                f"Keeping Colab session '{session_name}' active because the "
+                "remote run completed but result download failed. Try manual "
+                "download before stopping the session."
+            )
         else:
             print(f"Keeping Colab session '{session_name}' active. Remember to run 'colab stop -s {session_name}' later!")
 
