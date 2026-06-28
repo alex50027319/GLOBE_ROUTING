@@ -55,6 +55,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Run in smoke test mode (faster, less episodes).",
     )
+    parser.add_argument(
+        "--exec-timeout",
+        type=float,
+        default=43200.0,
+        help="Colab exec timeout in seconds. Default: 43200 (12 hours).",
+    )
     return parser.parse_args()
 
 
@@ -204,7 +210,16 @@ def main() -> int:
         print("Starting remote execution...")
         bootstrap_path = ROOT / "scripts" / "colab_bootstrap.py"
         subprocess.run(
-            [colab_bin, "exec", "-s", session_name, "-f", str(bootstrap_path)],
+            [
+                colab_bin,
+                "exec",
+                "-s",
+                session_name,
+                "-f",
+                str(bootstrap_path),
+                "--timeout",
+                str(args.exec_timeout),
+            ],
             check=True,
         )
 
