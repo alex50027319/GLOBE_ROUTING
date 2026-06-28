@@ -1,0 +1,837 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/qjda0z",
+    "id": "qjda0z",
+    "slide": 1,
+    "layoutId": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#020618",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gn29gr2p",
+      "id": "1",
+      "bbox": [
+        64,
+        48,
+        360,
+        26
+      ],
+      "geometry": "rect",
+      "text": "교수님 보고용 연구 발표자료",
+      "textPreview": "교수님 보고용 연구 발표자료",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#CAD5E2",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "교수님 보고용 연구 발표자료"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "교수님 보고용 연구 발표자료",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#CAD5E2",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "교수님 보고용 연구 발표자료",
+              "fontSize": 13,
+              "color": "#CAD5E2",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n29gr2p8",
+      "id": "2",
+      "bbox": [
+        64,
+        128,
+        780,
+        150
+      ],
+      "geometry": "rect",
+      "text": "Risk-Switch Lite-GLOBE-P+\nUAV 군집 네트워크 라우팅 연구",
+      "textPreview": "Risk-Switch Lite-GLOBE-P+ | UAV 군집 네트워크 라우팅 연구",
+      "resolvedFontSize": 39,
+      "resolvedTextStyle": {
+        "fontSize": 39,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Risk-Switch Lite-GLOBE-P+"
+          },
+          {
+            "index": 2,
+            "text": "UAV 군집 네트워크 라우팅 연구"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Risk-Switch Lite-GLOBE-P+",
+          "resolvedTextStyle": {
+            "fontSize": 39,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Risk-Switch Lite-GLOBE-P+",
+              "fontSize": 39,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "UAV 군집 네트워크 라우팅 연구",
+          "resolvedTextStyle": {
+            "fontSize": 39,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "UAV 군집 네트워크 라우팅 연구",
+              "fontSize": 39,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgn29gr",
+      "id": "3",
+      "bbox": [
+        68,
+        304,
+        720,
+        72
+      ],
+      "geometry": "rect",
+      "text": "전역 지식을 학습에만 사용하고, 실제 라우팅은 각 UAV가 1-hop 지역 정보만으로 수행하는 경량·위험회피형 라우팅 알고리즘",
+      "textPreview": "전역 지식을 학습에만 사용하고, 실제 라우팅은 각 UAV가 1-hop 지역 정보만으로 수행하는 경량·위험회피형 라우팅 알고리즘",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#E2E8F0",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "전역 지식을 학습에만 사용하고, 실제 라우팅은 각 UAV가 1-hop 지역 정보만으로 수행하는"
+          },
+          {
+            "index": 2,
+            "text": "경량·위험회피형 라우팅 알고리즘"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "전역 지식을 학습에만 사용하고, 실제 라우팅은 각 UAV가 1-hop 지역 정보만으로 수행하는 경량·위험회피형 라우팅 알고리즘",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#E2E8F0"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "전역 지식을 학습에만 사용하고, 실제 라우팅은 각 UAV가 1-hop 지역 정보만으로 수행하는 경량·위험회피형 라우팅 알고리즘",
+              "fontSize": 19,
+              "color": "#E2E8F0"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "4",
+      "bbox": [
+        70,
+        420,
+        150,
+        32
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#155DFC",
+      "lineColor": "#155DFC",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "5",
+      "bbox": [
+        84,
+        427,
+        122,
+        18
+      ],
+      "geometry": "rect",
+      "text": "FANET Routing",
+      "textPreview": "FANET Routing",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FANET Routing"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FANET Routing",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FANET Routing",
+              "fontSize": 12,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nuxc3ylc",
+      "id": "6",
+      "bbox": [
+        232,
+        420,
+        210,
+        32
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#8E51FF",
+      "lineColor": "#8E51FF",
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y90je9cv",
+      "id": "7",
+      "bbox": [
+        246,
+        427,
+        182,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Knowledge Distillation",
+      "textPreview": "Knowledge Distillation",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Knowledge Distillation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Knowledge Distillation",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Knowledge Distillation",
+              "fontSize": 12,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5sneloj2",
+      "id": "8",
+      "bbox": [
+        456,
+        420,
+        150,
+        32
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FF6900",
+      "lineColor": "#FF6900",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbulwval",
+      "id": "9",
+      "bbox": [
+        470,
+        427,
+        122,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Risk-Switch",
+      "textPreview": "Risk-Switch",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Risk-Switch"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Risk-Switch",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Risk-Switch",
+              "fontSize": 12,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e9cvixcz",
+      "id": "10",
+      "bbox": [
+        850,
+        120,
+        330,
+        380
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#0F172B",
+      "lineColor": "#314158",
+      "lineWidth": 1
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3q5o7qpg",
+      "id": "11",
+      "bbox": [
+        884,
+        156,
+        220,
+        30
+      ],
+      "geometry": "rect",
+      "text": "핵심 메시지",
+      "textPreview": "핵심 메시지",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "핵심 메시지"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "핵심 메시지",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "핵심 메시지",
+              "fontSize": 19,
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wb2hwfyx",
+      "id": "12",
+      "bbox": [
+        884,
+        202,
+        260,
+        200
+      ],
+      "geometry": "rect",
+      "text": "• GPSR의 routing-hole·링크 단절 약점을 보완\n• DRAMA류 실행시 통신 부담과 차별화\n• Phase12 full 결과에서 PDR·deadline 우수\n• Phase13은 에너지·안정성 보완 방향",
+      "textPreview": "• GPSR의 routing-hole·링크 단절 약점을 보완 | • DRAMA류 실행시 통신 부담과 차별화 | • Phase12 full 결과에서 PDR·deadline 우수 | • Phase13은 에너지·안정성 보완 방향",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#E2E8F0",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 8,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• GPSR의 routing-hole·링크 단절"
+          },
+          {
+            "index": 2,
+            "text": "약점을 보완"
+          },
+          {
+            "index": 3,
+            "text": "• DRAMA류 실행시 통신 부담과"
+          },
+          {
+            "index": 4,
+            "text": "차별화"
+          },
+          {
+            "index": 5,
+            "text": "• Phase12 full 결과에서"
+          },
+          {
+            "index": 6,
+            "text": "PDR·deadline 우수"
+          },
+          {
+            "index": 7,
+            "text": "• Phase13은 에너지·안정성 보완"
+          },
+          {
+            "index": 8,
+            "text": "방향"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• GPSR의 routing-hole·링크 단절 약점을 보완",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#E2E8F0"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• GPSR의 routing-hole·링크 단절 약점을 보완",
+              "fontSize": 16,
+              "color": "#E2E8F0"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• DRAMA류 실행시 통신 부담과 차별화",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#E2E8F0"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• DRAMA류 실행시 통신 부담과 차별화",
+              "fontSize": 16,
+              "color": "#E2E8F0"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Phase12 full 결과에서 PDR·deadline 우수",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#E2E8F0"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Phase12 full 결과에서 PDR·deadline 우수",
+              "fontSize": 16,
+              "color": "#E2E8F0"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• Phase13은 에너지·안정성 보완 방향",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#E2E8F0"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Phase13은 에너지·안정성 보완 방향",
+              "fontSize": 16,
+              "color": "#E2E8F0"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lwval87e",
+      "id": "13",
+      "bbox": [
+        70,
+        638,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "2026-06-28",
+      "textPreview": "2026-06-28",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#90A1B9",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "2026-06-28"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "2026-06-28",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#90A1B9"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2026-06-28",
+              "fontSize": 12,
+              "color": "#90A1B9"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ex0nuxc3",
+      "id": "14",
+      "bbox": [
+        54,
+        684,
+        220,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GLOBE Routing 연구 보고 | 1",
+      "textPreview": "GLOBE Routing 연구 보고 | 1",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "+mn-lt",
+        "color": "#90A1B9",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GLOBE Routing 연구 보고 | 1"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GLOBE Routing 연구 보고 | 1",
+          "resolvedTextStyle": {
+            "fontSize": 10,
+            "color": "#90A1B9"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GLOBE Routing 연구 보고 | 1",
+              "fontSize": 10,
+              "color": "#90A1B9"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

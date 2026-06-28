@@ -1,0 +1,993 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/65l0q6",
+    "id": "65l0q6",
+    "slide": 22,
+    "layoutId": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nqxs72x",
+      "id": "1",
+      "bbox": [
+        54,
+        28,
+        420,
+        24
+      ],
+      "geometry": "rect",
+      "text": "21 | BASELINE ROLE",
+      "textPreview": "21 | BASELINE ROLE",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#62748E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "21 | BASELINE ROLE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "21 | BASELINE ROLE",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "21 | BASELINE ROLE",
+              "fontSize": 12,
+              "color": "#62748E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j2t83itg",
+      "id": "2",
+      "bbox": [
+        54,
+        56,
+        900,
+        58
+      ],
+      "geometry": "rect",
+      "text": "외부 baseline 3개를 왜 넣었는가?",
+      "textPreview": "외부 baseline 3개를 왜 넣었는가?",
+      "resolvedFontSize": 31,
+      "resolvedTextStyle": {
+        "fontSize": 31,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "외부 baseline 3개를 왜 넣었는가?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "외부 baseline 3개를 왜 넣었는가?",
+          "resolvedTextStyle": {
+            "fontSize": 31,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "외부 baseline 3개를 왜 넣었는가?",
+              "fontSize": 31,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qh0fepkz",
+      "id": "3",
+      "bbox": [
+        54,
+        106,
+        980,
+        38
+      ],
+      "geometry": "rect",
+      "text": "논문 설득력을 위해 GPSR만이 아니라 최신 RL 계열과도 비교했습니다.",
+      "textPreview": "논문 설득력을 위해 GPSR만이 아니라 최신 RL 계열과도 비교했습니다.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "논문 설득력을 위해 GPSR만이 아니라 최신 RL 계열과도 비교했습니다."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "논문 설득력을 위해 GPSR만이 아니라 최신 RL 계열과도 비교했습니다.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "논문 설득력을 위해 GPSR만이 아니라 최신 RL 계열과도 비교했습니다.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1w7mp0bi",
+      "id": "4",
+      "bbox": [
+        54,
+        148,
+        1172,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8bat47y1",
+      "id": "5",
+      "bbox": [
+        110,
+        190,
+        300,
+        252
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jqh0fepk",
+      "id": "6",
+      "bbox": [
+        134,
+        222,
+        210,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Evo-QGeo",
+      "textPreview": "Evo-QGeo",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#FF6900",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Evo-QGeo"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Evo-QGeo",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#FF6900",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Evo-QGeo",
+              "fontSize": 22,
+              "color": "#FF6900",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5o7qpg3",
+      "id": "7",
+      "bbox": [
+        134,
+        284,
+        230,
+        56
+      ],
+      "geometry": "rect",
+      "text": "미래 링크 상태 + Q-learning",
+      "textPreview": "미래 링크 상태 + Q-learning",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "미래 링크 상태 + Q-learning"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "미래 링크 상태 + Q-learning",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "미래 링크 상태 + Q-learning",
+              "fontSize": 17,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1kre1w7m",
+      "id": "8",
+      "bbox": [
+        134,
+        360,
+        230,
+        48
+      ],
+      "geometry": "rect",
+      "text": "예측 단절에 강한 기준점",
+      "textPreview": "예측 단절에 강한 기준점",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "예측 단절에 강한 기준점"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "예측 단절에 강한 기준점",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "예측 단절에 강한 기준점",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c3ylc7u5",
+      "id": "9",
+      "bbox": [
+        470,
+        190,
+        300,
+        252
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a1gvy90j",
+      "id": "10",
+      "bbox": [
+        494,
+        222,
+        210,
+        30
+      ],
+      "geometry": "rect",
+      "text": "IQMR Q(lambda)",
+      "textPreview": "IQMR Q(lambda)",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#8E51FF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IQMR Q(lambda)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IQMR Q(lambda)",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#8E51FF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IQMR Q(lambda)",
+              "fontSize": 22,
+              "color": "#8E51FF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zidonyd0",
+      "id": "11",
+      "bbox": [
+        494,
+        284,
+        230,
+        56
+      ],
+      "geometry": "rect",
+      "text": "링크·큐·경로 품질 다중 목적",
+      "textPreview": "링크·큐·경로 품질 다중 목적",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "링크·큐·경로 품질 다중 목적"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "링크·큐·경로 품질 다중 목적",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "링크·큐·경로 품질 다중 목적",
+              "fontSize": 17,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "12",
+      "bbox": [
+        494,
+        360,
+        230,
+        48
+      ],
+      "geometry": "rect",
+      "text": "전통 RL 라우팅과 비교",
+      "textPreview": "전통 RL 라우팅과 비교",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "전통 RL 라우팅과 비교"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "전통 RL 라우팅과 비교",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "전통 RL 라우팅과 비교",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hoza1gvy",
+      "id": "13",
+      "bbox": [
+        830,
+        190,
+        300,
+        252
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ap4r65wj",
+      "id": "14",
+      "bbox": [
+        854,
+        222,
+        210,
+        30
+      ],
+      "geometry": "rect",
+      "text": "DRAMA",
+      "textPreview": "DRAMA",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#155DFC",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DRAMA"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DRAMA",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#155DFC",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DRAMA",
+              "fontSize": 22,
+              "color": "#155DFC",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/za1gvy90",
+      "id": "15",
+      "bbox": [
+        854,
+        284,
+        230,
+        56
+      ],
+      "geometry": "rect",
+      "text": "MARL + emergent communication",
+      "textPreview": "MARL + emergent communication",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MARL + emergent"
+          },
+          {
+            "index": 2,
+            "text": "communication"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MARL + emergent communication",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MARL + emergent communication",
+              "fontSize": 17,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/svu9knih",
+      "id": "16",
+      "bbox": [
+        854,
+        360,
+        230,
+        48
+      ],
+      "geometry": "rect",
+      "text": "협력/통신 기반 라우팅과 비교",
+      "textPreview": "협력/통신 기반 라우팅과 비교",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "협력/통신 기반 라우팅과 비교"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "협력/통신 기반 라우팅과 비교",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "협력/통신 기반 라우팅과 비교",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hgn29gr2",
+      "id": "17",
+      "bbox": [
+        128,
+        508,
+        1010,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F1F5F9",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adsji5sn",
+      "id": "18",
+      "bbox": [
+        160,
+        524,
+        930,
+        32
+      ],
+      "geometry": "rect",
+      "text": "단, 이 baseline들은 동일 시뮬레이션 환경에 맞춘 적응 구현입니다. 원 논문 전체 재현이라고 표현하면 안 되고, fair comparison을 위해 공통 환경에 이식한 비교 기법이라고 설명해야 합니다.",
+      "textPreview": "단, 이 baseline들은 동일 시뮬레이션 환경에 맞춘 적응 구현입니다. 원 논문 전체 재현이라고 표현하면 안 되고, fair comparison을 위해 공통 환경에 이식한 비교 기법이라고 설명해야 합니다.",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "단, 이 baseline들은 동일 시뮬레이션 환경에 맞춘 적응 구현입니다. 원 논문 전체 재현이라고 표현하면 안 되고, fair comparison을 위해 공통"
+          },
+          {
+            "index": 2,
+            "text": "환경에 이식한 비교 기법이라고 설명해야 합니다."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "단, 이 baseline들은 동일 시뮬레이션 환경에 맞춘 적응 구현입니다. 원 논문 전체 재현이라고 표현하면 안 되고, fair comparison을 위해 공통 환경에 이식한 비교 기법이라고 설명해야 합니다.",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "단, 이 baseline들은 동일 시뮬레이션 환경에 맞춘 적응 구현입니다. 원 논문 전체 재현이라고 표현하면 안 되고, fair comparison을 위해 공통 환경에 이식한 비교 기법이라고 설명해야 합니다.",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ylc7u54",
+      "id": "19",
+      "bbox": [
+        54,
+        684,
+        220,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GLOBE Routing 연구 보고 | 22",
+      "textPreview": "GLOBE Routing 연구 보고 | 22",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "+mn-lt",
+        "color": "#90A1B9",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GLOBE Routing 연구 보고 | 22"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GLOBE Routing 연구 보고 | 22",
+          "resolvedTextStyle": {
+            "fontSize": 10,
+            "color": "#90A1B9"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GLOBE Routing 연구 보고 | 22",
+              "fontSize": 10,
+              "color": "#90A1B9"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

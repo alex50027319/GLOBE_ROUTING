@@ -259,4 +259,4 @@ python scripts/package_phase9_colab.py
 생성 파일:
 `artifacts/lite_globe/phase9_colab_bundle.zip`
 
-설계 가정과 일반화 영향은 [assumptions.md](assumptions.md)에 기록한다.
+설계 가정과 일반화 영향은 [assumptions.md](ResearchAIWorkspace/implementations/lite_globe/assumptions.md)에 기록한다.

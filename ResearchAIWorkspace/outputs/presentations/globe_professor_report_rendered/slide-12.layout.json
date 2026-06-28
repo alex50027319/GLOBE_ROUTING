@@ -1,0 +1,973 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/7vlbi1",
+    "id": "7vlbi1",
+    "slide": 12,
+    "layoutId": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lc7u54zi",
+      "id": "1",
+      "bbox": [
+        54,
+        28,
+        420,
+        24
+      ],
+      "geometry": "rect",
+      "text": "11 | RISK-SWITCH DETAILS",
+      "textPreview": "11 | RISK-SWITCH DETAILS",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#62748E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "11 | RISK-SWITCH DETAILS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "11 | RISK-SWITCH DETAILS",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "11 | RISK-SWITCH DETAILS",
+              "fontSize": 12,
+              "color": "#62748E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/eloj2t83",
+      "id": "2",
+      "bbox": [
+        54,
+        56,
+        900,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Risk-Switch가 단순 heuristic이 아닌 이유",
+      "textPreview": "Risk-Switch가 단순 heuristic이 아닌 이유",
+      "resolvedFontSize": 31,
+      "resolvedTextStyle": {
+        "fontSize": 31,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Risk-Switch가 단순 heuristic이 아닌 이유"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Risk-Switch가 단순 heuristic이 아닌 이유",
+          "resolvedTextStyle": {
+            "fontSize": 31,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Risk-Switch가 단순 heuristic이 아닌 이유",
+              "fontSize": 31,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/36hcrmhk",
+      "id": "3",
+      "bbox": [
+        54,
+        106,
+        980,
+        38
+      ],
+      "geometry": "rect",
+      "text": "위험 점수 D_i와 안전 이득 G(a_P,a_N)을 함께 사용해 불필요한 전환을 막습니다.",
+      "textPreview": "위험 점수 D_i와 안전 이득 G(a_P,a_N)을 함께 사용해 불필요한 전환을 막습니다.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "위험 점수 D_i와 안전 이득 G(a_P,a_N)을 함께 사용해 불필요한 전환을 막습니다."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "위험 점수 D_i와 안전 이득 G(a_P,a_N)을 함께 사용해 불필요한 전환을 막습니다.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "위험 점수 D_i와 안전 이득 G(a_P,a_N)을 함께 사용해 불필요한 전환을 막습니다.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wfyxobm5",
+      "id": "4",
+      "bbox": [
+        54,
+        148,
+        1172,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l0rqd4vm",
+      "id": "5",
+      "bbox": [
+        78,
+        178,
+        550,
+        360
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ed8bat47",
+      "id": "6",
+      "bbox": [
+        110,
+        208,
+        160,
+        26
+      ],
+      "geometry": "rect",
+      "text": "위험 점수",
+      "textPreview": "위험 점수",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FF2056",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "위험 점수"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "위험 점수",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FF2056",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "위험 점수",
+              "fontSize": 20,
+              "color": "#FF2056",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7u54zido",
+      "id": "7",
+      "bbox": [
+        110,
+        252,
+        455,
+        70
+      ],
+      "geometry": "rect",
+      "text": "D_i = [g_m-m_i]₊ + [g_l-ℓ_i]₊ + [g_o-o_i]₊\n    + [g_k-ō_i,topk]₊ + 0.5[g_ρ-ρ_i]₊ + [g_p-p_keep]₊",
+      "textPreview": "D_i = [g_m-m_i]₊ + [g_l-ℓ_i]₊ + [g_o-o_i]₊ |     + [g_k-ō_i,topk]₊ + 0.5[g_ρ-ρ_i]₊ + [g_p-p_keep]₊",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "D_i = [g_m-m_i]₊ + [g_l-ℓ_i]₊ + [g_o-o_i]₊"
+          },
+          {
+            "index": 2,
+            "text": "    + [g_k-ō_i,topk]₊ + 0.5[g_ρ-ρ_i]₊ + [g_p-p_keep]₊"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "D_i = [g_m-m_i]₊ + [g_l-ℓ_i]₊ + [g_o-o_i]₊",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "D_i = [g_m-m_i]₊ + [g_l-ℓ_i]₊ + [g_o-o_i]₊",
+              "fontSize": 19,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "    + [g_k-ō_i,topk]₊ + 0.5[g_ρ-ρ_i]₊ + [g_p-p_keep]₊",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "    + [g_k-ō_i,topk]₊ + 0.5[g_ρ-ρ_i]₊ + [g_p-p_keep]₊",
+              "fontSize": 19,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w7mp0bi9",
+      "id": "8",
+      "bbox": [
+        110,
+        350,
+        455,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Q_i = m_i + ℓ_i + o_i + ō_i,topk + 0.5ρ_i + p_keep",
+      "textPreview": "Q_i = m_i + ℓ_i + o_i + ō_i,topk + 0.5ρ_i + p_keep",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Q_i = m_i + ℓ_i + o_i + ō_i,topk + 0.5ρ_i + p_keep"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Q_i = m_i + ℓ_i + o_i + ō_i,topk + 0.5ρ_i + p_keep",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Q_i = m_i + ℓ_i + o_i + ō_i,topk + 0.5ρ_i + p_keep",
+              "fontSize": 19,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/psfil0rq",
+      "id": "9",
+      "bbox": [
+        110,
+        404,
+        350,
+        28
+      ],
+      "geometry": "rect",
+      "text": "G(a_P,a_N) = Q(a_P) - Q(a_N)",
+      "textPreview": "G(a_P,a_N) = Q(a_P) - Q(a_N)",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "G(a_P,a_N) = Q(a_P) - Q(a_N)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "G(a_P,a_N) = Q(a_P) - Q(a_N)",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "G(a_P,a_N) = Q(a_P) - Q(a_N)",
+              "fontSize": 20,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tsvu9kni",
+      "id": "10",
+      "bbox": [
+        110,
+        464,
+        440,
+        42
+      ],
+      "geometry": "rect",
+      "text": "D_i는 위험 위반량, Q_i는 안전성 합산 점수입니다. 두 값을 같이 써서 '정말 더 안전할 때만' branch를 바꿉니다.",
+      "textPreview": "D_i는 위험 위반량, Q_i는 안전성 합산 점수입니다. 두 값을 같이 써서 '정말 더 안전할 때만' branch를 바꿉니다.",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "D_i는 위험 위반량, Q_i는 안전성 합산 점수입니다. 두 값을 같이 써서 '정말"
+          },
+          {
+            "index": 2,
+            "text": "더 안전할 때만' branch를 바꿉니다."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "D_i는 위험 위반량, Q_i는 안전성 합산 점수입니다. 두 값을 같이 써서 '정말 더 안전할 때만' branch를 바꿉니다.",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "D_i는 위험 위반량, Q_i는 안전성 합산 점수입니다. 두 값을 같이 써서 '정말 더 안전할 때만' branch를 바꿉니다.",
+              "fontSize": 14,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/47y1kre1",
+      "id": "11",
+      "bbox": [
+        690,
+        178,
+        500,
+        360
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bm58z25k",
+      "id": "12",
+      "bbox": [
+        722,
+        208,
+        180,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Switch 조건",
+      "textPreview": "Switch 조건",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FF6900",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Switch 조건"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Switch 조건",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FF6900",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Switch 조건",
+              "fontSize": 20,
+              "color": "#FF6900",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m1cfa9w3",
+      "id": "13",
+      "bbox": [
+        722,
+        252,
+        405,
+        72
+      ],
+      "geometry": "rect",
+      "text": "S = 1[ a_N=DROP  or  D(a_N)>τ\n    or (a_P≠a_N ∧ G(a_P,a_N)>δ ∧ D(a_P)<D(a_N)) ]",
+      "textPreview": "S = 1[ a_N=DROP  or  D(a_N)>τ |     or (a_P≠a_N ∧ G(a_P,a_N)>δ ∧ D(a_P)<D(a_N)) ]",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "S = 1[ a_N=DROP  or  D(a_N)>τ"
+          },
+          {
+            "index": 2,
+            "text": "    or (a_P≠a_N ∧ G(a_P,a_N)>δ ∧"
+          },
+          {
+            "index": 3,
+            "text": "D(a_P)<D(a_N)) ]"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "S = 1[ a_N=DROP  or  D(a_N)>τ",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "S = 1[ a_N=DROP  or  D(a_N)>τ",
+              "fontSize": 18,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "    or (a_P≠a_N ∧ G(a_P,a_N)>δ ∧ D(a_P)<D(a_N)) ]",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "    or (a_P≠a_N ∧ G(a_P,a_N)>δ ∧ D(a_P)<D(a_N)) ]",
+              "fontSize": 18,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tgfmlkjm",
+      "id": "14",
+      "bbox": [
+        722,
+        356,
+        385,
+        120
+      ],
+      "geometry": "rect",
+      "text": "• a_N: normal branch가 고른 next-hop\n• a_P: predictive branch가 고른 next-hop\n• τ: normal 후보가 위험하다고 판단하는 기준\n• δ: predictive 후보로 바꿀 만큼 충분한 안전 이득\n• S=1이면 a_P를 사용, 아니면 a_N 유지",
+      "textPreview": "• a_N: normal branch가 고른 next-hop | • a_P: predictive branch가 고른 next-hop | • τ: normal 후보가 위험하다고 판단하는 기준 | • δ: predictive 후보로 바꿀 만큼 충분한...",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• a_N: normal branch가 고른 next-hop"
+          },
+          {
+            "index": 2,
+            "text": "• a_P: predictive branch가 고른 next-hop"
+          },
+          {
+            "index": 3,
+            "text": "• τ: normal 후보가 위험하다고 판단하는 기준"
+          },
+          {
+            "index": 4,
+            "text": "• δ: predictive 후보로 바꿀 만큼 충분한 안전 이득"
+          },
+          {
+            "index": 5,
+            "text": "• S=1이면 a_P를 사용, 아니면 a_N 유지"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• a_N: normal branch가 고른 next-hop",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• a_N: normal branch가 고른 next-hop",
+              "fontSize": 15,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• a_P: predictive branch가 고른 next-hop",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• a_P: predictive branch가 고른 next-hop",
+              "fontSize": 15,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• τ: normal 후보가 위험하다고 판단하는 기준",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• τ: normal 후보가 위험하다고 판단하는 기준",
+              "fontSize": 15,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• δ: predictive 후보로 바꿀 만큼 충분한 안전 이득",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• δ: predictive 후보로 바꿀 만큼 충분한 안전 이득",
+              "fontSize": 15,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "• S=1이면 a_P를 사용, 아니면 a_N 유지",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• S=1이면 a_P를 사용, 아니면 a_N 유지",
+              "fontSize": 15,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4vmtwra5",
+      "id": "15",
+      "bbox": [
+        54,
+        684,
+        220,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GLOBE Routing 연구 보고 | 12",
+      "textPreview": "GLOBE Routing 연구 보고 | 12",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "+mn-lt",
+        "color": "#90A1B9",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GLOBE Routing 연구 보고 | 12"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GLOBE Routing 연구 보고 | 12",
+          "resolvedTextStyle": {
+            "fontSize": 10,
+            "color": "#90A1B9"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GLOBE Routing 연구 보고 | 12",
+              "fontSize": 10,
+              "color": "#90A1B9"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

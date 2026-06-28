@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:introduction}
+
+UAV swarms are increasingly used as rapidly deployable communication platforms, sensing systems, and emergency networks. In such systems, packet routing is difficult because node positions change quickly, wireless links appear and disappear, and each UAV can normally observe only local neighborhood information. A routing policy must therefore satisfy two conflicting requirements: it should exploit enough topology and mobility structure to avoid unstable routes, while remaining lightweight enough for decentralized execution.
+
+Classical geographic routing, represented by GPSR-style next-hop selection, is attractive because it is simple, local, and low overhead. However, purely greedy geographic forwarding can fail in routing holes, local dead ends, and high-mobility cases where the closest neighbor to the destination is about to lose connectivity. Reinforcement-learning and multi-agent reinforcement-learning approaches can incorporate richer information, but many of them require online message passing, centralized state, or expensive execution-time coordination. This creates a deployment gap: policies that know enough to route well are often too heavy to execute, while policies that are cheap enough to execute often lack global routing awareness.
+
+This work studies that gap through a global-to-local design. Instead of claiming that global context itself is novel, we use global context only as a training-time privilege. A global teacher observes the full FANET graph during offline learning and dataset generation. A local student then learns a deployable next-hop policy from teacher and oracle-style routing targets. At execution time, the student no longer queries the teacher or a centralized controller. This distinction is central: the contribution is not online cooperation, but the transfer of routing structure into a local decision rule.
+
+The final proposed algorithm in this draft is \method. It builds on the fully evaluated \phaseTwelve\ model and adds four mechanisms motivated by Phase 12 failure analysis: link-loss-aware risk switching, top-$k$ onward stability, energy-aware tie breaking, and drop suppression. These mechanisms are intentionally local. They do not require global routing commands, multi-hop control messages, or online global graph aggregation.
+
+The main contributions are as follows:
+\begin{itemize}
+    \item We formulate decentralized FANET routing as a partial-observation next-hop decision problem and separate training-time privileged information from execution-time local information.
+    \item We design a global-to-local policy distillation pipeline in which a global graph teacher provides soft action distributions and routing targets to a local student.
+    \item We propose predictive risk switching, a lightweight local safeguard that switches from the nominal distilled policy to a predictive branch only when link margin, link lifetime, onward stability, redundancy, or link survival probability indicates elevated risk.
+    \item We provide a full Phase 12 evaluation across 14 scenarios, five seeds, and six evaluated methods, and merge the results with external baselines GPSR, Predictive Geographic, Evo-QGeo, IQMR Q($\lambda$), and DRAMA.
+    \item We explicitly identify the remaining evidence gaps for a submission-quality \method\ paper, including Phase 13 full validation, AODV/OLSR-style classical baselines, statistical tests for P+ ablations, and full energy-model calibration.
+\end{itemize}
+
+This draft should be read as a paper-ready technical manuscript scaffold. Results reported for Phase 12 are supported by local experiment artifacts. Results for the Phase 13 P+ extension are not yet claimed as full-scale evidence.

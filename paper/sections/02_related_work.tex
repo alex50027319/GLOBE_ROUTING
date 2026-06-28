@@ -1,0 +1,38 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{FANET and Geographic Routing}
+FANET routing protocols must respond to high mobility, intermittent connectivity, and limited communication range. Geographic routing methods such as GPSR~\cite{gpsr} use node positions to forward packets toward the destination with minimal signaling. Their simplicity makes them strong baselines for UAV routing, but greedy progress can fail near void regions or when the geographically attractive next hop is unstable.
+
+\subsection{Predictive Geographic Routing}
+Predictive geographic protocols extend greedy routing by estimating link duration, neighbor mobility, or future link-state evolution. Evo-QGeo-style methods are particularly relevant because they consider future link-state evolution and routing-hole bypass~\cite{evoqgeo}. This overlaps with any claim based only on ``using predicted links''. For this reason, our novelty claim is not merely predictive routing, but a global-to-local teacher-student transfer combined with communication-free local execution and risk-triggered predictive switching.
+
+\subsection{Reinforcement Learning and MARL Routing}
+RL routing methods learn routing policies from rewards such as delivery success, delay, hop count, queue pressure, or link stability. Multi-agent RL methods can model distributed decisions, but execution-time cooperation can introduce signaling cost. DRAMA-like emergent-communication routing is therefore a close baseline because it explicitly uses learned inter-agent communication~\cite{drama}. In contrast, the proposed method uses privileged global information offline and removes the online global teacher during deployment.
+
+\subsection{GNN-Based Routing and CTDE}
+Graph neural networks are natural for routing because topology can be represented as a graph. Centralized training with decentralized execution (CTDE) is also well established in multi-agent systems, including UAV-assisted networking studies such as GLo-MAPPO~\cite{glo_mappo}. Consequently, the paper does not claim CTDE alone as the contribution. The routing-specific contribution is the distillation of global graph knowledge into local next-hop utilities and the use of local predictive safeguards during execution.
+
+\subsection{Knowledge Distillation and Policy Distillation}
+Knowledge distillation transfers behavior from a high-capacity teacher to a compact student. In this work, distillation is performed over next-hop action distributions rather than only over a single hard action. The soft teacher distribution carries relative preferences among candidate neighbors, which is valuable when several next hops are feasible but differ in stability, onward connectivity, and deadline risk.
+
+\subsection{Positioning of This Work}
+Table~\ref{tab:positioning} summarizes the intended positioning. The strongest defensible claim is not that \method\ is the first to use global state, prediction, or RL. The defensible claim is that it uses global routing knowledge only during training, compresses it into a local execution policy, and then applies an interpretable predictive risk switch without online global commands.
+
+\begin{table}[t]
+\centering
+\caption{Conceptual positioning of routing methods.}
+\label{tab:positioning}
+\begin{tabular}{lccc}
+\toprule
+Method family & Prediction & Online comm. & Local execution \\
+\midrule
+GPSR & No & Low & Yes \\
+Predictive geographic & Yes & Low/medium & Yes \\
+Evo-QGeo & Yes & Low/medium & Yes \\
+DRAMA-style MARL & Learned & High & Partially \\
+Global teacher & Yes/learned & Not deployable & No \\
+\method & Yes/learned & Low & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}

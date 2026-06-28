@@ -1,0 +1,199 @@
+\section{Proposed Method}
+\label{sec:method}
+
+\subsection{Overview}
+Fig.~\ref{fig:overview} summarizes the proposed workflow. A privileged teacher is trained offline with global graph information. A student receives local observations and learns to imitate teacher action distributions. The deployed policy combines a nominal distilled branch with a predictive branch through a risk switch. The Phase 13 \method\ extension adds link-loss-aware risk, top-$k$ onward stability, energy-aware tie breaking, and drop suppression.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.96\textwidth]{figures/method_overview_pub.pdf}
+\caption{System architecture of the proposed GLOBE++ Lite-P+ routing pipeline. The global teacher is used only for offline privileged training and distillation, while the deployed router selects the next hop from local one-hop observations through a nominal branch, a predictive branch, and a risk-switch decision.}
+\label{fig:overview}
+\end{figure*}
+
+\subsection{Global Teacher}
+The teacher policy $\pi_T(a\mid s_t)$ observes global topology state $s_t$, including graph structure, node positions, mobility, queue features, and destination information. In the current implementation, the teacher is implemented as a global actor-critic model and trained with PPO during the earlier phases of the project. The teacher is not deployed. Its role is to generate routing behavior and soft targets:
+\begin{equation}
+    y_T(a)=\mathrm{softmax}\left(\frac{z_T(a)}{T}\right),
+\end{equation}
+where $z_T(a)$ is the teacher logit for action $a$ and $T$ is the distillation temperature.
+
+\subsection{Reinforcement-Learning-Based Global Teacher Training}
+\label{subsec:teacher_rl}
+The reinforcement-learning component of the proposed framework is used to train the privileged global teacher before student distillation. At training step $t$, the teacher observes the global state
+\begin{equation}
+s_t=(\mathcal{G}_t,p_t,v_t,q_t,d),
+\end{equation}
+where $\mathcal{G}_t$ is the FANET topology, $p_t$ and $v_t$ are node positions and velocities, $q_t$ is the queue state, and $d$ is the packet destination. The teacher samples or selects a next-hop action according to
+\begin{equation}
+a_t \sim \pi_T(a_t\mid s_t;\theta_T),
+\end{equation}
+and receives a routing reward from the simulator. A typical reward combines delivery success, delay, energy, hop count, and failure penalties:
+\begin{equation}
+r_t
+=
+\alpha_{\mathrm{succ}}R_{\mathrm{succ}}
+-\alpha_DD_t
+-\alpha_EE_t
+-\alpha_HH_t
+-\alpha_FF_t .
+\end{equation}
+Here $R_{\mathrm{succ}}$ rewards successful packet delivery, $D_t$ penalizes delay, $E_t$ is an energy or transmission-cost proxy, $H_t$ penalizes excessive hops, and $F_t$ penalizes route failure, drop, or loop events.
+
+The teacher objective is to maximize the expected discounted return:
+\begin{equation}
+J(\theta_T)
+=
+\mathbb{E}_{\pi_T}
+\left[
+\sum_{t=0}^{T_{\mathrm{ep}}}\gamma^t r_t
+\right],
+\end{equation}
+where $\gamma$ is the discount factor and $T_{\mathrm{ep}}$ is the episode horizon. In the current implementation, this objective is optimized with a PPO-style actor-critic update. The policy-ratio term is
+\begin{equation}
+\rho_t(\theta_T)
+=
+\frac{
+\pi_T(a_t\mid s_t;\theta_T)
+}{
+\pi_T(a_t\mid s_t;\theta_T^{\mathrm{old}})
+},
+\end{equation}
+and the advantage estimate is
+\begin{equation}
+A_t
+=
+\hat{R}_t
+-
+V_T(s_t;\phi_T),
+\end{equation}
+where $\hat{R}_t$ is the empirical or bootstrapped return and $V_T$ is the teacher value function. The clipped PPO policy loss is
+\begin{equation}
+\mathcal{L}_{\mathrm{PPO}}
+=
+-
+\mathbb{E}_t
+\left[
+\min
+\left(
+\rho_t(\theta_T)A_t,\;
+\mathrm{clip}(\rho_t(\theta_T),1-\epsilon,1+\epsilon)A_t
+\right)
+\right].
+\end{equation}
+The clipping parameter $\epsilon$ prevents the teacher policy from changing too aggressively in a single update. The value function is trained by
+\begin{equation}
+\mathcal{L}_{V}
+=
+\mathbb{E}_t
+\left[
+\left(
+V_T(s_t;\phi_T)-\hat{R}_t
+\right)^2
+\right],
+\end{equation}
+and the total teacher-training loss can be written as
+\begin{equation}
+\mathcal{L}_{T}
+=
+\mathcal{L}_{\mathrm{PPO}}
++
+c_V\mathcal{L}_{V}
+-
+c_H\mathcal{H}(\pi_T),
+\end{equation}
+where $\mathcal{H}(\pi_T)$ is an entropy bonus that encourages exploration during teacher training.
+
+After convergence, the trained teacher parameters $\theta_T^\star$ are frozen. The teacher is then used only to generate soft routing targets for states encountered in rollout data:
+\begin{equation}
+\pi_T(\cdot\mid s_t;\theta_T^\star)
+\rightarrow
+\text{distillation target for }
+\pi_S(\cdot\mid o_u;\theta_S).
+\end{equation}
+Thus, reinforcement learning is not performed on deployed UAVs. It is an offline mechanism for learning globally informed routing behavior, which is subsequently compressed into a local student policy.
+
+\subsection{Local Student Distillation}
+The student policy $\pi_S(a\mid o_u)$ observes only local candidate features. The distillation objective combines soft teacher imitation, hard action imitation, and optional oracle/path targets:
+\begin{equation}
+\mathcal{L}_{\mathrm{KD}}
+=
+\lambda_{\mathrm{KL}}T^2D_{\mathrm{KL}}(y_T\Vert y_S)
++\lambda_{\mathrm{CE}}\mathrm{CE}(a_T,\pi_S)
++\lambda_{\mathrm{O}}\mathcal{L}_{\mathrm{oracle}},
+\end{equation}
+where $y_S=\mathrm{softmax}(z_S/T)$, $a_T=\arg\max_a \pi_T(a\mid s_t)$, and $\mathcal{L}_{\mathrm{oracle}}$ biases the student toward feasible shortest-path or recovery actions when such labels are available.
+
+\subsection{Predictive Candidate Features}
+For each candidate next hop $i$, the risk branch uses
+\begin{equation}
+x_i^{\mathrm{risk}}=[m_i,\ell_i,q_i,o_i],
+\end{equation}
+where $m_i$ is link margin, $\ell_i$ is predicted current-link lifetime, $q_i$ is queue headroom, and $o_i$ is best onward-link lifetime after selecting candidate $i$.
+
+The Phase 13 P+ extension adds
+\begin{equation}
+x_i^{+}=[\bar{o}_{i,\mathrm{top}k},\rho_i,p_{i,\mathrm{keep}},\eta_i],
+\end{equation}
+where $\bar{o}_{i,\mathrm{top}k}$ is the average of the top-$k$ onward link lifetimes, $\rho_i$ is normalized onward redundancy, $p_{i,\mathrm{keep}}$ is link survival probability under stochastic link loss, and
+\begin{equation}
+\eta_i=1-\left(\frac{d_i}{R_c}\right)^2
+\end{equation}
+is an energy-efficiency proxy for distance $d_i$ between the current UAV and candidate $i$.
+
+\subsection{Risk Score and Safety Gain}
+The P+ danger score is
+\begin{align}
+D_i &=
+[g_m-m_i]_+
++[g_\ell-\ell_i]_+
++[g_o-o_i]_+ \nonumber\\
+&\quad +[g_k-\bar{o}_{i,\mathrm{top}k}]_+
++0.5[g_\rho-\rho_i]_+
++[g_p-p_{i,\mathrm{keep}}]_+,
+\end{align}
+where $[x]_+=\max(x,0)$ and the $g$ terms are safety gates.
+
+The candidate safety utility is
+\begin{equation}
+Q_i=m_i+\ell_i+o_i+\bar{o}_{i,\mathrm{top}k}+0.5\rho_i+p_{i,\mathrm{keep}}.
+\end{equation}
+For a predictive action $a_P$ and nominal action $a_N$, the safety gain is
+\begin{equation}
+G(a_P,a_N)=Q_{a_P}-Q_{a_N}.
+\end{equation}
+
+\subsection{Risk-Switch Decision}
+The nominal branch is used by default. The predictive branch is activated only when the nominal action is unsafe:
+\begin{equation}
+S=\mathbb{1}\left[
+a_N=\dropact
+\vee
+D_{a_N}>\tau
+\vee
+\left(a_P\neq a_N \land G(a_P,a_N)>\delta \land D_{a_P}<D_{a_N}\right)
+\right].
+\end{equation}
+The final action is
+\begin{equation}
+a^\star=
+\begin{cases}
+a_P, & S=1,\\
+a_N, & S=0.
+\end{cases}
+\end{equation}
+
+\subsection{Energy Tie Breaking and Drop Suppression}
+The predictive logit is adjusted by an energy tie term:
+\begin{equation}
+z_i^{P+}=z_i^P+\lambda_E\eta_i.
+\end{equation}
+This term is intended to choose shorter and more energy-efficient links when safety is similar.
+
+If at least one safe forwarding candidate exists, the drop logit is reduced:
+\begin{equation}
+z_{\dropact}^{P+}=z_{\dropact}-\lambda_D.
+\end{equation}
+This does not force forwarding in all cases; it only discourages premature dropping when a locally safe candidate is available.
+
+\input{algorithms/risk_switch_lite_globe_p_plus}

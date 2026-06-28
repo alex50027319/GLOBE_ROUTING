@@ -1,0 +1,238 @@
+{
+  "main": {
+    "id": "3995f1f68d2b48f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a2d818c475cd609",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0c507fdb9e4c010a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ResearchAIWorkspace/vault/03_Papers/Paper_Cards/drama.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "drama"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3fd6667ba1a4e1ac",
+    "type": "split",
+    "children": [
+      {
+        "id": "cd633ad4d82df210",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bd2b0cc451d912c9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "6225e114e776c2b0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "12f2c57692b64e61",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "56569615d3e05d2f",
+    "type": "split",
+    "children": [
+      {
+        "id": "8e255460ad855e4a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "64d377543191b800",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "lite_globe_phase_1_5_progress 의 백링크"
+            }
+          },
+          {
+            "id": "515a6c7f97ed79c0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "lite_globe_phase_1_5_progress 의 나가는 링크"
+            }
+          },
+          {
+            "id": "df0e2d3a7b8b06f0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "f19857dc32bb619a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "628520ff32d31700",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "lite_globe_phase_1_5_progress 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "0c507fdb9e4c010a",
+  "lastOpenFiles": [
+    "paper/scripts/build_final_pdf_with_teacher_rl.py",
+    "paper/scripts",
+    "paper/figures/make_method_diagram.py",
+    "paper/main_final.pdf",
+    "paper/figures/method_overview_pub_preview.png",
+    "paper/figures/method_overview_pub.pdf",
+    "paper/main.pdf",
+    "paper/notes/paper_checklist.md",
+    "paper/notes/missing_experiments.md",
+    "paper/notes/reviewer_risk.md",
+    "paper/notes/evidence_map.md",
+    "paper/notes/workspace_audit.md",
+    "paper/README.md",
+    "paper/references.bib",
+    "paper/algorithms/risk_switch_lite_globe_p_plus.tex",
+    "paper/tables/overall_results.tex",
+    "paper/sections/10_conclusion.tex",
+    "paper/sections/09_discussion.tex",
+    "paper/figures/phase12_input_bytes.png",
+    "paper/figures/phase12_pdr.png",
+    "paper/figures/phase12_delay_p95.png",
+    "paper/figures/method_overview.png",
+    "ResearchAIWorkspace/vault/06_Experiments/Lite-GLOBE/Method_Overview_Infographic.md",
+    "ResearchAIWorkspace/vault/06_Experiments/Lite-GLOBE/Figures/Overview/lite_globe_full_method_infographic.png",
+    "ResearchAIWorkspace/vault/06_Experiments/Lite-GLOBE/Figures/Overview/lite_globe_full_method_infographic.svg",
+    "ResearchAIWorkspace/outputs/visualizations/lite_globe_full_method_infographic.png",
+    "ResearchAIWorkspace/outputs/visualizations/lite_globe_full_method_infographic.svg.png",
+    "ResearchAIWorkspace/outputs/visualizations/lite_globe_full_method_infographic.svg",
+    "ResearchAIWorkspace/vault/03_Papers/Paper_Cards/de_maddpg.md",
+    "ResearchAIWorkspace/vault/03_Papers/Paper_Cards/alam_thesis.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Theory/KL Divergence.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Theory/Dec-POMDP.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Routing/UAV Routing.md",
+    "ResearchAIWorkspace/vault/02_Concepts/MARL/MAPPO.md",
+    "ResearchAIWorkspace/vault/02_Concepts/MARL/CTDE.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Knowledge_Distillation/Teacher-Student Policy.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Knowledge_Distillation/Policy Distillation.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Knowledge_Distillation/Latent Distillation.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Knowledge_Distillation/Knowledge Distillation.md",
+    "ResearchAIWorkspace/vault/02_Concepts/GNN/Graph Neural Network.md",
+    "ResearchAIWorkspace/vault/02_Concepts/GNN/Ego-Graph.md",
+    "ResearchAIWorkspace/vault/02_Concepts/FANET/FANET.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Evaluation/Routing Overhead.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Evaluation/Packet Delivery Ratio.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Evaluation/OOD Generalization.md",
+    "ResearchAIWorkspace/vault/02_Concepts/Evaluation/End-to-End Delay.md",
+    "무제.canvas",
+    "무제 1.canvas",
+    "무제 2.canvas"
+  ]
+}

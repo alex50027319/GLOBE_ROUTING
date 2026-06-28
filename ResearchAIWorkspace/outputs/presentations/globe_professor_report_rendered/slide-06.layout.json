@@ -1,0 +1,1002 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/1biqpn",
+    "id": "1biqpn",
+    "slide": 6,
+    "layoutId": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "5035b3bc-6a50-42d7-acc4-6dd292d3d953",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "718f4f13-653b-4654-bef0-c649adc1ed5a",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nqxs72x4",
+      "id": "1",
+      "bbox": [
+        54,
+        28,
+        420,
+        24
+      ],
+      "geometry": "rect",
+      "text": "05 | SYSTEM MODEL",
+      "textPreview": "05 | SYSTEM MODEL",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#62748E",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "05 | SYSTEM MODEL"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "05 | SYSTEM MODEL",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "05 | SYSTEM MODEL",
+              "fontSize": 12,
+              "color": "#62748E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbulwval",
+      "id": "2",
+      "bbox": [
+        54,
+        56,
+        900,
+        58
+      ],
+      "geometry": "rect",
+      "text": "시뮬레이션 환경과 라우팅 문제 정의",
+      "textPreview": "시뮬레이션 환경과 라우팅 문제 정의",
+      "resolvedFontSize": 31,
+      "resolvedTextStyle": {
+        "fontSize": 31,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "시뮬레이션 환경과 라우팅 문제 정의"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "시뮬레이션 환경과 라우팅 문제 정의",
+          "resolvedTextStyle": {
+            "fontSize": 31,
+            "color": "#020618",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "시뮬레이션 환경과 라우팅 문제 정의",
+              "fontSize": 31,
+              "color": "#020618",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5sneloj2",
+      "id": "3",
+      "bbox": [
+        54,
+        106,
+        980,
+        38
+      ],
+      "geometry": "rect",
+      "text": "각 episode에서 source에서 destination까지 패킷을 hop-by-hop으로 전달합니다.",
+      "textPreview": "각 episode에서 source에서 destination까지 패킷을 hop-by-hop으로 전달합니다.",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "각 episode에서 source에서 destination까지 패킷을 hop-by-hop으로 전달합니다."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "각 episode에서 source에서 destination까지 패킷을 hop-by-hop으로 전달합니다.",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#45556C"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "각 episode에서 source에서 destination까지 패킷을 hop-by-hop으로 전달합니다.",
+              "fontSize": 15,
+              "color": "#45556C"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytsvu9kn",
+      "id": "4",
+      "bbox": [
+        54,
+        148,
+        1172,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E2E8F0",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/neloj2t8",
+      "id": "5",
+      "bbox": [
+        80,
+        182,
+        330,
+        330
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/czed8v6p",
+      "id": "6",
+      "bbox": [
+        110,
+        212,
+        230,
+        28
+      ],
+      "geometry": "rect",
+      "text": "네트워크 모델",
+      "textPreview": "네트워크 모델",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#155DFC",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "네트워크 모델"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "네트워크 모델",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#155DFC",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "네트워크 모델",
+              "fontSize": 20,
+              "color": "#155DFC",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5kb6xkf6",
+      "id": "7",
+      "bbox": [
+        110,
+        264,
+        250,
+        150
+      ],
+      "geometry": "rect",
+      "text": "• 2D FANET / Random Waypoint\n• 통신 반경 기반 링크\n• 노드 이동으로 링크 상태 변화\n• source-destination 단일 packet routing",
+      "textPreview": "• 2D FANET / Random Waypoint | • 통신 반경 기반 링크 | • 노드 이동으로 링크 상태 변화 | • source-destination 단일 packet routing",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• 2D FANET / Random Waypoint"
+          },
+          {
+            "index": 2,
+            "text": "• 통신 반경 기반 링크"
+          },
+          {
+            "index": 3,
+            "text": "• 노드 이동으로 링크 상태 변화"
+          },
+          {
+            "index": 4,
+            "text": "• source-destination 단일 packet"
+          },
+          {
+            "index": 5,
+            "text": "routing"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• 2D FANET / Random Waypoint",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 2D FANET / Random Waypoint",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• 통신 반경 기반 링크",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 통신 반경 기반 링크",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• 노드 이동으로 링크 상태 변화",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 노드 이동으로 링크 상태 변화",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• source-destination 단일 packet routing",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• source-destination 단일 packet routing",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgn29gr",
+      "id": "8",
+      "bbox": [
+        476,
+        182,
+        330,
+        330
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n29gr2p8",
+      "id": "9",
+      "bbox": [
+        506,
+        212,
+        230,
+        28
+      ],
+      "geometry": "rect",
+      "text": "행동 공간",
+      "textPreview": "행동 공간",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#00BC7D",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "행동 공간"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "행동 공간",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#00BC7D",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "행동 공간",
+              "fontSize": 20,
+              "color": "#00BC7D",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyxobm58",
+      "id": "10",
+      "bbox": [
+        506,
+        264,
+        250,
+        150
+      ],
+      "geometry": "rect",
+      "text": "• 1-hop 이웃 중 다음 홉 선택\n• 막힌 경우 DROP 선택 가능\n• visited node 재방문 억제\n• 지역 실행 정책으로 deploy 가능",
+      "textPreview": "• 1-hop 이웃 중 다음 홉 선택 | • 막힌 경우 DROP 선택 가능 | • visited node 재방문 억제 | • 지역 실행 정책으로 deploy 가능",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• 1-hop 이웃 중 다음 홉 선택"
+          },
+          {
+            "index": 2,
+            "text": "• 막힌 경우 DROP 선택 가능"
+          },
+          {
+            "index": 3,
+            "text": "• visited node 재방문 억제"
+          },
+          {
+            "index": 4,
+            "text": "• 지역 실행 정책으로 deploy 가능"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• 1-hop 이웃 중 다음 홉 선택",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 1-hop 이웃 중 다음 홉 선택",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• 막힌 경우 DROP 선택 가능",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 막힌 경우 DROP 선택 가능",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• visited node 재방문 억제",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• visited node 재방문 억제",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• 지역 실행 정책으로 deploy 가능",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 지역 실행 정책으로 deploy 가능",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qd4vmtwr",
+      "id": "11",
+      "bbox": [
+        872,
+        182,
+        330,
+        330
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4nap4r6",
+      "id": "12",
+      "bbox": [
+        902,
+        212,
+        230,
+        28
+      ],
+      "geometry": "rect",
+      "text": "성능 지표",
+      "textPreview": "성능 지표",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FF6900",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "성능 지표"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "성능 지표",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FF6900",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "성능 지표",
+              "fontSize": 20,
+              "color": "#FF6900",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jqh0fep",
+      "id": "13",
+      "bbox": [
+        902,
+        264,
+        250,
+        170
+      ],
+      "geometry": "rect",
+      "text": "• PDR: packet delivery ratio\n• Deadline success\n• Delay p95\n• Energy proxy\n• Input/control bytes",
+      "textPreview": "• PDR: packet delivery ratio | • Deadline success | • Delay p95 | • Energy proxy | • Input/control bytes",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• PDR: packet delivery ratio"
+          },
+          {
+            "index": 2,
+            "text": "• Deadline success"
+          },
+          {
+            "index": 3,
+            "text": "• Delay p95"
+          },
+          {
+            "index": 4,
+            "text": "• Energy proxy"
+          },
+          {
+            "index": 5,
+            "text": "• Input/control bytes"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• PDR: packet delivery ratio",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• PDR: packet delivery ratio",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Deadline success",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Deadline success",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Delay p95",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Delay p95",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "• Energy proxy",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Energy proxy",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "• Input/control bytes",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#020618"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Input/control bytes",
+              "fontSize": 16,
+              "color": "#020618"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fa9w3m94",
+      "id": "14",
+      "bbox": [
+        106,
+        566,
+        1000,
+        30
+      ],
+      "geometry": "rect",
+      "text": "목표: 높은 전달률과 deadline 성공률을 유지하면서, 실행시 정보 요구량과 제어 오버헤드를 낮추는 것",
+      "textPreview": "목표: 높은 전달률과 deadline 성공률을 유지하면서, 실행시 정보 요구량과 제어 오버헤드를 낮추는 것",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#312C85",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "목표: 높은 전달률과 deadline 성공률을 유지하면서, 실행시 정보 요구량과 제어 오버헤드를 낮추는 것"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "목표: 높은 전달률과 deadline 성공률을 유지하면서, 실행시 정보 요구량과 제어 오버헤드를 낮추는 것",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#312C85",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "목표: 높은 전달률과 deadline 성공률을 유지하면서, 실행시 정보 요구량과 제어 오버헤드를 낮추는 것",
+              "fontSize": 18,
+              "color": "#312C85",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qpg3ex0n",
+      "id": "15",
+      "bbox": [
+        54,
+        684,
+        220,
+        18
+      ],
+      "geometry": "rect",
+      "text": "GLOBE Routing 연구 보고 | 6",
+      "textPreview": "GLOBE Routing 연구 보고 | 6",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "+mn-lt",
+        "color": "#90A1B9",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GLOBE Routing 연구 보고 | 6"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GLOBE Routing 연구 보고 | 6",
+          "resolvedTextStyle": {
+            "fontSize": 10,
+            "color": "#90A1B9"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GLOBE Routing 연구 보고 | 6",
+              "fontSize": 10,
+              "color": "#90A1B9"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

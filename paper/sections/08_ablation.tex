@@ -1,0 +1,19 @@
+\section{Ablation Study}
+\label{sec:ablation}
+
+\subsection{Implemented Ablations}
+The current project includes several internal ablations: KD-only student, KD+PPO student, Geo-Residual KD, Lite-GLOBE-P predictive-prior-only, Lite-GLOBE-P no-switch, and \phaseTwelve. These show that pure PPO fine-tuning did not provide consistent improvement, while geographic residuals and predictive risk features improved routing robustness.
+
+\subsection{Phase 13 P+ Planned Ablations}
+The Phase 13 implementation defines the following ablations:
+\begin{itemize}
+    \item No link-loss gate: removes $p_{i,\mathrm{keep}}$ from the switch decision.
+    \item No energy tie: removes $\lambda_E\eta_i$ from predictive logits.
+    \item No drop suppression: removes the drop-logit penalty.
+    \item Top-1 onward only: replaces top-$k$ onward stability and redundancy with a single best onward estimate.
+\end{itemize}
+
+These ablations are necessary to prove that each P+ component contributes to the final behavior. At the moment, full multi-seed Phase 13 ablation evidence is still missing. The expected reviewer question is straightforward: if P+ improves performance, which component caused the improvement?
+
+\subsection{Metrics for Ablation}
+Each ablation should report PDR, deadline delivery, delay p95, energy proxy, input bytes, agent-drop rate, link-break failure rate, and switch activation rate. The switch rate is important because an always-on predictive branch would weaken the claim that the method is a selective local safeguard.

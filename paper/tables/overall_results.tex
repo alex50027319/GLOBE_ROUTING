@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Overall average performance over the merged 14-scenario evaluation. Higher is better for PDR and Deadline. Lower is better for Delay p95, Energy, and Input bytes.}
+\label{tab:overall_results}
+\begin{tabular}{lccccc}
+\toprule
+Method & PDR & Deadline & Delay p95 & Energy & Input bytes \\
+\midrule
+GPSR & 0.683 & 0.637 & 4.163 & \textbf{1.166} & \textbf{2,284} \\
+Predictive Geographic & 0.892 & 0.823 & 4.500 & 1.809 & 5,531 \\
+Evo-QGeo & 0.887 & 0.815 & 4.557 & 1.812 & 6,452 \\
+IQMR Q($\lambda$) & 0.516 & 0.385 & 6.289 & 1.946 & 7,953 \\
+DRAMA & 0.891 & 0.822 & 4.504 & 1.724 & 6,240 \\
+Phase 8 Geo-Residual KD & 0.803 & 0.740 & \textbf{4.110} & 1.424 & 3,956 \\
+Lite-GLOBE-P predictive-prior only & \textbf{0.905} & \textbf{0.838} & 4.334 & 1.776 & 5,424 \\
+Lite-GLOBE-P no-switch & 0.890 & 0.822 & 4.300 & 1.726 & 5,775 \\
+\phaseTwelve & \textbf{0.905} & \textbf{0.838} & 4.264 & 1.779 & 4,821 \\
+\bottomrule
+\end{tabular}
+\end{table*}

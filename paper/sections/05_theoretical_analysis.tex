@@ -1,0 +1,22 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+\subsection{Local Deployability}
+The deployed policy is locally executable if $a^\star$ can be computed from $o_u(t)$ and candidate-local predictions. In \method, $m_i$, $\ell_i$, $q_i$, $o_i$, $\bar{o}_{i,\mathrm{top}k}$, $\rho_i$, $p_{i,\mathrm{keep}}$, and $\eta_i$ are candidate-local or one-hop-derived quantities in the simulator. Therefore, the final action does not require $\mathcal{G}_t$ or online teacher inference.
+
+\subsection{Why Risk Switching Helps}
+Let $a_N$ be the nominal local action and $a_P$ be the predictive action. If $D_{a_N}$ is low, the switch remains inactive and the policy behaves like the distilled nominal router. If $D_{a_N}$ is high, the policy tests whether the predictive candidate has lower danger and sufficient safety gain. This makes switching selective:
+\begin{equation}
+\Pr(S=1\mid D_{a_N}\le \tau)\approx 0,
+\end{equation}
+while allowing recovery when the nominal action points to an unstable or dead-end candidate.
+
+\subsection{Distillation Error and Return Gap}
+The student can lose performance relative to the teacher due to partial observation and model compression. A useful diagnostic is the return gap
+\begin{equation}
+\Delta J=J(\pi_T)-J(\pi_S).
+\end{equation}
+Reducing $D_{\mathrm{KL}}(\pi_T\Vert\pi_S)$ does not guarantee a small return gap under distribution shift, because routing failures often occur in rare states such as holes or imminent link breaks. This motivates explicit scenario stress tests and risk-aware switching rather than relying only on average distillation loss.
+
+\subsection{Communication-Cost Claim}
+The main communication-cost claim is qualitative unless per-packet control signaling is measured. This draft currently reports local policy input bytes from the simulator, which is a proxy for execution-time information footprint. A submission-quality version should additionally report control bytes per delivered packet and compare against DRAMA-style message-passing baselines.

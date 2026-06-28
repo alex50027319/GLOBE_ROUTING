@@ -1,0 +1,57 @@
+\section{Problem Formulation}
+\label{sec:problem}
+
+\subsection{Network Model}
+At time step $t$, the FANET is represented as a directed graph
+\begin{equation}
+    \mathcal{G}_t = (\mathcal{V}, \mathcal{E}_t),
+\end{equation}
+where $\mathcal{V}=\{1,\ldots,N\}$ is the set of UAVs and $(u,v)\in\mathcal{E}_t$ if UAV $v$ is within the communication range $R_c$ of UAV $u$ and the link is available at time $t$. UAV $u$ has position $p_u(t)\in\mathbb{R}^3$, velocity $v_u(t)$, queue state $q_u(t)$, and packet-level destination $d$.
+
+For a packet currently at UAV $u$, the one-hop candidate set is
+\begin{equation}
+    \mathcal{A}_u(t)=\mathcal{N}_u(t)\cup\{\dropact\},
+\end{equation}
+where $\mathcal{N}_u(t)=\{v:(u,v)\in\mathcal{E}_t\}$ and $\dropact$ is the explicit no-forward/drop action used by the simulator.
+
+\subsection{Partial Observation}
+The deployed router does not observe $\mathcal{G}_t$. It observes a local state
+\begin{equation}
+    o_u(t)=\{x_u(t), x_i(t): i\in\mathcal{N}_u(t), x_{u,i}(t), x_d(t)\},
+\end{equation}
+where $x_u$ is the self feature vector, $x_i$ is a neighbor feature vector, $x_{u,i}$ is an edge/candidate feature vector, and $x_d$ encodes destination-related geometry. The global teacher may observe $\mathcal{G}_t$ during offline training, but the deployed policy must select
+\begin{equation}
+    a_t \sim \pi_S(a\mid o_u(t))
+\end{equation}
+using only local observation.
+
+\subsection{Objective}
+The routing objective is to maximize reliable and timely delivery while controlling cost:
+\begin{equation}
+    \max_{\pi} \; \mathbb{E}_{\pi}\left[
+    R_{\mathrm{succ}} - \alpha D - \beta E - \gamma C - \xi H
+    \right],
+\end{equation}
+where $R_{\mathrm{succ}}$ rewards packet delivery, $D$ is delay, $E$ is energy proxy, $C$ is execution input/control cost, and $H$ is path or hop penalty.
+
+We report the following metrics:
+\begin{align}
+\pdr &= \frac{N_{\mathrm{delivered}}}{N_{\mathrm{generated}}},\\
+\mathrm{Deadline} &= \frac{N_{\mathrm{delivered\ before\ deadline}}}{N_{\mathrm{generated}}},\\
+\bar{D} &= \frac{1}{N_{\mathrm{delivered}}}\sum_{k\in\mathcal{D}}(t_k^{\mathrm{arr}}-t_k^{\mathrm{src}}),\\
+\mathrm{Delay}_{95} &= Q_{0.95}\left(\{t_k^{\mathrm{arr}}-t_k^{\mathrm{src}}: k\in\mathcal{D}\}\right),\\
+\mathrm{Throughput} &= \frac{\sum_{k\in\mathcal{D}} B_k}{T_{\mathrm{sim}}},\\
+\mathrm{Overhead} &= \frac{B_{\mathrm{input/control}}}{N_{\mathrm{delivered}}+\epsilon},\\
+\mathrm{Energy} &= \frac{1}{N_{\mathrm{tx}}}\sum_{(u,v)} \left(\frac{\|p_u-p_v\|_2}{R_c}\right)^2.
+\end{align}
+Here $\mathcal{D}$ is the set of delivered packets, $B_k$ is packet size, and $\epsilon$ prevents division by zero. Teacher-student transfer is measured by
+\begin{equation}
+    D_{\mathrm{KL}}(\pi_T\Vert\pi_S)
+    =
+    \sum_{a\in\mathcal{A}_u}\pi_T(a\mid s_t)
+    \log\frac{\pi_T(a\mid s_t)}{\pi_S(a\mid o_u(t))},
+\end{equation}
+and by the return gap
+\begin{equation}
+    \Delta J = J(\pi_T)-J(\pi_S).
+\end{equation}

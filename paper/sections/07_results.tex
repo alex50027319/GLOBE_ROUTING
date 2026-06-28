@@ -1,0 +1,43 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Overall Performance}
+Table~\ref{tab:overall_results} reports the merged Phase 12 full results and external baseline comparison. The fully evaluated \phaseTwelve\ model achieves the highest overall PDR and deadline delivery. It also has lower delay p95 than Predictive Geographic, Evo-QGeo, IQMR Q($\lambda$), and DRAMA, while using fewer input bytes than the predictive and message-passing external baselines.
+
+\input{tables/overall_results}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/phase12_pdr.png}
+\caption{Phase 12 PDR comparison across scenario groups and methods.}
+\label{fig:pdr}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/phase12_delay_p95.png}
+\caption{Phase 12 95th-percentile delay comparison.}
+\label{fig:delay}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/phase12_input_bytes.png}
+\caption{Phase 12 local policy input-byte comparison.}
+\label{fig:input_bytes}
+\end{figure}
+
+\subsection{Reliability}
+\phaseTwelve\ improves PDR by 32.5\% over GPSR, 1.5\% over Predictive Geographic, 2.1\% over Evo-QGeo, and 1.6\% over DRAMA. Its deadline delivery improvement follows the same trend, indicating that the method does not simply deliver more packets after excessive delay; it also improves timely delivery.
+
+\subsection{Delay}
+The overall delay p95 of \phaseTwelve\ is 4.264, lower than Predictive Geographic, Evo-QGeo, IQMR Q($\lambda$), and DRAMA. Phase 8 has slightly lower delay p95, but Phase 8 fails in predictive-break scenarios. Therefore, delay must be interpreted jointly with PDR: a method that drops or fails early can appear fast while delivering fewer packets.
+
+\subsection{Input Footprint}
+\phaseTwelve\ uses more input bytes than GPSR and Phase 8, but fewer than Predictive Geographic, Evo-QGeo, and DRAMA. This supports the central deployment argument: the proposed family improves reliability without using the heavier execution-time footprint of predictive/message-passing external baselines. A stricter future version should report explicit control bytes per delivered packet.
+
+\subsection{Scenario-Level Findings}
+In routing-hole scenarios, \phaseTwelve\ matches the strong predictive and RL baselines while dramatically outperforming GPSR. In predictive-break scenarios, it repairs the major weakness of Phase 8 and matches Predictive Geographic, but Evo-QGeo remains stronger in one link-loss-heavy setting. This is the main motivation for the Phase 13 P+ extension.
+
+\subsection{Phase 13 Status}
+The current Phase 13 \method\ implementation is smoke-tested and includes switch diagnostics. However, the full Phase 13 results are not yet available. This draft therefore reports Phase 12 as the verified result set and treats Phase 13 P+ as the proposed final mechanism awaiting full validation.

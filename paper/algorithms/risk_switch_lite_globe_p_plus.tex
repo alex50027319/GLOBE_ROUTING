@@ -1,0 +1,28 @@
+\begin{algorithm}[t]
+\caption{\method\ Local Routing Decision}
+\label{alg:risk_switch}
+\begin{algorithmic}[1]
+\Require Local observation $o_u(t)$, candidate set $\mathcal{A}_u(t)$, nominal branch $\pi_N$, predictive branch $\pi_P$
+\Ensure Selected next-hop action $a^\star$
+\For{each candidate $i\in\mathcal{N}_u(t)$}
+    \State Compute $m_i,\ell_i,q_i,o_i$
+    \State Compute $\bar{o}_{i,\mathrm{top}k},\rho_i,p_{i,\mathrm{keep}},\eta_i$
+    \State $D_i \gets [g_m-m_i]_+ + [g_\ell-\ell_i]_+ + [g_o-o_i]_+$
+    \Statex \hspace{\algorithmicindent} $+[g_k-\bar{o}_{i,\mathrm{top}k}]_+ + 0.5[g_\rho-\rho_i]_+ + [g_p-p_{i,\mathrm{keep}}]_+$
+    \State $Q_i \gets m_i+\ell_i+o_i+\bar{o}_{i,\mathrm{top}k}+0.5\rho_i+p_{i,\mathrm{keep}}$
+    \State $z_i^{P+} \gets z_i^P+\lambda_E\eta_i$
+\EndFor
+\If{there exists a safe forwarding candidate}
+    \State $z_{\dropact}^{P+}\gets z_{\dropact}-\lambda_D$
+\EndIf
+\State $a_N \gets \arg\max_a \pi_N(a\mid o_u(t))$
+\State $a_P \gets \arg\max_a \pi_P^{+}(a\mid o_u(t))$
+\State $G \gets Q_{a_P}-Q_{a_N}$
+\If{$a_N=\dropact$ \textbf{or} $D_{a_N}>\tau$ \textbf{or} $(a_P\neq a_N$ \textbf{and} $G>\delta$ \textbf{and} $D_{a_P}<D_{a_N})$}
+    \State $a^\star \gets a_P$
+\Else
+    \State $a^\star \gets a_N$
+\EndIf
+\State \Return $a^\star$
+\end{algorithmic}
+\end{algorithm}

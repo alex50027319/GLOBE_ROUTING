@@ -1,0 +1,14 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What the Current Evidence Supports}
+The Phase 12 evidence supports the claim that risk-switched global-to-local routing improves overall reliability and deadline delivery over the implemented baselines. It also supports the claim that the method can be more input-efficient than predictive and message-passing external baselines while retaining local execution.
+
+\subsection{What the Current Evidence Does Not Yet Prove}
+The current evidence does not yet prove that Phase 13 \method\ is superior to all baselines at full scale. It also does not prove superiority against unimplemented AODV/OLSR baselines, real-radio energy models, or physical testbed conditions. Claims about communication overhead should be strengthened with explicit control-byte measurements rather than only input-byte proxies.
+
+\subsection{Main Limitation}
+The most important technical limitation is the predictive-break-with-link-loss case where Evo-QGeo outperforms \phaseTwelve. This suggests that the current risk switch needs stronger link survival modeling and better treatment of second-hop route continuity. Phase 13 P+ addresses this directly through $p_{i,\mathrm{keep}}$, top-$k$ onward stability, and redundancy $\rho_i$.
+
+\subsection{Submission Strategy}
+For a strong SCI-level submission, the paper should position \method\ as a deployable global-to-local routing distillation method rather than as a generic MARL or global-context method. The core story should be: global graph knowledge is useful, but only as an offline teacher; the deployed policy is local, selective, and measurable in overhead.
