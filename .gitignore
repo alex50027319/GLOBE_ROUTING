@@ -15,3 +15,7 @@ checkpoints/
 *.ckpt
 
 .DS_Store
+
+# Claude Code personal (not shared) config
+CLAUDE.local.md
+.claude/settings.local.json
