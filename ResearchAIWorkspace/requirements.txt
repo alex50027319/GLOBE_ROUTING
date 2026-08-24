@@ -5,6 +5,7 @@ pyyaml
 tqdm
 tabulate
 openpyxl
+google-colab-cli
 
 # Optional:
 # rich

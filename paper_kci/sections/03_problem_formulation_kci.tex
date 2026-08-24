@@ -1,0 +1,58 @@
+\section{문제 정의}
+\label{sec:문제정의}
+
+본 장에서는 동적 FANET 환경에서의 분산 라우팅 최적화 문제를 분산 부분 관측 마르코프 결정 과정(Dec-POMDP)으로 정식화하고 주요 지표를 정의한다.
+
+\subsection{네트워크 및 무선 통신 모델}
+이산적인 시간 단위 $t$에서 FANET은 다음과 같은 시변 유향 그래프로 나타낼 수 있다.
+\begin{equation}
+    \mathcal{G}_t = (\mathcal{V}, \mathcal{E}_t),
+\end{equation}
+여기서 $\mathcal{V}=\{1,\ldots,N\}$는 군집을 구성하는 UAV 라우터 노드들의 집합이며, $\mathcal{E}_t \subseteq \mathcal{V} \times \mathcal{V}$는 활성화된 무선 유향 링크들의 집합이다. 유향 링크 $(u, v) \in \mathcal{E}_t$는 시간 $t$에 노드 $v$가 노드 $u$의 무선 통신 범위 $R_c$ 내에 위치하고 무선 채널의 SINR이 요구 임계치를 만족하여 패킷 전송이 가능한 상태임을 의미한다. 각 노드 $u \in \mathcal{V}$는 공간 상의 3차원 위치 좌표 $p_u(t) \in \mathbb{R}^3$, 속도 벡터 $v_u(t) \in \mathbb{R}^3$, 패킷 버퍼 큐 상태 $q_u(t) \in [0, Q_{\max}]$, 그리고 에너지 잔량 $E_u(t)$를 속성으로 가진다.
+
+목적지가 $d$인 패킷이 현재 노드 $u$에 머물러 있을 때, 차홉 라우팅의 행동 공간 $\mathcal{A}_u(t)$는 주변 1-hop 활성 이웃 노드들의 집합과 명시적인 드롭 액션의 합집합으로 정의된다.
+\begin{equation}
+    \mathcal{A}_u(t) = \mathcal{N}_u(t) \cup \{\dropact\},
+\end{equation}
+여기서 $\mathcal{N}_u(t) = \{v \in \mathcal{V} : (u, v) \in \mathcal{E}_t\}$는 노드 $u$의 활성 1-hop 물리 이웃들이며, $\dropact$는 버퍼 오버플로우나 홉 수 초과, 또는 링크 유실 상황에서 발생하는 패킷 폐기 결정을 나타낸다.
+
+\subsection{부분 관측성 및 정보 획득 제약}
+분산 배포된 라우팅 정책은 전체 네트워크의 글로벌 토폴로지 그래프 $\mathcal{G}_t$나 다른 멀리 떨어진 노드들의 미래 이동 궤적을 직접 관측할 수 없다. 대신, 각 무인기 노드 $u$는 로컬 관측 맵 $\mathcal{O}$을 통해 글로벌 상태 $s_t \in \mathcal{S}$로부터 추상화된 로컬 정보 $o_u(t)$만을 관측하여 제어 행동을 결정한다.
+\begin{equation}
+    o_u(t) = \mathcal{O}(s_t, u) = \{x_u(t), \{x_i(t) : i \in \mathcal{N}_u(t)\}, \{x_{u,i}(t) : i \in \mathcal{N}_u(t)\}, x_d(t)\},
+\end{equation}
+여기서 개별 속성은 다음과 같이 정의된다.
+\begin{itemize}
+    \item $x_u(t) = [p_u(t), v_u(t), q_u(t), E_u(t)]$: 현재 노드 $u$의 자체적인 상태 피처 벡터.
+    \item $x_i(t) = [p_i(t), v_i(t), q_i(t)]$: 주기적인 1-hop 로컬 비콘을 통해 공유받은 이웃 노드 $i$의 상태 벡터.
+    \item $x_{u,i}(t) = [m_i(t), \ell_i(t)]$: 링크 $(u, i)$의 수신 신호 강도 Margin $m_i$ 및 예측된 링크 유효 수명 $\ell_i$.
+    \item $x_d(t) = [p_d(t)]$: 패킷의 목적지 좌표 피처.
+\end{itemize}
+
+오프라인 학습을 유도하는 글로벌 교사 정책 $\pi_T(a \mid s_t)$는 전역 그래프 상태 $s_t$ 전체를 보고 최적의 경로 행동 분포를 계산하지만, UAV 온보드에 배포되는 로컬 학생 정책 $\pi_S(a \mid o_u(t))$는 오직 $o_u(t)$만을 입력으로 활용하여 패킷 차홉 행동을 산출한다.
+
+\subsection{라우팅 성능 평가지표}
+라우팅 정책 $\pi$의 학습 및 평가를 조율하는 목적함수는 패킷 전달률의 극대화와 종단간 지연 시간, 소비 에너지, 제어 부하의 최소화를 동시에 추구한다.
+\begin{equation}
+    \max_{\pi} \; \mathbb{E}_{\pi} \left[ \sum_{t=0}^{T_{\mathrm{max}}} \gamma^t \left( R_{\mathrm{succ}} - \alpha D_t - \beta E_t - \gamma C_t - \xi H_t \right) \right],
+\end{equation}
+여기서 $R_{\mathrm{succ}}$는 성공적인 전송 완료 시 획득하는 양의 보상이며, $D_t$, $E_t$, $C_t$, $H_t$는 각각 지연 페널티, 송신 에너지 비용, 제어 제어 부하 비용, 단일 홉 차감 요소이다.
+
+실험 분석 시 다음의 네트워크 평가지표들을 산출한다.
+\begin{align}
+\pdr &= \frac{N_{\mathrm{delivered}}}{N_{\mathrm{generated}}}, \\
+\mathrm{Deadline} &= \frac{N_{\mathrm{delivered\_before\_deadline}}}{N_{\mathrm{generated}}}, \\
+\bar{D} &= \frac{1}{N_{\mathrm{delivered}}} \sum_{k \in \mathcal{D}} (t_k^{\mathrm{arr}} - t_k^{\mathrm{src}}), \\
+\mathrm{Delay}_{95} &= Q_{0.95} \left( \{t_k^{\mathrm{arr}} - t_k^{\mathrm{src}} : k \in \mathcal{D}\} \right), \\
+\mathrm{Throughput} &= \frac{\sum_{k \in \mathcal{D}} B_k}{T_{\mathrm{sim}}}, \\
+\mathrm{Overhead} &= \frac{B_{\mathrm{control}}}{N_{\mathrm{delivered}} + \epsilon}, \\
+\mathrm{Energy} &= \frac{1}{N_{\mathrm{tx}}} \sum_{(u,v) \in \mathcal{E}_{\mathrm{used}}} \left( \frac{\|p_u - p_v\|_2}{R_c} \right)^2.
+\end{align}
+또한, 교사 모델과 학생 모델의 지식 이전 유사도는 쿨백-라이블러 발산(Kullback-Leibler Divergence)을 활용하여 측정하며,
+\begin{equation}
+    D_{\mathrm{KL}}(\pi_T \Vert \pi_S) = \sum_{a \in \mathcal{A}_u} \pi_T(a \mid s_t) \log \frac{\pi_T(a \mid s_t)}{\pi_S(a \mid o_u(t))},
+\end{equation}
+성능 격차(Return Gap)는 다음과 같이 정량화된다.
+\begin{equation}
+    \Delta J = J(\pi_T) - J(\pi_S).
+\end{equation}

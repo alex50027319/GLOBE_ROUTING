@@ -1,0 +1,11 @@
+# Local application and rendering artifacts
+.DS_Store
+.codex-output/
+tmp/pdfs/
+**/node_modules/
+professor_presentation/.phase12_ppt_build/
+
+# LaTeX transient build files
+**/*.aux
+**/*.blg
+**/*.log

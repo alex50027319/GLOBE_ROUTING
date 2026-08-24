@@ -1,57 +1,59 @@
 \section{Problem Formulation}
 \label{sec:problem}
 
-\subsection{Network Model}
-At time step $t$, the FANET is represented as a directed graph
+We formulate the decentralized routing problem in Flying Ad Hoc Networks (FANETs) as a Decentralized Partially Observable Markov Decision Process (Dec-POMDP) to formalize the separation between training-time global knowledge and execution-time local action.
+
+\subsection{Network and Communication Model}
+At any discrete time step $t$, the FANET topology is modeled as a time-varying directed graph:
 \begin{equation}
     \mathcal{G}_t = (\mathcal{V}, \mathcal{E}_t),
 \end{equation}
-where $\mathcal{V}=\{1,\ldots,N\}$ is the set of UAVs and $(u,v)\in\mathcal{E}_t$ if UAV $v$ is within the communication range $R_c$ of UAV $u$ and the link is available at time $t$. UAV $u$ has position $p_u(t)\in\mathbb{R}^3$, velocity $v_u(t)$, queue state $q_u(t)$, and packet-level destination $d$.
+where $\mathcal{V}=\{1,\ldots,N\}$ denotes the set of UAV nodes acting as routers, and $\mathcal{E}_t \subseteq \mathcal{V} \times \mathcal{V}$ is the set of active directed wireless links. A directed link $(u, v) \in \mathcal{E}_t$ exists if node $v$ is within the communication range $R_c$ of node $u$, and the channel quality permits successful transmission at time $t$. Each UAV $u \in \mathcal{V}$ is characterized by its spatial coordinates $p_u(t) \in \mathbb{R}^3$, velocity vector $v_u(t) \in \mathbb{R}^3$, queue occupancy $q_u(t) \in [0, Q_{\max}]$, and remaining energy level $E_u(t)$. 
 
-For a packet currently at UAV $u$, the one-hop candidate set is
+For a packet residing at current node $u$ destined for target node $d$, the forwarding action space $\mathcal{A}_u(t)$ is defined as the union of available one-hop neighbors and an explicit drop action:
 \begin{equation}
-    \mathcal{A}_u(t)=\mathcal{N}_u(t)\cup\{\dropact\},
+    \mathcal{A}_u(t) = \mathcal{N}_u(t) \cup \{\dropact\},
 \end{equation}
-where $\mathcal{N}_u(t)=\{v:(u,v)\in\mathcal{E}_t\}$ and $\dropact$ is the explicit no-forward/drop action used by the simulator.
+where $\mathcal{N}_u(t) = \{v \in \mathcal{V} : (u, v) \in \mathcal{E}_t\}$ represents the set of active one-hop physical neighbors of $u$, and $\dropact$ is the action corresponding to packet discarding due to buffer overflow, deadline expiration, or routing failure.
 
-\subsection{Partial Observation}
-The deployed router does not observe $\mathcal{G}_t$. It observes a local state
+\subsection{Information Abstraction and Partial Observation}
+In decentralized deployment, a local routing policy cannot access the global network graph $\mathcal{G}_t$ or the future trajectories of distant nodes. Instead, each node $u$ makes decisions based on its local observation $o_u(t)$, which maps the global state $s_t \in \mathcal{S}$ through an observation function $\mathcal{O}$:
 \begin{equation}
-    o_u(t)=\{x_u(t), x_i(t): i\in\mathcal{N}_u(t), x_{u,i}(t), x_d(t)\},
+    o_u(t) = \mathcal{O}(s_t, u) = \{x_u(t), \{x_i(t) : i \in \mathcal{N}_u(t)\}, \{x_{u,i}(t) : i \in \mathcal{N}_u(t)\}, x_d(t)\},
 \end{equation}
-where $x_u$ is the self feature vector, $x_i$ is a neighbor feature vector, $x_{u,i}$ is an edge/candidate feature vector, and $x_d$ encodes destination-related geometry. The global teacher may observe $\mathcal{G}_t$ during offline training, but the deployed policy must select
-\begin{equation}
-    a_t \sim \pi_S(a\mid o_u(t))
-\end{equation}
-using only local observation.
+where:
+\begin{itemize}
+    \item $x_u(t) = [p_u(t), v_u(t), q_u(t), E_u(t)]$ represents the self-status of node $u$.
+    \item $x_i(t) = [p_i(t), v_i(t), q_i(t)]$ is the status of neighbor node $i$, periodically broadcast via lightweight single-hop beaconing.
+    \item $x_{u,i}(t) = [m_i(t), \ell_i(t)]$ denotes the edge-level features of link $(u, i)$, where $m_i$ is the signal margin (RSSI) and $\ell_i$ is the predicted link lifetime.
+    \item $x_d(t) = [p_d(t)]$ represents the coordinates of the destination node.
+\end{itemize}
 
-\subsection{Objective}
-The routing objective is to maximize reliable and timely delivery while controlling cost:
-\begin{equation}
-    \max_{\pi} \; \mathbb{E}_{\pi}\left[
-    R_{\mathrm{succ}} - \alpha D - \beta E - \gamma C - \xi H
-    \right],
-\end{equation}
-where $R_{\mathrm{succ}}$ rewards packet delivery, $D$ is delay, $E$ is energy proxy, $C$ is execution input/control cost, and $H$ is path or hop penalty.
+During offline training, a privileged global teacher policy $\pi_T(a \mid s_t)$ has access to the full global state $s_t$, whereas the deployable student policy $\pi_S(a \mid o_u(t))$ must select forwarding actions using only the restricted local observation $o_u(t)$.
 
-We report the following metrics:
+\subsection{Routing Objective}
+The primary objective of the routing policy $\pi$ is to maximize reliable, timely packet delivery to the destination while minimizing transmission delays, energy consumption, and control signaling overhead. The routing objective is formalized as:
+\begin{equation}
+    \max_{\pi} \; \mathbb{E}_{\pi} \left[ \sum_{t=0}^{T_{\mathrm{max}}} \gamma^t \left( R_{\mathrm{succ}} - \alpha D_t - \beta E_t - \gamma C_t - \xi H_t \right) \right],
+\end{equation}
+where $R_{\mathrm{succ}}$ is a positive reward received upon successful packet delivery, $D_t$ is the packet delay penalty, $E_t$ is the energy transmission cost, $C_t$ is the control footprint overhead, $H_t$ is the single-hop traversal penalty, and $\gamma \in [0, 1)$ is the discount factor.
+
+To evaluate the proposed method against baselines, we report the following network-level and distillation-level performance metrics:
 \begin{align}
-\pdr &= \frac{N_{\mathrm{delivered}}}{N_{\mathrm{generated}}},\\
-\mathrm{Deadline} &= \frac{N_{\mathrm{delivered\ before\ deadline}}}{N_{\mathrm{generated}}},\\
-\bar{D} &= \frac{1}{N_{\mathrm{delivered}}}\sum_{k\in\mathcal{D}}(t_k^{\mathrm{arr}}-t_k^{\mathrm{src}}),\\
-\mathrm{Delay}_{95} &= Q_{0.95}\left(\{t_k^{\mathrm{arr}}-t_k^{\mathrm{src}}: k\in\mathcal{D}\}\right),\\
-\mathrm{Throughput} &= \frac{\sum_{k\in\mathcal{D}} B_k}{T_{\mathrm{sim}}},\\
-\mathrm{Overhead} &= \frac{B_{\mathrm{input/control}}}{N_{\mathrm{delivered}}+\epsilon},\\
-\mathrm{Energy} &= \frac{1}{N_{\mathrm{tx}}}\sum_{(u,v)} \left(\frac{\|p_u-p_v\|_2}{R_c}\right)^2.
+\pdr &= \frac{N_{\mathrm{delivered}}}{N_{\mathrm{generated}}}, \\
+\mathrm{Deadline} &= \frac{N_{\mathrm{delivered\_before\_deadline}}}{N_{\mathrm{generated}}}, \\
+\bar{D} &= \frac{1}{N_{\mathrm{delivered}}} \sum_{k \in \mathcal{D}} (t_k^{\mathrm{arr}} - t_k^{\mathrm{src}}), \\
+\mathrm{Delay}_{95} &= Q_{0.95} \left( \{t_k^{\mathrm{arr}} - t_k^{\mathrm{src}} : k \in \mathcal{D}\} \right), \\
+\mathrm{Throughput} &= \frac{\sum_{k \in \mathcal{D}} B_k}{T_{\mathrm{sim}}}, \\
+\mathrm{Overhead} &= \frac{B_{\mathrm{control}}}{N_{\mathrm{delivered}} + \epsilon}, \\
+\mathrm{Energy} &= \frac{1}{N_{\mathrm{tx}}} \sum_{(u,v) \in \mathcal{E}_{\mathrm{used}}} \left( \frac{\|p_u - p_v\|_2}{R_c} \right)^2.
 \end{align}
-Here $\mathcal{D}$ is the set of delivered packets, $B_k$ is packet size, and $\epsilon$ prevents division by zero. Teacher-student transfer is measured by
+Here, $\mathcal{D}$ denotes the set of successfully delivered packets, $B_k$ is the size of packet $k$, $B_{\mathrm{control}}$ is the total control byte overhead, and $N_{\mathrm{tx}}$ is the total number of transmission attempts. The policy alignment quality is measured via the Kullback-Leibler (KL) divergence over the shared action support:
 \begin{equation}
-    D_{\mathrm{KL}}(\pi_T\Vert\pi_S)
-    =
-    \sum_{a\in\mathcal{A}_u}\pi_T(a\mid s_t)
-    \log\frac{\pi_T(a\mid s_t)}{\pi_S(a\mid o_u(t))},
+    D_{\mathrm{KL}}(\pi_T \Vert \pi_S) = \sum_{a \in \mathcal{A}_u} \pi_T(a \mid s_t) \log \frac{\pi_T(a \mid s_t)}{\pi_S(a \mid o_u(t))},
 \end{equation}
-and by the return gap
+and the policy return gap is quantified as:
 \begin{equation}
-    \Delta J = J(\pi_T)-J(\pi_S).
+    \Delta J = J(\pi_T) - J(\pi_S).
 \end{equation}
+

@@ -1,14 +1,18 @@
-\section{Discussion}
+\section{Discussion and Limitations}
 \label{sec:discussion}
 
-\subsection{What the Current Evidence Supports}
-The Phase 12 evidence supports the claim that risk-switched global-to-local routing improves overall reliability and deadline delivery over the implemented baselines. It also supports the claim that the method can be more input-efficient than predictive and message-passing external baselines while retaining local execution.
+\subsection{Current Evidence and Key Insights}
+The empirical results of the Phase 12 evaluation strongly support the core design philosophy of \method: transferring global topological intelligence into a localized routing agent via offline policy distillation. The selective Predictive Risk Switching (PRS) successfully resolves the "deployment gap" by preserving the low-overhead characteristics of geographic routing in stable environments while dynamically adapting to link breaks and routing holes when they arise. Crucially, the local student policy executes without the need for online global coordinate coordination or active multi-hop message-passing overhead.
 
-\subsection{What the Current Evidence Does Not Yet Prove}
-The current evidence does not yet prove that Phase 13 \method\ is superior to all baselines at full scale. It also does not prove superiority against unimplemented AODV/OLSR baselines, real-radio energy models, or physical testbed conditions. Claims about communication overhead should be strengthened with explicit control-byte measurements rather than only input-byte proxies.
+\subsection{Remaining Evidence Gaps and Limitations}
+While the current results demonstrate clear advantages, several limitations must be addressed to elevate the manuscript to submission quality:
+\begin{enumerate}
+    \item \textbf{Full-Scale Phase 13 Validation}: Although the sub-modules of the P+ extension (link-loss gate, energy-aware tie-breaking, etc.) are implemented, their statistical verification across the full 14 scenarios and five random seeds remains a primary task.
+    \item \textbf{Physical Layer Fidelity}: The evaluations were conducted using a localized Python-based FANET simulator (Lite-GLOBE). While the simulator captures queue dynamics and link expiration rates, it simplifies multi-path fading, shadow fading, and MAC-layer collisions. Cross-validation in network-level simulators like ns-3 is required to demonstrate transferability to real-world hardware.
+    \item \textbf{Absence of Traditional Ad Hoc Baselines}: The current comparison set focuses on geographic and machine learning-based baselines. Incorporating traditional reactive (AODV) and proactive (OLSR) protocols will provide a more comprehensive context for network-level overhead claims.
+    \item \textbf{Control Overhead Metrics}: The current draft reports input byte sizes as a proxy for overhead. A more rigorous approach should measure the actual control bytes transmitted per delivered packet to provide a clear trade-off comparison against message-passing algorithms like DRAMA.
+\end{enumerate}
 
-\subsection{Main Limitation}
-The most important technical limitation is the predictive-break-with-link-loss case where Evo-QGeo outperforms \phaseTwelve. This suggests that the current risk switch needs stronger link survival modeling and better treatment of second-hop route continuity. Phase 13 P+ addresses this directly through $p_{i,\mathrm{keep}}$, top-$k$ onward stability, and redundancy $\rho_i$.
+\subsection{Submission and Positioning Strategy}
+For high-impact SCI-level journals (e.g., IEEE Transactions on Mobile Computing or IEEE Internet of Things Journal), the paper must be positioned as a practical, deployable policy distillation method rather than a generic multi-agent RL application. The core narrative should emphasize that global graph knowledge is highly beneficial, but only when restricted to training-time privilege. By demonstrating that the resulting local decision rule is low-overhead, selective, and robust to dynamic topology shifts, the paper directly addresses the practical deployment challenges of UAV swarms.
 
-\subsection{Submission Strategy}
-For a strong SCI-level submission, the paper should position \method\ as a deployable global-to-local routing distillation method rather than as a generic MARL or global-context method. The core story should be: global graph knowledge is useful, but only as an offline teacher; the deployed policy is local, selective, and measurable in overhead.
