@@ -34,7 +34,8 @@ Predictive Student에 offline knowledge distillation으로 전달되며, SwitchG
 ├── tests/lite_globe/           # 보존된 구현에 대응하는 테스트
 ├── docs/
 │   ├── method_history.md       # Phase 1~12 개발 계보와 채택/제외 결정
-│   └── paper_method_summary.md # 코드와 수식의 대응 관계
+│   ├── paper_method_summary.md # 코드와 수식의 대응 관계
+│   └── simulation_protocol.md  # 외부 비교·ablation 지표와 통계 계약
 ├── submission/ad_hoc_networks_overleaf/ # SwitchGLOBE 논문 초안
 └── README_SWITCHGLOBE_COLAB.md
 ```
