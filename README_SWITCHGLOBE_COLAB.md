@@ -58,3 +58,6 @@ Phase 8/11 체크포인트를 아래 기본 경로에 배치하거나 명시적�
 최종 결과에는 raw episode, seed summary, 통계, paired effect, 표, 그림,
 `switchglobe.pt` checkpoint 및 manifest가 포함된다. 논문 수치는 반드시 5개 seed가
 모두 존재하는 full manifest와 raw CSV를 검증한 뒤 사용한다.
+
+외부 routing baseline 비교는 최종 checkpoint 생성 후 별도 bundle과
+`README_BASELINES_COLAB.md`를 사용한다.

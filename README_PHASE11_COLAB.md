@@ -88,5 +88,5 @@ artifacts/lite_globe/phase11/
 ## 해석 주의
 
 Phase 11의 최종 목표는 Phase 8의 일반 OOD 성능을 유지하면서 predictive break
-성능을 회복하는 것입니다. Full run 후에는 Phase 10 external RL baseline 결과와
+성능을 회복하는 것입니다. Full run 후에는 external baseline suite 결과와
 scenario별로 병합해 최종 우월성 주장을 판단해야 합니다.

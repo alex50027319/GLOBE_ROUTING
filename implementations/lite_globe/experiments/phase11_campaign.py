@@ -552,7 +552,7 @@ def run_phase11_campaign(
     device: torch.device | str = "cpu",
     resume: bool = False,
 ) -> dict[str, list[dict[str, Any]]]:
-    """Train Lite-GLOBE-P and evaluate it on Phase 10 scenario axes."""
+    """Train Lite-GLOBE-P and evaluate it on external baseline scenario axes."""
 
     device = torch.device(device)
     episode_rows: list[dict[str, Any]] = []
