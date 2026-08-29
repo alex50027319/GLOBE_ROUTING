@@ -21,13 +21,16 @@ Predictive Student에 offline knowledge distillation으로 전달되며, SwitchG
 │   ├── data/                   # Teacher rollout과 grouped split
 │   ├── scenarios/              # 학습·보정·OOD·routing-hole 시나리오
 │   ├── evaluation/             # PDR, delay, energy, 통계와 표/그림
+│   ├── baselines/              # GPSR 및 외부 학습형 routing baseline
 │   ├── experiments/            # 필요한 학습 계보(7, 8, 11, 12)
 │   ├── config/                 # 계보별 설정과 switchglobe.yaml
 │   ├── colab/switchglobe.ipynb
-│   └── run_switchglobe.py      # 최종 알고리즘 진입점
+│   ├── run_switchglobe.py      # 최종 알고리즘 진입점
+│   └── run_baselines.py        # 외부 baseline 비교 진입점
 ├── scripts/
 │   ├── train_switchglobe_pipeline.py
-│   └── package_switchglobe_colab.py
+│   ├── package_switchglobe_colab.py
+│   └── package_baselines_colab.py
 ├── tests/lite_globe/           # 보존된 구현에 대응하는 테스트
 ├── docs/
 │   ├── method_history.md       # Phase 1~12 개발 계보와 채택/제외 결정
@@ -70,6 +73,22 @@ python -m implementations.lite_globe.run_switchglobe \
 Phase 12/11/8이라는 내부 이름은 기존 checkpoint와 연구 계보를 검증하기 위해 일부
 모듈에 남겨 두었다. 공개 알고리즘명, 최종 checkpoint, 결과 표·그림에서는
 `SwitchGLOBE`를 사용한다.
+
+## 외부 baseline 비교
+
+최종 SwitchGLOBE checkpoint와 GPSR, Predictive Geographic, Evo-QGeo,
+IQMR Q(lambda), DRAMA를 동일 seed·scenario에서 비교한다.
+
+```bash
+python -m implementations.lite_globe.run_baselines \
+  --device auto \
+  --resume \
+  --switchglobe-checkpoint-dir artifacts/switchglobe/final/checkpoints \
+  --output-dir artifacts/baselines
+```
+
+Colab bundle과 실행법은 `README_BASELINES_COLAB.md`를 따른다. baseline suite는
+SwitchGLOBE 학습 계보와 분리되며 제안기법의 weight를 변경하지 않는다.
 
 ## 연구 무결성
 

@@ -1,0 +1,15 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42, 77, 123, 314, 2718]
+  evaluation_episodes: 200
+  hidden_dim: 64
+
+training:
+  tabular_episodes_per_stage: 350
+  drama_episodes_per_stage: 450
+  drama_batch_size: 64
+  drama_replay_capacity: 30000
+  drama_learning_rate: 0.001
+  drama_auxiliary_coefficient: 0.35

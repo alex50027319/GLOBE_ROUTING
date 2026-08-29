@@ -14,7 +14,7 @@ SwitchGLOBE에 남았는지를 기록한다. Phase 번호는 논문의 방법명
 | 7 | topology curriculum과 held-out 평가 | Teacher/KD foundation training으로 채택 |
 | 8 | geographic prior + learned residual | normal branch로 채택 |
 | 9 | risk feature와 predictive-break 시나리오 | Phase 11/최종 보정 시나리오로 계승 |
-| 10 | 외부 RL baseline 재구현 | 최종 학습과 무관하여 이 브랜치에서 제외 |
+| Baseline suite | 외부 RL routing baseline 재구현 | 최종 학습과 분리된 논문 비교 평가로 보존 |
 | 11 | predictive prior Student | predictive branch로 채택 |
 | 12 | PDR 제약 Risk-Switch calibration | **SwitchGLOBE 최종 알고리즘** |
 | 13 | redundancy/loss/energy/drop P+ 확장 | 검증 이득이 불충분하여 최종안에서 제외 |

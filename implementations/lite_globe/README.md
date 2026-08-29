@@ -32,3 +32,9 @@ edge, packet, forwardability, candidate risk feature로 구성된 1-hop 관측�
 `run_phase12.py`, `Phase12Config`, `RiskSwitchLiteGlobePStudentPolicy`는 기존 결과와
 checkpoint를 감사할 수 있도록 역사적 호환 이름으로 남겨 둔다. 새 코드와 문서에서는
 각각 `run_switchglobe.py`, `SwitchGlobeConfig`, `SwitchGlobePolicy`를 사용한다.
+
+## 외부 baseline suite
+
+`run_baselines`는 최종 `switchglobe.pt`와 GPSR, Predictive Geographic, Evo-QGeo,
+IQMR Q(lambda), DRAMA를 같은 seed와 scenario에서 평가한다. baseline 학습 checkpoint와
+결과는 `artifacts/baselines/`에 분리해 저장하며 SwitchGLOBE checkpoint를 수정하지 않는다.

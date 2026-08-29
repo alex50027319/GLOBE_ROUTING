@@ -108,3 +108,12 @@ SwitchGLOBE는 PPO로 직접 마지막 단계의 weight를 갱신하지 않는�
 증류된 두 Student를 사용하므로 RL-derived 알고리즘이며, 최종 단계의 새 최적화는
 risk-switch calibration이다. Phase 13/P+의 redundancy, loss-keep, energy tie 및 DROP
 suppression은 최종 SwitchGLOBE 정의에 포함하지 않는다.
+
+## 8. 외부 baseline 비교
+
+`run_baselines.py`는 최종 `switchglobe.pt`를 읽어 GPSR, Predictive Geographic,
+Evo-QGeo, IQMR Q(lambda), DRAMA와 동일 scenario 및 paired evaluation seed에서
+비교한다. 학습형 baseline의 구현은 `baselines/external_rl.py`, 실행 campaign은
+`experiments/baseline_campaign.py`, 통계·표·그림 생성은
+`evaluation/baseline_reporting.py`에 있다. 이 suite는 제안기법의 학습이나
+calibration을 변경하지 않는다.
