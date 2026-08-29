@@ -1,4 +1,4 @@
-"""Run Phase 12 Risk-Switch Lite-GLOBE-P calibration and evaluation."""
+"""Historical Phase 12 entry point; prefer run_switchglobe."""
 
 from __future__ import annotations
 

@@ -1,6 +1,5 @@
 """Phase 1 non-learning routing baselines."""
 
-from .external_rl import DramaPolicy, EvoQGeoPolicy, IqmrPolicy
 from .gpsr import GpsrPolicy
 from .oracle import ShortestPathOraclePolicy
 from .predictive_geographic import PredictiveGeographicPolicy
@@ -12,10 +11,7 @@ from .risk_oracle import (
 )
 
 __all__ = [
-    "DramaPolicy",
-    "EvoQGeoPolicy",
     "GpsrPolicy",
-    "IqmrPolicy",
     "PredictiveGeographicPolicy",
     "RandomPolicy",
     "RiskAwareOraclePolicy",

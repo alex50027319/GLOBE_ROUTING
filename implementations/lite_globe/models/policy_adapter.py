@@ -11,7 +11,6 @@ from .student_policy import (
     LiteGlobePStudentPolicy,
     LocalStudentPolicy,
     RiskAwareGeographicResidualStudentPolicy,
-    RiskSwitchLiteGlobePPlusStudentPolicy,
     RiskSwitchLiteGlobePStudentPolicy,
 )
 from .tensor_observation import observation_to_tensors
@@ -47,13 +46,7 @@ class StudentPolicyAdapter:
     def observation_bytes(
         self, observation: dict[str, NDArray[np.generic]]
     ) -> int:
-        if isinstance(
-            self.model,
-            (
-                RiskSwitchLiteGlobePStudentPolicy,
-                RiskSwitchLiteGlobePPlusStudentPolicy,
-            ),
-        ):
+        if isinstance(self.model, RiskSwitchLiteGlobePStudentPolicy):
             return self._risk_switch_observation_bytes(observation)
         keys = {
             "self_features",
@@ -113,24 +106,12 @@ class StudentPolicyAdapter:
         )
         if bool(switch.item()):
             extra = int(observation["candidate_risk_features"].nbytes)
-            if (
-                isinstance(self.model, RiskSwitchLiteGlobePPlusStudentPolicy)
-                and "candidate_switch_features" in observation
-            ):
-                extra += int(observation["candidate_switch_features"].nbytes)
             return base_bytes + extra
         selected = phase8_adapter.act(observation)
         if selected < self.model.max_nodes:
             extra = int(
                 observation["candidate_risk_features"][selected].nbytes
             )
-            if (
-                isinstance(self.model, RiskSwitchLiteGlobePPlusStudentPolicy)
-                and "candidate_switch_features" in observation
-            ):
-                extra += int(
-                    observation["candidate_switch_features"][selected].nbytes
-                )
             return base_bytes + extra
         return base_bytes
 

@@ -1,4 +1,4 @@
-"""Phase 12: calibrate and evaluate Risk-Switch Lite-GLOBE-P."""
+"""Historical Phase 12 implementation of the final SwitchGLOBE campaign."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from ..evaluation import (
 from ..models import (
     GeographicResidualStudentPolicy,
     LiteGlobePStudentPolicy,
-    RiskSwitchLiteGlobePStudentPolicy,
+    SwitchGlobePolicy,
 )
 from ..models.policy_adapter import StudentPolicyAdapter
 from ..scenarios import (
@@ -50,7 +50,7 @@ PHASE12_METHODS = (
     "Phase 8 Geo-Residual KD",
     "Lite-GLOBE-P predictive-prior only",
     "Lite-GLOBE-P no-switch",
-    "Risk-Switch Lite-GLOBE-P",
+    "SwitchGLOBE",
 )
 
 
@@ -95,21 +95,21 @@ def _load_phase11(
 def _risk_switch_policy(
     phase8: GeographicResidualStudentPolicy,
     phase11: LiteGlobePStudentPolicy,
-) -> RiskSwitchLiteGlobePStudentPolicy:
+) -> SwitchGlobePolicy:
     predictive = LiteGlobePStudentPolicy(
         phase11.max_nodes,
         hidden_dim=phase11.hidden_dim,
     )
     predictive.load_state_dict(phase11.state_dict())
     predictive.set_residual_weight(0.0)
-    return RiskSwitchLiteGlobePStudentPolicy(
+    return SwitchGlobePolicy(
         phase8,
         predictive,
     )
 
 
 def _measure_candidate(
-    model: RiskSwitchLiteGlobePStudentPolicy,
+    model: SwitchGlobePolicy,
     scenarios,
     *,
     seed: int,
@@ -337,7 +337,7 @@ def run_phase12_campaign(
         checkpoint = (
             output_checkpoint_dir
             / f"seed_{training_seed}"
-            / "risk_switch_lite_globe_p.pt"
+            / "switchglobe.pt"
             if output_checkpoint_dir is not None
             else None
         )
@@ -372,7 +372,7 @@ def run_phase12_campaign(
                     metadata={
                         "phase": 12,
                         "training_seed": training_seed,
-                        "method": "Risk-Switch Lite-GLOBE-P",
+                        "method": "SwitchGLOBE",
                     },
                 )
                 metrics_path.write_text(
@@ -386,7 +386,7 @@ def run_phase12_campaign(
             "Phase 8 Geo-Residual KD": phase8,
             "Lite-GLOBE-P predictive-prior only": predictive_only,
             "Lite-GLOBE-P no-switch": phase11,
-            "Risk-Switch Lite-GLOBE-P": risk_switch,
+            "SwitchGLOBE": risk_switch,
         }
         for scenario_index, scenario in enumerate(
             phase9_evaluation_scenarios(training_seed)
