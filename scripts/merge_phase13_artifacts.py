@@ -3,16 +3,24 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import csv
 import json
 from pathlib import Path
+import sys
 import zipfile
 
-from implementations.lite_globe.evaluation import write_phase13_artifacts
-
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
+from implementations.lite_globe.evaluation import write_phase13_artifacts
+from implementations.lite_globe.evaluation.phase13_reporting import (
+    PHASE13_SCENARIOS,
+)
+from implementations.lite_globe.experiments.phase13_campaign import (
+    PHASE13_METHODS,
+)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -88,6 +96,87 @@ def _dedupe(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return output
 
 
+def _validate_complete_rows(
+    episode_rows: list[dict[str, str]],
+    summary_rows: list[dict[str, str]],
+    training_rows: list[dict[str, str]],
+) -> dict[str, object]:
+    """Reject a merge that is missing any seed/scenario/method unit."""
+
+    episode_counts = Counter(
+        (int(row["training_seed"]), row["scenario"], row["method"])
+        for row in episode_rows
+    )
+    episode_identity = [
+        (
+            int(row["training_seed"]),
+            row["scenario"],
+            row["method"],
+            int(row["evaluation_seed"]),
+        )
+        for row in episode_rows
+    ]
+    if len(episode_identity) != len(set(episode_identity)):
+        raise ValueError("duplicate Phase 13 episode identities remain after merge")
+
+    summary_keys = [
+        (int(row["training_seed"]), row["scenario"], row["method"])
+        for row in summary_rows
+    ]
+    if len(summary_keys) != len(set(summary_keys)):
+        raise ValueError("duplicate Phase 13 seed summaries remain after merge")
+
+    seeds = sorted({key[0] for key in episode_counts})
+    expected_keys = {
+        (seed, scenario, method)
+        for seed in seeds
+        for scenario in PHASE13_SCENARIOS
+        for method in PHASE13_METHODS
+    }
+    if set(episode_counts) != expected_keys:
+        missing = sorted(expected_keys - set(episode_counts))
+        unexpected = sorted(set(episode_counts) - expected_keys)
+        raise ValueError(
+            "incomplete Phase 13 episode grid: "
+            f"missing={missing[:5]}, unexpected={unexpected[:5]}"
+        )
+    if set(summary_keys) != expected_keys:
+        missing = sorted(expected_keys - set(summary_keys))
+        unexpected = sorted(set(summary_keys) - expected_keys)
+        raise ValueError(
+            "incomplete Phase 13 summary grid: "
+            f"missing={missing[:5]}, unexpected={unexpected[:5]}"
+        )
+
+    summary_by_key = {
+        (int(row["training_seed"]), row["scenario"], row["method"]): row
+        for row in summary_rows
+    }
+    for key, count in episode_counts.items():
+        declared = int(float(summary_by_key[key]["episodes"]))
+        if count != declared:
+            raise ValueError(
+                f"episode count mismatch for {key}: raw={count}, summary={declared}"
+            )
+    training_seeds = [int(row["training_seed"]) for row in training_rows]
+    if sorted(training_seeds) != seeds or len(training_seeds) != len(set(training_seeds)):
+        raise ValueError(
+            "training metrics must contain exactly one row for every merged seed"
+        )
+    per_unit_counts = sorted(set(episode_counts.values()))
+    if len(per_unit_counts) != 1:
+        raise ValueError(
+            f"inconsistent evaluation episode counts: {per_unit_counts}"
+        )
+    return {
+        "validated": True,
+        "training_seeds": seeds,
+        "scenarios_per_seed": len(PHASE13_SCENARIOS),
+        "methods_per_scenario": len(PHASE13_METHODS),
+        "evaluation_episodes_per_unit": per_unit_counts[0],
+    }
+
+
 def main() -> int:
     args = parse_args()
     output_dir = args.output_dir if args.output_dir.is_absolute() else ROOT / args.output_dir
@@ -111,7 +200,12 @@ def main() -> int:
     episode_rows = _dedupe(episode_rows)
     summary_rows = _dedupe(summary_rows)
     training_rows = _dedupe(training_rows)
-    training_seeds = sorted({int(row["training_seed"]) for row in summary_rows})
+    validation = _validate_complete_rows(
+        episode_rows,
+        summary_rows,
+        training_rows,
+    )
+    training_seeds = validation["training_seeds"]
 
     manifest = write_phase13_artifacts(
         output_dir,
@@ -124,6 +218,7 @@ def main() -> int:
             "device": "mixed",
             "merged_sources": sources,
             "training_seeds": training_seeds,
+            "merge_validation": validation,
         },
     )
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
