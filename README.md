@@ -32,6 +32,10 @@ Decentralized FANET(Flying Ad-hoc Network) 라우팅을 위한 **Global-to-Local
 설계 가정은 [`implementations/lite_globe/assumptions.md`](implementations/lite_globe/assumptions.md)에
 정리되어 있습니다.
 
+연구 질문 정리부터 실험 계획, checkpoint 검증, multi-seed 실행·병합, 결과 감사,
+원고와 투고 준비까지의 프로젝트 전용 절차는
+[`docs/globe_routing_research_workflow_19_steps.md`](docs/globe_routing_research_workflow_19_steps.md)를 참고하세요.
+
 ## 설치
 
 ```bash

@@ -58,6 +58,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
+        "--max-calibration-candidates",
+        type=int,
+        default=None,
+        help=(
+            "Process at most this many new calibration candidates, persist "
+            "progress, and exit successfully for a short resumable session."
+        ),
+    )
+    parser.add_argument(
+        "--max-evaluation-units",
+        type=int,
+        default=None,
+        help=(
+            "Process at most this many new scenario-method evaluation units, "
+            "persist progress, and exit successfully."
+        ),
+    )
+    parser.add_argument(
         "--seeds",
         type=str,
         default=None,
@@ -191,7 +209,31 @@ def main() -> None:
         output_checkpoint_dir=args.output_dir / "checkpoints",
         device=device,
         resume=args.resume,
+        max_calibration_candidates=args.max_calibration_candidates,
+        max_evaluation_units=args.max_evaluation_units,
     )
+    if not rows["complete"]:
+        partial_manifest = {
+            "phase": 13,
+            "mode": "smoke" if args.smoke else "full",
+            "status": "partial",
+            "device": str(device),
+            "config": asdict(config),
+            **rows["progress"],
+        }
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        partial_path = args.output_dir / "partial_manifest.json"
+        temporary = partial_path.with_suffix(".json.tmp")
+        temporary.write_text(
+            json.dumps(partial_manifest, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        temporary.replace(partial_path)
+        print(json.dumps(partial_manifest, ensure_ascii=False, indent=2))
+        return
+    partial_path = args.output_dir / "partial_manifest.json"
+    if partial_path.exists():
+        partial_path.unlink()
     manifest = write_phase13_artifacts(
         args.output_dir,
         episode_rows=rows["episodes"],
@@ -208,6 +250,7 @@ def main() -> None:
             "phase8_checkpoint_dir": str(args.phase8_checkpoint_dir),
             "phase11_checkpoint_dir": str(args.phase11_checkpoint_dir),
             "phase12_checkpoint_dir": str(args.phase12_checkpoint_dir),
+            "resumable_progress": rows["progress"],
         },
     )
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
