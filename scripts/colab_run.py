@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -70,6 +71,35 @@ def parse_args() -> argparse.Namespace:
             "for example 123,314,2718."
         ),
     )
+    parser.add_argument(
+        "--skip-package",
+        action="store_true",
+        help="Reuse an already-created Phase 13 bundle (safe for parallel runs).",
+    )
+    parser.add_argument(
+        "--max-calibration-candidates",
+        type=int,
+        default=None,
+        help="Phase 13: number of new calibration candidates in this session.",
+    )
+    parser.add_argument(
+        "--max-evaluation-units",
+        type=int,
+        default=None,
+        help="Phase 13: number of new scenario-method units in this session.",
+    )
+    parser.add_argument(
+        "--resume-from",
+        type=Path,
+        default=None,
+        help="Previous chunk result ZIP whose persisted state should be restored.",
+    )
+    parser.add_argument(
+        "--chunk-id",
+        type=str,
+        default=None,
+        help="Unique chunk label included in the downloaded result ZIP name.",
+    )
     return parser.parse_args()
 
 
@@ -78,6 +108,9 @@ def get_colab_bin() -> str:
     venv_bin = ROOT / ".venv" / "bin" / "colab"
     if venv_bin.exists():
         return str(venv_bin)
+    legacy_bin = ROOT / "ResearchAIWorkspace" / ".venv" / "bin" / "colab"
+    if legacy_bin.exists():
+        return str(legacy_bin)
     return "colab"
 
 
@@ -114,29 +147,34 @@ def main() -> int:
             print("Error: --seeds was provided but no seed values were parsed.")
             return 1
         seed_suffix = f"_seeds_{normalized_seeds}"
-    results_zip_filename = f"phase{phase}{seed_suffix}_results.zip"
+    chunk_suffix = f"_chunk_{args.chunk_id}" if args.chunk_id else ""
+    results_zip_filename = (
+        f"phase{phase}{seed_suffix}{chunk_suffix}_results.zip"
+    )
     local_results_path = ROOT / "artifacts" / "lite_globe" / results_zip_filename
     remote_content_dir = "content"
 
     print(f"=== Starting Colab Orchestration for Phase {phase} ===")
     print(f"Session Name: {session_name}")
 
-    # 1. Package the project bundle locally
+    # 1. Package the project bundle locally (once before parallel runs)
     packager_script = ROOT / "scripts" / f"package_phase{phase}_colab.py"
     if not packager_script.exists():
         print(f"Error: Packaging script for phase {phase} not found at {packager_script}")
         return 1
 
-    print(f"Running packager: {packager_script.name}...")
-    try:
-        subprocess.run(
-            [sys.executable, str(packager_script)],
-            check=True,
-        )
-    except subprocess.CalledProcessError:
-        print("Error: Packaging bundle failed.")
-        return 1
+    if not args.skip_package:
+        print(f"Running packager: {packager_script.name}...")
+        try:
+            subprocess.run([sys.executable, str(packager_script)], check=True)
+        except subprocess.CalledProcessError:
+            print("Error: Packaging bundle failed.")
+            return 1
 
+    if not bundle_path.exists():
+        legacy_bundle = ROOT / "ResearchAIWorkspace" / "artifacts" / "lite_globe" / bundle_filename
+        if legacy_bundle.exists():
+            bundle_path = legacy_bundle
     if not bundle_path.exists():
         print(f"Error: Bundle zip was not created at {bundle_path}")
         return 1
@@ -173,6 +211,28 @@ def main() -> int:
         remote_args.append("--smoke")
     if args.seeds:
         remote_args.extend(["--seeds", args.seeds])
+    if args.max_calibration_candidates is not None:
+        remote_args.extend(
+            [
+                "--max-calibration-candidates",
+                str(args.max_calibration_candidates),
+            ]
+        )
+    if args.max_evaluation_units is not None:
+        remote_args.extend(
+            ["--max-evaluation-units", str(args.max_evaluation_units)]
+        )
+
+    resume_path = None
+    if args.resume_from is not None:
+        resume_path = (
+            args.resume_from
+            if args.resume_from.is_absolute()
+            else ROOT / args.resume_from
+        )
+        if not resume_path.is_file():
+            print(f"Error: resume ZIP not found: {resume_path}")
+            return 1
 
     config_data = {
         "bundle_filename": bundle_filename,
@@ -180,10 +240,15 @@ def main() -> int:
         "args": remote_args,
         "output_dir": output_dir,
         "results_zip": results_zip_filename,
+        "resume_archive": "resume_state.zip" if resume_path else None,
     }
 
-    local_config_path = ROOT / "colab_args.json"
-    with open(local_config_path, "w", encoding="utf-8") as f:
+    config_handle = tempfile.NamedTemporaryFile(
+        mode="w", suffix=f"_{session_name}_colab_args.json",
+        prefix="phase13_", dir=ROOT, delete=False, encoding="utf-8"
+    )
+    local_config_path = Path(config_handle.name)
+    with config_handle as f:
         json.dump(config_data, f, indent=2)
 
     # 4. Upload files, execute, download results
@@ -226,6 +291,19 @@ def main() -> int:
             ],
             check=True,
         )
+        if resume_path is not None:
+            print(f"Uploading resumable state {resume_path.name}...")
+            subprocess.run(
+                [
+                    colab_bin,
+                    "upload",
+                    "-s",
+                    session_name,
+                    str(resume_path),
+                    f"{remote_content_dir}/resume_state.zip",
+                ],
+                check=True,
+            )
 
         # Run execution
         print("Starting remote execution...")
@@ -282,7 +360,7 @@ def main() -> int:
     except subprocess.CalledProcessError as e:
         print(f"Execution failed during a Colab CLI operation: {e}")
     finally:
-        # Clean up local config temp file
+        # Clean up only this runner's local config temp file
         if local_config_path.exists():
             os.remove(local_config_path)
 

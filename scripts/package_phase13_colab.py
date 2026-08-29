@@ -11,6 +11,25 @@ ROOT = Path(__file__).resolve().parents[1]
 SEEDS = (42, 77, 123, 314, 2718)
 
 
+def _artifact_root() -> Path:
+    """Locate a complete checkpoint set in current or legacy layouts."""
+
+    current = ROOT / "artifacts"
+    legacy = ROOT / "ResearchAIWorkspace" / "artifacts"
+    markers = (
+        Path("lite_globe/phase8/checkpoints/seed_42/geo_residual_kd.pt"),
+        Path("lite_globe/phase11/checkpoints/seed_42/lite_globe_p.pt"),
+        Path(
+            "lite_globe/phase12/checkpoints/seed_42/"
+            "risk_switch_lite_globe_p.pt"
+        ),
+    )
+    for candidate in (current, legacy):
+        if all((candidate / marker).is_file() for marker in markers):
+            return candidate
+    return current
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -25,6 +44,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def required_paths() -> list[Path]:
+    artifacts = _artifact_root()
     paths = [
         ROOT / "pyproject.toml",
         ROOT / "requirements-lite-globe.txt",
@@ -45,43 +65,37 @@ def required_paths() -> list[Path]:
     for seed in SEEDS:
         paths.extend(
             [
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase8"
                 / "checkpoints"
                 / f"seed_{seed}"
                 / "geo_residual_kd.pt",
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase8"
                 / "checkpoints"
                 / f"seed_{seed}"
                 / "training_metrics.json",
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase11"
                 / "checkpoints"
                 / f"seed_{seed}"
                 / "lite_globe_p.pt",
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase11"
                 / "checkpoints"
                 / f"seed_{seed}"
                 / "training_metrics.json",
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase12"
                 / "checkpoints"
                 / f"seed_{seed}"
                 / "risk_switch_lite_globe_p.pt",
-                ROOT
-                / "artifacts"
+                artifacts
                 / "lite_globe"
                 / "phase12"
                 / "checkpoints"
@@ -110,9 +124,14 @@ def main() -> int:
         compresslevel=9,
     ) as archive:
         for path in paths:
-            archive.write(path, path.relative_to(ROOT))
+            if path.is_relative_to(ROOT / "ResearchAIWorkspace"):
+                arcname = path.relative_to(ROOT / "ResearchAIWorkspace")
+            else:
+                arcname = path.relative_to(ROOT)
+            archive.write(path, arcname)
     size_mb = output.stat().st_size / (1024 * 1024)
-    print(f"Created {output.relative_to(ROOT)} ({size_mb:.2f} MiB)")
+    display_path = output.relative_to(ROOT) if output.is_relative_to(ROOT) else output
+    print(f"Created {display_path} ({size_mb:.2f} MiB)")
     return 0
 
 

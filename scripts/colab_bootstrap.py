@@ -29,6 +29,7 @@ def main() -> int:
     script_args = config.get("args", [])
     output_dir_str = config.get("output_dir", "artifacts/lite_globe/phase13")
     results_zip_filename = config.get("results_zip", "phase13_results.zip")
+    resume_archive_filename = config.get("resume_archive")
 
     # 2. Find and extract the workspace bundle
     bundle_path = Path(bundle_filename) if bundle_filename else None
@@ -46,6 +47,18 @@ def main() -> int:
     with zipfile.ZipFile(bundle_path, "r") as zip_ref:
         zip_ref.extractall(".")
     print("Extraction complete.")
+
+    # A previous short-session ZIP contains the checkpoint/progress tree under
+    # its original workspace-relative path. Overlay it after the clean bundle.
+    if resume_archive_filename:
+        resume_archive = Path(resume_archive_filename)
+        if not resume_archive.is_file():
+            print(f"Error: resume archive not found: {resume_archive}")
+            return 1
+        print(f"Restoring resumable state from {resume_archive}...")
+        with zipfile.ZipFile(resume_archive, "r") as zip_ref:
+            zip_ref.extractall(".")
+        print("Resume state restored.")
 
     # 3. Pip install dependencies
     requirements_file = Path("requirements-lite-globe.txt")
