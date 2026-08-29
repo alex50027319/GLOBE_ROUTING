@@ -1,4 +1,4 @@
-"""Paper-ready reports for Phase 12 Risk-Switch Lite-GLOBE-P."""
+"""Paper-ready reports for the final SwitchGLOBE policy."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from .statistics import summarize_values
 PHASE12_SCENARIOS = tuple(
     scenario.name for scenario in phase9_evaluation_scenarios(0)
 )
-PROPOSED_METHOD = "Risk-Switch Lite-GLOBE-P"
+PROPOSED_METHOD = "SwitchGLOBE"
 CORE_BASELINES = (
     "GPSR",
     "Predictive Geographic",
@@ -178,7 +178,7 @@ def _main_table(rows: list[dict[str, Any]]) -> str:
         "mean_policy_input_bytes",
     )
     lines = [
-        "# Phase 12 Risk-Switch Lite-GLOBE-P Results",
+        "# SwitchGLOBE Results",
         "",
         "| Method | Scenario | Connected PDR | Deadline delivery | "
         "Delay p95 | Energy proxy | Input bytes |",
@@ -200,7 +200,7 @@ def _main_table(rows: list[dict[str, Any]]) -> str:
 
 def _effect_table(rows: list[dict[str, Any]]) -> str:
     lines = [
-        "# Phase 12 Risk-Switch Paired Effects",
+        "# SwitchGLOBE Paired Effects",
         "",
         "| Scenario | Baseline | Metric | Difference | Relative | 95% CI |",
         "| --- | --- | --- | ---: | ---: | ---: |",
@@ -238,7 +238,7 @@ def _plot_metric(
     if "pdr" in metric or "ratio" in metric:
         axis.set_ylim(-0.02, 1.02)
     axis.set_ylabel(ylabel)
-    axis.set_title(f"Phase 12 {ylabel}")
+    axis.set_title(f"SwitchGLOBE {ylabel}")
     axis.tick_params(axis="x", rotation=28)
     axis.grid(alpha=0.25)
     axis.legend(fontsize=8, ncol=2)
@@ -277,29 +277,29 @@ def write_phase12_artifacts(
         json.dumps(effects, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    (tables / "risk_switch_results.md").write_text(
+    (tables / "switchglobe_results.md").write_text(
         _main_table(aggregates), encoding="utf-8"
     )
-    (tables / "risk_switch_paired_effects.md").write_text(
+    (tables / "switchglobe_paired_effects.md").write_text(
         _effect_table(effects), encoding="utf-8"
     )
     _plot_metric(
         aggregates,
         metric="connected_pair_pdr",
         ylabel="Connected-pair PDR",
-        path=figures / "risk_switch_pdr",
+        path=figures / "switchglobe_pdr",
     )
     _plot_metric(
         aggregates,
         metric="p95_success_delay",
         ylabel="P95 Delay",
-        path=figures / "risk_switch_delay_p95",
+        path=figures / "switchglobe_delay_p95",
     )
     _plot_metric(
         aggregates,
         metric="mean_policy_input_bytes",
         ylabel="Policy Input Bytes",
-        path=figures / "risk_switch_input_bytes",
+        path=figures / "switchglobe_input_bytes",
     )
     manifest = {
         **metadata,

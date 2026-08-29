@@ -14,6 +14,16 @@ checkpoints/
 *.pth
 *.ckpt
 
+# Local workspaces, rendering caches, and generated manuscript builds
+.codex-output/
+ResearchAIWorkspace/
+tmp/
+presentations/
+paper/archive/
+paper/current/
+submission/**/build/
+submission/journal_target_recommendation.md
+
 .DS_Store
 
 # Claude Code personal (not shared) config

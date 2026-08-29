@@ -19,7 +19,6 @@ EDGE_FEATURES = 2
 PACKET_FEATURES = 6
 FORWARDABILITY_FEATURES = 2
 RISK_FEATURES = 4
-SWITCH_FEATURES = 4
 
 
 def build_observation(
@@ -59,9 +58,6 @@ def build_observation(
     )
     candidate_risk_features = np.zeros(
         (config.max_nodes, RISK_FEATURES), dtype=np.float32
-    )
-    candidate_switch_features = np.zeros(
-        (config.max_nodes, SWITCH_FEATURES), dtype=np.float32
     )
     action_mask = np.zeros(config.max_nodes + 1, dtype=np.int8)
     valid = np.flatnonzero(adjacency[current])
@@ -125,25 +121,6 @@ def build_observation(
                 else 0.0
             )
         )
-        if onward_lifetimes:
-            topk = sorted(onward_lifetimes, reverse=True)[:3]
-            topk_onward_lifetime = float(np.mean(topk))
-        else:
-            topk_onward_lifetime = (
-                float(config.max_episode_steps)
-                if node == destination
-                else 0.0
-            )
-        link_keep_probability = np.clip(
-            1.0 - config.stochastic_link_loss,
-            0.0,
-            1.0,
-        )
-        normalized_link_distance = np.clip(
-            distances[current, node] / config.communication_radius,
-            0.0,
-            1.0,
-        )
         candidate_risk_features[node] = np.array(
             [
                 np.clip(
@@ -169,20 +146,6 @@ def build_observation(
                     0.0,
                     1.0,
                 ),
-            ],
-            dtype=np.float32,
-        )
-        candidate_switch_features[node] = np.array(
-            [
-                np.clip(
-                    topk_onward_lifetime
-                    / max(config.max_episode_steps, 1),
-                    0.0,
-                    1.0,
-                ),
-                np.clip(onward_count / 3.0, 0.0, 1.0),
-                link_keep_probability,
-                1.0 - normalized_link_distance**2,
             ],
             dtype=np.float32,
         )
@@ -224,7 +187,6 @@ def build_observation(
         observation["candidate_forwardability"] = candidate_forwardability
     if config.include_risk_features:
         observation["candidate_risk_features"] = candidate_risk_features
-        observation["candidate_switch_features"] = candidate_switch_features
     validate_observation(observation, config)
     return observation
 
@@ -250,10 +212,6 @@ def validate_observation(
         expected["candidate_risk_features"] = (
             config.max_nodes,
             RISK_FEATURES,
-        )
-        expected["candidate_switch_features"] = (
-            config.max_nodes,
-            SWITCH_FEATURES,
         )
     for key, shape in expected.items():
         if observation[key].shape != shape:

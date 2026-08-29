@@ -52,7 +52,7 @@ def _config(raw: dict, smoke: bool) -> Phase7Config:
         return Phase7Config(
             training_seeds=(42,),
             evaluation_episodes=6,
-            hidden_dim=32,
+            hidden_dim=int(campaign["hidden_dim"]),
             teacher_updates_per_stage=1,
             teacher_episodes_per_update=3,
             dataset_episodes_per_stage=4,
