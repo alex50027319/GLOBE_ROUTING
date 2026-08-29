@@ -1,0 +1,227 @@
+% !TEX program = pdflatex
+% Overleaf-ready free-format draft for Elsevier Ad Hoc Networks.
+% Verify the current journal Guide for Authors immediately before submission.
+\documentclass[preprint,12pt]{elsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\hypersetup{hidelinks}
+
+% Give TeX modest flexibility in narrow front-matter and URL-heavy lines.
+\emergencystretch=2em
+
+\journal{Ad Hoc Networks}
+
+\newcommand{\method}{SwitchGLOBE}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\pdr}{\mathrm{PDR}}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{SwitchGLOBE: Global-to-Local Policy Distillation with Predictive Risk Switching for Decentralized FANET Routing}
+
+\author[aff1]{First Author\corref{cor1}}
+\ead{first.author@example.edu}
+\author[aff1]{Second Author}
+\ead{second.author@example.edu}
+\cortext[cor1]{Corresponding author}
+\address[aff1]{Department, Institution, City, Postal Code, Republic of Korea}
+
+\begin{abstract}
+Flying ad hoc networks (FANETs) require routing decisions that remain reliable under rapid topology changes while being executable with limited onboard information. Centralized or communication-heavy reinforcement-learning policies can exploit global topology during training, but their execution-time dependence on global state or inter-agent messaging limits decentralized deployment. This paper presents \method, a routing framework that distills a privileged global graph policy into compact students operating on one-hop candidate observations and augments them with predictive risk switching. The nominal branch combines geographic progress with a learned residual, whereas the predictive branch uses link margin, estimated link lifetime, queue headroom, onward stability, and lightweight safety gates. The predictive branch is selected only when the nominal action is unsafe, preserving inexpensive local routing in benign conditions. We evaluate the framework under held-out mobility, link loss, sparse connectivity, node-count shifts, structural routing holes, and imminent link-break scenarios using a five-seed protocol. \todo{Insert only audited Phase 12/SwitchGLOBE full-run results: primary paired PDR effect, 95\% uncertainty, p95 delay, energy, input footprint, and drop-rate trade-off.} The study is designed to determine whether training-time global knowledge can improve strict-local routing without introducing online teacher communication.
+\end{abstract}
+
+\begin{keyword}
+flying ad hoc network \sep UAV routing \sep policy distillation \sep reinforcement learning \sep decentralized routing \sep predictive risk switching
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}
+
+Flying ad hoc networks are characterized by rapid topology variation, short-lived links, sparse connectivity, and tight onboard computation and communication budgets. A routing policy must therefore make per-hop decisions using information that can be obtained locally and refreshed fast enough to remain useful. Geographic routing has a small control footprint, but greedy progress can fail at structural routing holes and can select links that appear favorable at the current instant but are about to break.
+
+Recent reinforcement-learning approaches formulate UAV routing as sequential decision making and combine graph encoders, multi-agent learning, trajectory control, queue management, or predictive link information \cite{Alam2024JTFR,Wu2026AoI,Shou2026Adaptive,Zhang2026LargeScale}. These methods show the value of learned routing but also expose a deployment tension: the information and coordination used to learn a strong policy may be unavailable or too costly at each relay during execution.
+
+We address this tension through global-to-local policy distillation. A privileged teacher observes the training-time global topology and learns a routing policy. A compact student then imitates the teacher's masked next-hop distribution using only one-hop observations. The deployed student is complemented by predictive risk switching, which invokes a safety-oriented branch only when the nominal local decision is risky.
+
+The intended contributions are:
+
+\begin{enumerate}[leftmargin=*]
+    \item A training/deployment separation in which global graph information is available only to an offline teacher, while the deployed actor uses strict one-hop observations.
+    \item A masked policy-distillation procedure that transfers next-hop preferences without exposing global state to the student interface.
+    \item A predictive risk-switch mechanism that combines current link quality, future link lifetime, queue headroom, and onward stability while preserving the nominal branch in safe states.
+    \item A multi-seed evaluation protocol that jointly reports delivery reliability, tail delay, energy proxy, observation footprint, and failure behavior across general, out-of-distribution, structural-hole, and predictive-break scenarios.
+\end{enumerate}
+
+\section{Related Work}
+
+\subsection{Learning-Based UAV Routing}
+
+Prior work has applied value-based and actor--critic reinforcement learning to UAV packet routing. Predictive Q-routing combines mobility and interference information with bounded path redundancy \cite{Dong2026Predictive}. Graph-aware Double DQN and large-scale DDPG-based routing demonstrate the value of structural encoding and traffic-aware optimization \cite{Zhang2025Spatiotemporal,Zhang2026LargeScale}. High-speed FANET routing further shows that local next-hop decisions benefit from path-quality feedback, but does not directly address compression from a global teacher to a strict-local actor \cite{Shou2026Adaptive}.
+
+\subsection{Joint Optimization and Multi-Agent Routing}
+
+Joint trajectory, radio-resource, buffer, sampling, and routing methods solve broader cross-layer problems than routing alone \cite{Alam2024JTFR,Wu2026AoI}. Their broader objectives and richer observations are valuable strong references, but they do not answer whether global routing knowledge can be retained under a one-hop deployment contract. Trusted multi-agent routing additionally considers adversarial forwarding and blockchain-assisted trust \cite{Jia2025Trusted}; this security objective is complementary to the non-adversarial link-risk focus of the present study.
+
+\subsection{Deployment and Predictive Recovery}
+
+RoutePPO connects PPO-based switching to Linux/eBPF forwarding and provides an important deployment-oriented reference \cite{Curmen2026RoutePPO}. Its selection among a small set of predefined paths differs from distributed per-hop neighbor selection. The proposed framework instead targets topology-varying next-hop routing and uses the teacher only during offline learning.
+
+\section{System Model and Problem Formulation}
+
+We model the FANET at decision time $t$ as a time-varying graph $\mathcal{G}_t=(\mathcal{V},\mathcal{E}_t)$. When a packet for destination $d$ is at node $u$, the admissible action set is
+\begin{equation}
+    \mathcal{A}_u(t)=\mathcal{N}_u(t)\cup\{\mathrm{DROP}\},
+\end{equation}
+where $\mathcal{N}_u(t)$ contains the currently reachable one-hop neighbors. An action mask prevents the policy from selecting disconnected or padded candidates.
+
+The privileged teacher observes a global training state $s_t$ containing the graph, node states, current relay, destination, and packet state. The deployed student observes only
+\begin{equation}
+o_u(t)=\left\{x_u(t),\{x_i(t)\}_{i\in\mathcal{N}_u(t)},
+\{x_{u,i}(t)\}_{i\in\mathcal{N}_u(t)},x_d(t)\right\}.
+\end{equation}
+The research question is whether a local policy $\pi_S(a\mid o_u)$ can retain useful preferences from a global teacher $\pi_T(a\mid s_t)$ while improving robustness to routing holes and imminent link failures.
+
+\section{Proposed SwitchGLOBE Framework}
+
+\subsection{Privileged Global Teacher}
+
+The teacher uses a graph neural actor and a centralized critic during offline training. The actor is still constrained to the relay's one-hop action support. The clipped PPO objective is
+\begin{equation}
+\mathcal{L}_{\mathrm{PPO}}=-\mathbb{E}_t\!\left[
+\min\left(\rho_t A_t,
+\operatorname{clip}(\rho_t,1-\epsilon,1+\epsilon)A_t\right)\right].
+\end{equation}
+The teacher is a privileged reference policy, not an optimal oracle and not a deployment component.
+
+\subsection{Global-to-Local Policy Distillation}
+
+Teacher and student logits are restricted by the same structural action mask. With temperature $T$, the principal distillation term is
+\begin{equation}
+\mathcal{L}_{\mathrm{KD}}=T^2D_{\mathrm{KL}}
+\left(\pi_T^T(\cdot\mid s_t)\,\|\,\pi_S^T(\cdot\mid o_u)\right).
+\end{equation}
+Dataset splitting is performed by scenario and episode seed rather than by individual hop to avoid trajectory leakage.
+
+\subsection{Geographic Residual Policy}
+
+The nominal student combines a geographic prior with a bounded learned residual:
+\begin{equation}
+z_i^{N}=\alpha g_i+r_{\theta}(o_u,i),
+\end{equation}
+where $g_i$ is destination progress and $r_{\theta}$ is computed from the candidate's local observation.
+
+\subsection{Predictive Risk Switching}
+
+For each candidate $i$, the safety branch uses current link margin, predicted link lifetime, queue headroom, and best onward-link lifetime. The switch danger score is
+\begin{equation}
+D_i=\sum_{k}w_k[\tau_k-x_{i,k}]_+.
+\end{equation}
+Let $a_N$ and $a_P$ denote the nominal and predictive actions. The predictive branch is activated when the nominal action is DROP, its danger exceeds a threshold, or the predictive candidate provides sufficient safety gain:
+\begin{equation}
+S=\mathbb{1}\!\left[a_N=\mathrm{DROP}\;\lor\;D_{a_N}>\tau\;\lor\;
+G(a_P,a_N)>\delta\right].
+\end{equation}
+The final action is $a_P$ when $S=1$ and $a_N$ otherwise. The predictive branch disables the learned residual during execution so that a high-confidence link-break warning cannot be overturned.
+
+\section{Experimental Methodology}
+
+\subsection{Research Questions}
+
+\begin{itemize}[leftmargin=*]
+    \item RQ1: Does global-to-local distillation improve a strict-local actor over direct local learning and geographic routing?
+    \item RQ2: Does the geographic residual policy recover from rotated structural routing holes?
+    \item RQ3: Does predictive risk switching improve imminent link-break reliability without unacceptable normal-condition cost?
+    \item RQ4: What reliability, tail-delay, energy, input-footprint, and drop-rate trade-offs result from risk switching relative to each constituent branch?
+\end{itemize}
+
+\subsection{Scenarios and Baselines}
+
+\begin{table}[t]
+\centering
+\caption{Required evaluation groups for the final submission.}
+\label{tab:scenario-groups}
+\begin{tabular}{p{0.26\linewidth}p{0.62\linewidth}}
+\toprule
+Group & Purpose \\
+\midrule
+Held-out/OOD & Mobility, link loss, sparse connectivity, and density shifts \\
+Node scaling & Generalization to unseen UAV counts and inference-cost scaling \\
+Structural holes & Recovery from geographic local minima under rotated topology \\
+Predictive breaks & Avoidance of currently valid but imminently failing links \\
+Ablations & Distillation, geographic residual, predictive prior, and switching \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final comparison should include classical geographic routing, predictive heuristics, direct local learning, the global teacher as a training reference, external learning-based baselines under the same simulator contract, and the proposed ablations. \todo{Add AODV/OLSR or justify their omission with a protocol-level limitation statement.}
+
+\subsection{Reproducibility and Statistics}
+
+All training seeds, evaluation seeds, configuration files, checkpoints, and raw episode records must be retained. Smoke and full results must not be combined. Primary comparisons should use seed-paired effects with confidence intervals, while scenario-level results should report the number of episodes and failure categories. Calibration data must be separated from final evaluation data.
+
+\section{Results}
+
+\begin{table*}[t]
+\centering
+\caption{Primary result table. Replace every placeholder from the audited full-run artifact only.}
+\label{tab:main-results}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Method & PDR & Deadline & p95 delay & Energy & Input bytes & Agent drop \\
+\midrule
+GPSR & -- & -- & -- & -- & -- & -- \\
+Predictive geographic & -- & -- & -- & -- & -- & -- \\
+Geo-residual student & -- & -- & -- & -- & -- & -- \\
+Predictive branch without switch & -- & -- & -- & -- & -- & -- \\
+\method & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}
+
+\todo{Insert the complete verified SwitchGLOBE result narrative after checking the Phase 12 manifest, five-seed coverage, duplicate rows, paired-effects file, and figure/table consistency. Report unfavorable trade-offs and failed scenarios.}
+
+\section{Discussion}
+
+The main scientific claim should be framed as a deployment trade-off rather than universal algorithmic superiority. The privileged teacher may improve offline supervision, but the deployed student cannot recover global information that is not inferable from one-hop observations. Predictive switching may improve link-break recovery while increasing feature collection or switch frequency. These effects must be reported together.
+
+The current simulator abstracts the physical and medium-access layers, models simplified mobility, and uses several proxy costs. Consequently, the results establish routing-logic behavior under controlled conditions rather than real-flight performance. Cross-validation in ns-3, OMNeT++, Linux network namespaces, or a radio testbed is needed before deployment-level claims are made.
+
+\section{Conclusion}
+
+This paper introduced \method, a global-to-local routing framework for decentralized FANETs. The framework separates training-time global topology access from strict-local execution and uses predictive risk switching to handle structural and temporal routing failures selectively. \todo{Add a restrained quantitative conclusion only after the verified five-seed SwitchGLOBE artifact passes the result audit.}
+
+\section*{CRediT Authorship Contribution Statement}
+
+\todo{Replace with the agreed author names and CRediT roles, such as Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Writing, Visualization, Supervision, and Funding acquisition.}
+
+\section*{Funding}
+
+\todo{Insert the exact funder name and grant number, or state that the research received no external funding.}
+
+\section*{Data and Code Availability}
+
+The implementation, configurations, and scripts required to reproduce the reported experiments will be made available at \todo{repository URL and archived release DOI}. Raw episode-level results and the exact configuration associated with each table and figure will be included in the accompanying artifact release. \todo{Ensure this statement matches the actual public release at submission time.}
+
+\section*{Declaration of Competing Interest}
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper. \todo{Confirm with every author.}
+
+\section*{Declaration of Generative AI and AI-Assisted Technologies in the Manuscript Preparation Process}
+
+During the preparation of this work, the authors used OpenAI Codex to assist with document structuring, LaTeX template preparation, and language editing. The authors reviewed and edited the output as needed and take full responsibility for the content of the publication. \todo{Revise this statement so that it exactly describes all tools and uses before submission.}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\end{document}

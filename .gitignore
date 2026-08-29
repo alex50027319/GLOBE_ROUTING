@@ -1,11 +1,31 @@
-# Local application and rendering artifacts
-.DS_Store
-.codex-output/
-tmp/pdfs/
-**/node_modules/
-professor_presentation/.phase12_ppt_build/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.egg-info/
 
-# LaTeX transient build files
-**/*.aux
-**/*.blg
-**/*.log
+# Local artifacts / experiment outputs
+artifacts/
+runs/
+checkpoints/
+*.zip
+*.pt
+*.pth
+*.ckpt
+
+# Local workspaces, rendering caches, and generated manuscript builds
+.codex-output/
+ResearchAIWorkspace/
+tmp/
+presentations/
+paper/archive/
+paper/current/
+submission/**/build/
+submission/journal_target_recommendation.md
+
+.DS_Store
+
+# Claude Code personal (not shared) config
+CLAUDE.local.md
+.claude/settings.local.json

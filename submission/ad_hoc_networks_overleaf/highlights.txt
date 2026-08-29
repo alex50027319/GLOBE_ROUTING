@@ -1,0 +1,4 @@
+Global teacher knowledge is distilled into a strict one-hop routing policy.
+Predictive risk switching handles imminent FANET link failures selectively.
+The deployed student needs neither global graphs nor online teacher messages.
+Evaluation jointly reports reliability, tail delay, cost, and drop behavior.
