@@ -10,11 +10,12 @@ from .evaluator import (
 )
 from .costs import PolicyCost, measure_policy_cost
 from .latency import (
-    LatencyBenchmark, benchmark_callable, legacy_repeated_switchglobe_action,
-    profile_student_policy,
+    LatencyBenchmark, benchmark_callable, benchmark_resolver,
+    legacy_repeated_switchglobe_action, profile_student_policy,
 )
 from .records import episode_row, summary_row
 from .external_comparison_reporting import write_external_comparison_artifacts
+from .ablation_reporting import write_ablation_artifacts
 from .reporting import aggregate_seed_summaries
 from .statistics import Statistic, summarize_values
 from .generalization import GENERALIZATION_METRICS, generalization_summary
@@ -35,6 +36,7 @@ __all__ = [
     "PolicyCost",
     "LatencyBenchmark",
     "benchmark_callable",
+    "benchmark_resolver",
     "legacy_repeated_switchglobe_action",
     "profile_student_policy",
     "Statistic",
@@ -43,6 +45,7 @@ __all__ = [
     "measure_policy_cost",
     "summary_row",
     "write_external_comparison_artifacts",
+    "write_ablation_artifacts",
     "summarize_values",
     "GENERALIZATION_METRICS",
     "generalization_summary",
