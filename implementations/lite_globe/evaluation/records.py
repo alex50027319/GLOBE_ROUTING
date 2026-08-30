@@ -102,6 +102,20 @@ def episode_row(
             int(result.deadline_met_latency_aware)
             if result.deadline_met_latency_aware is not None else ""
         ),
+        "backup_available_steps": result.backup_available_steps,
+        "fast_failover_steps": result.fast_failover_steps,
+        "fast_failover_miss_steps": result.fast_failover_miss_steps,
+        "freshness_cache_hit_steps": result.freshness_cache_hit_steps,
+        "freshness_cache_miss_steps": result.freshness_cache_miss_steps,
+        "freshness_cache_stale_evictions": (
+            result.freshness_cache_stale_evictions
+        ),
+        "freshness_cache_state_evictions": (
+            result.freshness_cache_state_evictions
+        ),
+        "freshness_cache_capacity_evictions": (
+            result.freshness_cache_capacity_evictions
+        ),
     }
 
 
