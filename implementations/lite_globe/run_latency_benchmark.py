@@ -20,16 +20,23 @@ import torch
 
 from .env.fanet_env import FanetRoutingEnv
 from .evaluation import (
-    benchmark_callable, legacy_repeated_switchglobe_action,
+    benchmark_callable, benchmark_resolver, legacy_repeated_switchglobe_action,
     measure_policy_cost, profile_student_policy,
 )
 from .evaluation.reporting import write_csv
-from .experiments.external_comparison_campaign import load_switchglobe
+from .experiments.external_comparison_campaign import (
+    _switchglobe_path,
+    load_switchglobe,
+)
+from .experiments.latency_optimization_campaign import checkpoint_path as fast_checkpoint_path
 from .models.policy_adapter import StudentPolicyAdapter
+from .models.student_policy import FastSwitchGlobePolicy
+from .provenance import checkpoint_sha256_map, config_sha256, git_provenance
 from .scenarios import phase9_evaluation_scenarios
 
 
 SEEDS = (42, 77, 123, 314, 2718)
+FAST_HIDDEN_DIM = 32
 
 
 def parse_args() -> argparse.Namespace:
@@ -39,8 +46,18 @@ def parse_args() -> argparse.Namespace:
         default=Path("ResearchAIWorkspace/artifacts/lite_globe/phase12/checkpoints"),
     )
     parser.add_argument(
+        "--fast-checkpoint-dir", type=Path,
+        default=Path("artifacts/switchglobe_latency_optimization/fast_switchglobe/checkpoints"),
+    )
+    parser.add_argument(
         "--output-dir", type=Path,
         default=Path("artifacts/switchglobe_latency_optimization/exact_runtime"),
+    )
+    parser.add_argument(
+        "--include-fast", action="store_true",
+        help="Also benchmark FastSwitchGLOBE and FastSwitchGLOBE + Top-2 "
+        "(requires checkpoints from run_fast_switchglobe.py) in the same "
+        "session as Legacy/Exact, per the master prompt's same-session rule.",
     )
     parser.add_argument("--seed", action="append", type=int)
     parser.add_argument("--warmup", type=int, default=50)
@@ -78,6 +95,25 @@ def _compiled(
         policy.model.predictive_policy, mode=mode, fullgraph=False
     )
     return policy
+
+
+def _load_fast(
+    root: Path, *, seed: int, max_nodes: int, device: torch.device,
+    enable_top2: bool,
+) -> StudentPolicyAdapter:
+    path = fast_checkpoint_path(root, seed)
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"FastSwitchGLOBE checkpoint not found for seed {seed} at {path}; "
+            "run run_fast_switchglobe.py first or omit --include-fast"
+        )
+    payload = torch.load(path, map_location="cpu", weights_only=False)
+    model = FastSwitchGlobePolicy(max_nodes, hidden_dim=FAST_HIDDEN_DIM)
+    model.load_state_dict(payload["model_state"])
+    return StudentPolicyAdapter(
+        model, device=device, force_forward_if_available=True,
+        enable_fast_failover=enable_top2,
+    )
 
 
 def _plot(rows: list[dict], output_dir: Path) -> None:
@@ -170,24 +206,63 @@ def main() -> int:
                     max_nodes=scenario.config.max_nodes,
                     device=torch.device("cuda"),
                 )))
-        for variant, policy in specs:
+        fast_specs: list[tuple[str, StudentPolicyAdapter]] = []
+        resolver_specs: list[tuple[str, StudentPolicyAdapter]] = []
+        if args.include_fast:
+            fast_specs.extend([
+                ("fast_eager_cpu", _load_fast(
+                    args.fast_checkpoint_dir, seed=seed,
+                    max_nodes=scenario.config.max_nodes,
+                    device=torch.device("cpu"), enable_top2=False,
+                )),
+                ("fast_top2_eager_cpu", _load_fast(
+                    args.fast_checkpoint_dir, seed=seed,
+                    max_nodes=scenario.config.max_nodes,
+                    device=torch.device("cpu"), enable_top2=True,
+                )),
+            ])
+            resolver_specs.append(("fast_top2_eager_cpu", fast_specs[-1][1]))
+            if torch.cuda.is_available():
+                fast_specs.extend([
+                    ("fast_eager_cuda", _load_fast(
+                        args.fast_checkpoint_dir, seed=seed,
+                        max_nodes=scenario.config.max_nodes,
+                        device=torch.device("cuda"), enable_top2=False,
+                    )),
+                    ("fast_top2_eager_cuda", _load_fast(
+                        args.fast_checkpoint_dir, seed=seed,
+                        max_nodes=scenario.config.max_nodes,
+                        device=torch.device("cuda"), enable_top2=True,
+                    )),
+                ])
+                resolver_specs.append(("fast_top2_eager_cuda", fast_specs[-1][1]))
+        fast_variant_names = {name for name, _ in fast_specs}
+        for variant, policy in specs + fast_specs:
             for result in profile_student_policy(
                 policy, observation, variant=variant,
                 warmup=warmup, repeats=repeats,
             ):
                 rows.append({"training_seed": seed, **result.to_dict()})
+            serialized_model_path = (
+                fast_checkpoint_path(args.fast_checkpoint_dir, seed)
+                if variant in fast_variant_names
+                else args.checkpoint_dir / f"seed_{seed}" / "risk_switch_lite_globe_p.pt"
+            )
             cost = measure_policy_cost(
                 policy, observation, model=policy.model,
                 input_observation=observation, device=policy.device,
                 warmup=warmup, repeats=min(repeats, 100),
-                serialized_model_path=(
-                    args.checkpoint_dir / f"seed_{seed}"
-                    / "risk_switch_lite_globe_p.pt"
-                ),
+                serialized_model_path=serialized_model_path,
             )
             cost_rows.append({
                 "training_seed": seed, "variant": variant, **cost.to_dict()
             })
+        for variant, policy in resolver_specs:
+            result = benchmark_resolver(
+                policy, observation, variant=variant,
+                warmup=warmup, repeats=repeats,
+            )
+            rows.append({"training_seed": seed, **result.to_dict()})
         for variant, policy in legacy_specs:
             result = benchmark_callable(
                 lambda policy=policy: legacy_repeated_switchglobe_action(
@@ -200,14 +275,45 @@ def main() -> int:
     write_csv(args.output_dir / "runtime_benchmarks.csv", rows)
     write_csv(args.output_dir / "deployment_costs.csv", cost_rows)
     _plot(rows, args.output_dir)
+    effective_config = {
+        "checkpoint_dir": str(args.checkpoint_dir),
+        "fast_checkpoint_dir": str(args.fast_checkpoint_dir),
+        "seeds": list(seeds), "warmup": warmup, "repeats": repeats,
+        "include_compile": args.include_compile, "include_fast": args.include_fast,
+        "smoke": args.smoke,
+    }
+    checkpoint_paths: dict[str, Path] = {}
+    for seed in seeds:
+        try:
+            checkpoint_paths[f"switchglobe_exact_seed_{seed}"] = _switchglobe_path(
+                args.checkpoint_dir, seed
+            )
+        except FileNotFoundError:
+            pass
+        if args.include_fast:
+            checkpoint_paths[f"fast_switchglobe_seed_{seed}"] = fast_checkpoint_path(
+                args.fast_checkpoint_dir, seed
+            )
     manifest = {
         "schema_version": 1, "complete": True,
-        "suite": "switchglobe_exact_latency", "training_seeds": list(seeds),
+        "suite": (
+            "switchglobe_unified_latency" if args.include_fast
+            else "switchglobe_exact_latency"
+        ),
+        "variants": (
+            ["legacy_repeated", "exact", "fast", "fast_top2"] if args.include_fast
+            else ["legacy_repeated", "exact"]
+        ),
+        "training_seeds": list(seeds),
         "warmup": warmup, "repeats": repeats,
         "runtime_rows": len(rows), "deployment_cost_rows": len(cost_rows),
         "torch": torch.__version__, "python": sys.version,
         "platform": platform.platform(), "cuda_available": torch.cuda.is_available(),
         "candidate_3_executed": False,
+        "fast_checkpoint_dir": str(args.fast_checkpoint_dir) if args.include_fast else None,
+        "config_sha256": config_sha256(effective_config),
+        "checkpoint_sha256": checkpoint_sha256_map(checkpoint_paths),
+        **git_provenance(),
     }
     (args.output_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"

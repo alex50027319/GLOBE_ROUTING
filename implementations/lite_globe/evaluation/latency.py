@@ -115,6 +115,27 @@ def profile_student_policy(
     ]
 
 
+def benchmark_resolver(
+    policy: StudentPolicyAdapter,
+    observation: dict[str, NDArray[np.generic]], *, variant: str,
+    warmup: int = 50, repeats: int = 500,
+) -> LatencyBenchmark:
+    """Benchmark ``resolve_decision`` alone: no model forward, mask lookup only.
+
+    The decision (primary + backup) is computed once, outside the timed
+    region; only the post-hoc mask-resolution call is measured.
+    """
+
+    with torch.inference_mode():
+        decision = policy.act_with_metadata(observation)
+    live_mask = torch.as_tensor(observation["action_mask"], device=policy.device)
+    return benchmark_callable(
+        lambda: policy.resolve_decision(decision, live_mask),
+        variant=variant, component="resolver_only", device=policy.device,
+        warmup=warmup, repeats=repeats,
+    )
+
+
 @torch.inference_mode()
 def legacy_repeated_switchglobe_action(
     policy: StudentPolicyAdapter,
