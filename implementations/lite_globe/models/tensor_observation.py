@@ -13,6 +13,30 @@ from torch import Tensor
 TensorObservation = dict[str, Tensor]
 
 
+class TensorObservationBuffer:
+    """Reuse fixed-shape device tensors across sequential decisions."""
+
+    def __init__(self, device: torch.device | str) -> None:
+        self.device = torch.device(device)
+        self._buffers: TensorObservation = {}
+
+    def convert(
+        self, observation: Mapping[str, NDArray[np.generic] | Tensor]
+    ) -> TensorObservation:
+        if set(self._buffers) != set(observation):
+            self._buffers = {}
+        for key, value in observation.items():
+            dtype = torch.bool if key == "action_mask" else torch.float32
+            shape = tuple(value.shape)
+            buffer = self._buffers.get(key)
+            if buffer is None or tuple(buffer.shape) != shape or buffer.dtype != dtype:
+                buffer = torch.empty(shape, dtype=dtype, device=self.device)
+                self._buffers[key] = buffer
+            source = torch.as_tensor(value, dtype=dtype)
+            buffer.copy_(source, non_blocking=False)
+        return self._buffers
+
+
 def observation_to_tensors(
     observation: Mapping[str, NDArray[np.generic] | Tensor],
     *,

@@ -57,6 +57,12 @@ class EpisodeResult:
     switch_danger_reduction: float
     false_switch_steps: float
     missed_risk_steps: float
+    decision_latency_total_ms: float
+    environment_step_time_total_ms: float
+    routing_step_duration_ms: float | None
+    effective_end_to_end_delay_ms: float | None
+    deadline_ms: float | None
+    deadline_met_latency_aware: bool | None
 
 
 @dataclass(frozen=True)
@@ -96,7 +102,10 @@ def run_episode(
     *,
     seed: int,
     reset_options: dict[str, Any] | None = None,
+    routing_step_duration_ms: float | None = None,
 ) -> EpisodeResult:
+    if routing_step_duration_ms is not None and routing_step_duration_ms <= 0:
+        raise ValueError("routing_step_duration_ms must be positive")
     policy.reset(seed)
     observation, initial_info = env.reset(seed=seed, options=reset_options)
     protocol_tick = getattr(policy, "protocol_tick", None)
@@ -109,20 +118,32 @@ def run_episode(
     terminated = False
     truncated = False
     decision_latencies: list[float] = []
+    environment_step_latencies: list[float] = []
     while not (terminated or truncated):
         local_observation_bytes += sum(
             int(value.nbytes) for value in observation.values()
         )
+        decide_with_metadata = getattr(policy, "act_with_metadata", None)
         byte_counter = getattr(policy, "observation_bytes", None)
-        policy_input_bytes += (
-            int(byte_counter(observation))
-            if byte_counter is not None
-            else sum(int(value.nbytes) for value in observation.values())
-        )
+        if decide_with_metadata is None:
+            policy_input_bytes += (
+                int(byte_counter(observation))
+                if byte_counter is not None
+                else sum(int(value.nbytes) for value in observation.values())
+            )
         started = perf_counter_ns()
-        action = policy.act(observation)
+        if decide_with_metadata is not None:
+            decision = decide_with_metadata(observation)
+            action = int(decision.action)
+            policy_input_bytes += int(decision.input_bytes)
+        else:
+            action = policy.act(observation)
         decision_latencies.append((perf_counter_ns() - started) / 1_000_000.0)
+        environment_started = perf_counter_ns()
         observation, reward, terminated, truncated, info = env.step(action)
+        environment_step_latencies.append(
+            (perf_counter_ns() - environment_started) / 1_000_000.0
+        )
         if protocol_tick is not None:
             protocol_tick(snapshot_from_env(env))
         total_reward += reward
@@ -133,6 +154,18 @@ def run_episode(
     deadline_steps = (
         int(np.ceil(1.5 * int(shortest_hops))) + 1
         if shortest_hops is not None
+        else None
+    )
+    decision_latency_total_ms = float(sum(decision_latencies))
+    effective_end_to_end_delay_ms = (
+        float(info["episode_step"]) * routing_step_duration_ms
+        + decision_latency_total_ms
+        if routing_step_duration_ms is not None
+        else None
+    )
+    deadline_ms = (
+        float(deadline_steps) * routing_step_duration_ms
+        if deadline_steps is not None and routing_step_duration_ms is not None
         else None
     )
     return EpisodeResult(
@@ -211,6 +244,21 @@ def run_episode(
         switch_danger_reduction=float(diagnostics.get("switch_danger_reduction", 0.0)),
         false_switch_steps=float(diagnostics.get("false_switch_steps", 0.0)),
         missed_risk_steps=float(diagnostics.get("missed_risk_steps", 0.0)),
+        decision_latency_total_ms=decision_latency_total_ms,
+        environment_step_time_total_ms=float(sum(environment_step_latencies)),
+        routing_step_duration_ms=routing_step_duration_ms,
+        effective_end_to_end_delay_ms=effective_end_to_end_delay_ms,
+        deadline_ms=deadline_ms,
+        deadline_met_latency_aware=(
+            bool(
+                info["delivered"]
+                and deadline_ms is not None
+                and effective_end_to_end_delay_ms is not None
+                and effective_end_to_end_delay_ms <= deadline_ms
+            )
+            if routing_step_duration_ms is not None
+            else None
+        ),
     )
 
 
@@ -238,6 +286,7 @@ def evaluate_policy_results(
     seeds: list[int],
     *,
     reset_options: dict[str, Any] | None = None,
+    routing_step_duration_ms: float | None = None,
 ) -> list[EpisodeResult]:
     """Return one immutable result per evaluation episode."""
 
@@ -249,6 +298,7 @@ def evaluate_policy_results(
             policy,
             seed=seed,
             reset_options=reset_options,
+            routing_step_duration_ms=routing_step_duration_ms,
         )
         for seed in seeds
     ]

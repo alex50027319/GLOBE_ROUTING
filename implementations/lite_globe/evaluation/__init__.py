@@ -9,6 +9,10 @@ from .evaluator import (
     summarize_episode_results,
 )
 from .costs import PolicyCost, measure_policy_cost
+from .latency import (
+    LatencyBenchmark, benchmark_callable, legacy_repeated_switchglobe_action,
+    profile_student_policy,
+)
 from .records import episode_row, summary_row
 from .external_comparison_reporting import write_external_comparison_artifacts
 from .reporting import aggregate_seed_summaries
@@ -29,6 +33,10 @@ __all__ = [
     "run_episode",
     "summarize_episode_results",
     "PolicyCost",
+    "LatencyBenchmark",
+    "benchmark_callable",
+    "legacy_repeated_switchglobe_action",
+    "profile_student_policy",
     "Statistic",
     "aggregate_seed_summaries",
     "episode_row",

@@ -91,6 +91,27 @@ def test_shortest_path_oracle_delivers_on_static_line(
     assert result.path_stretch == 1.0
 
 
+def test_latency_aware_delay_is_separate_from_step_delay(
+    line_env, line_positions
+) -> None:
+    result = run_episode(
+        line_env,
+        ShortestPathOraclePolicy(line_env),
+        seed=4,
+        reset_options={
+            "positions": line_positions,
+            "source": 0,
+            "destination": 2,
+        },
+        routing_step_duration_ms=5.0,
+    )
+    assert result.steps == 2
+    assert result.routing_step_duration_ms == 5.0
+    assert result.effective_end_to_end_delay_ms is not None
+    assert result.effective_end_to_end_delay_ms >= 10.0
+    assert result.deadline_ms == result.deadline_steps * 5.0
+
+
 def test_phase7_families_are_held_out_and_shape_compatible() -> None:
     curriculum = phase7_curriculum(42)
     evaluation = phase7_evaluation_scenarios(42)

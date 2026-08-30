@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from copy import deepcopy
 
+import torch
+
 from implementations.lite_globe.env.fanet_env import FanetRoutingEnv
 from implementations.lite_globe.models import (
     GeographicResidualStudentPolicy,
@@ -114,3 +116,86 @@ def test_risk_switch_observation_bytes_are_below_full_predictive_when_safe(
         observation
     )
     assert switch_bytes < predictive_bytes
+
+
+def test_fused_decision_runs_each_branch_once(line_positions) -> None:
+    from implementations.lite_globe.env.config import FanetConfig
+
+    config = FanetConfig(
+        num_nodes=3, max_nodes=4, area_size=10.0,
+        communication_radius=1.1, max_queue_size=8,
+        min_speed=0.0, max_speed=0.0,
+        include_forwardability=True, include_risk_features=True,
+    )
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=1,
+        options={"positions": line_positions, "source": 0, "destination": 2},
+    )
+    policy = _policy(config.max_nodes)
+    adapter = StudentPolicyAdapter(policy, force_forward_if_available=True)
+    counts = {"normal": 0, "predictive": 0}
+    normal_hook = policy.normal_policy.register_forward_hook(
+        lambda *_: counts.__setitem__("normal", counts["normal"] + 1)
+    )
+    predictive_hook = policy.predictive_policy.register_forward_hook(
+        lambda *_: counts.__setitem__(
+            "predictive", counts["predictive"] + 1
+        )
+    )
+    try:
+        decision = adapter.act_with_metadata(observation)
+    finally:
+        normal_hook.remove()
+        predictive_hook.remove()
+    assert decision.action < config.max_nodes
+    assert counts == {"normal": 1, "predictive": 1}
+
+
+def test_fused_metadata_matches_legacy_byte_accounting(line_positions) -> None:
+    from implementations.lite_globe.env.config import FanetConfig
+
+    config = FanetConfig(
+        num_nodes=3, max_nodes=4, area_size=10.0,
+        communication_radius=1.1, max_queue_size=8,
+        min_speed=0.0, max_speed=0.0,
+        include_forwardability=True, include_risk_features=True,
+    )
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=1,
+        options={"positions": line_positions, "source": 0, "destination": 2},
+    )
+    policy = _policy(config.max_nodes)
+    adapter = StudentPolicyAdapter(policy, force_forward_if_available=True)
+    legacy_bytes = adapter.observation_bytes(observation)
+    decision = adapter.act_with_metadata(observation)
+    assert decision.input_bytes == legacy_bytes
+    assert all(
+        torch.isfinite(parameter).all() for parameter in policy.parameters()
+    )
+
+
+def test_buffered_adapter_matches_eager_action(line_positions) -> None:
+    from implementations.lite_globe.env.config import FanetConfig
+
+    config = FanetConfig(
+        num_nodes=3, max_nodes=4, area_size=10.0,
+        communication_radius=1.1, max_queue_size=8,
+        min_speed=0.0, max_speed=0.0,
+        include_forwardability=True, include_risk_features=True,
+    )
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=1,
+        options={"positions": line_positions, "source": 0, "destination": 2},
+    )
+    policy = _policy(config.max_nodes)
+    eager = StudentPolicyAdapter(
+        deepcopy(policy), force_forward_if_available=True
+    )
+    buffered = StudentPolicyAdapter(
+        deepcopy(policy), force_forward_if_available=True,
+        reuse_tensor_buffer=True,
+    )
+    assert (
+        eager.act_with_metadata(observation)
+        == buffered.act_with_metadata(observation)
+    )
