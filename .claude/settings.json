@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(python -m pytest tests/lite_globe)",
+      "Bash(python -m pytest tests/lite_globe *)",
+      "Bash(python3 -m pytest tests/lite_globe)",
+      "Bash(python3 -m pytest tests/lite_globe *)",
+      "Bash(.venv/bin/python -m pytest tests/lite_globe)",
+      "Bash(.venv/bin/python -m pytest tests/lite_globe *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.local)",
+      "Edit(./artifacts/**)",
+      "Edit(./ResearchAIWorkspace/**)",
+      "Edit(./submission/**/build/**)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/validate_python.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
