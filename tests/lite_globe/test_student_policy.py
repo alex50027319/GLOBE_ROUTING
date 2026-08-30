@@ -9,6 +9,7 @@ import torch
 from implementations.lite_globe.models.masking import masked_softmax
 from implementations.lite_globe.models.policy_adapter import StudentPolicyAdapter
 from implementations.lite_globe.models.student_policy import LocalStudentPolicy
+from implementations.lite_globe.models.student_policy import FastSwitchGlobePolicy
 from implementations.lite_globe.models.tensor_observation import (
     observation_to_tensors,
 )
@@ -28,6 +29,19 @@ def _synthetic_observation(
     }
     observation["action_mask"][valid_nodes] = 1
     observation["action_mask"][max_nodes] = 1
+    return observation
+
+
+def _synthetic_fast_observation(
+    max_nodes: int, valid_nodes: list[int]
+) -> dict[str, np.ndarray]:
+    observation = _synthetic_observation(max_nodes, valid_nodes)
+    observation["candidate_forwardability"] = np.zeros(
+        (max_nodes, 2), dtype=np.float32
+    )
+    observation["candidate_risk_features"] = np.zeros(
+        (max_nodes, 4), dtype=np.float32
+    )
     return observation
 
 
@@ -117,6 +131,159 @@ def test_adapter_never_selects_invalid_action(line_env, line_positions) -> None:
     adapter = StudentPolicyAdapter(model, deterministic=True)
     action = adapter.act(observation)
     assert observation["action_mask"][action] == 1
+
+
+def test_fast_failover_uses_top2_without_second_forward() -> None:
+    torch.manual_seed(21)
+    model = LocalStudentPolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(
+        model,
+        deterministic=True,
+        force_forward_if_available=True,
+        enable_fast_failover=True,
+    )
+    observation = _synthetic_observation(4, [0, 1, 2])
+    forwards = 0
+
+    def count_forward(*_args) -> None:
+        nonlocal forwards
+        forwards += 1
+
+    hook = model.register_forward_hook(count_forward)
+    try:
+        decision = adapter.act_with_metadata(observation)
+        assert decision.backup_action is not None
+        live_mask = observation["action_mask"].copy()
+        live_mask[decision.action] = 0
+        resolved = adapter.resolve_decision(decision, live_mask)
+    finally:
+        hook.remove()
+
+    assert resolved == decision.backup_action
+    assert resolved != decision.action
+    assert forwards == 1
+    assert adapter.episode_diagnostics()["fast_failover_steps"] == 1.0
+
+
+def test_fast_failover_drops_when_primary_and_backup_are_stale() -> None:
+    torch.manual_seed(22)
+    model = LocalStudentPolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(
+        model,
+        force_forward_if_available=True,
+        enable_fast_failover=True,
+    )
+    observation = _synthetic_observation(4, [0, 1])
+    decision = adapter.act_with_metadata(observation)
+    assert decision.backup_action is not None
+    live_mask = observation["action_mask"].copy()
+    live_mask[decision.action] = 0
+    live_mask[decision.backup_action] = 0
+
+    assert adapter.resolve_decision(decision, live_mask) == model.drop_action
+    assert adapter.episode_diagnostics()["fast_failover_miss_steps"] == 1.0
+
+
+def test_fast_failover_is_opt_in() -> None:
+    model = LocalStudentPolicy(max_nodes=4, hidden_dim=32)
+    observation = _synthetic_observation(4, [0, 1, 2])
+    decision = StudentPolicyAdapter(
+        model, force_forward_if_available=True
+    ).act_with_metadata(observation)
+    assert decision.backup_action is None
+
+
+def test_freshness_cache_reuses_exact_decision_without_forward() -> None:
+    torch.manual_seed(23)
+    model = FastSwitchGlobePolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(
+        model,
+        force_forward_if_available=True,
+        enable_fast_failover=True,
+        enable_freshness_cache=True,
+    )
+    observation = _synthetic_fast_observation(4, [0, 1, 2])
+    forwards = 0
+
+    def count_forward(*_args) -> None:
+        nonlocal forwards
+        forwards += 1
+
+    hook = model.register_forward_hook(count_forward)
+    try:
+        first = adapter.act_with_metadata(observation)
+        second = adapter.act_with_metadata(observation)
+        adapter.clear_freshness_cache()
+        third = adapter.act_with_metadata(observation)
+        diagnostics = adapter.episode_diagnostics()
+        adapter.reset(seed=23)
+        fourth = adapter.act_with_metadata(observation)
+    finally:
+        hook.remove()
+
+    assert first == second
+    assert second == third
+    assert third == fourth
+    assert forwards == 3
+    assert diagnostics["freshness_cache_miss_steps"] == 2.0
+    assert diagnostics["freshness_cache_hit_steps"] == 1.0
+    assert adapter.episode_diagnostics()["freshness_cache_miss_steps"] == 1.0
+
+
+def test_freshness_cache_invalidates_changed_mask_and_expired_entry() -> None:
+    torch.manual_seed(24)
+    model = FastSwitchGlobePolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(
+        model,
+        force_forward_if_available=True,
+        enable_fast_failover=True,
+        enable_freshness_cache=True,
+        freshness_cache_ttl_ms=5.0,
+    )
+    clock = [1_000_000]
+    adapter._cache_clock_ns = lambda: clock[0]
+    observation = _synthetic_fast_observation(4, [0, 1, 2])
+    forwards = 0
+
+    def count_forward(*_args) -> None:
+        nonlocal forwards
+        forwards += 1
+
+    hook = model.register_forward_hook(count_forward)
+    try:
+        adapter.act_with_metadata(observation)
+        changed = {key: value.copy() for key, value in observation.items()}
+        changed["action_mask"][2] = 0
+        adapter.act_with_metadata(changed)
+        changed_state = {
+            key: value.copy() for key, value in observation.items()
+        }
+        changed_state["neighbor_features"][0, 0] += 1.0
+        adapter.act_with_metadata(changed_state)
+        clock[0] += 5_000_001
+        adapter.act_with_metadata(observation)
+    finally:
+        hook.remove()
+
+    assert forwards == 4
+    diagnostics = adapter.episode_diagnostics()
+    assert diagnostics["freshness_cache_miss_steps"] == 4.0
+    assert diagnostics["freshness_cache_state_evictions"] == 1.0
+    assert diagnostics["freshness_cache_stale_evictions"] == 1.0
+
+
+def test_freshness_cache_requires_deterministic_fast_policy() -> None:
+    with pytest.raises(ValueError, match="deterministic"):
+        StudentPolicyAdapter(
+            FastSwitchGlobePolicy(max_nodes=4),
+            deterministic=False,
+            enable_freshness_cache=True,
+        )
+    with pytest.raises(ValueError, match="FastSwitchGLOBE"):
+        StudentPolicyAdapter(
+            LocalStudentPolicy(max_nodes=4),
+            enable_freshness_cache=True,
+        )
 
 
 def test_initialization_is_seed_reproducible() -> None:
