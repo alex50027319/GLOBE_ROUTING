@@ -1,25 +1,16 @@
-# External Baseline Colab 실행
+# External comparison: resumable Colab chunks
 
-이 번들은 최종 **SwitchGLOBE**와 외부 routing baseline을 동일한 training seed,
-scenario, evaluation seed에서 비교한다.
+Main roster는 AODV, OLSR, Greedy Geographic, Evo-QGeo (Adapted),
+RDQN-HERP (Adapted), GAT-GRU-DDQN, SwitchGLOBE다. SwitchGLOBE checkpoint는
+읽기 전용으로 로드되며 baseline마다 독립적인 원자적 checkpoint가 생성된다.
 
-비교 대상은 GPSR, Predictive Geographic, Evo-QGeo, IQMR Q(lambda), DRAMA,
-SwitchGLOBE다. Evo-QGeo, IQMR, DRAMA는 각 seed에서 학습하며, SwitchGLOBE는 검증된
-최종 checkpoint를 읽기 전용으로 사용한다.
-
-## 번들 생성
-
-저장소 루트에서 다음을 실행한다.
+## 번들 생성과 설치
 
 ```bash
-python scripts/package_baselines_colab.py
+python scripts/package_external_comparison_colab.py
 ```
 
-생성물: `artifacts/baselines_colab_bundle.zip`
-
-번들에는 소스, 테스트, 설정, notebook과 5개 SwitchGLOBE checkpoint가 포함된다.
-
-## Colab 설치
+생성된 `artifacts/external_comparison_colab_bundle.zip`을 Drive에 올린 뒤 Colab에서:
 
 ```python
 from google.colab import drive
@@ -28,50 +19,32 @@ drive.mount('/content/drive')
 
 ```bash
 %cd /content
-!unzip -q /content/drive/MyDrive/baselines_colab_bundle.zip -d SwitchGLOBE
+!unzip -q /content/drive/MyDrive/external_comparison_colab_bundle.zip -d SwitchGLOBE
 %cd /content/SwitchGLOBE
 !python -m pip install -q -r requirements-lite-globe.txt
 !python -m pip install -q -e .
 ```
 
-## 실행
+## Smoke와 seed별 full chunk
 
-먼저 smoke evaluation을 확인한다.
-
-```bash
-!python -m implementations.lite_globe.run_baselines \
-  --device cuda \
-  --smoke \
-  --resume \
-  --output-dir artifacts/baselines_smoke
-```
-
-그다음 5-seed full evaluation을 실행한다. 중단 후 같은 명령을 다시 실행하면 학습된
-baseline checkpoint를 재사용한다.
+Smoke와 full 결과는 CLI가 서로 다른 하위 디렉터리에 강제로 분리한다.
 
 ```bash
-!python -m implementations.lite_globe.run_baselines \
-  --device cuda \
-  --resume \
-  --output-dir artifacts/baselines
+!python -m implementations.lite_globe.run_external_comparison \
+  --device cpu --smoke --seed 42 --resume --zip-results
 ```
 
-## 결과 압축
+GPU session 하나당 seed 하나만 실행한다. 예를 들어 seed 42:
 
 ```bash
-!zip -r baseline_results.zip artifacts/baselines > /dev/null
-!ls -lh baseline_results.zip
+!python -m implementations.lite_globe.run_external_comparison \
+  --device cuda --seed 42 --resume --zip-results
 ```
 
-주요 논문용 파일:
+나머지 session은 `--seed 77`, `123`, `314`, `2718`로 실행한다. 같은 명령을 다시
+실행하면 complete checkpoint와 manifest를 검사해 완료 chunk를 재학습하지 않는다.
+불완전 checkpoint 또는 `complete: false` manifest는 완료 산출물로 인정하지 않는다.
 
-- `tables/external_baseline_results.md`
-- `tables/switchglobe_improvement_over_external_baselines.md`
-- `summaries/statistics.csv`
-- `summaries/paired_effects.csv`
-- `figures/external_baseline_pdr.svg`
-- `figures/external_baseline_delay_p95.svg`
-- `figures/external_baseline_energy.svg`
-- `manifest.json`
-
-원고에는 5개 seed의 raw CSV, manifest, 집계 통계를 교차 검증한 결과만 반영한다.
+결과 ZIP은 `artifacts/external_comparison/{smoke|full}/seeds_<seed>.zip`이다.
+병합 전 각 ZIP의 `manifest.json`에서 mode, method contracts, scenario, seed, row count를
+검증한다. smoke 수치를 원고에 사용하지 않는다.

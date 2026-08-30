@@ -35,6 +35,7 @@ checkpoint를 감사할 수 있도록 역사적 호환 이름으로 남겨 둔�
 
 ## 외부 baseline suite
 
-`run_baselines`는 최종 `switchglobe.pt`와 GPSR, Predictive Geographic, Evo-QGeo,
-IQMR Q(lambda), DRAMA를 같은 seed와 scenario에서 평가한다. baseline 학습 checkpoint와
-결과는 `artifacts/baselines/`에 분리해 저장하며 SwitchGLOBE checkpoint를 수정하지 않는다.
+`run_external_comparison`은 최종 SwitchGLOBE checkpoint와 AODV, OLSR,
+Greedy Geographic, Evo-QGeo (Adapted), RDQN-HERP (Adapted), GAT-GRU-DDQN을 같은
+seed와 scenario에서 평가한다. 결과는 `artifacts/external_comparison/{smoke,full}/`에
+분리하며 SwitchGLOBE checkpoint를 수정하지 않는다. 충실도는 `baselines/README.md`를 따른다.

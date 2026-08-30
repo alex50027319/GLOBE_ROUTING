@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from statistics import mean
+from pathlib import Path
 from time import perf_counter_ns
 import tracemalloc
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 import torch
@@ -22,6 +23,10 @@ class PolicyCost:
     input_bytes: int
     mean_latency_ms: float
     peak_python_memory_bytes: int
+    latency_p50_ms: float
+    latency_p95_ms: float
+    latency_p99_ms: float
+    serialized_model_bytes: int
 
     def to_dict(self) -> dict[str, int | float]:
         return asdict(self)
@@ -56,12 +61,16 @@ def measure_policy_cost(
     device: torch.device | str = "cpu",
     warmup: int = 10,
     repeats: int = 100,
+    serialized_model_path: Path | None = None,
+    prepare: Callable[[], None] | None = None,
 ) -> PolicyCost:
     """Measure steady-state action latency and Python allocation peak."""
 
     if warmup < 0 or repeats <= 0:
         raise ValueError("warmup must be non-negative and repeats positive")
     policy.reset(0)
+    if prepare is not None:
+        prepare()
     for _ in range(warmup):
         policy.act(observation)
     _synchronize(device)
@@ -80,4 +89,12 @@ def measure_policy_cost(
         input_bytes=observation_bytes(input_observation or observation),
         mean_latency_ms=float(mean(timings)),
         peak_python_memory_bytes=int(peak),
+        latency_p50_ms=float(np.percentile(timings, 50)),
+        latency_p95_ms=float(np.percentile(timings, 95)),
+        latency_p99_ms=float(np.percentile(timings, 99)),
+        serialized_model_bytes=(
+            int(serialized_model_path.stat().st_size)
+            if serialized_model_path is not None and serialized_model_path.is_file()
+            else 0
+        ),
     )

@@ -26,11 +26,11 @@ Predictive Student에 offline knowledge distillation으로 전달되며, SwitchG
 │   ├── config/                 # 계보별 설정과 switchglobe.yaml
 │   ├── colab/switchglobe.ipynb
 │   ├── run_switchglobe.py      # 최종 알고리즘 진입점
-│   └── run_baselines.py        # 외부 baseline 비교 진입점
+│   └── run_external_comparison.py # 외부 baseline 비교 진입점
 ├── scripts/
 │   ├── train_switchglobe_pipeline.py
 │   ├── package_switchglobe_colab.py
-│   └── package_baselines_colab.py
+│   └── package_external_comparison_colab.py
 ├── tests/lite_globe/           # 보존된 구현에 대응하는 테스트
 ├── docs/
 │   ├── method_history.md       # Phase 1~12 개발 계보와 채택/제외 결정
@@ -77,15 +77,16 @@ Phase 12/11/8이라는 내부 이름은 기존 checkpoint와 연구 계보를 �
 
 ## 외부 baseline 비교
 
-최종 SwitchGLOBE checkpoint와 GPSR, Predictive Geographic, Evo-QGeo,
-IQMR Q(lambda), DRAMA를 동일 seed·scenario에서 비교한다.
+최종 SwitchGLOBE checkpoint와 AODV, OLSR, Greedy Geographic,
+Evo-QGeo (Adapted), RDQN-HERP (Adapted), GAT-GRU-DDQN을 동일
+seed·scenario에서 비교한다. IQMR과 DRAMA-inspired Graph-DQN은 optional legacy다.
 
 ```bash
-python -m implementations.lite_globe.run_baselines \
+python -m implementations.lite_globe.run_external_comparison \
   --device auto \
   --resume \
   --switchglobe-checkpoint-dir artifacts/switchglobe/final/checkpoints \
-  --output-dir artifacts/baselines
+  --output-dir artifacts/external_comparison
 ```
 
 Colab bundle과 실행법은 `README_BASELINES_COLAB.md`를 따른다. baseline suite는
