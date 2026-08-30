@@ -21,7 +21,12 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    paths = [ROOT / "pyproject.toml", ROOT / "requirements-lite-globe.txt", ROOT / "README_BASELINES_COLAB.md"]
+    paths = [
+        ROOT / "pyproject.toml",
+        ROOT / "requirements-lite-globe.txt",
+        ROOT / "README_BASELINES_COLAB.md",
+        ROOT / "README_FASTSWITCHGLOBE_EXTERNAL_COLAB.md",
+    ]
     for base in (ROOT / "implementations", ROOT / "scripts", ROOT / "tests" / "lite_globe"):
         paths.extend(path for path in base.rglob("*") if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc")
     for seed in SEEDS:
