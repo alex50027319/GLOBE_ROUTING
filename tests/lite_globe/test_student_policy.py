@@ -272,6 +272,33 @@ def test_freshness_cache_invalidates_changed_mask_and_expired_entry() -> None:
     assert diagnostics["freshness_cache_stale_evictions"] == 1.0
 
 
+def test_fast_switchglobe_diagnostics_report_switch_head_activation() -> None:
+    torch.manual_seed(11)
+    model = FastSwitchGlobePolicy(max_nodes=4, hidden_dim=32)
+    observation = _synthetic_fast_observation(4, [0, 1, 2])
+    tensors = observation_to_tensors(observation)
+
+    _, switch_logit = model.forward_with_auxiliary(tensors)
+    diagnostics = model.diagnostics(tensors)
+
+    assert "switch_steps" in diagnostics
+    expected = 1.0 if switch_logit.item() >= 0 else 0.0
+    assert diagnostics["switch_steps"].item() == expected
+
+
+def test_fast_switchglobe_adapter_populates_switch_steps_diagnostic() -> None:
+    torch.manual_seed(12)
+    model = FastSwitchGlobePolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(model)
+    observation = _synthetic_fast_observation(4, [0, 1, 2])
+
+    adapter.act_with_metadata(observation)
+
+    diagnostics = adapter.episode_diagnostics()
+    assert "switch_steps" in diagnostics
+    assert diagnostics["switch_steps"] in (0.0, 1.0)
+
+
 def test_freshness_cache_requires_deterministic_fast_policy() -> None:
     with pytest.raises(ValueError, match="deterministic"):
         StudentPolicyAdapter(

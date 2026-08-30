@@ -904,3 +904,22 @@ class FastSwitchGlobePolicy(LocalStudentPolicy):
         self, observation: Mapping[str, Tensor]
     ) -> StudentPolicyOutput:
         return self.forward_with_auxiliary(observation)[0]
+
+    def diagnostics(self, observation: Mapping[str, Tensor]) -> dict[str, Tensor]:
+        """Report the trained switch-head's activation rate for one decision.
+
+        FastSwitchGLOBE has no separate predictive-branch network to gate at
+        inference: the same fused scorer already produces the final action.
+        ``switch_head`` is trained only as an auxiliary distillation target
+        (matched against the teacher's binary switch label, see
+        ``switch_accuracy`` in fast_training/training_metrics.csv) and is
+        otherwise unused by ``forward``/act. This reports that head's belief
+        using the same ``>= 0`` threshold as its training-time accuracy, so
+        ``switch_activation_rate`` is measurable for FastSwitchGLOBE instead
+        of silently staying at zero; it is a proxy for "the teacher would
+        have switched here", not evidence a distinct branch executed.
+        """
+
+        _, switch_logit = self.forward_with_auxiliary(observation)
+        switch = switch_logit >= 0
+        return {"switch_steps": switch.to(switch_logit.dtype).sum()}
