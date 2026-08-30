@@ -46,6 +46,10 @@ GENERALIZATION_METRICS = (
     "decision_latency_p50_ms",
     "decision_latency_p95_ms",
     "decision_latency_p99_ms",
+    "mean_decision_latency_total_ms",
+    "mean_environment_step_time_total_ms",
+    "mean_effective_end_to_end_delay_ms",
+    "latency_aware_deadline_delivery_ratio",
     "mean_control_messages",
     "mean_control_bytes",
     "switch_activation_rate",
@@ -89,6 +93,15 @@ def generalization_summary(
     decision_steps = max(sum(result.steps for result in results), 1)
     per_hop = [result.mean_per_hop_delay for result in delivered if result.mean_per_hop_delay is not None]
     slack = [result.deadline_slack_steps for result in delivered if result.deadline_slack_steps is not None]
+    effective_delays = [
+        result.effective_end_to_end_delay_ms
+        for result in delivered
+        if result.effective_end_to_end_delay_ms is not None
+    ]
+    latency_aware = [
+        result for result in results
+        if result.deadline_met_latency_aware is not None
+    ]
     return {
         "method": method,
         "scenario": scenario,
@@ -202,6 +215,16 @@ def generalization_summary(
         "decision_latency_p50_ms": float(np.percentile([result.decision_latency_p50_ms for result in results], 50)),
         "decision_latency_p95_ms": float(np.percentile([result.decision_latency_p95_ms for result in results], 95)),
         "decision_latency_p99_ms": float(np.percentile([result.decision_latency_p99_ms for result in results], 99)),
+        "mean_decision_latency_total_ms": float(np.mean([result.decision_latency_total_ms for result in results])),
+        "mean_environment_step_time_total_ms": float(np.mean([result.environment_step_time_total_ms for result in results])),
+        "mean_effective_end_to_end_delay_ms": (
+            float(np.mean(effective_delays)) if effective_delays else 0.0
+        ),
+        "latency_aware_deadline_delivery_ratio": (
+            sum(bool(result.deadline_met_latency_aware) for result in latency_aware)
+            / len(latency_aware)
+            if latency_aware else 0.0
+        ),
         "mean_control_messages": float(np.mean([result.control_messages for result in results])),
         "mean_control_bytes": float(np.mean([result.control_bytes for result in results])),
         "switch_activation_rate": sum(result.switch_steps for result in results) / decision_steps,

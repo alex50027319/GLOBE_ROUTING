@@ -26,6 +26,18 @@ class StudentPolicyOutput:
     probabilities: Tensor
 
 
+@dataclass(frozen=True)
+class SwitchGlobeDecision:
+    """One exact SwitchGLOBE pass with reusable routing diagnostics."""
+
+    output: StudentPolicyOutput
+    diagnostics: dict[str, Tensor]
+    switch: Tensor
+    normal_action: Tensor
+    predictive_action: Tensor
+    normal_probabilities: Tensor
+
+
 class LocalStudentPolicy(nn.Module):
     """Score each 1-hop neighbor with shared MLPs and mean context pooling."""
 
@@ -177,6 +189,7 @@ class GeographicResidualStudentPolicy(LocalStudentPolicy):
             torch.log(torch.expm1(torch.tensor(initial_prior_strength)))
         )
         self.register_buffer("residual_weight", torch.tensor(1.0))
+        self._residual_enabled = True
         self.log_forwardability_strength = nn.Parameter(
             torch.log(
                 torch.expm1(
@@ -267,6 +280,7 @@ class GeographicResidualStudentPolicy(LocalStudentPolicy):
         if not 0.0 <= weight <= 1.0:
             raise ValueError("residual weight must be in [0, 1]")
         self.residual_weight.fill_(weight)
+        self._residual_enabled = weight > 0.0
 
 
 class RiskAwareGeographicResidualStudentPolicy(
@@ -448,7 +462,7 @@ class LiteGlobePStudentPolicy(GeographicResidualStudentPolicy):
             neighbors = neighbors.unsqueeze(0)
             packet = packet.unsqueeze(0)
             action_mask = action_mask.unsqueeze(0)
-        if float(self.residual_weight.item()) > 0.0:
+        if self._residual_enabled:
             residual = LocalStudentPolicy.forward(self, observation)
             residual_logits = residual.logits
             if unbatched:
@@ -604,6 +618,13 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
     ) -> StudentPolicyOutput:
         """Use Phase 8 unless the selected link is locally high-risk."""
 
+        return self.decide(observation).output
+
+    def decide(
+        self, observation: Mapping[str, Tensor]
+    ) -> SwitchGlobeDecision:
+        """Compute the action distribution and diagnostics without repeats."""
+
         normal = self.normal_policy(observation)
         predictive = self.predictive_policy(observation)
         unbatched = observation["self_features"].ndim == 1
@@ -632,7 +653,32 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
             combined = combined.squeeze(0)
             valid_logits = valid_logits.squeeze(0)
             probabilities = probabilities.squeeze(0)
-        return StudentPolicyOutput(combined, valid_logits, probabilities)
+        output = StudentPolicyOutput(combined, valid_logits, probabilities)
+        normal_action = torch.argmax(
+            masked_logits(normal_logits, action_mask), dim=-1
+        )
+        predictive_action = torch.argmax(
+            masked_logits(predictive_logits, action_mask), dim=-1
+        )
+        diagnostics = self._diagnostics_from_decision(
+            observation,
+            action_mask=action_mask,
+            normal_logits=normal_logits,
+            predictive_logits=predictive_logits,
+            normal_action=normal_action,
+            predictive_action=predictive_action,
+            switch=switch,
+            unbatched=unbatched,
+        )
+        normal_probabilities = normal.probabilities
+        return SwitchGlobeDecision(
+            output=output,
+            diagnostics=diagnostics,
+            switch=switch,
+            normal_action=normal_action,
+            predictive_action=predictive_action,
+            normal_probabilities=normal_probabilities,
+        )
 
     def _switch_mask(
         self,
@@ -701,30 +747,30 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
     def diagnostics(self, observation: Mapping[str, Tensor]) -> dict[str, Tensor]:
         """Return per-decision switch diagnostics without changing actions."""
 
-        unbatched = observation["self_features"].ndim == 1
-        action_mask = observation["action_mask"]
-        normal_logits = self.normal_policy(observation).logits
-        predictive_logits = self.predictive_policy(observation).logits
+        return self.decide(observation).diagnostics
+
+    def _diagnostics_from_decision(
+        self,
+        observation: Mapping[str, Tensor],
+        *,
+        action_mask: Tensor,
+        normal_logits: Tensor,
+        predictive_logits: Tensor,
+        normal_action: Tensor,
+        predictive_action: Tensor,
+        switch: Tensor,
+        unbatched: bool,
+    ) -> dict[str, Tensor]:
+        """Derive diagnostics from logits already used for the action."""
+
         risk = observation.get("candidate_risk_features")
         if unbatched:
-            action_mask = action_mask.unsqueeze(0)
-            normal_logits = normal_logits.unsqueeze(0)
-            predictive_logits = predictive_logits.unsqueeze(0)
             if risk is not None:
                 risk = risk.unsqueeze(0)
-        switch = self._switch_mask(
-            observation,
-            action_mask=action_mask,
-            normal_logits=normal_logits,
-            predictive_logits=predictive_logits,
-            unbatched=unbatched,
-        )
-        normal_action = torch.argmax(masked_logits(normal_logits, action_mask), dim=-1)
-        predictive_action = torch.argmax(masked_logits(predictive_logits, action_mask), dim=-1)
         if risk is None:
             zero = switch.to(normal_logits.dtype).sum() * 0.0
             return {"switch_steps": zero, "branch_disagreement_steps": zero}
-        risk = risk.to(normal_logits.dtype)
+        risk = risk.to(device=normal_logits.device, dtype=normal_logits.dtype)
         batch = torch.arange(normal_action.shape[0], device=normal_action.device)
         normal_risk = risk[batch, normal_action.clamp(max=self.max_nodes - 1)]
         predictive_risk = risk[batch, predictive_action.clamp(max=self.max_nodes - 1)]
@@ -773,3 +819,88 @@ class SwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
     """
 
     pass
+
+
+class FastSwitchGlobePolicy(LocalStudentPolicy):
+    """Single-pass deployable student distilled from final SwitchGLOBE actions."""
+
+    observation_fields = (
+        "self_features", "neighbor_features", "edge_features", "packet_features",
+        "action_mask", "candidate_forwardability", "candidate_risk_features",
+    )
+
+    def __init__(self, max_nodes: int, hidden_dim: int = 32) -> None:
+        super().__init__(max_nodes=max_nodes, hidden_dim=hidden_dim)
+        shared_dim = SELF_FEATURES + PACKET_FEATURES
+        candidate_dim = (
+            shared_dim + NEIGHBOR_FEATURES + EDGE_FEATURES + 2 + 4
+        )
+        self.neighbor_encoder = nn.Sequential(
+            nn.Linear(candidate_dim, hidden_dim), nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim), nn.ReLU(),
+        )
+        self.switch_head = nn.Sequential(
+            nn.Linear(shared_dim + hidden_dim, hidden_dim), nn.ReLU(),
+            nn.Linear(hidden_dim, 1),
+        )
+
+    def forward_with_auxiliary(
+        self, observation: Mapping[str, Tensor]
+    ) -> tuple[StudentPolicyOutput, Tensor]:
+        tensors, unbatched = self._validate_and_batch(observation)
+        forwardability = observation.get("candidate_forwardability")
+        risk = observation.get("candidate_risk_features")
+        if forwardability is None or risk is None:
+            raise ValueError(
+                "FastSwitchGLOBE requires forwardability and risk features"
+            )
+        if unbatched:
+            forwardability = forwardability.unsqueeze(0)
+            risk = risk.unsqueeze(0)
+        forwardability = forwardability.to(
+            device=tensors["self_features"].device, dtype=torch.float32
+        )
+        risk = risk.to(
+            device=tensors["self_features"].device, dtype=torch.float32
+        )
+        if tuple(forwardability.shape[-2:]) != (self.max_nodes, 2):
+            raise ValueError("candidate_forwardability shape is invalid")
+        if tuple(risk.shape[-2:]) != (self.max_nodes, 4):
+            raise ValueError("candidate_risk_features shape is invalid")
+        shared = torch.cat(
+            (tensors["self_features"], tensors["packet_features"]), dim=-1
+        )
+        expanded = shared.unsqueeze(1).expand(-1, self.max_nodes, -1)
+        candidate_input = torch.cat(
+            (
+                expanded, tensors["neighbor_features"], tensors["edge_features"],
+                forwardability, risk,
+            ),
+            dim=-1,
+        )
+        encoded = self.neighbor_encoder(candidate_input)
+        candidate_mask = tensors["action_mask"][:, : self.max_nodes]
+        valid = candidate_mask.unsqueeze(-1).to(encoded.dtype)
+        context = (encoded * valid).sum(dim=1) / valid.sum(dim=1).clamp_min(1.0)
+        candidate_logits = self.candidate_scorer(
+            torch.cat(
+                (encoded, context.unsqueeze(1).expand(-1, self.max_nodes, -1)),
+                dim=-1,
+            )
+        ).squeeze(-1)
+        drop_logit = self.drop_scorer(torch.cat((shared, context), dim=-1))
+        logits = torch.cat((candidate_logits, drop_logit), dim=-1)
+        valid_logits = masked_logits(logits, tensors["action_mask"])
+        probabilities = masked_softmax(logits, tensors["action_mask"])
+        switch_logit = self.switch_head(torch.cat((shared, context), dim=-1)).squeeze(-1)
+        if unbatched:
+            logits = logits.squeeze(0)
+            valid_logits = valid_logits.squeeze(0)
+            probabilities = probabilities.squeeze(0)
+            switch_logit = switch_logit.squeeze(0)
+        return StudentPolicyOutput(logits, valid_logits, probabilities), switch_logit
+
+    def forward(
+        self, observation: Mapping[str, Tensor]
+    ) -> StudentPolicyOutput:
+        return self.forward_with_auxiliary(observation)[0]

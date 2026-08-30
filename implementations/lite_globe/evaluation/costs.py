@@ -75,13 +75,18 @@ def measure_policy_cost(
         policy.act(observation)
     _synchronize(device)
 
-    tracemalloc.start()
     timings: list[float] = []
     for _ in range(repeats):
         started = perf_counter_ns()
         policy.act(observation)
         _synchronize(device)
         timings.append((perf_counter_ns() - started) / 1_000_000.0)
+    # Allocation tracing materially changes small-policy latency. Measure memory
+    # separately so the latency columns remain deployment timings.
+    tracemalloc.start()
+    for _ in range(min(repeats, 10)):
+        policy.act(observation)
+        _synchronize(device)
     _, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
     return PolicyCost(

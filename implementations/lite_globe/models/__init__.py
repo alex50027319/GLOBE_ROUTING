@@ -6,9 +6,11 @@ from .student_actor_critic import (
 )
 from .student_policy import (
     GeographicResidualStudentPolicy,
+    FastSwitchGlobePolicy,
     LiteGlobePStudentPolicy,
     LocalStudentPolicy,
     RiskSwitchLiteGlobePStudentPolicy,
+    SwitchGlobeDecision,
     RiskAwareGeographicResidualStudentPolicy,
     SwitchGlobePolicy,
     StudentPolicyOutput,
@@ -18,10 +20,12 @@ from .teacher_gnn import GlobalTeacherActorCritic, TeacherOutput
 __all__ = [
     "GlobalTeacherActorCritic",
     "GeographicResidualStudentPolicy",
+    "FastSwitchGlobePolicy",
     "LiteGlobePStudentPolicy",
     "LocalStudentActorCritic",
     "LocalStudentPolicy",
     "RiskSwitchLiteGlobePStudentPolicy",
+    "SwitchGlobeDecision",
     "RiskAwareGeographicResidualStudentPolicy",
     "SwitchGlobePolicy",
     "StudentActorCriticOutput",

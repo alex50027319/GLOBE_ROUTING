@@ -87,6 +87,21 @@ def episode_row(
         "switch_danger_reduction": result.switch_danger_reduction,
         "false_switch_steps": result.false_switch_steps,
         "missed_risk_steps": result.missed_risk_steps,
+        "decision_latency_total_ms": result.decision_latency_total_ms,
+        "environment_step_time_total_ms": result.environment_step_time_total_ms,
+        "routing_step_duration_ms": (
+            result.routing_step_duration_ms
+            if result.routing_step_duration_ms is not None else ""
+        ),
+        "effective_end_to_end_delay_ms": (
+            result.effective_end_to_end_delay_ms
+            if result.effective_end_to_end_delay_ms is not None else ""
+        ),
+        "deadline_ms": result.deadline_ms if result.deadline_ms is not None else "",
+        "deadline_met_latency_aware": (
+            int(result.deadline_met_latency_aware)
+            if result.deadline_met_latency_aware is not None else ""
+        ),
     }
 
 

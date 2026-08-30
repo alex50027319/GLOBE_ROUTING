@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 import numpy as np
 import torch
 from numpy.typing import NDArray
@@ -13,7 +14,15 @@ from .student_policy import (
     RiskAwareGeographicResidualStudentPolicy,
     RiskSwitchLiteGlobePStudentPolicy,
 )
-from .tensor_observation import observation_to_tensors
+from .tensor_observation import TensorObservationBuffer, observation_to_tensors
+
+
+@dataclass(frozen=True)
+class PolicyDecision:
+    """Environment action plus metadata computed by the same inference pass."""
+
+    action: int
+    input_bytes: int
 
 
 class StudentPolicyAdapter:
@@ -26,13 +35,24 @@ class StudentPolicyAdapter:
         device: torch.device | str = "cpu",
         deterministic: bool = True,
         force_forward_if_available: bool = False,
+        reuse_tensor_buffer: bool = False,
     ) -> None:
         self.model = model.to(device)
         self.device = torch.device(device)
         self.deterministic = deterministic
         self.force_forward_if_available = force_forward_if_available
+        self.tensor_buffer = (
+            TensorObservationBuffer(self.device) if reuse_tensor_buffer else None
+        )
         self.generator = torch.Generator(device=self.device)
         self._episode_diagnostics: dict[str, float] = {}
+
+    def _tensors(
+        self, observation: dict[str, NDArray[np.generic]]
+    ) -> dict[str, torch.Tensor]:
+        if self.tensor_buffer is not None:
+            return self.tensor_buffer.convert(observation)
+        return observation_to_tensors(observation, device=self.device)
 
     def reset(self, seed: int | None = None) -> None:
         self.generator.manual_seed(0 if seed is None else seed)
@@ -46,6 +66,12 @@ class StudentPolicyAdapter:
     def observation_bytes(
         self, observation: dict[str, NDArray[np.generic]]
     ) -> int:
+        declared = getattr(self.model, "observation_fields", None)
+        if declared is not None:
+            return sum(
+                int(observation[key].nbytes)
+                for key in declared if key in observation
+            )
         if isinstance(self.model, RiskSwitchLiteGlobePStudentPolicy):
             return self._risk_switch_observation_bytes(observation)
         keys = {
@@ -85,7 +111,7 @@ class StudentPolicyAdapter:
         base_bytes = phase8_adapter.observation_bytes(observation)
         if "candidate_risk_features" not in observation:
             return base_bytes
-        tensors = observation_to_tensors(observation, device=self.device)
+        tensors = self._tensors(observation)
         normal_logits = self.model.normal_policy(tensors).logits.unsqueeze(0)
         predictive_logits = (
             self.model.predictive_policy(tensors).logits.unsqueeze(0)
@@ -117,17 +143,36 @@ class StudentPolicyAdapter:
 
     @torch.inference_mode()
     def act(self, observation: dict[str, NDArray[np.generic]]) -> int:
-        tensors = observation_to_tensors(observation, device=self.device)
-        diagnostic_fn = getattr(self.model, "diagnostics", None)
-        if diagnostic_fn is not None:
-            for key, value in diagnostic_fn(tensors).items():
+        return self.act_with_metadata(observation).action
+
+    @torch.inference_mode()
+    def act_with_metadata(
+        self, observation: dict[str, NDArray[np.generic]]
+    ) -> PolicyDecision:
+        """Choose one action and reuse its intermediates for all metadata."""
+
+        tensors = self._tensors(observation)
+        switch_decision = None
+        if isinstance(self.model, RiskSwitchLiteGlobePStudentPolicy):
+            switch_decision = self.model.decide(tensors)
+            diagnostics = switch_decision.diagnostics
+            probabilities = switch_decision.output.probabilities
+        else:
+            diagnostic_fn = getattr(self.model, "diagnostics", None)
+            diagnostics = diagnostic_fn(tensors) if diagnostic_fn is not None else {}
+            probabilities = self.model(tensors).probabilities
+        if diagnostics:
+            keys = tuple(diagnostics)
+            values = torch.stack(
+                [diagnostics[key].reshape(()) for key in keys]
+            ).detach().cpu().tolist()
+            for key, value in zip(keys, values, strict=True):
                 self._episode_diagnostics[key] = (
                     self._episode_diagnostics.get(key, 0.0) + float(value)
                 )
             self._episode_diagnostics["diagnostic_steps"] = (
                 self._episode_diagnostics.get("diagnostic_steps", 0.0) + 1.0
             )
-        probabilities = self.model(tensors).probabilities
         if self.deterministic:
             action = int(torch.argmax(probabilities).item())
             if (
@@ -144,10 +189,42 @@ class StudentPolicyAdapter:
                     action = int(
                         torch.argmax(candidate_probabilities).item()
                     )
-            return action
-        action = torch.multinomial(
-            probabilities,
-            num_samples=1,
-            generator=self.generator,
+        else:
+            sampled = torch.multinomial(
+                probabilities,
+                num_samples=1,
+                generator=self.generator,
+            )
+            action = int(sampled.item())
+        input_bytes = (
+            self._switch_input_bytes_from_decision(
+                observation, switch_decision
+            )
+            if switch_decision is not None
+            else self.observation_bytes(observation)
         )
-        return int(action.item())
+        return PolicyDecision(action=action, input_bytes=input_bytes)
+
+    def _switch_input_bytes_from_decision(
+        self, observation: dict[str, NDArray[np.generic]], decision
+    ) -> int:
+        keys = {
+            "self_features", "neighbor_features", "edge_features",
+            "packet_features", "action_mask", "candidate_forwardability",
+        }
+        base = sum(
+            int(observation[key].nbytes) for key in keys if key in observation
+        )
+        risk = observation.get("candidate_risk_features")
+        if risk is None:
+            return base
+        if bool(decision.switch.reshape(-1)[0].item()):
+            return base + int(risk.nbytes)
+        selected = int(decision.normal_action.reshape(-1)[0].item())
+        if self.force_forward_if_available and selected == self.model.drop_action:
+            candidate_mask = observation["action_mask"][: self.model.max_nodes].astype(bool)
+            if np.any(candidate_mask):
+                values = decision.normal_probabilities[: self.model.max_nodes]
+                mask = torch.as_tensor(candidate_mask, device=values.device)
+                selected = int(torch.argmax(values.masked_fill(~mask, -1.0)).item())
+        return base + (int(risk[selected].nbytes) if selected < self.model.max_nodes else 0)
