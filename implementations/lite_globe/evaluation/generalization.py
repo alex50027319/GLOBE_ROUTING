@@ -57,6 +57,13 @@ GENERALIZATION_METRICS = (
     "mean_switch_danger_reduction",
     "false_switch_rate",
     "missed_risk_rate",
+    "backup_availability_rate",
+    "fast_failover_success_rate",
+    "fast_failover_miss_rate",
+    "freshness_cache_hit_rate",
+    "freshness_cache_stale_eviction_rate",
+    "freshness_cache_state_eviction_rate",
+    "freshness_cache_capacity_eviction_rate",
 )
 
 
@@ -117,10 +124,10 @@ def generalization_summary(
         "mean_success_delay": (
             float(np.mean(success_delays))
             if delivered
-            else 0.0
+            else None
         ),
         "p95_success_delay": (
-            float(np.percentile(success_delays, 95)) if delivered else 0.0
+            float(np.percentile(success_delays, 95)) if delivered else None
         ),
         "mean_path_stretch": (
             float(np.mean(stretches)) if stretches else 0.0
@@ -210,8 +217,12 @@ def generalization_summary(
         "mean_per_hop_delay": float(np.mean(per_hop)) if per_hop else 0.0,
         "mean_deadline_slack_steps": float(np.mean(slack)) if slack else 0.0,
         "energy_per_generated_packet": energy / len(results),
-        "energy_per_delivered_packet": energy / max(len(delivered), 1),
-        "energy_per_on_time_delivery": energy / max(len(on_time), 1),
+        "energy_per_delivered_packet": (
+            energy / len(delivered) if delivered else None
+        ),
+        "energy_per_on_time_delivery": (
+            energy / len(on_time) if on_time else None
+        ),
         "decision_latency_p50_ms": float(np.percentile([result.decision_latency_p50_ms for result in results], 50)),
         "decision_latency_p95_ms": float(np.percentile([result.decision_latency_p95_ms for result in results], 95)),
         "decision_latency_p99_ms": float(np.percentile([result.decision_latency_p99_ms for result in results], 99)),
@@ -232,4 +243,38 @@ def generalization_summary(
         "mean_switch_danger_reduction": sum(result.switch_danger_reduction for result in results) / max(sum(result.switch_steps for result in results), 1.0),
         "false_switch_rate": sum(result.false_switch_steps for result in results) / max(sum(result.switch_steps for result in results), 1.0),
         "missed_risk_rate": sum(result.missed_risk_steps for result in results) / decision_steps,
+        "backup_availability_rate": sum(
+            result.backup_available_steps for result in results
+        ) / decision_steps,
+        "fast_failover_success_rate": sum(
+            result.fast_failover_steps for result in results
+        ) / max(
+            sum(
+                result.fast_failover_steps + result.fast_failover_miss_steps
+                for result in results
+            ),
+            1.0,
+        ),
+        "fast_failover_miss_rate": sum(
+            result.fast_failover_miss_steps for result in results
+        ) / decision_steps,
+        "freshness_cache_hit_rate": sum(
+            result.freshness_cache_hit_steps for result in results
+        ) / max(
+            sum(
+                result.freshness_cache_hit_steps
+                + result.freshness_cache_miss_steps
+                for result in results
+            ),
+            1.0,
+        ),
+        "freshness_cache_stale_eviction_rate": sum(
+            result.freshness_cache_stale_evictions for result in results
+        ) / decision_steps,
+        "freshness_cache_state_eviction_rate": sum(
+            result.freshness_cache_state_evictions for result in results
+        ) / decision_steps,
+        "freshness_cache_capacity_eviction_rate": sum(
+            result.freshness_cache_capacity_evictions for result in results
+        ) / decision_steps,
     }

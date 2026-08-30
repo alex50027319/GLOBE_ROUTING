@@ -63,6 +63,14 @@ class EpisodeResult:
     effective_end_to_end_delay_ms: float | None
     deadline_ms: float | None
     deadline_met_latency_aware: bool | None
+    backup_available_steps: float
+    fast_failover_steps: float
+    fast_failover_miss_steps: float
+    freshness_cache_hit_steps: float
+    freshness_cache_miss_steps: float
+    freshness_cache_stale_evictions: float
+    freshness_cache_state_evictions: float
+    freshness_cache_capacity_evictions: float
 
 
 @dataclass(frozen=True)
@@ -258,6 +266,28 @@ def run_episode(
             )
             if routing_step_duration_ms is not None
             else None
+        ),
+        backup_available_steps=float(
+            diagnostics.get("backup_available_steps", 0.0)
+        ),
+        fast_failover_steps=float(diagnostics.get("fast_failover_steps", 0.0)),
+        fast_failover_miss_steps=float(
+            diagnostics.get("fast_failover_miss_steps", 0.0)
+        ),
+        freshness_cache_hit_steps=float(
+            diagnostics.get("freshness_cache_hit_steps", 0.0)
+        ),
+        freshness_cache_miss_steps=float(
+            diagnostics.get("freshness_cache_miss_steps", 0.0)
+        ),
+        freshness_cache_stale_evictions=float(
+            diagnostics.get("freshness_cache_stale_evictions", 0.0)
+        ),
+        freshness_cache_state_evictions=float(
+            diagnostics.get("freshness_cache_state_evictions", 0.0)
+        ),
+        freshness_cache_capacity_evictions=float(
+            diagnostics.get("freshness_cache_capacity_evictions", 0.0)
         ),
     )
 
