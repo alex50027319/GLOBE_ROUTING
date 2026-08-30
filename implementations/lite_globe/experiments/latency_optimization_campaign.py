@@ -20,6 +20,7 @@ from ..evaluation import (
 from ..models import FastSwitchGlobePolicy
 from ..models.policy_adapter import StudentPolicyAdapter
 from ..models.tensor_observation import observation_to_tensors
+from ..provenance import config_sha256 as _shared_config_sha256
 from ..scenarios import phase9_evaluation_scenarios
 from .external_comparison_campaign import load_switchglobe, training_scenarios
 
@@ -45,6 +46,9 @@ class LatencyOptimizationConfig:
     repeats: int = 500
     routing_step_duration_ms: float = 10.0
     benchmark_compile: bool = False
+    enable_freshness_cache: bool = False
+    freshness_cache_ttl_ms: float = 5.0
+    freshness_cache_capacity: int = 128
 
 
 class _ArrayDataset(Dataset[dict[str, torch.Tensor]]):
@@ -215,6 +219,7 @@ def train_fast_policy(
         generator=torch.Generator().manual_seed(seed + 102_000),
     )
     best_state = None; best_validation = float("inf"); epochs = 0
+    best_epoch = 0
     for epoch in range(config.epochs):
         model.train()
         for batch in loader:
@@ -244,6 +249,7 @@ def train_fast_policy(
         )
         if metrics["kl"] < best_validation:
             best_validation = metrics["kl"]
+            best_epoch = epochs
             best_state = {
                 key: value.detach().cpu().clone()
                 for key, value in model.state_dict().items()
@@ -252,7 +258,10 @@ def train_fast_policy(
         raise RuntimeError("FastSwitchGLOBE training produced no checkpoint")
     model.load_state_dict(best_state); model.to(device).eval()
     return model, {
-        "epochs": epochs, "training_samples": len(train),
+        "epochs": epochs, "best_epoch": best_epoch,
+        "training_samples": len(train),
+        "validation_samples": len(validation), "test_samples": len(test),
+        "best_validation_kl": best_validation,
         "validation": _agreement(
             model, validation, device=device, batch_size=config.batch_size
         ),
@@ -260,6 +269,17 @@ def train_fast_policy(
             model, test, device=device, batch_size=config.batch_size
         ),
     }
+
+
+def config_sha256(config: LatencyOptimizationConfig) -> str:
+    """Hash the training-relevant config so resume can detect drift.
+
+    Delegates to the shared ``provenance.config_sha256`` (identical
+    ``json.dumps(asdict(config), sort_keys=True)`` serialization) so this
+    stays byte-for-byte compatible with existing stored checkpoint hashes.
+    """
+
+    return _shared_config_sha256(config)
 
 
 def checkpoint_path(root: Path, seed: int) -> Path:
@@ -271,16 +291,34 @@ def train_or_load_fast(
     seed: int, checkpoint_dir: Path, device: torch.device, resume: bool,
 ) -> tuple[StudentPolicyAdapter, dict[str, Any]]:
     path = checkpoint_path(checkpoint_dir, seed)
+    expected_hash = config_sha256(config)
     if resume and path.is_file():
         payload = torch.load(path, map_location="cpu", weights_only=False)
-        if payload.get("complete") and int(payload.get("training_seed", -1)) == seed:
+        hash_matches = payload.get("config_sha256") == expected_hash
+        if (
+            payload.get("complete")
+            and int(payload.get("training_seed", -1)) == seed
+            and hash_matches
+        ):
             model = FastSwitchGlobePolicy(
                 teacher.model.max_nodes, hidden_dim=config.hidden_dim
             )
             model.load_state_dict(payload["model_state"])
             return StudentPolicyAdapter(
-                model, device=device, force_forward_if_available=True
+                model, device=device, force_forward_if_available=True,
+                enable_fast_failover=True,
+                enable_freshness_cache=config.enable_freshness_cache,
+                freshness_cache_ttl_ms=config.freshness_cache_ttl_ms,
+                freshness_cache_capacity=config.freshness_cache_capacity,
             ), {**payload["training"], "resumed": 1}
+        if payload.get("complete") and not hash_matches:
+            raise ValueError(
+                f"refusing to resume seed {seed}: existing checkpoint at "
+                f"{path} was trained with a different config "
+                f"(stored={payload.get('config_sha256')!r}, "
+                f"expected={expected_hash!r}); train to a new output "
+                "directory instead of overwriting it"
+            )
     arrays = collect_teacher_data(
         teacher, training_scenarios(seed), seed=seed,
         episodes_per_scenario=config.dataset_episodes_per_scenario,
@@ -291,11 +329,16 @@ def train_or_load_fast(
     )
     atomic_torch_save({
         "schema_version": 1, "complete": True, "training_seed": seed,
-        "config": asdict(config), "model_state": model.state_dict(),
+        "config": asdict(config), "config_sha256": expected_hash,
+        "model_state": model.state_dict(),
         "training": training,
     }, path)
     return StudentPolicyAdapter(
-        model, device=device, force_forward_if_available=True
+        model, device=device, force_forward_if_available=True,
+        enable_fast_failover=True,
+        enable_freshness_cache=config.enable_freshness_cache,
+        freshness_cache_ttl_ms=config.freshness_cache_ttl_ms,
+        freshness_cache_capacity=config.freshness_cache_capacity,
     ), {**training, "resumed": 0}
 
 
@@ -351,7 +394,11 @@ def run_latency_optimization(
         fast_cpu = FastSwitchGlobePolicy(max_nodes, config.hidden_dim)
         fast_cpu.load_state_dict(fast.model.state_dict())
         runtime_specs.append(("fast_eager_cpu", StudentPolicyAdapter(
-            fast_cpu, device="cpu", force_forward_if_available=True
+            fast_cpu, device="cpu", force_forward_if_available=True,
+            enable_fast_failover=True,
+            enable_freshness_cache=config.enable_freshness_cache,
+            freshness_cache_ttl_ms=config.freshness_cache_ttl_ms,
+            freshness_cache_capacity=config.freshness_cache_capacity,
         )))
         if torch.cuda.is_available():
             runtime_specs.extend([
@@ -367,7 +414,11 @@ def run_latency_optimization(
             fast_cuda = FastSwitchGlobePolicy(max_nodes, config.hidden_dim)
             fast_cuda.load_state_dict(fast.model.state_dict())
             runtime_specs.append(("fast_eager_cuda", StudentPolicyAdapter(
-                fast_cuda, device="cuda", force_forward_if_available=True
+                fast_cuda, device="cuda", force_forward_if_available=True,
+                enable_fast_failover=True,
+                enable_freshness_cache=config.enable_freshness_cache,
+                freshness_cache_ttl_ms=config.freshness_cache_ttl_ms,
+                freshness_cache_capacity=config.freshness_cache_capacity,
             )))
         for variant, policy in runtime_specs:
             for row in profile_student_policy(
