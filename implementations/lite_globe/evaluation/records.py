@@ -75,6 +75,18 @@ def episode_row(
         "switch_steps": result.switch_steps,
         "safe_forward_candidates": result.safe_forward_candidates,
         "mean_selected_danger": result.mean_selected_danger,
+        "late_delivery": int(result.late_delivery),
+        "deadline_slack_steps": result.deadline_slack_steps if result.deadline_slack_steps is not None else "",
+        "mean_per_hop_delay": result.mean_per_hop_delay if result.mean_per_hop_delay is not None else "",
+        "decision_latency_p50_ms": result.decision_latency_p50_ms,
+        "decision_latency_p95_ms": result.decision_latency_p95_ms,
+        "decision_latency_p99_ms": result.decision_latency_p99_ms,
+        "control_messages": result.control_messages,
+        "control_bytes": result.control_bytes,
+        "branch_disagreement_steps": result.branch_disagreement_steps,
+        "switch_danger_reduction": result.switch_danger_reduction,
+        "false_switch_steps": result.false_switch_steps,
+        "missed_risk_steps": result.missed_risk_steps,
     }
 
 

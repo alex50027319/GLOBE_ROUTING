@@ -167,12 +167,16 @@ CPU timing은 warm-up 후 single-thread, batch 1 조건을 primary로 하고 CUD
 - drop reason, queue-delay proxy, link lifetime/margin
 - policy/local-observation bytes와 기본 switch diagnostics
 
-추가 구현이 필요한 지표:
+external comparison campaign에서 추가 구현된 지표:
 
-- late-delivery 분해
-- mean per-hop delay와 deadline slack distribution
-- delivered/on-time-delivery당 energy
-- p50/p95/p99 decision latency와 model/RAM cost
-- switch false-positive/missed-risk 진단
-- 실제 control-message overhead
-- multi-flow throughput/goodput 실험
+- late-delivery와 actual drop 분해 및 drop reason
+- mean per-hop delay와 deadline slack
+- generated/delivered/on-time-delivery당 energy proxy
+- p50/p95/p99 decision latency, parameter/model-size/Python peak-memory 측정 API
+- switch activation/disagreement/danger reduction/false-switch/missed-risk 진단
+- AODV/OLSR/Evo-QGeo adaptation의 control-message count와 byte accounting
+
+여전히 별도 simulator 확장이 필요한 항목:
+
+- PHY/MAC 충돌·재전송을 포함한 실제 control overhead
+- multi-flow throughput/goodput와 queue overflow 실험

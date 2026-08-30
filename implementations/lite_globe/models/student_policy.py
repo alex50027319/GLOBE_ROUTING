@@ -698,6 +698,49 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
             + torch.relu(self.onward_gate - onward)
         )
 
+    def diagnostics(self, observation: Mapping[str, Tensor]) -> dict[str, Tensor]:
+        """Return per-decision switch diagnostics without changing actions."""
+
+        unbatched = observation["self_features"].ndim == 1
+        action_mask = observation["action_mask"]
+        normal_logits = self.normal_policy(observation).logits
+        predictive_logits = self.predictive_policy(observation).logits
+        risk = observation.get("candidate_risk_features")
+        if unbatched:
+            action_mask = action_mask.unsqueeze(0)
+            normal_logits = normal_logits.unsqueeze(0)
+            predictive_logits = predictive_logits.unsqueeze(0)
+            if risk is not None:
+                risk = risk.unsqueeze(0)
+        switch = self._switch_mask(
+            observation,
+            action_mask=action_mask,
+            normal_logits=normal_logits,
+            predictive_logits=predictive_logits,
+            unbatched=unbatched,
+        )
+        normal_action = torch.argmax(masked_logits(normal_logits, action_mask), dim=-1)
+        predictive_action = torch.argmax(masked_logits(predictive_logits, action_mask), dim=-1)
+        if risk is None:
+            zero = switch.to(normal_logits.dtype).sum() * 0.0
+            return {"switch_steps": zero, "branch_disagreement_steps": zero}
+        risk = risk.to(normal_logits.dtype)
+        batch = torch.arange(normal_action.shape[0], device=normal_action.device)
+        normal_risk = risk[batch, normal_action.clamp(max=self.max_nodes - 1)]
+        predictive_risk = risk[batch, predictive_action.clamp(max=self.max_nodes - 1)]
+        normal_danger = self._danger_score(normal_risk)
+        predictive_danger = self._danger_score(predictive_risk)
+        danger_reduction = torch.where(switch, normal_danger - predictive_danger, torch.zeros_like(normal_danger))
+        return {
+            "switch_steps": switch.to(normal_logits.dtype).sum(),
+            "branch_disagreement_steps": (normal_action != predictive_action).to(normal_logits.dtype).sum(),
+            "switch_danger_reduction": danger_reduction.sum(),
+            "false_switch_steps": (switch & (normal_danger <= 0)).to(normal_logits.dtype).sum(),
+            "missed_risk_steps": ((~switch) & (normal_danger > self.switch_threshold)).to(normal_logits.dtype).sum(),
+            "mean_selected_danger": torch.where(switch, predictive_danger, normal_danger).sum(),
+            "safe_forward_candidates": (normal_danger <= 0).to(normal_logits.dtype).sum(),
+        }
+
     def set_switch_parameters(
         self,
         *,

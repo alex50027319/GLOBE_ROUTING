@@ -34,6 +34,25 @@ GENERALIZATION_METRICS = (
     "mean_safe_forward_candidates",
     "mean_selected_danger",
     "mean_episode_reward",
+    "late_delivery_ratio_all",
+    "late_delivery_ratio_delivered",
+    "total_drop_rate",
+    "time_limit_drop_rate",
+    "mean_per_hop_delay",
+    "mean_deadline_slack_steps",
+    "energy_per_generated_packet",
+    "energy_per_delivered_packet",
+    "energy_per_on_time_delivery",
+    "decision_latency_p50_ms",
+    "decision_latency_p95_ms",
+    "decision_latency_p99_ms",
+    "mean_control_messages",
+    "mean_control_bytes",
+    "switch_activation_rate",
+    "branch_disagreement_rate",
+    "mean_switch_danger_reduction",
+    "false_switch_rate",
+    "missed_risk_rate",
 )
 
 
@@ -65,6 +84,11 @@ def generalization_summary(
         if result.minimum_link_margin is not None
     ]
     success_delays = [result.steps for result in delivered]
+    on_time = [result for result in results if result.deadline_met]
+    energy = sum(result.transmission_energy_proxy for result in results)
+    decision_steps = max(sum(result.steps for result in results), 1)
+    per_hop = [result.mean_per_hop_delay for result in delivered if result.mean_per_hop_delay is not None]
+    slack = [result.deadline_slack_steps for result in delivered if result.deadline_slack_steps is not None]
     return {
         "method": method,
         "scenario": scenario,
@@ -166,4 +190,23 @@ def generalization_summary(
         "mean_episode_reward": float(
             np.mean([result.total_reward for result in results])
         ),
+        "late_delivery_ratio_all": sum(result.late_delivery for result in results) / len(results),
+        "late_delivery_ratio_delivered": sum(result.late_delivery for result in results) / max(len(delivered), 1),
+        "total_drop_rate": sum(result.dropped for result in results) / len(results),
+        "time_limit_drop_rate": sum(result.drop_reason == "time_limit" for result in results) / len(results),
+        "mean_per_hop_delay": float(np.mean(per_hop)) if per_hop else 0.0,
+        "mean_deadline_slack_steps": float(np.mean(slack)) if slack else 0.0,
+        "energy_per_generated_packet": energy / len(results),
+        "energy_per_delivered_packet": energy / max(len(delivered), 1),
+        "energy_per_on_time_delivery": energy / max(len(on_time), 1),
+        "decision_latency_p50_ms": float(np.percentile([result.decision_latency_p50_ms for result in results], 50)),
+        "decision_latency_p95_ms": float(np.percentile([result.decision_latency_p95_ms for result in results], 95)),
+        "decision_latency_p99_ms": float(np.percentile([result.decision_latency_p99_ms for result in results], 99)),
+        "mean_control_messages": float(np.mean([result.control_messages for result in results])),
+        "mean_control_bytes": float(np.mean([result.control_bytes for result in results])),
+        "switch_activation_rate": sum(result.switch_steps for result in results) / decision_steps,
+        "branch_disagreement_rate": sum(result.branch_disagreement_steps for result in results) / decision_steps,
+        "mean_switch_danger_reduction": sum(result.switch_danger_reduction for result in results) / max(sum(result.switch_steps for result in results), 1.0),
+        "false_switch_rate": sum(result.false_switch_steps for result in results) / max(sum(result.switch_steps for result in results), 1.0),
+        "missed_risk_rate": sum(result.missed_risk_steps for result in results) / decision_steps,
     }

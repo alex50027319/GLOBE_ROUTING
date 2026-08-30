@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from time import perf_counter_ns
 from typing import Any, Protocol
 
 import numpy as np
 from numpy.typing import NDArray
 
 from ..env.fanet_env import FanetRoutingEnv
+from ..baselines.common import snapshot_from_env
 
 
 class RoutingPolicy(Protocol):
@@ -43,6 +45,18 @@ class EpisodeResult:
     switch_steps: float
     safe_forward_candidates: float
     mean_selected_danger: float
+    late_delivery: bool
+    deadline_slack_steps: float | None
+    mean_per_hop_delay: float | None
+    decision_latency_p50_ms: float
+    decision_latency_p95_ms: float
+    decision_latency_p99_ms: float
+    control_messages: float
+    control_bytes: float
+    branch_disagreement_steps: float
+    switch_danger_reduction: float
+    false_switch_steps: float
+    missed_risk_steps: float
 
 
 @dataclass(frozen=True)
@@ -85,12 +99,16 @@ def run_episode(
 ) -> EpisodeResult:
     policy.reset(seed)
     observation, initial_info = env.reset(seed=seed, options=reset_options)
+    protocol_tick = getattr(policy, "protocol_tick", None)
+    if protocol_tick is not None:
+        protocol_tick(snapshot_from_env(env))
     info = initial_info
     total_reward = 0.0
     local_observation_bytes = 0
     policy_input_bytes = 0
     terminated = False
     truncated = False
+    decision_latencies: list[float] = []
     while not (terminated or truncated):
         local_observation_bytes += sum(
             int(value.nbytes) for value in observation.values()
@@ -101,8 +119,12 @@ def run_episode(
             if byte_counter is not None
             else sum(int(value.nbytes) for value in observation.values())
         )
+        started = perf_counter_ns()
         action = policy.act(observation)
+        decision_latencies.append((perf_counter_ns() - started) / 1_000_000.0)
         observation, reward, terminated, truncated, info = env.step(action)
+        if protocol_tick is not None:
+            protocol_tick(snapshot_from_env(env))
         total_reward += reward
     diagnostic_fn = getattr(policy, "episode_diagnostics", None)
     diagnostics = diagnostic_fn() if diagnostic_fn is not None else {}
@@ -165,6 +187,30 @@ def run_episode(
         mean_selected_danger=float(
             diagnostics.get("mean_selected_danger", 0.0) / diagnostic_steps
         ),
+        late_delivery=bool(
+            info["delivered"]
+            and deadline_steps is not None
+            and int(info["episode_step"]) > deadline_steps
+        ),
+        deadline_slack_steps=(
+            float(deadline_steps - int(info["episode_step"]))
+            if deadline_steps is not None and info["delivered"]
+            else None
+        ),
+        mean_per_hop_delay=(
+            float(info["episode_step"]) / int(info["hop_count"])
+            if info["delivered"] and int(info["hop_count"]) > 0
+            else None
+        ),
+        decision_latency_p50_ms=float(np.percentile(decision_latencies, 50)),
+        decision_latency_p95_ms=float(np.percentile(decision_latencies, 95)),
+        decision_latency_p99_ms=float(np.percentile(decision_latencies, 99)),
+        control_messages=float(diagnostics.get("control_messages", 0.0)),
+        control_bytes=float(diagnostics.get("control_bytes", 0.0)),
+        branch_disagreement_steps=float(diagnostics.get("branch_disagreement_steps", 0.0)),
+        switch_danger_reduction=float(diagnostics.get("switch_danger_reduction", 0.0)),
+        false_switch_steps=float(diagnostics.get("false_switch_steps", 0.0)),
+        missed_risk_steps=float(diagnostics.get("missed_risk_steps", 0.0)),
     )
 
 

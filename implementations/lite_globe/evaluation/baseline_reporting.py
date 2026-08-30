@@ -35,6 +35,8 @@ def aggregate_baseline(
     grouped: dict[tuple[str, str, str], list[float]] = defaultdict(list)
     for row in rows:
         for metric in GENERALIZATION_METRICS:
+            if metric not in row:
+                continue
             if (
                 metric
                 in {

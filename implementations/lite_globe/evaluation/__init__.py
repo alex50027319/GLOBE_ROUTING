@@ -10,6 +10,7 @@ from .evaluator import (
 )
 from .costs import PolicyCost, measure_policy_cost
 from .records import episode_row, summary_row
+from .external_comparison_reporting import write_external_comparison_artifacts
 from .reporting import aggregate_seed_summaries
 from .statistics import Statistic, summarize_values
 from .generalization import GENERALIZATION_METRICS, generalization_summary
@@ -33,6 +34,7 @@ __all__ = [
     "episode_row",
     "measure_policy_cost",
     "summary_row",
+    "write_external_comparison_artifacts",
     "summarize_values",
     "GENERALIZATION_METRICS",
     "generalization_summary",
