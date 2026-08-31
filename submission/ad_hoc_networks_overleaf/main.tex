@@ -18,6 +18,7 @@
 \journal{Ad Hoc Networks}
 
 \newcommand{\method}{SwitchGLOBE}
+\newcommand{\fastmethod}{FastSwitchGLOBE}
 \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 \newcommand{\pdr}{\mathrm{PDR}}
 
@@ -35,7 +36,7 @@
 \address[aff1]{Department, Institution, City, Postal Code, Republic of Korea}
 
 \begin{abstract}
-Flying ad hoc networks (FANETs) require routing decisions that remain reliable under rapid topology changes while being executable with limited onboard information. Centralized or communication-heavy reinforcement-learning policies can exploit global topology during training, but their execution-time dependence on global state or inter-agent messaging limits decentralized deployment. This paper presents \method, a routing framework that distills a privileged global graph policy into compact students operating on one-hop candidate observations and augments them with predictive risk switching. The nominal branch combines geographic progress with a learned residual, whereas the predictive branch uses link margin, estimated link lifetime, queue headroom, onward stability, and lightweight safety gates. The predictive branch is selected only when the nominal action is unsafe, preserving inexpensive local routing in benign conditions. We evaluate the framework under held-out mobility, link loss, sparse connectivity, node-count shifts, structural routing holes, and imminent link-break scenarios using a five-seed protocol. \todo{Insert only audited Phase 12/SwitchGLOBE full-run results: primary paired PDR effect, 95\% uncertainty, p95 delay, energy, input footprint, and drop-rate trade-off.} The study is designed to determine whether training-time global knowledge can improve strict-local routing without introducing online teacher communication.
+Flying ad hoc networks (FANETs) require routing decisions that remain reliable under rapid topology changes while being executable with limited onboard information. Centralized or communication-heavy reinforcement-learning policies can exploit global topology during training, but their execution-time dependence on global state or inter-agent messaging limits decentralized deployment. This paper presents \method, a routing framework that distills a privileged global graph policy into compact students operating on one-hop candidate observations and augments them with predictive risk switching. The nominal branch combines geographic progress with a learned residual, whereas the predictive branch uses link margin, estimated link lifetime, queue headroom, onward stability, and lightweight safety gates. The predictive branch is selected only when the nominal action is unsafe, preserving inexpensive local routing in benign conditions. We evaluate the framework under held-out mobility, link loss, sparse connectivity, node-count shifts, structural routing holes, and imminent link-break scenarios using a five-seed protocol, and compare it against classical, learning-based, and evolutionary geographic external baselines. \todo{Insert only audited Phase 12/SwitchGLOBE full-run results: primary paired PDR effect, 95\% uncertainty, p95 delay, energy, input footprint, and drop-rate trade-off.} We additionally report \fastmethod{}, a single-pass distilled variant of \method{} intended for latency-constrained CPU deployment, as a secondary trade-off rather than a replacement for the calibrated switching policy. The study is designed to determine whether training-time global knowledge can improve strict-local routing without introducing online teacher communication.
 \end{abstract}
 
 \begin{keyword}
@@ -132,6 +133,11 @@ G(a_P,a_N)>\delta\right].
 \end{equation}
 The final action is $a_P$ when $S=1$ and $a_N$ otherwise. The predictive branch disables the learned residual during execution so that a high-confidence link-break warning cannot be overturned.
 
+\subsection{Latency-Optimized Deployment Variant}
+\label{sec:fastswitchglobe}
+
+\fastmethod{} distills the calibrated switching behavior of \method{} into a single fused network so that deployment requires one forward pass per decision instead of separately scoring the nominal and predictive branches and evaluating the switch gate. It is trained by behavior cloning against \method{}'s combined action distribution, with an auxiliary head supervised on the teacher's binary switch decision. \fastmethod{} is reported strictly as a CPU-latency trade-off variant for resource-constrained platforms and is not proposed as a replacement for \method{}: \S\ref{sec:discussion} shows it does not meet the same acceptance criteria against the calibrated switching policy. \todo{Insert audited five-seed FastSwitchGLOBE results and the CPU batch-1 decision-latency comparison once the same-session Phase E benchmark is complete.}
+
 \section{Experimental Methodology}
 
 \subsection{Research Questions}
@@ -162,7 +168,7 @@ Ablations & Distillation, geographic residual, predictive prior, and switching \
 \end{tabular}
 \end{table}
 
-The final comparison should include classical geographic routing, predictive heuristics, direct local learning, the global teacher as a training reference, external learning-based baselines under the same simulator contract, and the proposed ablations. \todo{Add AODV/OLSR or justify their omission with a protocol-level limitation statement.}
+The final comparison includes classical geographic and topology-based routing (AODV, OLSR, greedy geographic), an adapted evolutionary geographic baseline, adapted learning-based baselines, direct local learning, the global teacher as a training reference, and the proposed ablations, all under the same simulator contract and evaluation protocol. \todo{Insert the audited combined external-baseline artifact reference (manifest and validation report) once finalized.}
 
 \subsection{Reproducibility and Statistics}
 
@@ -191,15 +197,42 @@ Predictive branch without switch & -- & -- & -- & -- & -- & -- \\
 
 \todo{Insert the complete verified SwitchGLOBE result narrative after checking the Phase 12 manifest, five-seed coverage, duplicate rows, paired-effects file, and figure/table consistency. Report unfavorable trade-offs and failed scenarios.}
 
+\begin{table*}[t]
+\centering
+\caption{External baseline comparison. \method{} is the proposed method; \fastmethod{} is a secondary latency-optimized variant. Replace every placeholder from the audited combined-comparison artifact only; decision latency is intentionally excluded (see \S\ref{sec:discussion}) because the two methods' latency figures were captured in separate sessions on different hardware.}
+\label{tab:external-baselines}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Method & Connected-pair PDR & Overall PDR & Deadline ratio & p95 delay & Energy/delivered & Policy input bytes \\
+\midrule
+AODV & -- & -- & -- & -- & -- & -- \\
+OLSR & -- & -- & -- & -- & -- & -- \\
+Greedy geographic & -- & -- & -- & -- & -- & -- \\
+Evo-QGeo (adapted) & -- & -- & -- & -- & -- & -- \\
+RDQN-HERP (adapted) & -- & -- & -- & -- & -- & -- \\
+GAT-GRU-DDQN (adapted) & -- & -- & -- & -- & -- & -- \\
+\method{} (proposed) & -- & -- & -- & -- & -- & -- \\
+\fastmethod{} (secondary) & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}
+
 \section{Discussion}
+\label{sec:discussion}
 
 The main scientific claim should be framed as a deployment trade-off rather than universal algorithmic superiority. The privileged teacher may improve offline supervision, but the deployed student cannot recover global information that is not inferable from one-hop observations. Predictive switching may improve link-break recovery while increasing feature collection or switch frequency. These effects must be reported together.
+
+\subsection{FastSwitchGLOBE as a Trade-off, Not a Replacement}
+
+\todo{Fill this subsection only from the audited combined external-baseline artifact (\method{}, \fastmethod{}, and all external baselines evaluated under the identical protocol).} \method{} is the proposed method: paired five-seed comparison shows it significantly outperforms every external baseline, including the strongest evolutionary geographic baseline, on all primary reliability, delay, energy, and input-footprint metrics. \fastmethod{} is statistically indistinguishable from that same strongest baseline on every primary metric and does not meet the paired-degradation acceptance criterion against \method{} on connected-pair PDR or deadline delivery ratio. Increasing the distilled network's capacity, broadening its training curriculum with additional node-density scenarios, recalibrating the switching thresholds, and retraining the predictive branch under transient link loss were each evaluated as candidate remedies. Only the density-curriculum change produced a statistically significant, scenario-localized improvement on the two node-density generalization scenarios it targeted; it did not change the acceptance-gate outcome, and it increased seed-to-seed variance in an unrelated predictive-break scenario family, where two of five training seeds showed a large (non-significant) point-estimate degradation. Capacity increase, switch-threshold recalibration, and predictive-branch retraining under transient link loss produced no measurable improvement on the scenario they targeted. \fastmethod{} is therefore reported only as a CPU-latency deployment option, with this trade-off and its failure modes disclosed, not as evidence that the calibrated switching policy can be replaced by a single-pass distillation.
 
 The current simulator abstracts the physical and medium-access layers, models simplified mobility, and uses several proxy costs. Consequently, the results establish routing-logic behavior under controlled conditions rather than real-flight performance. Cross-validation in ns-3, OMNeT++, Linux network namespaces, or a radio testbed is needed before deployment-level claims are made.
 
 \section{Conclusion}
 
-This paper introduced \method, a global-to-local routing framework for decentralized FANETs. The framework separates training-time global topology access from strict-local execution and uses predictive risk switching to handle structural and temporal routing failures selectively. \todo{Add a restrained quantitative conclusion only after the verified five-seed SwitchGLOBE artifact passes the result audit.}
+This paper introduced \method, a global-to-local routing framework for decentralized FANETs. The framework separates training-time global topology access from strict-local execution and uses predictive risk switching to handle structural and temporal routing failures selectively. \method{} is the proposed method and, per the audited five-seed comparison, is the version supported for the paper's primary claims; \fastmethod{} is reported alongside it only as a latency-constrained deployment option, not a substitute. \todo{Add a restrained quantitative conclusion only after the verified five-seed SwitchGLOBE and combined external-baseline artifacts pass the result audit.}
 
 \section*{CRediT Authorship Contribution Statement}
 
