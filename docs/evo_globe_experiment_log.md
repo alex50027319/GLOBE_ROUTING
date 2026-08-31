@@ -11,6 +11,14 @@ routing outcomes without violating the latency gate.
   zero instead of bootstrapping that sentinel into the Q table.
 - Regression coverage confirms the learned update remains bounded.
 
+A seed-42 smoke retraining used 50 episodes for each of the 11 training stages
+(550 episodes, 1,568 updates).  All 1,088 learned Q entries were finite and
+ranged from -0.2601 to 26.4092; the old invalid-sentinel checkpoints contained
+values near -850,000.  The 280-episode evaluation smoke produced connected-pair
+PDR 0.8008 and deadline ratio 0.7286.  These smoke metrics are not comparable to
+the 3,850-training-episode full baseline and are recorded only as an integrity
+check.
+
 ## Candidate 1: risk-conditioned bounded residual fusion
 
 Implementation: `EvoFusionSwitchGlobePolicy`.
@@ -56,4 +64,3 @@ It changed no held-out routing outcomes and exceeded the planned 10% latency
 increase limit.  The result supports moving the learned long-horizon signal to
 training-time auxiliary distillation rather than executing another residual
 network at deployment.
-
