@@ -189,6 +189,9 @@ def test_phase10_artifacts_include_tables_and_figures(tmp_path: Path) -> None:
                         "delivery_transmission_efficiency_proxy": 0.5,
                         "mean_local_observation_bytes": 100.0,
                         "mean_policy_input_bytes": 100.0 + method_index,
+                        "mean_switch_steps": 1.0,
+                        "mean_safe_forward_candidates": 2.0,
+                        "mean_selected_danger": 0.1,
                         "mean_episode_reward": 1.0,
                     }
                 )
