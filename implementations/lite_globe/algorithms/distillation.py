@@ -25,6 +25,8 @@ class DistillationConfig:
     oracle_coefficient: float = 0.0
     risk_oracle_coefficient: float = 0.0
     teacher_action_coefficient: float = 0.0
+    return_action_coefficient: float = 0.0
+    return_weight_temperature: float = 5.0
     early_stopping_patience: int = 0
     minimum_improvement: float = 1e-5
 
@@ -36,6 +38,8 @@ class DistillationMetrics:
     action_agreement: float
     oracle_action_agreement: float | None = None
     risk_oracle_action_agreement: float | None = None
+    rollout_action_agreement: float | None = None
+    mean_discounted_return: float | None = None
 
     def to_dict(self) -> dict[str, float | None]:
         return asdict(self)
@@ -118,8 +122,11 @@ def evaluate_distillation(
     agreements = 0
     oracle_agreements = 0
     risk_oracle_agreements = 0
+    rollout_agreements = 0
     has_oracle = "oracle_actions" in dataset.arrays
     has_risk_oracle = "risk_oracle_actions" in dataset.arrays
+    has_returns = "discounted_returns" in dataset.arrays
+    discounted_return_total = 0.0
     samples = 0
     for batch in loader:
         observation = _batch_observation(batch, device)
@@ -158,6 +165,16 @@ def evaluate_distillation(
                     == batch["risk_oracle_actions"].to(device)
                 ).item()
             )
+        if has_returns:
+            rollout_agreements += int(
+                torch.sum(
+                    torch.argmax(student_probabilities, dim=-1)
+                    == batch["rollout_actions"].to(device)
+                ).item()
+            )
+            discounted_return_total += float(
+                batch["discounted_returns"].sum().item()
+            )
         weighted_kl += float(kl.item()) * count
         weighted_entropy += float(entropy.item()) * count
         samples += count
@@ -172,6 +189,12 @@ def evaluate_distillation(
             risk_oracle_agreements / samples
             if has_risk_oracle
             else None
+        ),
+        rollout_action_agreement=(
+            rollout_agreements / samples if has_returns else None
+        ),
+        mean_discounted_return=(
+            discounted_return_total / samples if has_returns else None
         ),
     )
 
@@ -223,6 +246,24 @@ def _distillation_objective(
                 batch["risk_oracle_actions"].to(device),
             )
         )
+    if config.return_action_coefficient > 0:
+        required = {"rollout_actions", "discounted_returns"}
+        if not required.issubset(batch):
+            raise ValueError(
+                "return_action_coefficient requires return-guided targets"
+            )
+        returns = batch["discounted_returns"].to(device)
+        weights = 2.0 * torch.sigmoid(
+            returns / config.return_weight_temperature
+        )
+        action_losses = torch.nn.functional.cross_entropy(
+            output.masked_logits,
+            batch["rollout_actions"].to(device),
+            reduction="none",
+        )
+        objective = objective + config.return_action_coefficient * torch.mean(
+            weights * action_losses
+        )
     return objective
 
 
@@ -270,10 +311,13 @@ def train_student_distillation(
         config.oracle_coefficient < 0
         or config.risk_oracle_coefficient < 0
         or config.teacher_action_coefficient < 0
+        or config.return_action_coefficient < 0
     ):
         raise ValueError("auxiliary loss coefficients must be non-negative")
     if config.early_stopping_patience < 0:
         raise ValueError("early_stopping_patience must be non-negative")
+    if config.return_weight_temperature <= 0:
+        raise ValueError("return_weight_temperature must be positive")
     device = torch.device(device)
     model.to(device)
     optimizer = torch.optim.Adam(

@@ -13,6 +13,8 @@ from implementations.lite_globe.algorithms.distillation import (
 )
 from implementations.lite_globe.data import (
     DistillationDataset,
+    discounted_returns_from_trajectories,
+    generate_return_guided_dataset,
     generate_teacher_dataset,
     split_by_episode_group,
 )
@@ -22,6 +24,8 @@ from implementations.lite_globe.models.teacher_gnn import (
     GlobalTeacherActorCritic,
 )
 from implementations.lite_globe.scenarios import (
+    predictive_break_config,
+    predictive_break_options,
     routing_hole_config,
     routing_hole_options,
 )
@@ -124,3 +128,78 @@ def test_student_learns_toy_teacher_distribution() -> None:
     assert np.isfinite(after.kl)
     assert after.kl < before.kl
     assert after.action_agreement >= 0.8
+
+
+def test_discounted_returns_do_not_cross_episode_boundaries() -> None:
+    returns = discounted_returns_from_trajectories(
+        rewards=np.asarray([1.0, 2.0, 3.0, 4.0], dtype=np.float32),
+        dones=np.asarray([0, 1, 0, 1], dtype=np.int64),
+        episode_seeds=np.asarray([10, 10, 11, 11], dtype=np.int64),
+        episode_steps=np.asarray([0, 1, 0, 1], dtype=np.int64),
+        scenario_ids=np.asarray(["s", "s", "s", "s"], dtype=np.str_),
+        gamma=0.5,
+    )
+    np.testing.assert_allclose(returns, [2.0, 2.0, 5.0, 4.0])
+
+
+def test_return_guided_dataset_contains_only_local_training_targets() -> None:
+    config = predictive_break_config(42)
+    reference = LocalStudentPolicy(config.max_nodes, hidden_dim=32)
+    dataset = generate_return_guided_dataset(
+        FanetRoutingEnv(config),
+        reference,
+        episode_seeds=[101, 102, 103],
+        scenario_id="predictive_reference_rollout",
+        reset_options=predictive_break_options(0.0),
+        rollout_policy="reference",
+        return_discount=0.85,
+    )
+
+    assert len(dataset) > 0
+    assert "adjacency" not in dataset.arrays
+    assert "node_features" not in dataset.arrays
+    assert {
+        "rollout_actions",
+        "rollout_rewards",
+        "rollout_dones",
+        "discounted_returns",
+    }.issubset(dataset.arrays)
+    assert np.all(np.isfinite(dataset.arrays["discounted_returns"]))
+    assert int(dataset.arrays["rollout_dones"].sum()) == 3
+
+
+def test_return_guided_auxiliary_loss_adds_no_deployment_parameters() -> None:
+    dataset = _synthetic_dataset(groups=12)
+    arrays = {key: value.copy() for key, value in dataset.arrays.items()}
+    arrays.update(
+        {
+            "rollout_actions": arrays["selected_actions"].copy(),
+            "rollout_rewards": np.linspace(-1.0, 1.0, 12).astype(np.float32),
+            "rollout_dones": np.ones(12, dtype=np.int64),
+            "discounted_returns": np.linspace(-5.0, 10.0, 12).astype(
+                np.float32
+            ),
+        }
+    )
+    guided = DistillationDataset(arrays)
+    split = split_by_episode_group(guided, seed=17)
+    model = LocalStudentPolicy(max_nodes=4, hidden_dim=32)
+    keys_before = tuple(model.state_dict())
+    parameters_before = sum(parameter.numel() for parameter in model.parameters())
+    config = DistillationConfig(
+        epochs=3,
+        batch_size=8,
+        return_action_coefficient=0.2,
+        return_weight_temperature=5.0,
+    )
+    result = train_student_distillation(
+        model,
+        split.train,
+        split.validation,
+        config=config,
+        seed=17,
+    )
+
+    assert result.validation.rollout_action_agreement is not None
+    assert tuple(model.state_dict()) == keys_before
+    assert sum(parameter.numel() for parameter in model.parameters()) == parameters_before

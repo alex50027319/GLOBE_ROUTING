@@ -23,6 +23,49 @@ OPTIONAL_LOCAL_KEYS = (
     "candidate_risk_features",
 )
 
+RETURN_KEYS = (
+    "rollout_actions",
+    "rollout_rewards",
+    "rollout_dones",
+    "discounted_returns",
+)
+
+
+def discounted_returns_from_trajectories(
+    *,
+    rewards: NDArray[np.floating],
+    dones: NDArray[np.generic],
+    episode_seeds: NDArray[np.integer],
+    episode_steps: NDArray[np.integer],
+    scenario_ids: NDArray[np.str_],
+    gamma: float,
+) -> NDArray[np.float32]:
+    """Compute leakage-safe Monte Carlo returns within each episode group."""
+
+    if not 0.0 <= gamma <= 1.0:
+        raise ValueError("return discount must be in [0, 1]")
+    count = rewards.shape[0]
+    if any(
+        values.shape[0] != count
+        for values in (dones, episode_seeds, episode_steps, scenario_ids)
+    ):
+        raise ValueError("trajectory arrays must have matching lengths")
+    groups = np.char.add(
+        np.char.add(scenario_ids.astype(str), ":"),
+        episode_seeds.astype(str),
+    )
+    returns = np.zeros(count, dtype=np.float32)
+    for group in np.unique(groups):
+        indices = np.flatnonzero(groups == group)
+        indices = indices[np.argsort(episode_steps[indices])]
+        running = 0.0
+        for index in indices[::-1]:
+            if bool(dones[index]):
+                running = 0.0
+            running = float(rewards[index]) + gamma * running
+            returns[index] = running
+    return returns
+
 
 class DistillationDataset(Dataset[dict[str, torch.Tensor]]):
     """Teacher targets paired only with deployable Student observations."""
@@ -59,6 +102,14 @@ class DistillationDataset(Dataset[dict[str, torch.Tensor]]):
                 "risk_oracle_actions has inconsistent sample count"
             )
         for key in OPTIONAL_LOCAL_KEYS:
+            if key in arrays and arrays[key].shape[0] != sample_count:
+                raise ValueError(f"{key} has inconsistent sample count")
+        present_return_keys = set(RETURN_KEYS).intersection(arrays)
+        if present_return_keys and present_return_keys != set(RETURN_KEYS):
+            raise ValueError(
+                "return-guided datasets must contain every return array"
+            )
+        for key in RETURN_KEYS:
             if key in arrays and arrays[key].shape[0] != sample_count:
                 raise ValueError(f"{key} has inconsistent sample count")
         if not np.allclose(
@@ -104,6 +155,20 @@ class DistillationDataset(Dataset[dict[str, torch.Tensor]]):
             item["risk_oracle_actions"] = torch.as_tensor(
                 self.arrays["risk_oracle_actions"][index],
                 dtype=torch.long,
+            )
+        if "rollout_actions" in self.arrays:
+            item["rollout_actions"] = torch.as_tensor(
+                self.arrays["rollout_actions"][index], dtype=torch.long
+            )
+            item["rollout_rewards"] = torch.as_tensor(
+                self.arrays["rollout_rewards"][index], dtype=torch.float32
+            )
+            item["rollout_dones"] = torch.as_tensor(
+                self.arrays["rollout_dones"][index], dtype=torch.bool
+            )
+            item["discounted_returns"] = torch.as_tensor(
+                self.arrays["discounted_returns"][index],
+                dtype=torch.float32,
             )
         return item
 
