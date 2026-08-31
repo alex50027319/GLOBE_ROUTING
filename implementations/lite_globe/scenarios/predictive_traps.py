@@ -96,6 +96,31 @@ def phase9_predictive_training_scenarios(
     ]
 
 
+def phase9_predictive_link_loss_training_scenarios(
+    seed: int,
+) -> list[EvaluationScenario]:
+    """Expose Predictive Student training to transient, recoverable link loss.
+
+    ``phase9_predictive_training_scenarios`` uses angles 0/90/180, all with
+    ``stochastic_link_loss=0.0``: the model only ever sees the deterministic
+    node-2 break, never a transient failure a retry could recover from. This
+    reuses the same three angles (not the held-out eval angles 45/225) so the
+    model learns to distinguish "wait/retry" from "reroute/give up" at
+    topologies it already trains on, rather than learning a new geometry.
+    """
+
+    config = replace(predictive_break_config(seed), stochastic_link_loss=0.10)
+    return [
+        EvaluationScenario(
+            f"train_predictive_break_{angle}_link_loss",
+            config,
+            predictive_break_options(float(angle)),
+            "training_predictive_break_link_loss",
+        )
+        for angle in (0, 90, 180)
+    ]
+
+
 def phase9_predictive_calibration_scenarios(
     seed: int,
 ) -> list[EvaluationScenario]:
@@ -105,6 +130,29 @@ def phase9_predictive_calibration_scenarios(
             predictive_break_config(seed),
             predictive_break_options(270.0),
             "calibration_predictive_break",
+        )
+    ]
+
+
+def phase9_predictive_link_loss_calibration_scenarios(
+    seed: int,
+) -> list[EvaluationScenario]:
+    """Expose risk-switch calibration to transient, recoverable link loss.
+
+    ``phase9_predictive_calibration_scenarios`` (angle 270) and the training
+    scenarios (angles 0/90/180) all use ``stochastic_link_loss=0.0``, so the
+    Phase 12 switch-threshold search has only ever seen the deterministic
+    node-2 break, never a transient failure a retry could recover from. This
+    uses angle 135 (untouched by every other predictive-break scenario) so
+    ``predictive_break_45``/``predictive_break_225_link_loss`` stay held-out.
+    """
+
+    return [
+        EvaluationScenario(
+            "calibration_predictive_break_135_link_loss",
+            replace(predictive_break_config(seed), stochastic_link_loss=0.10),
+            predictive_break_options(135.0),
+            "calibration_predictive_break_link_loss",
         )
     ]
 

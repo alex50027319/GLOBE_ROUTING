@@ -35,6 +35,21 @@ LOWER_IS_BETTER = {
     "p95_success_delay", "energy_per_delivered_packet",
     "decision_latency_p95_ms", "mean_policy_input_bytes",
 }
+DELIVERY_CONDITIONED_METRICS = {
+    "p95_success_delay", "energy_per_delivered_packet",
+}
+
+
+def _metric_value(row: dict[str, Any], metric: str) -> float | None:
+    value = row.get(metric)
+    if value is None or value == "":
+        if metric in DELIVERY_CONDITIONED_METRICS:
+            return None
+        raise ValueError(f"undefined non-conditional metric {metric}")
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError(f"non-finite {metric}: {value!r}")
+    return number
 
 
 def validate_rows(rows: list[dict[str, Any]], *, training_seeds: tuple[int, ...],
@@ -52,9 +67,10 @@ def validate_rows(rows: list[dict[str, Any]], *, training_seeds: tuple[int, ...]
             raise ValueError(f"duplicate method/scenario/seed summary: {key}")
         actual.add(key)
         for metric in PRIMARY_METRICS:
-            value = float(row[metric])
-            if not math.isfinite(value):
-                raise ValueError(f"non-finite {metric} for {key}")
+            try:
+                _metric_value(row, metric)
+            except ValueError as error:
+                raise ValueError(f"invalid {metric} for {key}: {error}") from error
     missing = expected - actual
     extra = actual - expected
     if missing or extra:
@@ -66,7 +82,9 @@ def aggregate(rows: list[dict[str, Any]], *,
     grouped: dict[tuple[str, str, str], list[float]] = defaultdict(list)
     for row in rows:
         for metric in PRIMARY_METRICS:
-            grouped[(str(row["scenario"]), str(row["method"]), metric)].append(float(row[metric]))
+            value = _metric_value(row, metric)
+            if value is not None:
+                grouped[(str(row["scenario"]), str(row["method"]), metric)].append(value)
     output = []
     for scenario in SCENARIOS:
         for method in comparison_methods:
@@ -94,7 +112,10 @@ def paired_effects(rows: list[dict[str, Any]], *,
                         if row_scenario != scenario or method != proposed_method:
                             continue
                         base = lookup[(scenario, baseline, seed)]
-                        pvalue, bvalue = float(proposed[metric]), float(base[metric])
+                        pvalue = _metric_value(proposed, metric)
+                        bvalue = _metric_value(base, metric)
+                        if pvalue is None or bvalue is None:
+                            continue
                         difference = bvalue - pvalue if metric in LOWER_IS_BETTER else pvalue - bvalue
                         differences.append(difference)
                         if abs(bvalue) > 1e-12:

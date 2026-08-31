@@ -42,6 +42,7 @@ from ..scenarios import (
     phase9_hole_calibration_scenarios,
     phase9_hole_training_scenarios,
     phase9_predictive_calibration_scenarios,
+    phase9_predictive_link_loss_training_scenarios,
     phase9_predictive_training_scenarios,
 )
 from ..utils import load_checkpoint, save_checkpoint, seed_everything
@@ -67,6 +68,7 @@ class Phase11Config:
     calibration_pdr_tolerance: float
     predictive_replay_multiplier: int
     predictive_pretraining_epochs: int
+    include_link_loss_training: bool = False
 
 
 PHASE11_METHODS = (
@@ -163,6 +165,11 @@ def _collect_phase11_dataset(
         *phase9_hole_training_scenarios(seed),
     ]
     predictive_scenarios = phase9_predictive_training_scenarios(seed)
+    if config.include_link_loss_training:
+        predictive_scenarios = (
+            predictive_scenarios
+            + phase9_predictive_link_loss_training_scenarios(seed)
+        )
     scenarios = [
         *base_scenarios,
         *(

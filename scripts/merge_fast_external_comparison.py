@@ -6,9 +6,14 @@ import argparse
 import csv
 import json
 from pathlib import Path
+import sys
 import tempfile
 from typing import Any
 import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from implementations.lite_globe.baselines.registry import (
     COMPARISON_METHODS,

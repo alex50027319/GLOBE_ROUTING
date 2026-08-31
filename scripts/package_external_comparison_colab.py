@@ -16,11 +16,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--checkpoint-dir", type=Path,
                         default=ROOT / "ResearchAIWorkspace" / "artifacts" / "lite_globe" / "phase12" / "checkpoints")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "external_comparison_colab_bundle.zip")
+    parser.add_argument(
+        "--fast-checkpoint-dir",
+        type=Path,
+        help="Optionally include one verified FastSwitchGLOBE checkpoint per seed.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    checkpoint_dir = args.checkpoint_dir.resolve()
+    fast_checkpoint_dir = (
+        args.fast_checkpoint_dir.resolve()
+        if args.fast_checkpoint_dir is not None
+        else None
+    )
     paths = [
         ROOT / "pyproject.toml",
         ROOT / "requirements-lite-globe.txt",
@@ -30,10 +41,12 @@ def main() -> int:
     for base in (ROOT / "implementations", ROOT / "scripts", ROOT / "tests" / "lite_globe"):
         paths.extend(path for path in base.rglob("*") if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc")
     for seed in SEEDS:
-        checkpoint = args.checkpoint_dir / f"seed_{seed}" / "risk_switch_lite_globe_p.pt"
+        checkpoint = checkpoint_dir / f"seed_{seed}" / "risk_switch_lite_globe_p.pt"
         if not checkpoint.is_file():
-            checkpoint = args.checkpoint_dir / f"seed_{seed}" / "switchglobe.pt"
+            checkpoint = checkpoint_dir / f"seed_{seed}" / "switchglobe.pt"
         paths.append(checkpoint)
+        if fast_checkpoint_dir is not None:
+            paths.append(fast_checkpoint_dir / f"seed_{seed}" / "fast_switchglobe.pt")
     missing = [path for path in paths if not path.is_file()]
     if missing:
         raise FileNotFoundError("missing bundle inputs:\n" + "\n".join(map(str, missing)))

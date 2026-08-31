@@ -21,17 +21,36 @@ def parse_args() -> argparse.Namespace:
         / "lite_globe"
         / "phase11_colab_bundle.zip",
     )
+    parser.add_argument(
+        "--phase7-checkpoint-dir",
+        type=Path,
+        default=ROOT / "artifacts" / "lite_globe" / "phase7" / "checkpoints",
+        help="Read-only source for global_teacher.pt per seed.",
+    )
+    parser.add_argument(
+        "--phase8-checkpoint-dir",
+        type=Path,
+        default=ROOT / "artifacts" / "lite_globe" / "phase8" / "checkpoints",
+        help="Read-only source for geo_residual_kd.pt/training_metrics.json per seed.",
+    )
     return parser.parse_args()
 
 
-def required_paths() -> list[Path]:
-    paths = [
-        ROOT / "pyproject.toml",
-        ROOT / "requirements-lite-globe.txt",
-        ROOT / "README_PHASE11_COLAB.md",
+def required_paths(
+    *, phase7_checkpoint_dir: Path, phase8_checkpoint_dir: Path
+) -> list[tuple[Path, Path]]:
+    """Return (source_path, archive_relative_path) pairs."""
+
+    pairs = [
+        (path, path.relative_to(ROOT))
+        for path in (
+            ROOT / "pyproject.toml",
+            ROOT / "requirements-lite-globe.txt",
+            ROOT / "README_PHASE11_COLAB.md",
+        )
     ]
-    paths.extend(
-        path
+    pairs.extend(
+        (path, path.relative_to(ROOT))
         for base in (
             ROOT / "implementations",
             ROOT / "tests" / "lite_globe",
@@ -43,32 +62,26 @@ def required_paths() -> list[Path]:
         and path.name != ".DS_Store"
     )
     for seed in SEEDS:
-        paths.extend(
+        pairs.extend(
             [
-                ROOT
-                / "artifacts"
-                / "lite_globe"
-                / "phase7"
-                / "checkpoints"
-                / f"seed_{seed}"
-                / "global_teacher.pt",
-                ROOT
-                / "artifacts"
-                / "lite_globe"
-                / "phase8"
-                / "checkpoints"
-                / f"seed_{seed}"
-                / "geo_residual_kd.pt",
-                ROOT
-                / "artifacts"
-                / "lite_globe"
-                / "phase8"
-                / "checkpoints"
-                / f"seed_{seed}"
-                / "training_metrics.json",
+                (
+                    phase7_checkpoint_dir / f"seed_{seed}" / "global_teacher.pt",
+                    Path("artifacts/lite_globe/phase7/checkpoints")
+                    / f"seed_{seed}" / "global_teacher.pt",
+                ),
+                (
+                    phase8_checkpoint_dir / f"seed_{seed}" / "geo_residual_kd.pt",
+                    Path("artifacts/lite_globe/phase8/checkpoints")
+                    / f"seed_{seed}" / "geo_residual_kd.pt",
+                ),
+                (
+                    phase8_checkpoint_dir / f"seed_{seed}" / "training_metrics.json",
+                    Path("artifacts/lite_globe/phase8/checkpoints")
+                    / f"seed_{seed}" / "training_metrics.json",
+                ),
             ]
         )
-    return sorted(set(paths))
+    return sorted(set(pairs), key=lambda pair: pair[1])
 
 
 def main() -> int:
@@ -76,8 +89,11 @@ def main() -> int:
     output = args.output
     if not output.is_absolute():
         output = ROOT / output
-    paths = required_paths()
-    missing = [path for path in paths if not path.is_file()]
+    pairs = required_paths(
+        phase7_checkpoint_dir=args.phase7_checkpoint_dir,
+        phase8_checkpoint_dir=args.phase8_checkpoint_dir,
+    )
+    missing = [source for source, _ in pairs if not source.is_file()]
     if missing:
         joined = "\n".join(str(path) for path in missing)
         raise FileNotFoundError(
@@ -90,10 +106,14 @@ def main() -> int:
         compression=zipfile.ZIP_DEFLATED,
         compresslevel=9,
     ) as archive:
-        for path in paths:
-            archive.write(path, path.relative_to(ROOT))
+        for source, arcname in pairs:
+            archive.write(source, arcname)
     size_mb = output.stat().st_size / (1024 * 1024)
-    print(f"Created {output.relative_to(ROOT)} ({size_mb:.2f} MiB)")
+    try:
+        display_path = output.relative_to(ROOT)
+    except ValueError:
+        display_path = output
+    print(f"Created {display_path} ({size_mb:.2f} MiB)")
     return 0
 
 

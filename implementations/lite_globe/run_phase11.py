@@ -95,6 +95,9 @@ def _config(raw: dict, smoke: bool) -> Phase11Config:
                 1, int(training["predictive_replay_multiplier"])
             ),
             predictive_pretraining_epochs=5,
+            include_link_loss_training=bool(
+                training.get("include_link_loss_training", False)
+            ),
         )
     return Phase11Config(
         training_seeds=tuple(
@@ -139,6 +142,9 @@ def _config(raw: dict, smoke: bool) -> Phase11Config:
         ),
         predictive_pretraining_epochs=int(
             training["predictive_pretraining_epochs"]
+        ),
+        include_link_loss_training=bool(
+            training.get("include_link_loss_training", False)
         ),
     )
 

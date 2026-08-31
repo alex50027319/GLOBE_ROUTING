@@ -67,11 +67,9 @@ def write_fast_external_chunk(
         actual_summary_keys.add(key)
         for metric in PRIMARY_METRICS:
             value = row[metric]
-            if (
-                value is None
-                and metadata["mode"] == "smoke"
-                and metric in {"p95_success_delay", "energy_per_delivered_packet"}
-            ):
+            if value is None and metric in {
+                "p95_success_delay", "energy_per_delivered_packet"
+            }:
                 continue
             if value is None or not math.isfinite(float(value)):
                 raise ValueError(f"non-finite {metric} for {key}")
@@ -123,6 +121,11 @@ def write_fast_external_chunk(
         "expected_seed_summary_rows": len(SCENARIOS) * len(seeds),
         "training_rows": len(training_rows),
         "deployment_cost_rows": len(deployment_rows),
+        "undefined_delivery_metric_values": sum(
+            row.get(metric) is None
+            for row in summary_rows
+            for metric in ("p95_success_delay", "energy_per_delivered_packet")
+        ),
         "method_contract": FAST_METHOD_CONTRACT,
         "metadata": metadata,
     }

@@ -235,3 +235,50 @@ artifacts/final_paper_simulation/full/baselines_with_fast/
 `paired_effects.csv`의 `proposed_method` 열로 SwitchGLOBE와 FastSwitchGLOBE의
 각 외부 baseline 대비 paired 결과를 구분한다. 원고에는 병합 완료 후
 `validation_report.md`와 `manifest.json`을 통과한 full 결과만 사용한다.
+
+## 부록: Colab CLI로 seed 하나씩 실행
+
+노트북 UI 대신 현재 저장소의 Colab CLI를 사용할 경우 아래 순서를 따른다.
+`SEED=42`만 `77`, `123`, `314`, `2718` 중 하나로 바꿔 반복한다.
+
+```bash
+cd /Users/alex/Documents/GLOBE_ROUTING
+COLAB=ResearchAIWorkspace/.venv/bin/colab
+SEED=42
+SESSION="fast-switchglobe-$SEED"
+
+$COLAB new --session "$SESSION" --gpu A100
+$COLAB drivemount /content/drive --session "$SESSION"
+$COLAB upload \
+  artifacts/fast_external_comparison_colab_bundle.zip \
+  /content/fast_external_comparison_colab_bundle.zip \
+  --session "$SESSION"
+
+printf '%s\n' "$SEED" > /tmp/fast_external_seed.txt
+$COLAB upload /tmp/fast_external_seed.txt /content/fast_external_seed.txt \
+  --session "$SESSION"
+
+$COLAB exec --session "$SESSION" \
+  --file scripts/colab_fast_external_cli.py \
+  --timeout 21600
+```
+
+다른 터미널에서 상태를 확인한다.
+
+```bash
+ResearchAIWorkspace/.venv/bin/colab status --session "fast-switchglobe-$SEED"
+ResearchAIWorkspace/.venv/bin/colab log --session "fast-switchglobe-$SEED" --lines 100
+ResearchAIWorkspace/.venv/bin/colab sessions
+```
+
+완료 ZIP은 Drive에 남으므로 session이 사라져도 같은 seed 명령을 다시 실행하면
+full checkpoint를 resume한다. Drive를 사용하지 않고 직접 내려받으려는 경우에만
+다음 형식을 사용한다.
+
+```bash
+mkdir -p artifacts/fast_external_comparison_colab_results
+ResearchAIWorkspace/.venv/bin/colab download \
+  "/content/drive/MyDrive/SwitchGLOBE/fast_external_comparison/full/fast_seeds_$SEED.zip" \
+  "artifacts/fast_external_comparison_colab_results/fast_seeds_$SEED.zip" \
+  --session "fast-switchglobe-$SEED"
+```
