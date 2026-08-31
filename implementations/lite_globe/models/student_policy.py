@@ -626,7 +626,7 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
         """Compute the action distribution and diagnostics without repeats."""
 
         normal = self.normal_policy(observation)
-        predictive = self.predictive_policy(observation)
+        predictive = self._predictive_output(observation, normal)
         unbatched = observation["self_features"].ndim == 1
         action_mask = observation["action_mask"]
         normal_logits = normal.logits
@@ -679,6 +679,16 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
             predictive_action=predictive_action,
             normal_probabilities=normal_probabilities,
         )
+
+    def _predictive_output(
+        self,
+        observation: Mapping[str, Tensor],
+        normal: StudentPolicyOutput,
+    ) -> StudentPolicyOutput:
+        """Return the predictive branch used by the exact Phase 12 policy."""
+
+        del normal
+        return self.predictive_policy(observation)
 
     def _switch_mask(
         self,
@@ -819,6 +829,145 @@ class SwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
     """
 
     pass
+
+
+class EvoFusionSwitchGlobePolicy(SwitchGlobePolicy):
+    """Risk-conditioned bounded value fusion for the predictive branch.
+
+    SwitchGLOBE Exact intentionally disables the predictive student's learned
+    residual.  This experimental policy preserves the exact deterministic
+    predictive prior and adds back only a bounded fraction of that residual.
+    The fraction shrinks as the normal action exceeds the calibrated danger
+    threshold, so a high-confidence link-break warning cannot be freely
+    overturned by the learned correction.
+
+    The class adds no parameters or persistent buffers.  Consequently an
+    existing SwitchGLOBE checkpoint can be loaded with ``strict=True`` and the
+    fusion configuration remains an explicit experiment/manifest setting.
+    Setting both fusion weights to zero reproduces SwitchGLOBE Exact.
+    """
+
+    def __init__(
+        self,
+        normal_policy: GeographicResidualStudentPolicy,
+        predictive_policy: LiteGlobePStudentPolicy,
+        *,
+        switch_threshold: float = 0.05,
+        margin_gate: float = 0.04,
+        lifetime_gate: float = 0.20,
+        onward_gate: float = 0.20,
+        minimum_fusion_weight: float = 0.0,
+        maximum_fusion_weight: float = 0.25,
+        danger_confidence_scale: float = 0.20,
+    ) -> None:
+        if not 0.0 <= minimum_fusion_weight <= maximum_fusion_weight <= 1.0:
+            raise ValueError(
+                "fusion weights must satisfy 0 <= minimum <= maximum <= 1"
+            )
+        if danger_confidence_scale <= 0.0:
+            raise ValueError("danger confidence scale must be positive")
+        super().__init__(
+            normal_policy,
+            predictive_policy,
+            switch_threshold=switch_threshold,
+            margin_gate=margin_gate,
+            lifetime_gate=lifetime_gate,
+            onward_gate=onward_gate,
+        )
+        self.minimum_fusion_weight = float(minimum_fusion_weight)
+        self.maximum_fusion_weight = float(maximum_fusion_weight)
+        self.danger_confidence_scale = float(danger_confidence_scale)
+
+    def _predictive_output(
+        self,
+        observation: Mapping[str, Tensor],
+        normal: StudentPolicyOutput,
+    ) -> StudentPolicyOutput:
+        pure = self.predictive_policy(observation)
+        if self.maximum_fusion_weight == 0.0:
+            return pure
+
+        # Call the local residual network directly: the predictive policy's
+        # public forward remains the exact prior-only branch because its
+        # residual_weight buffer is zero in every Phase 12 checkpoint.
+        residual = LocalStudentPolicy.forward(
+            self.predictive_policy,
+            observation,
+        )
+        unbatched = observation["self_features"].ndim == 1
+        action_mask = observation["action_mask"]
+        risk = observation.get("candidate_risk_features")
+        pure_logits = pure.logits
+        normal_logits = normal.logits
+        residual_logits = residual.logits
+        if unbatched:
+            action_mask = action_mask.unsqueeze(0)
+            pure_logits = pure_logits.unsqueeze(0)
+            normal_logits = normal_logits.unsqueeze(0)
+            residual_logits = residual_logits.unsqueeze(0)
+            if risk is not None:
+                risk = risk.unsqueeze(0)
+
+        batch_size = action_mask.shape[0]
+        if risk is None:
+            fusion_weight = torch.zeros(
+                batch_size,
+                device=pure_logits.device,
+                dtype=pure_logits.dtype,
+            )
+        else:
+            risk = risk.to(
+                device=pure_logits.device,
+                dtype=pure_logits.dtype,
+            )
+            normal_action = torch.argmax(
+                masked_logits(normal_logits, action_mask),
+                dim=-1,
+            )
+            batch = torch.arange(batch_size, device=pure_logits.device)
+            normal_risk = risk[
+                batch,
+                normal_action.clamp(max=self.max_nodes - 1),
+            ]
+            danger = self._danger_score(normal_risk)
+            excess_danger = torch.relu(danger - self.switch_threshold)
+            confidence = torch.clamp(
+                excess_danger / self.danger_confidence_scale,
+                min=0.0,
+                max=1.0,
+            )
+            fusion_weight = (
+                self.maximum_fusion_weight
+                - (
+                    self.maximum_fusion_weight
+                    - self.minimum_fusion_weight
+                )
+                * confidence
+            )
+
+        residual_bound = torch.nn.functional.softplus(
+            self.predictive_policy.log_residual_bound
+        )
+        bounded_residual = residual_bound * torch.tanh(
+            residual_logits[:, : self.max_nodes]
+        )
+        candidate_logits = (
+            pure_logits[:, : self.max_nodes]
+            + fusion_weight.unsqueeze(-1) * bounded_residual
+        )
+        # DROP remains governed by the exact predictive prior.  The fusion is
+        # solely a next-hop value correction and cannot create a new drop.
+        combined = torch.cat(
+            (candidate_logits, pure_logits[:, self.max_nodes :]),
+            dim=-1,
+        )
+        valid_logits = masked_logits(combined, action_mask)
+        probabilities = masked_softmax(combined, action_mask)
+        if unbatched:
+            combined = combined.squeeze(0)
+            valid_logits = valid_logits.squeeze(0)
+            probabilities = probabilities.squeeze(0)
+        return StudentPolicyOutput(combined, valid_logits, probabilities)
 
 
 class FastSwitchGlobePolicy(LocalStudentPolicy):

@@ -5,6 +5,7 @@ from .student_actor_critic import (
     StudentActorCriticOutput,
 )
 from .student_policy import (
+    EvoFusionSwitchGlobePolicy,
     GeographicResidualStudentPolicy,
     FastSwitchGlobePolicy,
     LiteGlobePStudentPolicy,
@@ -18,6 +19,7 @@ from .student_policy import (
 from .teacher_gnn import GlobalTeacherActorCritic, TeacherOutput
 
 __all__ = [
+    "EvoFusionSwitchGlobePolicy",
     "GlobalTeacherActorCritic",
     "GeographicResidualStudentPolicy",
     "FastSwitchGlobePolicy",

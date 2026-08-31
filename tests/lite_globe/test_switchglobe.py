@@ -4,16 +4,21 @@ from __future__ import annotations
 
 from copy import deepcopy
 
+import pytest
 import torch
 
 from implementations.lite_globe.env.fanet_env import FanetRoutingEnv
 from implementations.lite_globe.models import (
+    EvoFusionSwitchGlobePolicy,
     GeographicResidualStudentPolicy,
     LiteGlobePStudentPolicy,
     SwitchGlobePolicy,
 )
 from implementations.lite_globe.models.policy_adapter import (
     StudentPolicyAdapter,
+)
+from implementations.lite_globe.models.tensor_observation import (
+    observation_to_tensors,
 )
 from implementations.lite_globe.scenarios import (
     predictive_break_config,
@@ -38,6 +43,129 @@ def _policy(max_nodes: int) -> SwitchGlobePolicy:
         margin_gate=0.04,
         lifetime_gate=0.20,
         onward_gate=0.20,
+    )
+
+
+def _fusion_policy(
+    max_nodes: int,
+    *,
+    minimum_fusion_weight: float = 0.0,
+    maximum_fusion_weight: float = 0.25,
+) -> EvoFusionSwitchGlobePolicy:
+    exact = _policy(max_nodes)
+    return EvoFusionSwitchGlobePolicy(
+        deepcopy(exact.normal_policy),
+        deepcopy(exact.predictive_policy),
+        switch_threshold=float(exact.switch_threshold.item()),
+        margin_gate=float(exact.margin_gate.item()),
+        lifetime_gate=float(exact.lifetime_gate.item()),
+        onward_gate=float(exact.onward_gate.item()),
+        minimum_fusion_weight=minimum_fusion_weight,
+        maximum_fusion_weight=maximum_fusion_weight,
+    )
+
+
+def test_zero_weight_evo_fusion_exactly_matches_switchglobe() -> None:
+    config = predictive_break_config(42)
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=42,
+        options=predictive_break_options(0.0),
+    )
+    exact = _policy(config.max_nodes).eval()
+    fusion = EvoFusionSwitchGlobePolicy(
+        deepcopy(exact.normal_policy),
+        deepcopy(exact.predictive_policy),
+        switch_threshold=float(exact.switch_threshold.item()),
+        margin_gate=float(exact.margin_gate.item()),
+        lifetime_gate=float(exact.lifetime_gate.item()),
+        onward_gate=float(exact.onward_gate.item()),
+        minimum_fusion_weight=0.0,
+        maximum_fusion_weight=0.0,
+    ).eval()
+
+    tensors = observation_to_tensors(observation)
+    exact_decision = exact.decide(tensors)
+    fusion_decision = fusion.decide(tensors)
+
+    torch.testing.assert_close(
+        fusion_decision.output.logits,
+        exact_decision.output.logits,
+        rtol=0.0,
+        atol=0.0,
+    )
+    assert torch.equal(fusion_decision.switch, exact_decision.switch)
+    assert torch.equal(
+        fusion_decision.predictive_action,
+        exact_decision.predictive_action,
+    )
+    assert set(fusion.state_dict()) == set(exact.state_dict())
+    fusion.load_state_dict(exact.state_dict(), strict=True)
+
+
+def test_evo_fusion_correction_is_bounded() -> None:
+    config = predictive_break_config(42)
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=42,
+        options=predictive_break_options(0.0),
+    )
+    fusion = _fusion_policy(
+        config.max_nodes,
+        minimum_fusion_weight=0.25,
+        maximum_fusion_weight=0.25,
+    ).eval()
+    tensors = observation_to_tensors(observation)
+    normal = fusion.normal_policy(tensors)
+    pure = fusion.predictive_policy(tensors)
+    fused = fusion._predictive_output(tensors, normal)
+    bound = float(
+        torch.nn.functional.softplus(
+            fusion.predictive_policy.log_residual_bound
+        ).item()
+    )
+    correction = torch.abs(
+        fused.logits[: config.max_nodes]
+        - pure.logits[: config.max_nodes]
+    )
+    assert torch.max(correction).item() <= 0.25 * bound + 1e-6
+    torch.testing.assert_close(
+        fused.logits[config.max_nodes],
+        pure.logits[config.max_nodes],
+    )
+
+
+def test_evo_fusion_rejects_invalid_configuration() -> None:
+    exact = _policy(4)
+    with pytest.raises(ValueError, match="fusion weights"):
+        EvoFusionSwitchGlobePolicy(
+            exact.normal_policy,
+            exact.predictive_policy,
+            minimum_fusion_weight=0.5,
+            maximum_fusion_weight=0.25,
+        )
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is unavailable")
+def test_evo_fusion_cpu_and_cuda_choose_the_same_action() -> None:
+    config = predictive_break_config(42)
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=42,
+        options=predictive_break_options(0.0),
+    )
+    cpu = _fusion_policy(config.max_nodes).eval()
+    cuda = deepcopy(cpu).to("cuda").eval()
+    cpu_decision = cpu.decide(observation_to_tensors(observation))
+    cuda_decision = cuda.decide(
+        observation_to_tensors(observation, device="cuda")
+    )
+
+    assert int(torch.argmax(cpu_decision.output.masked_logits).item()) == int(
+        torch.argmax(cuda_decision.output.masked_logits).item()
+    )
+    torch.testing.assert_close(
+        cuda_decision.output.logits.cpu(),
+        cpu_decision.output.logits,
+        rtol=1e-5,
+        atol=1e-6,
     )
 
 
