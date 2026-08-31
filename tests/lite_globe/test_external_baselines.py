@@ -99,6 +99,53 @@ def test_evo_qgeo_and_iqmr_learn_finite_updates(line_positions) -> None:
         assert observation["action_mask"][action] == 1
 
 
+def test_evo_qgeo_no_forward_candidate_does_not_bootstrap_invalid_sentinel() -> None:
+    """The -1e6 action-mask sentinel must not become a learned Q target."""
+
+    config = FanetConfig(
+        num_nodes=3,
+        max_nodes=4,
+        area_size=12.0,
+        communication_radius=1.1,
+        min_speed=0.0,
+        max_speed=0.0,
+        mask_visited_actions=True,
+        include_forwardability=True,
+        include_risk_features=True,
+    )
+    env = FanetRoutingEnv(config)
+    observation, _ = env.reset(
+        seed=11,
+        options={
+            "positions": np.array(
+                [[0.0, 0.0], [1.0, 0.0], [10.0, 10.0]],
+                dtype=np.float32,
+            ),
+            "source": 0,
+            "destination": 2,
+        },
+    )
+    policy = EvoQGeoPolicy(config.max_nodes)
+    action = 1
+    next_observation, reward, terminated, truncated, info = env.step(action)
+
+    assert not (terminated or truncated)
+    assert not np.any(next_observation["action_mask"][: config.max_nodes])
+    td_error = policy.update(
+        observation,
+        action,
+        float(reward),
+        next_observation,
+        False,
+        delivered=bool(info["delivered"]),
+        dropped=bool(info["dropped"]),
+    )
+
+    assert td_error < 100.0
+    assert policy.q_table
+    assert min(policy.q_table.values()) > -100.0
+
+
 def test_drama_network_trains_and_returns_legal_action(line_positions) -> None:
     torch.manual_seed(4)
     config = FanetConfig(

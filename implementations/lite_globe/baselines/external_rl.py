@@ -291,7 +291,17 @@ class EvoQGeoPolicy:
             paper_reward = -10.0
         else:
             paper_reward = float(link_scores[action])
-        next_max = 0.0 if done else float(np.max(self.q_values(next_observation)))
+        next_candidates = _candidate_nodes(next_observation, self.drop_action)
+        # ``q_values`` uses -1e6 only as an invalid-action selection sentinel.
+        # It is not a learned failure value and must never enter the TD target
+        # when the next relay has no legal forwarding neighbor.  Such a state
+        # can only take the explicit DROP action, whose continuation value is
+        # zero under this tabular baseline.
+        next_max = (
+            0.0
+            if done or next_candidates.size == 0
+            else float(np.max(self.q_values(next_observation)[next_candidates]))
+        )
         target = paper_reward + self.gamma * next_max
         updated = current + self.learning_rate * (target - current)
         self.q_table[q_key] = updated
