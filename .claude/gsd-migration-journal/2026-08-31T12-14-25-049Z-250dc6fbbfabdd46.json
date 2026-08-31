@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "appliedAt": "2026-08-31T12:14:25.049Z",
+  "appliedMigrationIds": [
+    "2026-05-11-first-time-baseline-scan"
+  ],
+  "actions": [
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/baseline-fidelity-reviewer.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/code-reviewer.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/manuscript-reviewer.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/result-auditor.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/switchglobe-experiment-reviewer.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "agents/uav-routing-expert.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "hooks/validate_python.py",
+      "reason": "unknown install-surface file preserved by first-time migration baseline",
+      "classification": "unknown",
+      "originalHash": null,
+      "currentHash": "992ab3cb429a02972762022db8574818f8f592820e8f6c18b842be7b9457b20b",
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "settings.json",
+      "reason": "unknown install-surface file preserved by first-time migration baseline",
+      "classification": "unknown",
+      "originalHash": null,
+      "currentHash": "c6654700a5eae2c0b23c6eb74eb4fc0f28549e5b8960963a40529318f97c6cb2",
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/agent-browser/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/audit-switchglobe-results/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/design-taste-frontend/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/explain-routing-scenario/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/find-skills/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/LICENSE.txt",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/reference/evaluation.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/reference/mcp_best_practices.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/reference/node_mcp_server.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/reference/python_mcp_server.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/__pycache__/connections.cpython-314.pyc",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/__pycache__/evaluation.cpython-314.pyc",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/connections.py",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/evaluation.py",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/example_evaluation.xml",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/scripts/requirements.txt",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/mcp-builder/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/package-colab-bundles/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/run-external-comparison/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/train-switchglobe/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/update-switchglobe-manuscript/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    },
+    {
+      "migrationId": "2026-05-11-first-time-baseline-scan",
+      "migrationChecksum": "sha256:4ec58d35b30dbf39cc56e3972146086d8d31861ecd800cf0b37a7aa94fe74c2a",
+      "type": "baseline-preserve-user",
+      "relPath": "skills/verify-switchglobe/SKILL.md",
+      "reason": "known user-owned artifact preserved by first-time migration baseline",
+      "classification": "user-owned",
+      "originalHash": null,
+      "currentHash": null,
+      "status": "preserved"
+    }
+  ]
+}
