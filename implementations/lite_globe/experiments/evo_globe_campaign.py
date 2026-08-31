@@ -20,6 +20,7 @@ from ..evaluation import evaluate_policy_results
 from ..models import SwitchGlobePolicy
 from ..models.policy_adapter import StudentPolicyAdapter
 from ..scenarios import (
+    phase9_compositional_predictive_training_scenarios,
     phase9_curriculum,
     phase9_hole_training_scenarios,
     phase9_predictive_training_scenarios,
@@ -53,6 +54,36 @@ class CostToGoDistillationConfig:
             raise ValueError("return_action_coefficient must be non-negative")
         if self.return_weight_temperature <= 0:
             raise ValueError("return_weight_temperature must be positive")
+
+
+@dataclass(frozen=True)
+class CompositionalCurriculumConfig:
+    """Fine-tune only predictive-prior scalars on compound disruptions."""
+
+    dataset_episodes_per_scenario: int = 30
+    epochs: int = 20
+    batch_size: int = 128
+    learning_rate: float = 1e-2
+    weight_decay: float = 1e-5
+    risk_oracle_coefficient: float = 1.0
+    link_loss_scale: float = 1.0
+    early_stopping_patience: int = 5
+
+    def validate(self) -> None:
+        if self.dataset_episodes_per_scenario < 9:
+            raise ValueError(
+                "dataset_episodes_per_scenario must be at least 9"
+            )
+        if self.epochs <= 0 or self.batch_size <= 0:
+            raise ValueError("epochs and batch_size must be positive")
+        if self.learning_rate <= 0 or self.weight_decay < 0:
+            raise ValueError("optimizer settings are invalid")
+        if self.risk_oracle_coefficient <= 0:
+            raise ValueError("risk_oracle_coefficient must be positive")
+        if not 0.0 < self.link_loss_scale <= 1.5:
+            raise ValueError("link_loss_scale must be in (0, 1.5]")
+        if self.early_stopping_patience < 0:
+            raise ValueError("early_stopping_patience must be non-negative")
 
 
 def cost_to_go_training_scenarios(seed: int):
@@ -172,6 +203,159 @@ def train_cost_to_go_switchglobe(
             result.validation.mean_discounted_return
         ),
         "parameter_count": parameter_count_after,
+        "config": asdict(config),
+    }
+    return candidate.eval(), metrics
+
+
+def collect_compositional_curriculum_dataset(
+    reference: SwitchGlobePolicy,
+    config: CompositionalCurriculumConfig,
+    *,
+    seed: int,
+    device: torch.device | str = "cpu",
+):
+    """Collect disjoint-angle compound-disruption trajectories."""
+
+    config.validate()
+    datasets = []
+    per_policy = max(3, config.dataset_episodes_per_scenario // 3)
+    scenarios = phase9_compositional_predictive_training_scenarios(
+        seed,
+        link_loss_scale=config.link_loss_scale,
+    )
+    for scenario_index, scenario in enumerate(scenarios):
+        start = seed + 1_610_000 + scenario_index * 30_000
+        for rollout_index, rollout_policy in enumerate(
+            ("reference", "oracle", "risk_oracle")
+        ):
+            rollout_start = start + rollout_index * per_policy
+            datasets.append(
+                generate_return_guided_dataset(
+                    FanetRoutingEnv(scenario.config),
+                    reference.predictive_policy,
+                    episode_seeds=list(
+                        range(rollout_start, rollout_start + per_policy)
+                    ),
+                    scenario_id=f"{scenario.name}_{rollout_policy}_rollout",
+                    reset_options=scenario.reset_options,
+                    rollout_policy=rollout_policy,
+                    device=device,
+                )
+            )
+    return concatenate_datasets(datasets)
+
+
+def _predictive_prior_values(model: SwitchGlobePolicy) -> dict[str, Any]:
+    predictive = model.predictive_policy
+    return {
+        "predictive_strength": torch.nn.functional.softplus(
+            predictive.log_predictive_strength.detach().cpu()
+        ).tolist(),
+        "break_penalty": float(
+            torch.nn.functional.softplus(
+                predictive.log_break_penalty.detach().cpu()
+            ).item()
+        ),
+    }
+
+
+def train_compositional_switchglobe(
+    reference: SwitchGlobePolicy,
+    config: CompositionalCurriculumConfig,
+    *,
+    seed: int,
+    device: torch.device | str = "cpu",
+) -> tuple[SwitchGlobePolicy, dict[str, Any]]:
+    """Tune five predictive-prior scalars without changing inference shape."""
+
+    config.validate()
+    device = torch.device(device)
+    torch.manual_seed(seed + 1_600_000)
+    np.random.seed(seed + 1_600_000)
+    reference = reference.to(device).eval()
+    dataset = collect_compositional_curriculum_dataset(
+        reference,
+        config,
+        seed=seed,
+        device=device,
+    )
+    split = split_by_episode_group(dataset, seed=seed + 1_620_000)
+    candidate = deepcopy(reference).to(device)
+    state_before = {
+        key: value.detach().cpu().clone()
+        for key, value in candidate.state_dict().items()
+    }
+    parameters_before = sum(
+        parameter.numel() for parameter in candidate.parameters()
+    )
+    prior_before = _predictive_prior_values(candidate)
+    trainable_names = {
+        "log_predictive_strength",
+        "log_break_penalty",
+    }
+    original_requires_grad = {
+        name: parameter.requires_grad
+        for name, parameter in candidate.predictive_policy.named_parameters()
+    }
+    for name, parameter in candidate.predictive_policy.named_parameters():
+        parameter.requires_grad_(name in trainable_names)
+    result = train_student_distillation(
+        candidate.predictive_policy,
+        split.train,
+        split.validation,
+        config=DistillationConfig(
+            epochs=config.epochs,
+            batch_size=config.batch_size,
+            learning_rate=config.learning_rate,
+            weight_decay=config.weight_decay,
+            risk_oracle_coefficient=config.risk_oracle_coefficient,
+            early_stopping_patience=config.early_stopping_patience,
+        ),
+        seed=seed + 1_630_000,
+        device=device,
+    )
+    for name, parameter in candidate.predictive_policy.named_parameters():
+        parameter.requires_grad_(original_requires_grad[name])
+    candidate.predictive_policy.set_residual_weight(0.0)
+    state_after = candidate.state_dict()
+    allowed_changes = {
+        "predictive_policy.log_predictive_strength",
+        "predictive_policy.log_break_penalty",
+    }
+    changed = {
+        key
+        for key, before in state_before.items()
+        if not torch.equal(before, state_after[key].detach().cpu())
+    }
+    if not changed.issubset(allowed_changes):
+        raise RuntimeError(
+            f"compositional training changed protected state: "
+            f"{sorted(changed - allowed_changes)}"
+        )
+    parameters_after = sum(
+        parameter.numel() for parameter in candidate.parameters()
+    )
+    if tuple(state_after) != tuple(state_before):
+        raise RuntimeError("compositional training changed deployment state keys")
+    if parameters_after != parameters_before:
+        raise RuntimeError("compositional training changed deployment parameters")
+    metrics = {
+        "training_seed": seed,
+        "dataset_samples": len(dataset),
+        "train_samples": len(split.train),
+        "validation_samples": len(split.validation),
+        "test_samples": len(split.test),
+        "completed_epochs": result.epochs,
+        "validation_kl": result.validation.kl,
+        "validation_reference_agreement": result.validation.action_agreement,
+        "validation_risk_oracle_agreement": (
+            result.validation.risk_oracle_action_agreement
+        ),
+        "changed_state_keys": sorted(changed),
+        "parameter_count": parameters_after,
+        "prior_before": prior_before,
+        "prior_after": _predictive_prior_values(candidate),
         "config": asdict(config),
     }
     return candidate.eval(), metrics

@@ -43,8 +43,14 @@ def predictive_break_config(
 
 def predictive_break_options(
     angle_degrees: float,
+    *,
+    break_speed_scale: float = 1.0,
+    velocity_offset_degrees: float = 0.0,
 ) -> dict[str, object]:
     """Rotate positions and velocities without changing graph geometry."""
+
+    if not 0.0 < break_speed_scale <= 1.0:
+        raise ValueError("break_speed_scale must be in (0, 1]")
 
     positions = np.array(
         [
@@ -61,7 +67,15 @@ def predictive_break_options(
         dtype=np.float32,
     )
     velocities = np.zeros_like(positions)
-    velocities[2] = np.array([0.0, 1.5], dtype=np.float32)
+    velocity_theta = radians(velocity_offset_degrees)
+    velocities[2] = (
+        1.5
+        * break_speed_scale
+        * np.array(
+            [-sin(velocity_theta), cos(velocity_theta)],
+            dtype=np.float32,
+        )
+    )
     geometry_center = np.array([4.0, 2.5], dtype=np.float32)
     area_center = np.array([5.0, 5.0], dtype=np.float32)
     theta = radians(angle_degrees)
@@ -118,6 +132,75 @@ def phase9_predictive_link_loss_training_scenarios(
             "training_predictive_break_link_loss",
         )
         for angle in (0, 90, 180)
+    ]
+
+
+def phase9_compositional_predictive_training_scenarios(
+    seed: int,
+    *,
+    link_loss_scale: float = 1.0,
+) -> list[EvaluationScenario]:
+    """Combine break prediction, mobility variation, and transient loss.
+
+    Training retains the historical 0/90/180-degree geometries.  Speed and
+    direction offsets alter the local lifetime evidence, while stochastic
+    loss prevents the prior from treating every failed transmission as a
+    deterministic break.  Calibration and evaluation rotations remain
+    disjoint from these scenarios.
+    """
+
+    if not 0.0 < link_loss_scale <= 1.5:
+        raise ValueError("link_loss_scale must be in (0, 1.5]")
+    variants = (
+        (0, 0.05, 0.65, -12.0),
+        (90, 0.10, 0.85, 15.0),
+        (180, 0.15, 1.00, -8.0),
+    )
+    scenarios = []
+    for angle, link_loss, speed_scale, offset in variants:
+        effective_loss = min(0.25, link_loss * link_loss_scale)
+        scenarios.append(
+            EvaluationScenario(
+                f"train_composite_break_{angle}_loss_{effective_loss:.3f}",
+                replace(
+                    predictive_break_config(seed),
+                    stochastic_link_loss=effective_loss,
+                ),
+                predictive_break_options(
+                    float(angle),
+                    break_speed_scale=speed_scale,
+                    velocity_offset_degrees=offset,
+                ),
+                "training_composite_predictive_break",
+            )
+        )
+    return scenarios
+
+
+def phase9_compositional_predictive_calibration_scenarios(
+    seed: int,
+) -> list[EvaluationScenario]:
+    """Held-out rotations for selecting one compositional curriculum."""
+
+    variants = (
+        (135, 0.12, 0.75, 10.0),
+        (270, 0.18, 0.95, -10.0),
+    )
+    return [
+        EvaluationScenario(
+            f"calibration_composite_break_{angle}_loss_{link_loss:.2f}",
+            replace(
+                predictive_break_config(seed),
+                stochastic_link_loss=link_loss,
+            ),
+            predictive_break_options(
+                float(angle),
+                break_speed_scale=speed_scale,
+                velocity_offset_degrees=offset,
+            ),
+            "calibration_composite_predictive_break",
+        )
+        for angle, link_loss, speed_scale, offset in variants
     ]
 
 

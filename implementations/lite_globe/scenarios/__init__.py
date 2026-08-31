@@ -13,6 +13,8 @@ from .generalization_suite import (
 )
 from .routing_hole import routing_hole_config, routing_hole_options
 from .predictive_traps import (
+    phase9_compositional_predictive_calibration_scenarios,
+    phase9_compositional_predictive_training_scenarios,
     phase9_predictive_calibration_scenarios,
     phase9_predictive_evaluation_scenarios,
     phase9_predictive_link_loss_calibration_scenarios,
@@ -46,6 +48,8 @@ __all__ = [
     "routing_hole_options",
     "predictive_break_config",
     "predictive_break_options",
+    "phase9_compositional_predictive_training_scenarios",
+    "phase9_compositional_predictive_calibration_scenarios",
     "phase9_predictive_training_scenarios",
     "phase9_predictive_link_loss_training_scenarios",
     "phase9_predictive_calibration_scenarios",

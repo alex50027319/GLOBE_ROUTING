@@ -89,6 +89,7 @@ def _latency_rows(
     rounds: int,
     warmup: int,
     repeats: int,
+    candidate_method: str = "SwitchGLOBE_cost_to_go",
 ) -> list[dict]:
     env = FanetRoutingEnv(scenario.config)
     observation, _ = env.reset(seed=1_099_999, options=scenario.reset_options)
@@ -96,7 +97,7 @@ def _latency_rows(
         "SwitchGLOBE_exact": StudentPolicyAdapter(
             reference, device="cpu", force_forward_if_available=True
         ),
-        "SwitchGLOBE_cost_to_go": StudentPolicyAdapter(
+        candidate_method: StudentPolicyAdapter(
             candidate, device="cpu", force_forward_if_available=True
         ),
     }

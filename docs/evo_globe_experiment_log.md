@@ -120,3 +120,60 @@ Its calibration gain did not reproduce on held-out scenarios: routing outcomes
 were identical and energy was marginally worse.  This rejects cost-to-go
 fine-tuning as the isolated primary improvement while retaining the result as
 evidence that a training-only objective can preserve deployment cost.
+
+## Candidate 3: compositional disruption curriculum
+
+Implementation: predictive-prior-only fine-tuning on combined mobility,
+link-break, and stochastic-loss conditions.
+
+The historical training rotations (0/90/180 degrees) are retained, but each
+uses a different break speed, velocity-direction offset, and link-loss rate.
+Calibration uses disjoint 135/270-degree rotations; the 45/225-degree
+evaluation rotations remain untouched.  The normal Phase-8 branch, switch
+thresholds, inference graph, and all learned neural layers are frozen.  Only
+the four predictive-risk strengths and break penalty can change.
+
+### Seed-42 calibration gate
+
+Each scenario used 50 paired episodes.  Three link-loss severity scales were
+trained independently from the exact seed-42 checkpoint.
+
+| Link-loss scale | Composite PDR | Composite deadline | Composite energy/delivered | Generic PDR | Hole PDR |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| Exact | 0.39726 | 0.290 | 7.06363 | 0.964 | 0.84615 |
+| 0.5 | 0.39726 | 0.290 | 7.06363 | 0.964 | 0.84615 |
+| 1.0 | 0.35616 | 0.260 | 7.28592 | 0.964 | 0.84615 |
+| 1.5 | 0.35616 | 0.260 | 7.28592 | 0.964 | 0.84615 |
+
+Scale 0.5 was frozen because it was the only non-regressing candidate.  It
+changed both permitted tensors and retained the exact 37,776 parameters.  The
+predictive strengths changed from `[0.0961, 0.1779, 0.2512, 1.5290]` to
+`[0.0622, 0.1182, 0.1903, 1.6679]`; break penalty changed from 8.8902 to 9.3003.
+
+### Seed-42 held-out gate
+
+The frozen candidate and exact policy used all 14 scenarios with 50 paired
+episodes per scenario.
+
+| Method | Connected-pair PDR | Deadline ratio | Energy/delivered | Median CPU P95 latency |
+| --- | ---: | ---: | ---: | ---: |
+| SwitchGLOBE Exact | 0.91938 | 0.84714 | 2.023742 | 0.5810 ms |
+| Composite curriculum 0.5 | 0.91938 | 0.84714 | 2.024798 | 0.5811 ms |
+
+PDR and deadline were identical in every scenario.  The only metric change was
+in `ood_link_loss_30`, where energy per delivered packet increased by 0.016785;
+the aggregate increase was 0.001056 (0.052%).  The latency ratio was 1.0002,
+consistent with the unchanged inference graph.
+
+Reproducible outputs are written under
+`artifacts/evo_globe/candidate3_gate/seed_42` by
+`python -m implementations.lite_globe.run_evo_globe_candidate3`.
+
+### Gate decision
+
+Candidate 3 does **not** advance to a five-seed full run.  Stronger curricula
+already regressed on calibration, while the non-regressing setting produced no
+held-out delivery gain and increased energy.  Together with Candidates 1 and
+2, this indicates that the current Phase-12 switch/risk mechanism is more
+responsible for SwitchGLOBE's observed performance than an added Evo-style
+fusion, cost-to-go loss, or compositional predictive-prior retraining.
