@@ -90,6 +90,9 @@ def _config(raw: dict, *, smoke: bool, seeds: list[int] | None) -> LatencyOptimi
         action_coefficient=float(training["action_coefficient"]),
         switch_coefficient=float(training["switch_coefficient"]),
         hidden_dim=int(training["hidden_dim"]),
+        include_density_training_scenarios=bool(
+            training.get("include_density_training_scenarios", False)
+        ),
     )
 
 

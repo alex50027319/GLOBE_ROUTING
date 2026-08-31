@@ -56,6 +56,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Defaults to <output-dir>/checkpoints.",
     )
+    parser.add_argument(
+        "--pretrained-fast-checkpoint-dir",
+        type=Path,
+        help="Optional verified full FastSwitchGLOBE checkpoints to evaluate without retraining.",
+    )
     parser.add_argument("--seed", action="append", type=int)
     parser.add_argument("--device", choices=("auto", "cpu", "cuda", "mps"))
     parser.add_argument("--smoke", action="store_true")
@@ -133,16 +138,21 @@ def main() -> int:
         config,
         switchglobe_checkpoint_dir=args.switchglobe_checkpoint_dir,
         fast_checkpoint_dir=fast_checkpoint_dir,
+        pretrained_fast_checkpoint_dir=args.pretrained_fast_checkpoint_dir,
         device=device,
         resume=args.resume,
     )
 
     checkpoint_paths: dict[str, Path] = {}
+    effective_fast_paths = {
+        int(row["training_seed"]): Path(str(row["path"]))
+        for row in rows["fast_checkpoint_paths"]
+    }
     for seed in config.training_seeds:
         checkpoint_paths[f"switchglobe_exact_seed_{seed}"] = _switchglobe_path(
             args.switchglobe_checkpoint_dir, seed
         )
-        fast_path = checkpoint_path(fast_checkpoint_dir, seed)
+        fast_path = effective_fast_paths[seed]
         checkpoint_paths[f"fast_switchglobe_seed_{seed}"] = fast_path
         bundled_checkpoint = output_dir / "checkpoints" / f"seed_{seed}" / fast_path.name
         bundled_checkpoint.parent.mkdir(parents=True, exist_ok=True)

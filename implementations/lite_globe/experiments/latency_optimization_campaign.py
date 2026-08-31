@@ -21,7 +21,7 @@ from ..models import FastSwitchGlobePolicy
 from ..models.policy_adapter import StudentPolicyAdapter
 from ..models.tensor_observation import observation_to_tensors
 from ..provenance import config_sha256 as _shared_config_sha256
-from ..scenarios import phase9_evaluation_scenarios
+from ..scenarios import phase9_density_training_scenarios, phase9_evaluation_scenarios
 from .external_comparison_campaign import load_switchglobe, training_scenarios
 
 
@@ -49,6 +49,7 @@ class LatencyOptimizationConfig:
     enable_freshness_cache: bool = False
     freshness_cache_ttl_ms: float = 5.0
     freshness_cache_capacity: int = 128
+    include_density_training_scenarios: bool = False
 
 
 class _ArrayDataset(Dataset[dict[str, torch.Tensor]]):
@@ -319,8 +320,11 @@ def train_or_load_fast(
                 f"expected={expected_hash!r}); train to a new output "
                 "directory instead of overwriting it"
             )
+    kd_scenarios = training_scenarios(seed)
+    if config.include_density_training_scenarios:
+        kd_scenarios = kd_scenarios + phase9_density_training_scenarios(seed)
     arrays = collect_teacher_data(
-        teacher, training_scenarios(seed), seed=seed,
+        teacher, kd_scenarios, seed=seed,
         episodes_per_scenario=config.dataset_episodes_per_scenario,
     )
     model, training = train_fast_policy(

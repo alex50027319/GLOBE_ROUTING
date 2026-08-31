@@ -95,6 +95,29 @@ def test_fast_chunk_writer_enforces_expected_cardinality(tmp_path) -> None:
     assert manifest["seed_summary_rows"] == 14
 
 
+def test_fast_chunk_allows_undefined_delivery_metrics_when_no_packet_delivered(tmp_path) -> None:
+    seed = 42
+    summaries = [_summary(FAST_METHOD, scenario, seed) for scenario in SCENARIOS]
+    summaries[0]["p95_success_delay"] = None
+    summaries[0]["energy_per_delivered_packet"] = None
+    episodes = [
+        _episode(FAST_METHOD, scenario, seed, 1_100_000 + index * 10_000)
+        for index, scenario in enumerate(SCENARIOS)
+    ]
+    manifest = write_fast_external_chunk(
+        tmp_path,
+        episode_rows=episodes,
+        summary_rows=summaries,
+        training_rows=[{"method": FAST_METHOD, "training_seed": seed}],
+        deployment_rows=[{"method": FAST_METHOD, "training_seed": seed}],
+        metadata={
+            "mode": "full",
+            "config": {"training_seeds": [seed], "evaluation_episodes": 1},
+        },
+    )
+    assert manifest["undefined_delivery_metric_values"] == 2
+
+
 def test_generalized_report_accepts_exact_and_fast_as_proposed(tmp_path) -> None:
     methods = (*COMPARISON_METHODS, FAST_METHOD)
     seed = 42

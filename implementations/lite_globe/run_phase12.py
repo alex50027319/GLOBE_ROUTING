@@ -81,6 +81,9 @@ def _config(raw: dict, smoke: bool) -> Phase12Config:
             onward_gates=tuple(
                 float(value) for value in calibration["onward_gates"][:2]
             ),
+            include_link_loss_calibration=bool(
+                calibration.get("include_link_loss_calibration", False)
+            ),
         )
     return Phase12Config(
         training_seeds=tuple(
@@ -105,6 +108,9 @@ def _config(raw: dict, smoke: bool) -> Phase12Config:
         ),
         onward_gates=tuple(
             float(value) for value in calibration["onward_gates"]
+        ),
+        include_link_loss_calibration=bool(
+            calibration.get("include_link_loss_calibration", False)
         ),
     )
 

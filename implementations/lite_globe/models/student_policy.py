@@ -45,8 +45,8 @@ class LocalStudentPolicy(nn.Module):
         super().__init__()
         if max_nodes < 2:
             raise ValueError("max_nodes must be at least 2")
-        if hidden_dim not in {32, 64}:
-            raise ValueError("hidden_dim must be 32 or 64")
+        if hidden_dim not in {32, 48, 64}:
+            raise ValueError("hidden_dim must be 32, 48, or 64")
         self.max_nodes = max_nodes
         self.drop_action = max_nodes
         self.hidden_dim = hidden_dim

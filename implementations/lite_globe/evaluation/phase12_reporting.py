@@ -40,6 +40,8 @@ def aggregate_phase12(
                     "mean_success_delay",
                     "p95_success_delay",
                     "mean_path_stretch",
+                    "energy_per_delivered_packet",
+                    "energy_per_on_time_delivery",
                 }
                 and int(row["delivered"]) == 0
             ):
@@ -110,8 +112,14 @@ def paired_phase12_effects(
                     baseline_row = by_key.get((scenario, baseline, seed))
                     if baseline_row is None:
                         continue
-                    proposed = float(proposed_row[metric])
-                    base = float(baseline_row[metric])
+                    proposed_raw, base_raw = proposed_row[metric], baseline_row[metric]
+                    if (
+                        proposed_raw is None or proposed_raw == ""
+                        or base_raw is None or base_raw == ""
+                    ):
+                        continue
+                    proposed = float(proposed_raw)
+                    base = float(base_raw)
                     diff = (
                         base - proposed
                         if metric in lower_is_better

@@ -27,6 +27,7 @@ from ..scenarios import (
     phase9_evaluation_scenarios,
     phase9_hole_calibration_scenarios,
     phase9_predictive_calibration_scenarios,
+    phase9_predictive_link_loss_calibration_scenarios,
 )
 from ..utils import load_checkpoint, save_checkpoint
 
@@ -42,6 +43,7 @@ class Phase12Config:
     margin_gates: tuple[float, ...]
     lifetime_gates: tuple[float, ...]
     onward_gates: tuple[float, ...]
+    include_link_loss_calibration: bool = False
 
 
 PHASE12_METHODS = (
@@ -176,6 +178,8 @@ def _calibrate_switch(
     generic = phase9_curriculum(seed)
     holes = phase9_hole_calibration_scenarios(seed)
     predictive = phase9_predictive_calibration_scenarios(seed)
+    if config.include_link_loss_calibration:
+        predictive = predictive + phase9_predictive_link_loss_calibration_scenarios(seed)
     calibration_seed = seed + 1_000
 
     phase8_like = _risk_switch_policy(

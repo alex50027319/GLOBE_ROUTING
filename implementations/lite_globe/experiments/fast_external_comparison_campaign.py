@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +16,7 @@ from ..evaluation import (
     measure_policy_cost,
 )
 from ..models.policy_adapter import StudentPolicyAdapter
+from ..models import FastSwitchGlobePolicy
 from ..scenarios import phase9_evaluation_scenarios
 from .external_comparison_campaign import load_switchglobe
 from .latency_optimization_campaign import (
@@ -64,6 +65,7 @@ def run_fast_external_comparison(
     *,
     switchglobe_checkpoint_dir: Path,
     fast_checkpoint_dir: Path,
+    pretrained_fast_checkpoint_dir: Path | None = None,
     device: torch.device | str = "cpu",
     resume: bool = False,
 ) -> dict[str, list[dict[str, Any]]]:
@@ -79,6 +81,7 @@ def run_fast_external_comparison(
     summary_rows: list[dict[str, Any]] = []
     training_rows: list[dict[str, Any]] = []
     deployment_rows: list[dict[str, Any]] = []
+    fast_checkpoint_rows: list[dict[str, Any]] = []
     training_config = config.training_config()
 
     for seed in config.training_seeds:
@@ -91,14 +94,46 @@ def run_fast_external_comparison(
             hidden_dim=config.exact_hidden_dim,
             device=device,
         )
-        trained, training = train_or_load_fast(
-            teacher,
-            config=training_config,
-            seed=seed,
-            checkpoint_dir=fast_checkpoint_dir,
-            device=device,
-            resume=resume,
+        pretrained_path = (
+            checkpoint_path(pretrained_fast_checkpoint_dir, seed)
+            if pretrained_fast_checkpoint_dir is not None
+            else None
         )
+        if pretrained_path is not None and pretrained_path.is_file():
+            payload = torch.load(pretrained_path, map_location="cpu", weights_only=False)
+            if not payload.get("complete") or int(payload.get("training_seed", -1)) != seed:
+                raise ValueError(f"invalid pretrained FastSwitchGLOBE checkpoint: {pretrained_path}")
+            stored = dict(payload.get("config", {}))
+            expected = asdict(training_config)
+            stored.pop("training_seeds", None)
+            expected.pop("training_seeds", None)
+            # New opt-in training axes are resume-compatible with historical
+            # checkpoints when their explicit default leaves training unchanged.
+            if "include_density_training_scenarios" not in stored:
+                stored["include_density_training_scenarios"] = False
+            if stored != expected:
+                raise ValueError(
+                    f"pretrained FastSwitchGLOBE config mismatch for seed {seed}: "
+                    f"stored={stored}, expected={expected}"
+                )
+            model = FastSwitchGlobePolicy(max_nodes, hidden_dim=config.fast_hidden_dim)
+            model.load_state_dict(payload["model_state"])
+            trained = StudentPolicyAdapter(
+                model, device=device, force_forward_if_available=True,
+                enable_fast_failover=False,
+            )
+            training = {**dict(payload.get("training", {})), "resumed": 1, "pretrained": 1}
+            fast_path = pretrained_path
+        else:
+            trained, training = train_or_load_fast(
+                teacher,
+                config=training_config,
+                seed=seed,
+                checkpoint_dir=fast_checkpoint_dir,
+                device=device,
+                resume=resume,
+            )
+            fast_path = checkpoint_path(fast_checkpoint_dir, seed)
         policy = StudentPolicyAdapter(
             trained.model,
             device=device,
@@ -108,6 +143,7 @@ def run_fast_external_comparison(
             enable_freshness_cache=False,
         )
         training_rows.append({"method": FAST_METHOD, "training_seed": seed, **training})
+        fast_checkpoint_rows.append({"training_seed": seed, "path": str(fast_path)})
 
         cost_scenario = scenarios[0]
         cost_env = FanetRoutingEnv(cost_scenario.config)
@@ -126,7 +162,7 @@ def run_fast_external_comparison(
             device=device,
             warmup=2,
             repeats=10,
-            serialized_model_path=checkpoint_path(fast_checkpoint_dir, seed),
+            serialized_model_path=fast_path,
         )
         deployment_rows.append(
             {"method": FAST_METHOD, "training_seed": seed, **cost.to_dict()}
@@ -170,4 +206,5 @@ def run_fast_external_comparison(
         "seed_summaries": summary_rows,
         "training": training_rows,
         "deployment_costs": deployment_rows,
+        "fast_checkpoint_paths": fast_checkpoint_rows,
     }

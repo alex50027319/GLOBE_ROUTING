@@ -260,3 +260,42 @@ def phase9_evaluation_scenarios(seed: int) -> list[EvaluationScenario]:
             "ood_node_count",
         ),
     ]
+
+
+def phase9_density_training_scenarios(seed: int) -> list[EvaluationScenario]:
+    """Expose KD training to higher node counts than the base curriculum.
+
+    The base curriculum (``phase9_curriculum``) trains entirely at
+    ``num_nodes=8``, so ``ood_nodes_10``/``ood_nodes_16``/``ood_nodes_24``
+    evaluate a density regime the student never saw. These two stages use
+    different node counts (12, 20) than every ``ood_nodes_*`` evaluation
+    scenario so those remain genuinely held-out, while still giving KD
+    training exposure to a wider density range.
+    """
+
+    medium = phase9_curriculum(seed)[1].config
+    connected = _connected_options()
+    return [
+        EvaluationScenario(
+            "train_nodes_12",
+            replace(
+                medium,
+                num_nodes=12,
+                area_size=12.0,
+                communication_radius=4.1,
+            ),
+            connected,
+            "training_node_count",
+        ),
+        EvaluationScenario(
+            "train_nodes_20",
+            replace(
+                medium,
+                num_nodes=20,
+                area_size=15.5,
+                communication_radius=4.3,
+            ),
+            connected,
+            "training_node_count",
+        ),
+    ]
