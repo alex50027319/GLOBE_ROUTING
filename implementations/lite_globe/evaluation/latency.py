@@ -33,9 +33,13 @@ class LatencyBenchmark:
     repeats: int
     cold_start_ms: float
     mean_ms: float
+    std_ms: float
+    coefficient_of_variation: float
     p50_ms: float
+    p90_ms: float
     p95_ms: float
     p99_ms: float
+    max_ms: float
     decisions_per_second: float
 
     def to_dict(self) -> dict[str, str | int | float]:
@@ -65,12 +69,19 @@ def benchmark_callable(
             synchronize(device)
             values.append((perf_counter_ns() - started) / 1_000_000.0)
     mean = float(np.mean(values))
+    standard_deviation = float(np.std(values, ddof=1)) if len(values) > 1 else 0.0
     return LatencyBenchmark(
         variant=variant, component=component, device=str(torch.device(device)),
         warmup=warmup, repeats=repeats, cold_start_ms=float(cold), mean_ms=mean,
+        std_ms=standard_deviation,
+        coefficient_of_variation=(
+            standard_deviation / mean if mean > 0 else float("inf")
+        ),
         p50_ms=float(np.percentile(values, 50)),
+        p90_ms=float(np.percentile(values, 90)),
         p95_ms=float(np.percentile(values, 95)),
         p99_ms=float(np.percentile(values, 99)),
+        max_ms=float(np.max(values)),
         decisions_per_second=1000.0 / mean if mean > 0 else float("inf"),
     )
 
@@ -92,7 +103,7 @@ def profile_student_policy(
     with torch.inference_mode():
         cached = model_call()
     probabilities = cached.output.probabilities if hasattr(cached, "output") else cached.probabilities
-    return [
+    results = [
         benchmark_callable(
             lambda: observation_to_tensors(observation, device=device),
             variant=variant, component="preprocess", device=device,
@@ -113,6 +124,41 @@ def profile_student_policy(
             warmup=warmup, repeats=repeats,
         ),
     ]
+    if isinstance(model, RiskSwitchLiteGlobePStudentPolicy):
+        normal_call = lambda: model.normal_policy(tensors)
+        predictive_call = lambda: model.predictive_policy(tensors)
+        with torch.inference_mode():
+            normal = normal_call()
+            predictive = predictive_call()
+        action_mask = tensors["action_mask"].unsqueeze(0)
+        normal_logits = normal.logits.unsqueeze(0)
+        predictive_logits = predictive.logits.unsqueeze(0)
+        switch_call = lambda: model._switch_mask(
+            tensors,
+            action_mask=action_mask,
+            normal_logits=normal_logits,
+            predictive_logits=predictive_logits,
+            unbatched=True,
+        )
+        branch_results = [
+            benchmark_callable(
+                normal_call, variant=variant, component="normal_branch",
+                device=device, warmup=warmup, repeats=repeats,
+            ),
+            benchmark_callable(
+                predictive_call, variant=variant,
+                component="predictive_branch", device=device,
+                warmup=warmup, repeats=repeats,
+            ),
+            benchmark_callable(
+                switch_call, variant=variant, component="switch_gate",
+                device=device, warmup=warmup, repeats=repeats,
+            ),
+        ]
+        # Keep the common four rows in their historic order and append
+        # independently timed branch diagnostics. They are not additive.
+        results.extend(branch_results)
+    return results
 
 
 def benchmark_resolver(

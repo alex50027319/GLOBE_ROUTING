@@ -33,6 +33,10 @@ def test_benchmark_resolver_measures_resolution_without_forward() -> None:
     assert result.component == "resolver_only"
     assert result.repeats == 5
     assert result.mean_ms >= 0.0
+    assert result.std_ms >= 0.0
+    assert result.p50_ms <= result.p90_ms <= result.p95_ms <= result.p99_ms
+    assert result.p99_ms <= result.max_ms
+    assert result.coefficient_of_variation >= 0.0
 
 
 def test_load_fast_round_trips_checkpoint_and_top2_flag(tmp_path) -> None:

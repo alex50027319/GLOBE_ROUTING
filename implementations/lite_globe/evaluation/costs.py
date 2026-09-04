@@ -23,6 +23,7 @@ class PolicyCost:
     input_bytes: int
     mean_latency_ms: float
     peak_python_memory_bytes: int
+    peak_device_memory_bytes: int
     latency_p50_ms: float
     latency_p95_ms: float
     latency_p99_ms: float
@@ -74,6 +75,9 @@ def measure_policy_cost(
     for _ in range(warmup):
         policy.act(observation)
     _synchronize(device)
+    resolved_device = torch.device(device)
+    if resolved_device.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(resolved_device)
 
     timings: list[float] = []
     for _ in range(repeats):
@@ -89,11 +93,16 @@ def measure_policy_cost(
         _synchronize(device)
     _, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
+    peak_device = (
+        int(torch.cuda.max_memory_allocated(resolved_device))
+        if resolved_device.type == "cuda" else 0
+    )
     return PolicyCost(
         parameter_count=parameter_count(model),
         input_bytes=observation_bytes(input_observation or observation),
         mean_latency_ms=float(mean(timings)),
         peak_python_memory_bytes=int(peak),
+        peak_device_memory_bytes=peak_device,
         latency_p50_ms=float(np.percentile(timings, 50)),
         latency_p95_ms=float(np.percentile(timings, 95)),
         latency_p99_ms=float(np.percentile(timings, 99)),
