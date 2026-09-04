@@ -27,6 +27,18 @@ class StudentPolicyOutput:
 
 
 @dataclass(frozen=True)
+class FastStudentPolicyOutput(StudentPolicyOutput):
+    """FastSwitchGLOBE output plus its auxiliary switch-head logit.
+
+    Keeping the auxiliary tensor in the normal ``forward`` return lets the
+    environment adapter collect diagnostics without a second network pass.
+    It remains a ``StudentPolicyOutput`` for existing callers.
+    """
+
+    switch_logit: Tensor
+
+
+@dataclass(frozen=True)
 class SwitchGlobeDecision:
     """One exact SwitchGLOBE pass with reusable routing diagnostics."""
 
@@ -869,8 +881,23 @@ class EarlyExitSwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
         risk = observation.get("candidate_risk_features")
         if risk is None:
             predictive = self.predictive_policy(observation)
-            return self._decide_from_branches(
+            decision = self._decide_from_branches(
                 observation, normal=normal, predictive=predictive
+            )
+            step_count = torch.ones_like(
+                decision.switch, dtype=decision.output.logits.dtype
+            ).sum()
+            return SwitchGlobeDecision(
+                output=decision.output,
+                diagnostics={
+                    **decision.diagnostics,
+                    "early_exit_steps": step_count * 0.0,
+                    "predictive_branch_steps": step_count,
+                },
+                switch=decision.switch,
+                normal_action=decision.normal_action,
+                predictive_action=decision.predictive_action,
+                normal_probabilities=decision.normal_probabilities,
             )
 
         unbatched = observation["self_features"].ndim == 1
@@ -898,8 +925,23 @@ class EarlyExitSwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
         if not bool(torch.all(can_skip).item()):
             # normal_policy was already run above; do not recompute it.
             predictive = self.predictive_policy(observation)
-            return self._decide_from_branches(
+            decision = self._decide_from_branches(
                 observation, normal=normal, predictive=predictive
+            )
+            step_count = torch.ones_like(
+                decision.switch, dtype=decision.output.logits.dtype
+            ).sum()
+            return SwitchGlobeDecision(
+                output=decision.output,
+                diagnostics={
+                    **decision.diagnostics,
+                    "early_exit_steps": step_count * 0.0,
+                    "predictive_branch_steps": step_count,
+                },
+                switch=decision.switch,
+                normal_action=decision.normal_action,
+                predictive_action=decision.predictive_action,
+                normal_probabilities=decision.normal_probabilities,
             )
 
         valid_logits = masked_logits(normal_logits, action_mask)
@@ -912,9 +954,15 @@ class EarlyExitSwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
         output = StudentPolicyOutput(combined, valid_logits, probabilities)
         switch = torch.zeros_like(can_skip)
         zero = switch.to(normal_logits.dtype).sum() * 0.0
+        skipped = can_skip.to(normal_logits.dtype).sum()
         return SwitchGlobeDecision(
             output=output,
-            diagnostics={"switch_steps": zero, "branch_disagreement_steps": zero},
+            diagnostics={
+                "switch_steps": zero,
+                "branch_disagreement_steps": zero,
+                "early_exit_steps": skipped,
+                "predictive_branch_steps": zero,
+            },
             switch=switch,
             normal_action=normal_action,
             predictive_action=normal_action,
@@ -945,7 +993,7 @@ class FastSwitchGlobePolicy(LocalStudentPolicy):
             nn.Linear(hidden_dim, 1),
         )
 
-    def forward_with_auxiliary(
+    def _forward_with_auxiliary(
         self, observation: Mapping[str, Tensor]
     ) -> tuple[StudentPolicyOutput, Tensor]:
         tensors, unbatched = self._validate_and_batch(observation)
@@ -1003,8 +1051,22 @@ class FastSwitchGlobePolicy(LocalStudentPolicy):
 
     def forward(
         self, observation: Mapping[str, Tensor]
-    ) -> StudentPolicyOutput:
-        return self.forward_with_auxiliary(observation)[0]
+    ) -> FastStudentPolicyOutput:
+        output, switch_logit = self._forward_with_auxiliary(observation)
+        return FastStudentPolicyOutput(
+            output.logits,
+            output.masked_logits,
+            output.probabilities,
+            switch_logit,
+        )
+
+    def forward_with_auxiliary(
+        self, observation: Mapping[str, Tensor]
+    ) -> tuple[StudentPolicyOutput, Tensor]:
+        """Return routing and auxiliary outputs from exactly one module call."""
+
+        output = self(observation)
+        return output, output.switch_logit
 
     def diagnostics(self, observation: Mapping[str, Tensor]) -> dict[str, Tensor]:
         """Report the trained switch-head's activation rate for one decision.

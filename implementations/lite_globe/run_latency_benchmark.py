@@ -30,7 +30,7 @@ from .experiments.external_comparison_campaign import (
 )
 from .experiments.latency_optimization_campaign import checkpoint_path as fast_checkpoint_path
 from .models.policy_adapter import StudentPolicyAdapter
-from .models.student_policy import FastSwitchGlobePolicy
+from .models.student_policy import EarlyExitSwitchGlobePolicy, FastSwitchGlobePolicy
 from .provenance import checkpoint_sha256_map, config_sha256, git_provenance
 from .scenarios import phase9_evaluation_scenarios
 
@@ -58,6 +58,11 @@ def parse_args() -> argparse.Namespace:
         help="Also benchmark FastSwitchGLOBE and FastSwitchGLOBE + Top-2 "
         "(requires checkpoints from run_fast_switchglobe.py) in the same "
         "session as Legacy/Exact, per the master prompt's same-session rule.",
+    )
+    parser.add_argument(
+        "--include-early-exit", action="store_true",
+        help="Benchmark the calibrated conditional predictive-branch skip "
+        "using the same exact checkpoints.",
     )
     parser.add_argument("--seed", action="append", type=int)
     parser.add_argument("--warmup", type=int, default=50)
@@ -95,6 +100,30 @@ def _compiled(
         policy.model.predictive_policy, mode=mode, fullgraph=False
     )
     return policy
+
+
+def _load_early_exit(
+    root: Path, *, seed: int, max_nodes: int, device: torch.device,
+) -> StudentPolicyAdapter:
+    """Wrap an Exact checkpoint with the calibrated conditional exit."""
+
+    exact = _load(
+        root, seed=seed, max_nodes=max_nodes, device=device, buffered=False
+    )
+    model = exact.model
+    early = EarlyExitSwitchGlobePolicy(
+        model.normal_policy,
+        model.predictive_policy,
+        switch_threshold=float(model.switch_threshold.item()),
+        margin_gate=float(model.margin_gate.item()),
+        lifetime_gate=float(model.lifetime_gate.item()),
+        onward_gate=float(model.onward_gate.item()),
+    )
+    return StudentPolicyAdapter(
+        early,
+        device=device,
+        force_forward_if_available=True,
+    )
 
 
 def _load_fast(
@@ -176,6 +205,12 @@ def main() -> int:
                 device=torch.device("cpu"), buffered=False,
             ))
         ]
+        if args.include_early_exit:
+            specs.append(("early_exit_cpu", _load_early_exit(
+                args.checkpoint_dir, seed=seed,
+                max_nodes=scenario.config.max_nodes,
+                device=torch.device("cpu"),
+            )))
         if torch.cuda.is_available():
             specs.extend([
                 ("exact_eager_cuda", _load(
@@ -194,6 +229,12 @@ def main() -> int:
                 max_nodes=scenario.config.max_nodes,
                 device=torch.device("cuda"), buffered=False,
             )))
+            if args.include_early_exit:
+                specs.append(("early_exit_cuda", _load_early_exit(
+                    args.checkpoint_dir, seed=seed,
+                    max_nodes=scenario.config.max_nodes,
+                    device=torch.device("cuda"),
+                )))
         if args.include_compile:
             specs.append(("exact_compiled_cpu", _compiled(
                 args.checkpoint_dir, seed=seed,
@@ -280,6 +321,7 @@ def main() -> int:
         "fast_checkpoint_dir": str(args.fast_checkpoint_dir),
         "seeds": list(seeds), "warmup": warmup, "repeats": repeats,
         "include_compile": args.include_compile, "include_fast": args.include_fast,
+        "include_early_exit": args.include_early_exit,
         "smoke": args.smoke,
     }
     checkpoint_paths: dict[str, Path] = {}
@@ -300,16 +342,17 @@ def main() -> int:
             "switchglobe_unified_latency" if args.include_fast
             else "switchglobe_exact_latency"
         ),
-        "variants": (
-            ["legacy_repeated", "exact", "fast", "fast_top2"] if args.include_fast
-            else ["legacy_repeated", "exact"]
-        ),
+        "variants": [
+            "legacy_repeated", "exact",
+            *(["early_exit"] if args.include_early_exit else []),
+            *(["fast", "fast_top2"] if args.include_fast else []),
+        ],
         "training_seeds": list(seeds),
         "warmup": warmup, "repeats": repeats,
         "runtime_rows": len(rows), "deployment_cost_rows": len(cost_rows),
         "torch": torch.__version__, "python": sys.version,
         "platform": platform.platform(), "cuda_available": torch.cuda.is_available(),
-        "candidate_3_executed": False,
+        "early_exit_executed": args.include_early_exit,
         "fast_checkpoint_dir": str(args.fast_checkpoint_dir) if args.include_fast else None,
         "config_sha256": config_sha256(effective_config),
         "checkpoint_sha256": checkpoint_sha256_map(checkpoint_paths),

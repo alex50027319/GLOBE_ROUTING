@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import torch
+
 from implementations.lite_globe.env.fanet_env import FanetRoutingEnv
 from implementations.lite_globe.evaluation.evaluator import run_episode
 from implementations.lite_globe.evaluation.gated_switchglobe_calibration import (
@@ -111,6 +113,27 @@ def test_gate_outcome_divergence_bounded_by_switch_and_disagreement() -> None:
     for margin in margins:
         divergence = diagnostics[f"gate_outcome_divergence_steps__{margin:.4f}"]
         assert 0.0 <= divergence <= upper_bound
+
+
+def test_gate_never_counts_drop_as_early_exit() -> None:
+    """The passive counter must mirror the deployed guard, including DROP."""
+
+    config = predictive_break_config(42)
+    model = _policy(max_nodes=config.max_nodes)
+    observation, _ = FanetRoutingEnv(config).reset(
+        seed=17, options=predictive_break_options(0.0)
+    )
+    with torch.no_grad():
+        # Make DROP the unique normal-branch choice while keeping risk benign.
+        for parameter in model.normal_policy.parameters():
+            parameter.zero_()
+        final_linear = model.normal_policy.drop_scorer[-1]
+        final_linear.bias.fill_(100.0)
+    gated = GateCalibrationAdapter(model, gate_margins=(1_000.0,))
+    gated.act_with_metadata(observation)
+    diagnostics = gated.episode_diagnostics()
+
+    assert diagnostics["gate_skip_steps__1000.0000"] == 0.0
 
 
 def test_aggregate_gate_calibration_weights_by_exposure() -> None:

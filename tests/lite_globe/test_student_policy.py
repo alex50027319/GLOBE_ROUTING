@@ -299,6 +299,28 @@ def test_fast_switchglobe_adapter_populates_switch_steps_diagnostic() -> None:
     assert diagnostics["switch_steps"] in (0.0, 1.0)
 
 
+def test_fast_switchglobe_adapter_uses_one_forward_pass() -> None:
+    """Metadata collection must not double FastSwitchGLOBE inference."""
+
+    torch.manual_seed(13)
+    model = FastSwitchGlobePolicy(max_nodes=4, hidden_dim=32)
+    adapter = StudentPolicyAdapter(model)
+    observation = _synthetic_fast_observation(4, [0, 1, 2])
+    forwards = 0
+
+    def count_forward(*_args) -> None:
+        nonlocal forwards
+        forwards += 1
+
+    hook = model.register_forward_hook(count_forward)
+    try:
+        adapter.act_with_metadata(observation)
+    finally:
+        hook.remove()
+
+    assert forwards == 1
+
+
 def test_freshness_cache_requires_deterministic_fast_policy() -> None:
     with pytest.raises(ValueError, match="deterministic"):
         StudentPolicyAdapter(

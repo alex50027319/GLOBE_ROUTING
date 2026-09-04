@@ -280,6 +280,17 @@ class StudentPolicyAdapter:
             switch_decision = self.model.decide(tensors)
             diagnostics = switch_decision.diagnostics
             probabilities = switch_decision.output.probabilities
+        elif isinstance(self.model, FastSwitchGlobePolicy):
+            # FastSwitchGLOBE exposes the distillation switch head alongside
+            # the routing output. Consume both from the same forward pass;
+            # calling ``diagnostics`` and then ``model`` would execute the
+            # complete network twice and silently regress deployment latency.
+            output = self.model(tensors)
+            switch_logit = output.switch_logit
+            diagnostics = {
+                "switch_steps": (switch_logit >= 0).to(switch_logit.dtype).sum()
+            }
+            probabilities = output.probabilities
         else:
             diagnostic_fn = getattr(self.model, "diagnostics", None)
             diagnostics = diagnostic_fn(tensors) if diagnostic_fn is not None else {}

@@ -110,6 +110,9 @@ class GateCalibrationAdapter(StudentPolicyAdapter):
         )
         switch = bool(switch_decision.switch.reshape(()).item())
         disagreement = normal_action != predictive_action
+        candidate_mask = tensors["action_mask"][:max_nodes].to(torch.bool)
+        has_candidate = bool(torch.any(candidate_mask).item())
+        normal_is_drop = normal_action == self.model.drop_action
         normal_index = min(normal_action, max_nodes - 1)
         normal_risk = risk[normal_index].unsqueeze(0)
         normal_danger = float(
@@ -124,7 +127,12 @@ class GateCalibrationAdapter(StudentPolicyAdapter):
             # offset-from-threshold margin would silently mean a different
             # risk tolerance per seed. margin=0.0 is the threshold-agnostic
             # "normal branch clears every safety gate" rule.
-            would_skip = normal_danger <= margin
+            # Mirror the deployable EarlyExitSwitchGlobePolicy guard exactly.
+            # A low danger value attached to the clamped DROP index is not a
+            # valid early exit, nor is an observation with no candidate.
+            would_skip = (
+                has_candidate and not normal_is_drop and normal_danger <= margin
+            )
             key = margin_key(margin)
             self._episode_diagnostics[f"gate_skip_steps__{key}"] = (
                 self._episode_diagnostics.get(f"gate_skip_steps__{key}", 0.0)
