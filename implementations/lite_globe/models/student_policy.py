@@ -627,6 +627,24 @@ class RiskSwitchLiteGlobePStudentPolicy(nn.Module):
 
         normal = self.normal_policy(observation)
         predictive = self.predictive_policy(observation)
+        return self._decide_from_branches(
+            observation, normal=normal, predictive=predictive
+        )
+
+    def _decide_from_branches(
+        self,
+        observation: Mapping[str, Tensor],
+        *,
+        normal: StudentPolicyOutput,
+        predictive: StudentPolicyOutput,
+    ) -> SwitchGlobeDecision:
+        """Combine already-computed branch outputs (no repeated forward pass).
+
+        Split out of ``decide()`` so a subclass that conditionally skips the
+        predictive branch (see ``EarlyExitSwitchGlobePolicy``) can reuse this
+        exact combination logic without calling ``normal_policy`` twice.
+        """
+
         unbatched = observation["self_features"].ndim == 1
         action_mask = observation["action_mask"]
         normal_logits = normal.logits
@@ -819,6 +837,89 @@ class SwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
     """
 
     pass
+
+
+class EarlyExitSwitchGlobePolicy(RiskSwitchLiteGlobePStudentPolicy):
+    """SwitchGLOBE Exact with a calibrated, threshold-agnostic early exit.
+
+    Loads the same ``normal_policy``/``predictive_policy`` weights and switch
+    parameters as Exact and produces identical actions; the only difference
+    is that ``predictive_policy`` is not evaluated when the normal branch's
+    own chosen candidate is not DROP, a candidate exists, and its danger
+    score (from ``candidate_risk_features`` alone, no predictive network) is
+    exactly zero -- i.e. margin, lifetime, and onward all clear their
+    calibrated gates.
+
+    This is provably consistent with ``decide()``'s switch condition for
+    every term except ``safer_predictive``, whose trigger depends on
+    ``predictive_action`` and so cannot be ruled out analytically without
+    running the predictive network. It was instead validated empirically: a
+    read-only replay of the real 5-seed SwitchGLOBE Exact checkpoints over
+    the full 14-scenario x 200-episode evaluation set found zero cases where
+    skipping would have changed the routing decision (see
+    ``artifacts/gated_switchglobe/calibration``). That is evidence, not
+    proof -- re-verify before relying on this for a new checkpoint or
+    scenario family.
+    """
+
+    def decide(
+        self, observation: Mapping[str, Tensor]
+    ) -> SwitchGlobeDecision:
+        normal = self.normal_policy(observation)
+        risk = observation.get("candidate_risk_features")
+        if risk is None:
+            predictive = self.predictive_policy(observation)
+            return self._decide_from_branches(
+                observation, normal=normal, predictive=predictive
+            )
+
+        unbatched = observation["self_features"].ndim == 1
+        action_mask = observation["action_mask"]
+        normal_logits = normal.logits
+        risk_tensor = risk
+        if unbatched:
+            action_mask = action_mask.unsqueeze(0)
+            normal_logits = normal_logits.unsqueeze(0)
+            risk_tensor = risk_tensor.unsqueeze(0)
+
+        normal_masked = masked_logits(normal_logits, action_mask)
+        normal_action = torch.argmax(normal_masked, dim=-1)
+        normal_is_drop = normal_action == self.drop_action
+        candidate_mask = action_mask[:, : self.max_nodes].to(torch.bool)
+        has_candidate = torch.any(candidate_mask, dim=-1)
+        batch = torch.arange(normal_action.shape[0], device=normal_action.device)
+        normal_candidate = normal_action.clamp(max=self.max_nodes - 1)
+        risk_tensor = risk_tensor.to(
+            device=normal_logits.device, dtype=normal_logits.dtype
+        )
+        normal_risk = risk_tensor[batch, normal_candidate]
+        normal_danger = self._danger_score(normal_risk)
+        can_skip = has_candidate & (~normal_is_drop) & (normal_danger <= 0.0)
+        if not bool(torch.all(can_skip).item()):
+            # normal_policy was already run above; do not recompute it.
+            predictive = self.predictive_policy(observation)
+            return self._decide_from_branches(
+                observation, normal=normal, predictive=predictive
+            )
+
+        valid_logits = masked_logits(normal_logits, action_mask)
+        probabilities = masked_softmax(normal_logits, action_mask)
+        combined = normal_logits
+        if unbatched:
+            combined = combined.squeeze(0)
+            valid_logits = valid_logits.squeeze(0)
+            probabilities = probabilities.squeeze(0)
+        output = StudentPolicyOutput(combined, valid_logits, probabilities)
+        switch = torch.zeros_like(can_skip)
+        zero = switch.to(normal_logits.dtype).sum() * 0.0
+        return SwitchGlobeDecision(
+            output=output,
+            diagnostics={"switch_steps": zero, "branch_disagreement_steps": zero},
+            switch=switch,
+            normal_action=normal_action,
+            predictive_action=normal_action,
+            normal_probabilities=normal.probabilities,
+        )
 
 
 class FastSwitchGlobePolicy(LocalStudentPolicy):
