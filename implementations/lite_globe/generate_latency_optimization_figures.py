@@ -25,6 +25,7 @@ ABL = ROOT / "artifacts/final_paper_simulation/full/ablation"
 ANALYSIS = ROOT / "artifacts/final_paper_simulation/full/analysis_8method_and_ablation/csv"
 A100_LEGACY = ROOT / "artifacts/final_paper_simulation/full/final_latency_verified"
 A100_CURRENT = ROOT / "artifacts/switchglobe_latency_optimization/globev2_colab_cli_20260905/results"
+A100_PROFILE = ROOT / "artifacts/switchglobe_latency_optimization/globev2_colab_cli_20260905/profile/results"
 VERIFIED = ROOT / "artifacts/switchglobe_latency_optimization/verified_candidate_1_2"
 
 COLORS = {
@@ -276,7 +277,7 @@ def main() -> int:
     index=["# Figure index","","> 모든 그림은 PNG(240 dpi)와 SVG를 함께 제공한다. Smoke, local full, legacy A100 evidence는 캡션에서 구분한다.",""]
     for name,caption in captions: index += [f"## {name}","",caption,"",f"- Data: `metrics/figure_{name[:2]}.csv`",""]
     (args.output_dir/"FIGURE_INDEX.md").write_text("\n".join(index),encoding="utf-8")
-    manifest={"complete":True,"figure_count":len(captions),"formats":["png","svg"],"sources":[str(LOCAL),str(GATE),str(EARLY),str(ABL),str(A100_CURRENT),str(A100_LEGACY),str(VERIFIED)]}
+    manifest={"complete":True,"figure_count":len(captions),"formats":["png","svg"],"sources":[str(LOCAL),str(GATE),str(EARLY),str(ABL),str(A100_CURRENT),str(A100_PROFILE),str(A100_LEGACY),str(VERIFIED)]}
     (args.output_dir/"figure_manifest.json").write_text(json.dumps(manifest,indent=2),encoding="utf-8")
     print(json.dumps(manifest,indent=2)); return 0
 

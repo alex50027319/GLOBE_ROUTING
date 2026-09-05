@@ -20,7 +20,7 @@ ROOT = CONTENT / "SwitchGLOBE_globev2"
 CHECKPOINT_ROOT = CONTENT / "switchglobe_checkpoints"
 OUTPUT = CONTENT / "switchglobe_globev2_a100_20260905"
 ARCHIVE = CONTENT / "switchglobe_globev2_a100_20260905.zip"
-SOURCE_COMMIT = "92d17df3f4451e0412858a9927a898a2696023b3"
+SOURCE_COMMIT = "29a8b4f768fc573cd273c7ea5dba463de17b80eb"
 
 
 def sha256(path: Path) -> str:

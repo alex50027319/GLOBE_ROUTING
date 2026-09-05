@@ -13,6 +13,11 @@ import sys
 import torch
 from torch.profiler import ProfilerActivity, profile
 
+
+ROOT = Path("/content/SwitchGLOBE_globev2")
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from implementations.lite_globe.env.fanet_env import FanetRoutingEnv
 from implementations.lite_globe.run_latency_benchmark import (
     _load,
@@ -22,7 +27,6 @@ from implementations.lite_globe.run_latency_benchmark import (
 from implementations.lite_globe.scenarios import phase9_evaluation_scenarios
 
 
-ROOT = Path("/content/SwitchGLOBE_globev2")
 CHECKPOINT_ROOT = Path("/content/switchglobe_checkpoints")
 OUTPUT = Path("/content/switchglobe_globev2_a100_profile_20260905")
 ARCHIVE = Path("/content/switchglobe_globev2_a100_profile_20260905.zip")
