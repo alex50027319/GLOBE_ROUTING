@@ -1,0 +1,5 @@
+input_bytes,method
+2001.0,Exact
+2001.0,Early Exit
+2001.0,Fast
+2001.0,Fast + Top-2

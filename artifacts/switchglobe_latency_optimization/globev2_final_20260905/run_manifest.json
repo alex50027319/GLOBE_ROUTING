@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "date": "2026-09-05",
+  "branch": "refactor/globev2",
+  "benchmark_source_commit": "92d17df3f4451e0412858a9927a898a2696023b3",
+  "extended_measurement_commit": "29a8b4f768fc573cd273c7ea5dba463de17b80eb",
+  "training_seeds": [42, 77, 123, 314, 2718],
+  "routing_validation": {
+    "scenarios": 14,
+    "episodes_per_seed_scenario": 200,
+    "episodes": 14000,
+    "decision_steps": 43467
+  },
+  "local_latency": {
+    "warmup": 50,
+    "repeats": 500,
+    "batch_size": 1
+  },
+  "colab_a100_latency": {
+    "backend": "google-colab-cli",
+    "cli_version": "0.6.0",
+    "verified_gpu": "NVIDIA A100-SXM4-40GB",
+    "warmup": 50,
+    "repeats": 2000,
+    "batch_size": 1,
+    "torch_num_threads": 1,
+    "result_zip_sha256": "07bbd3abb9991ed6293d8326926ea2f154453db47cc76c1923da709688f12b41",
+    "extended_run_status": "backend_session_reclaimed_before_result",
+    "extended_failure_record": "../globev2_colab_cli_20260905/confirmatory_failure_20260905.md"
+  },
+  "operator_profile": {
+    "status": "complete",
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "profiled_calls": 30,
+    "result_zip_sha256": "8d4212add8cdaa537da668b37cbce6d9904bc58637d5e21120cdff8e44cf9252"
+  },
+  "figures": {
+    "count": 20,
+    "formats": ["png", "svg"],
+    "source_csv_per_figure": true
+  },
+  "statistics": {
+    "primary_unit": "training_seed",
+    "paired": true,
+    "t_ci": 0.95,
+    "bootstrap_resamples": 10000,
+    "exact_sign_flip": true,
+    "holm_correction": true
+  }
+}

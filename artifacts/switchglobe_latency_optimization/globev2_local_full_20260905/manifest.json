@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "switchglobe_unified_latency",
+  "variants": [
+    "legacy_repeated",
+    "exact",
+    "early_exit",
+    "fast",
+    "fast_top2"
+  ],
+  "training_seeds": [
+    42,
+    77,
+    123,
+    314,
+    2718
+  ],
+  "warmup": 50,
+  "repeats": 500,
+  "runtime_rows": 110,
+  "deployment_cost_rows": 25,
+  "torch": "2.14.0",
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "cuda_available": false,
+  "early_exit_executed": true,
+  "fast_checkpoint_dir": "artifacts/final_paper_simulation/full/ablation/fast_training/checkpoints",
+  "config_sha256": "47b1799abcfc9aee17341e99b7784b3ff197ff100a3b21607c8f519bdd97dadd",
+  "checkpoint_sha256": {
+    "switchglobe_exact_seed_42": "4d5740be9e3a4c088812281a8a8a261cf45e577d10fc4a8e3baef63c50f684db",
+    "fast_switchglobe_seed_42": "1ba1b49aa42851fffd0a26c00e80191b1d7a0ad81c34aa2d72d31ba88fb95aa8",
+    "switchglobe_exact_seed_77": "6d230ff309aefeda2abadb8ecd12470a248cef812138a02aa355edf28cee22ad",
+    "fast_switchglobe_seed_77": "5c66228664f2f23efd6306017410f38c248226cdcdfd3e8b5167bb37d1057e4b",
+    "switchglobe_exact_seed_123": "6976ad2938264892a4476f326e71bda91901d396109a3199a43c69dea1846bda",
+    "fast_switchglobe_seed_123": "8ea097e4b84adac3656001ba9aa38b8ebd325686674c09a6814a01b6dcf09fec",
+    "switchglobe_exact_seed_314": "0e0936d0ec043a3ecdce1be9918ca246ff36a72c83bbfbd18a28fa6c9c6f06aa",
+    "fast_switchglobe_seed_314": "5f6098b81c7948fecbde29902eef592130a96d3c61a87e8717ad95fe0137faaa",
+    "switchglobe_exact_seed_2718": "5c453f578f894e63da34d942420ece20a3c3de6a100e6383f84b1afc5e3cd7bd",
+    "fast_switchglobe_seed_2718": "08f88b244b3e5325616530a7bebd32b070a78d9cbb2f5c25ba640767753d9fb2"
+  },
+  "git_commit_hash": "2c60c864f59001182aa424bd52ffb248170dc876",
+  "dirty_files": []
+}
