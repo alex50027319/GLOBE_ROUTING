@@ -1,0 +1,6 @@
+phase,source,destination
+deployment,strict-local input,normal policy
+deployment,strict-local input,predictive policy
+deployment,normal policy,risk switch
+deployment,predictive policy,risk switch
+deployment,risk switch,masked next hop or DROP

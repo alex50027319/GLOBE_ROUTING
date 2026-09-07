@@ -1,0 +1,4 @@
+phase,source,destination
+training,global graph state,PPO graph teacher
+training,PPO graph teacher,policy distillation
+training,policy distillation,strict-local students

@@ -1,0 +1,8 @@
+x,stage,detail
+0.025,5 training seeds,"42, 77, 123, 314, 2718"
+0.225,14 scenarios,held-out + stress + OOD
+0.425,200 episodes,per seed and scenario
+0.625,"Seed-level
+inference",paired effects + t-CI
+0.825,"Acceptance
+gate",speed + reliability

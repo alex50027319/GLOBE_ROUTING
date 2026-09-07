@@ -1,0 +1,7 @@
+phase,source,destination
+training,global graph state,PPO graph teacher
+training,PPO graph teacher,masked distillation
+deployment,strict-local input,normal branch
+deployment,strict-local input,predictive branch
+deployment,normal/predictive logits,exact risk switch
+deployment,exact risk switch,masked next hop or DROP

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "switchglobe_confirmatory_model_selection",
+  "episode_rows": 28000,
+  "seed_summary_rows": 140,
+  "config": {
+    "training_seed": 123,
+    "evaluation_episodes_per_scenario": 200,
+    "evaluation_seed_formula": "1100000 + scenario_index*10000 + episode_index",
+    "scenario_count": 14,
+    "methods": [
+      "Historical Untrained Local",
+      "Historical PPO-only Local (No KD)",
+      "Historical KD-only Local",
+      "Historical KD+PPO Local",
+      "Privileged Global Teacher",
+      "Geo-Residual Student",
+      "Predictive Prior Only",
+      "Predictive Student (No Switch)",
+      "SwitchGLOBE Exact",
+      "FastSwitchGLOBE"
+    ],
+    "device": "cuda",
+    "deterministic": true,
+    "force_forward_if_available": true,
+    "phase7_interpretation": "historical matched-architecture KD audit; not a causal final-model retraining ablation"
+  },
+  "config_sha256": "b3cb4b6e849a764d59d8224e00dbdff813da318b6a3dea95e78565e59d02bb6e",
+  "checkpoint_sha256": {
+    "phase7_Historical Untrained Local": "1c53e2091e482bf4709abc5a984b019e9d679d86e2e0aad62bd47bdf06cc0f79",
+    "phase7_Historical PPO-only Local (No KD)": "06f5f76a694656b2096e16cf9a792827d7827910abab36d5b7d7064ca50c27b9",
+    "phase7_Historical KD-only Local": "6359eebea6509bb7efc211b0f6e070fab6a81e64f20fa183338a47aa7b4c9c78",
+    "phase7_Historical KD+PPO Local": "1b85096205b5c65bfd67b30dc5bf09381718d767372e2d5a0fd876f8f873acd3",
+    "phase7_Privileged Global Teacher": "cecda4a51431a903f244aa402ab361c0fb382f73696e7c334aa0b58ecb5c0a06",
+    "phase8_normal": "80ad6a2855904fa169392400c0781cf4cd9d15748ca2e9dc690c591c71fc09b5",
+    "phase11_predictive": "d2ae3fce0b6f918ad0edb1b2da23187c4975b1572117db3b777f9a8b88411c07",
+    "phase12_switch": "6976ad2938264892a4476f326e71bda91901d396109a3199a43c69dea1846bda",
+    "fast": "8ea097e4b84adac3656001ba9aa38b8ebd325686674c09a6814a01b6dcf09fec"
+  },
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "torch": "2.11.0+cu128",
+  "cuda_device": "NVIDIA A100-SXM4-40GB",
+  "git_commit_hash": null,
+  "dirty_files": []
+}

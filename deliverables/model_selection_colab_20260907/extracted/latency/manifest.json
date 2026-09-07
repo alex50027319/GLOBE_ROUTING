@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "switchglobe_model_selection_batch1_latency",
+  "config": {
+    "seeds": [
+      42,
+      77,
+      123,
+      314,
+      2718
+    ],
+    "methods": [
+      "Historical PPO-only Local (No KD)",
+      "Historical KD+PPO Local",
+      "Privileged Global Teacher",
+      "Geo-Residual Student",
+      "Predictive Prior Only",
+      "Predictive Student (No Switch)",
+      "SwitchGLOBE Exact",
+      "FastSwitchGLOBE"
+    ],
+    "devices": [
+      "cpu",
+      "cuda"
+    ],
+    "batch_size": 1,
+    "warmup": 50,
+    "repeats": 2000,
+    "order": "deterministic randomized block",
+    "torch_num_threads": 1
+  },
+  "config_sha256": "67316addfe2c9a1e95ec41a1476184436dc7bd9d8a23a42bea0abaf9d59e3de9",
+  "summary_rows": 80,
+  "raw_timing_rows": 160000,
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "torch": "2.11.0+cu128",
+  "cuda_device": "NVIDIA A100-SXM4-40GB",
+  "git_commit_hash": null,
+  "dirty_files": []
+}

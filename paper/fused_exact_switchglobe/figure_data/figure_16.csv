@@ -1,0 +1,6 @@
+base_method,ci95_high,ci95_low,component,count,effect_unit,enhanced_method,mean,metric,metric_label,standard_deviation
+Geo-Residual Student,13.742179850697612,4.199567722117928,Predictive/risk prior,5,percentage points,Predictive Student (No Switch),8.97087378640777,connected_pair_pdr,Connected-pair PDR,3.843286996112777
+Predictive Prior Only,2.9792022186345,-6.30347406329469,Geo-residual in predictive model,5,percentage points,Predictive Student (No Switch),-1.6621359223300947,connected_pair_pdr,Connected-pair PDR,3.738597834927715
+Predictive Student (No Switch),6.35873477673855,-3.0344629320783563,Risk switching,5,percentage points,SwitchGLOBE Exact,1.6621359223300967,connected_pair_pdr,Connected-pair PDR,3.78311033915884
+SwitchGLOBE Exact,0.040099489098474494,-3.8614587123994495,Fast distillation/compression,5,percentage points,FastSwitchGLOBE,-1.9106796116504874,connected_pair_pdr,Connected-pair PDR,1.5713525498417111
+FastSwitchGLOBE,0.0,0.0,Top-2 backup (normal routing),5,percentage points,FastSwitchGLOBE + Top-2,0.0,connected_pair_pdr,Connected-pair PDR,0.0

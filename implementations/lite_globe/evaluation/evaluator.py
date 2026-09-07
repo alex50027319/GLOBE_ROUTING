@@ -71,6 +71,8 @@ class EpisodeResult:
     freshness_cache_stale_evictions: float
     freshness_cache_state_evictions: float
     freshness_cache_capacity_evictions: float
+    action_sequence: tuple[int, ...]
+    node_trajectory: tuple[int, ...]
 
 
 @dataclass(frozen=True)
@@ -127,6 +129,7 @@ def run_episode(
     truncated = False
     decision_latencies: list[float] = []
     environment_step_latencies: list[float] = []
+    action_sequence: list[int] = []
     while not (terminated or truncated):
         local_observation_bytes += sum(
             int(value.nbytes) for value in observation.values()
@@ -146,6 +149,7 @@ def run_episode(
             policy_input_bytes += int(decision.input_bytes)
         else:
             action = policy.act(observation)
+        action_sequence.append(int(action))
         decision_latencies.append((perf_counter_ns() - started) / 1_000_000.0)
         environment_started = perf_counter_ns()
         observation, reward, terminated, truncated, info = env.step(action)
@@ -289,6 +293,8 @@ def run_episode(
         freshness_cache_capacity_evictions=float(
             diagnostics.get("freshness_cache_capacity_evictions", 0.0)
         ),
+        action_sequence=tuple(action_sequence),
+        node_trajectory=tuple(int(node) for node in info["path"]),
     )
 
 

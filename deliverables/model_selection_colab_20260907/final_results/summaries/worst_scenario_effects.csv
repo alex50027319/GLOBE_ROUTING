@@ -1,0 +1,46 @@
+baseline,ci95_high,ci95_low,count,definition,mean,metric,positive_means_variant_better,standard_deviation,variant
+SwitchGLOBE Exact,-0.5524361330367873,-1.0415638669632128,5,minimum direction-aligned scenario advantage per seed,-0.797,connected_pair_pdr,1,0.19699619285661338,Historical Untrained Local
+SwitchGLOBE Exact,-0.5844440767737356,-1.0335559232262643,5,minimum direction-aligned scenario advantage per seed,-0.8089999999999999,deadline_delivery_ratio,1,0.1808797943386712,Historical Untrained Local
+SwitchGLOBE Exact,-4.627640901196687,-6.092359098803312,5,minimum direction-aligned scenario advantage per seed,-5.359999999999999,p95_success_delay,1,0.5899152481501057,Historical Untrained Local
+SwitchGLOBE Exact,-0.9905308256498431,-1.7585895101247144,5,minimum direction-aligned scenario advantage per seed,-1.3745601678872787,mean_transmission_energy_proxy,1,0.3093356320595956,Historical Untrained Local
+SwitchGLOBE Exact,48.581771804517274,-365.4365566824994,5,minimum direction-aligned scenario advantage per seed,-158.42739243899103,energy_per_delivered_packet,1,166.74588012028224,Historical Untrained Local
+SwitchGLOBE Exact,-0.5591306766066437,-1.031694720218753,5,minimum direction-aligned scenario advantage per seed,-0.7954126984126983,connected_pair_pdr,1,0.19032516664964905,Historical PPO-only Local (No KD)
+SwitchGLOBE Exact,-0.5437411330285604,-1.0382588669714394,5,minimum direction-aligned scenario advantage per seed,-0.7909999999999999,deadline_delivery_ratio,1,0.19916701534139633,Historical PPO-only Local (No KD)
+SwitchGLOBE Exact,-2.7662253675482145,-3.813774632451781,5,minimum direction-aligned scenario advantage per seed,-3.289999999999998,p95_success_delay,1,0.42190046219458016,Historical PPO-only Local (No KD)
+SwitchGLOBE Exact,-0.9516004730122454,-1.294297254072272,5,minimum direction-aligned scenario advantage per seed,-1.1229488635422586,mean_transmission_energy_proxy,1,0.13802112718310194,Historical PPO-only Local (No KD)
+SwitchGLOBE Exact,2.607752396803125,-37.4877718903013,5,minimum direction-aligned scenario advantage per seed,-17.44000974674909,energy_per_delivered_packet,1,16.148472244138926,Historical PPO-only Local (No KD)
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,connected_pair_pdr,1,0.0,Historical KD-only Local
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,deadline_delivery_ratio,1,0.0,Historical KD-only Local
+SwitchGLOBE Exact,-0.2447999999999999,-1.3552000000000002,5,minimum direction-aligned scenario advantage per seed,-0.8,p95_success_delay,1,0.44721359549995804,Historical KD-only Local
+SwitchGLOBE Exact,-0.05661211469683568,-0.14727195008346533,5,minimum direction-aligned scenario advantage per seed,-0.1019420323901505,mean_transmission_energy_proxy,1,0.03651324833455418,Historical KD-only Local
+SwitchGLOBE Exact,-177.17002561432176,-177.17002561432176,5,minimum direction-aligned scenario advantage per seed,-177.17002561432176,energy_per_delivered_packet,1,0.0,Historical KD-only Local
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,connected_pair_pdr,1,0.0,Historical KD+PPO Local
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,deadline_delivery_ratio,1,0.0,Historical KD+PPO Local
+SwitchGLOBE Exact,-0.4034450393368718,-1.1565549606631191,5,minimum direction-aligned scenario advantage per seed,-0.7799999999999955,p95_success_delay,1,0.30331501776206915,Historical KD+PPO Local
+SwitchGLOBE Exact,-0.03132825568172185,-0.1356484371503601,5,minimum direction-aligned scenario advantage per seed,-0.08348834641604097,mean_transmission_energy_proxy,1,0.0420149526637228,Historical KD+PPO Local
+SwitchGLOBE Exact,-177.17002561432176,-177.17002561432176,5,minimum direction-aligned scenario advantage per seed,-177.17002561432176,energy_per_delivered_packet,1,0.0,Historical KD+PPO Local
+SwitchGLOBE Exact,-0.5495358007910441,-1.1288828038601189,5,minimum direction-aligned scenario advantage per seed,-0.8392093023255814,connected_pair_pdr,1,0.2333320031381899,Privileged Global Teacher
+SwitchGLOBE Exact,-0.5044698931510424,-1.1495301068489576,5,minimum direction-aligned scenario advantage per seed,-0.827,deadline_delivery_ratio,1,0.25979799845264395,Privileged Global Teacher
+SwitchGLOBE Exact,-0.7158400000000061,-1.604159999999987,5,minimum direction-aligned scenario advantage per seed,-1.1599999999999966,p95_success_delay,1,0.3577708763999587,Privileged Global Teacher
+SwitchGLOBE Exact,-0.24799628301075802,-0.38457920143641566,5,minimum direction-aligned scenario advantage per seed,-0.31628774222358685,mean_transmission_energy_proxy,1,0.055008769842413395,Privileged Global Teacher
+SwitchGLOBE Exact,36.092804044388444,-151.7810951123074,5,minimum direction-aligned scenario advantage per seed,-57.84414553395949,energy_per_delivered_packet,1,75.66621212397558,Privileged Global Teacher
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,connected_pair_pdr,1,0.0,Geo-Residual Student
+SwitchGLOBE Exact,-1.0,-1.0,5,minimum direction-aligned scenario advantage per seed,-1.0,deadline_delivery_ratio,1,0.0,Geo-Residual Student
+SwitchGLOBE Exact,0.0,0.0,5,minimum direction-aligned scenario advantage per seed,0.0,p95_success_delay,1,0.0,Geo-Residual Student
+SwitchGLOBE Exact,-0.0050631822868491445,-0.02737078013958325,5,minimum direction-aligned scenario advantage per seed,-0.016216981213216197,mean_transmission_energy_proxy,1,0.008984384944784186,Geo-Residual Student
+SwitchGLOBE Exact,-177.17002561432176,-177.17002561432176,5,minimum direction-aligned scenario advantage per seed,-177.17002561432176,energy_per_delivered_packet,1,0.0,Geo-Residual Student
+SwitchGLOBE Exact,-0.003600108237016953,-0.01039989176298306,5,minimum direction-aligned scenario advantage per seed,-0.007000000000000006,connected_pair_pdr,1,0.002738612787525833,Predictive Prior Only
+SwitchGLOBE Exact,-0.003600108237016953,-0.01039989176298306,5,minimum direction-aligned scenario advantage per seed,-0.007000000000000006,deadline_delivery_ratio,1,0.002738612787525833,Predictive Prior Only
+SwitchGLOBE Exact,0.07912541843812804,-1.259125418438129,5,minimum direction-aligned scenario advantage per seed,-0.5900000000000005,p95_success_delay,1,0.5389805191284751,Predictive Prior Only
+SwitchGLOBE Exact,-0.003638002352328324,-0.017709033727214902,5,minimum direction-aligned scenario advantage per seed,-0.010673518039771613,mean_transmission_energy_proxy,1,0.005667107829210864,Predictive Prior Only
+SwitchGLOBE Exact,0.0012338868988812663,-0.023276791069772033,5,minimum direction-aligned scenario advantage per seed,-0.011021452085445383,energy_per_delivered_packet,1,0.00987167545254237,Predictive Prior Only
+SwitchGLOBE Exact,0.34673654713096536,-0.7567365471309653,5,minimum direction-aligned scenario advantage per seed,-0.205,connected_pair_pdr,1,0.4444237842420228,Predictive Student (No Switch)
+SwitchGLOBE Exact,0.3450622210386046,-0.7570622210386045,5,minimum direction-aligned scenario advantage per seed,-0.20599999999999996,deadline_delivery_ratio,1,0.4438806145800918,Predictive Student (No Switch)
+SwitchGLOBE Exact,0.07780071632676111,-1.2378007163267635,5,minimum direction-aligned scenario advantage per seed,-0.5800000000000012,p95_success_delay,1,0.5298584716695592,Predictive Student (No Switch)
+SwitchGLOBE Exact,0.0007011233384427735,-0.026498262971866825,5,minimum direction-aligned scenario advantage per seed,-0.012898569816712025,mean_transmission_energy_proxy,1,0.010954552726248101,Predictive Student (No Switch)
+SwitchGLOBE Exact,62.91998171759862,-133.8007563814719,5,minimum direction-aligned scenario advantage per seed,-35.440387331936634,energy_per_delivered_packet,1,79.22927647216399,Predictive Student (No Switch)
+SwitchGLOBE Exact,-0.01740688369856265,-0.19459311630143739,5,minimum direction-aligned scenario advantage per seed,-0.10600000000000001,connected_pair_pdr,1,0.07136175446273729,FastSwitchGLOBE
+SwitchGLOBE Exact,-0.007911136694312454,-0.2740888633056876,5,minimum direction-aligned scenario advantage per seed,-0.14100000000000004,deadline_delivery_ratio,1,0.10720307831401113,FastSwitchGLOBE
+SwitchGLOBE Exact,-0.48960000000000026,-2.7104,5,minimum direction-aligned scenario advantage per seed,-1.6,p95_success_delay,1,0.8944271909999159,FastSwitchGLOBE
+SwitchGLOBE Exact,-0.028738587978366037,-1.0462513819843307,5,minimum direction-aligned scenario advantage per seed,-0.5374949849813484,mean_transmission_energy_proxy,1,0.4098032736622979,FastSwitchGLOBE
+SwitchGLOBE Exact,0.038399391531743654,-1.9685793042349062,5,minimum direction-aligned scenario advantage per seed,-0.9650899563515812,energy_per_delivered_packet,1,0.8083106615864731,FastSwitchGLOBE

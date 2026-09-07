@@ -1,0 +1,16 @@
+baseline,ci95_high,ci95_low,count,mean,metric,positive_means_variant_better,standard_deviation,variant
+Historical PPO-only Local (No KD),0.03355105957368526,-0.0046578556901900985,5,0.014446601941747583,connected_pair_pdr,1,0.01538864046767915,Historical KD-only Local
+Historical PPO-only Local (No KD),0.046461323112893346,0.01168153402996384,5,0.029071428571428592,deadline_delivery_ratio,1,0.014007559912200188,Historical KD-only Local
+Historical PPO-only Local (No KD),1.7551999999999999,0.6448,5,1.2,p95_success_delay,1,0.4472135954999579,Historical KD-only Local
+Historical PPO-only Local (No KD),0.48263341241941815,0.3828025350631401,5,0.4327179737412791,mean_transmission_energy_proxy,1,0.04020688545066324,Historical KD-only Local
+Historical PPO-only Local (No KD),0.7818227822228416,0.6420807742758989,5,0.7119517782493703,energy_per_delivered_packet,1,0.056281093134308256,Historical KD-only Local
+Historical PPO-only Local (No KD),0.03070471246455047,-0.005384324115035914,5,0.012660194174757278,connected_pair_pdr,1,0.01453485933617285,Historical KD+PPO Local
+Historical PPO-only Local (No KD),0.04267976685046781,0.01203451886381795,5,0.02735714285714288,deadline_delivery_ratio,1,0.012342373502429333,Historical KD+PPO Local
+Historical PPO-only Local (No KD),2.0799783525966102,0.7200216474033898,5,1.4,p95_success_delay,1,0.5477225575051661,Historical KD+PPO Local
+Historical PPO-only Local (No KD),0.500779527699153,0.3825495463906582,5,0.4416645370449056,mean_transmission_energy_proxy,1,0.047617124492853755,Historical KD+PPO Local
+Historical PPO-only Local (No KD),0.7871032340530079,0.6570816182854319,5,0.7220924261692199,energy_per_delivered_packet,1,0.052366205223461526,Historical KD+PPO Local
+Historical KD-only Local,0.00437457960462122,-0.00794739513860183,5,-0.0017864077669903055,connected_pair_pdr,1,0.004962675277896661,Historical KD+PPO Local
+Historical KD-only Local,0.00453564728780419,-0.007964218716375615,5,-0.0017142857142857127,deadline_delivery_ratio,1,0.005034320982526066,Historical KD+PPO Local
+Historical KD-only Local,1.238684090568446,-0.8386840905684461,5,0.2,p95_success_delay,1,0.8366600265340756,Historical KD+PPO Local
+Historical KD-only Local,0.03224453810780761,-0.014351411500554726,5,0.008946563303626443,mean_transmission_energy_proxy,1,0.018766518515931717,Historical KD+PPO Local
+Historical KD-only Local,0.04158860320998049,-0.02130730737028141,5,0.010140647919849543,energy_per_delivered_packet,1,0.025331327731306537,Historical KD+PPO Local

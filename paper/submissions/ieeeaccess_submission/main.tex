@@ -1,0 +1,96 @@
+% =============================================================================
+% IEEE Access 투고용 초안
+%
+% [TODO / needs-verification] IEEE Access의 공식 문서 클래스는
+% `\documentclass{ieeeaccess}`이며 관련 스타일 파일은 IEEE 저자센터/
+% Overleaf 공식 갤러리("IEEE Access LaTeX template")에서만 배포됩니다.
+% 이 자동화 세션은 바이너리 파일을 직접 내려받을 수 없어, 대신 어디서나
+% 컴파일되는 표준 IEEEtran(journal, twocolumn) 클래스를 사용하고 실제
+% IEEE Access 템플릿이 쓰는 매크로(\history, \doi, \tfootnote,
+% \IEEEmembership, \address, \markboth 등)와 동일한 이름의 명령을
+% 아래에서 안전한 형태(no-op/단순 텍스트)로 재정의했습니다.
+% ==> 최종 투고 시: Overleaf에서 공식 "IEEE Access" 템플릿을 새로 열고,
+%     아래 재정의 블록(=== IEEE ACCESS 호환 shim 시작/끝 ===)만 삭제한 뒤
+%     본문(섹션/그림/표/참고문헌)을 그대로 붙여넣으면 매크로 이름이
+%     동일하므로 추가 수정 없이 옮겨갑니다.
+% 페이지 제한: 20쪽 권장(초과 시 편집장 사전 승인 필요), 참고문헌 뒤에
+% 모든 저자의 biography 필수 (IEEE Access 투고 가이드 확인 결과).
+% =============================================================================
+\documentclass[journal,twocolumn]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{cite}
+\usepackage{xcolor}
+
+\newcommand{\method}{GLOBE++ Lite-P+}
+\newcommand{\phaseTwelve}{Risk-Switch Lite-GLOBE-P}
+\newcommand{\pdr}{\mathrm{PDR}}
+\newcommand{\dropact}{a_{\mathrm{DROP}}}
+
+% === IEEE ACCESS 호환 shim 시작 ===
+% 공식 ieeeaccess.cls가 제공하는 명령들을 IEEEtran 위에서도 동작하도록
+% 안전하게 재정의. 공식 템플릿으로 옮길 때는 이 블록만 삭제하면 됨.
+\newcommand{\history}[1]{} % 접수/게재 일자 -- 편집부가 채우는 값이라 draft에서는 비활성화
+\newcommand{\doi}[1]{}     % DOI -- 게재 확정 후 부여
+\newcommand{\tfootnote}[1]{\thanks{#1}}
+% \IEEEmembership는 IEEEtran이 이미 제공하므로 재정의하지 않음
+\newcommand{\address}[2][]{\IEEEauthorblockA{#2}}
+\newcommand{\authorrefmark}[1]{\IEEEauthorrefmark{#1}}
+% === IEEE ACCESS 호환 shim 끝 ===
+
+\history{}
+\doi{[TODO: DOI assigned by the editorial office after acceptance]}
+
+\title{GLOBE++ Lite-P+: Global-to-Local Policy Distillation with Predictive Risk Switching for Decentralized FANET Routing}
+
+\author{
+\IEEEauthorblockN{\uppercase{Kyeongeun Kim}\authorrefmark{1}, \uppercase{[TODO: Co-Author Name]}\authorrefmark{1}\IEEEmembership{Member, IEEE}}
+\IEEEauthorblockA{\authorrefmark{1}[TODO: Department name], Ajou University, ACE Lab, Suwon 16499, Republic of Korea}
+\tfootnote{[TODO: insert actual funding/grant information here if applicable, otherwise remove this footnote. Corresponding author: Kyeongeun Kim (email: [TODO]).]}
+}
+
+\markboth{IEEE Access}{Kim \MakeLowercase{\textit{et al.}}: GLOBE++ Lite-P+}
+
+\begin{document}
+\maketitle
+% [TODO] \authorrefmark 는 ieeeaccess.cls 전용 명령이라 공식 템플릿에서만
+% 정상 렌더링됩니다. 이 초안에서는 저자/소속 텍스트 확인용으로만 사용하세요.
+
+\begin{abstract}
+Flying ad hoc networks (FANETs) require routing decisions that are both reliable under rapid topology changes and executable with only local information on resource-constrained unmanned aerial vehicles (UAVs). Centralized or communication-heavy multi-agent reinforcement learning methods can learn high-quality routing behavior, but their execution-time dependence on global state or inter-agent messages is difficult to deploy in sparse and mobile UAV swarms. This paper presents \method, a decentralized routing framework that transfers routing knowledge from a privileged global teacher to a local student and augments the student with predictive risk switching. The teacher is trained offline as a reinforcement-learning actor-critic policy with global topology information, while the deployed policy uses only one-hop candidate features, destination geometry, queue state, predicted link lifetime, onward stability, and lightweight safety gates. The proposed risk switch activates the predictive branch only when the nominal local decision is unsafe, thereby retaining the low-latency behavior of geographic routing in benign cases while improving recovery from routing holes and imminent link breaks. Full Phase 12 experiments over 14 scenarios and five random seeds show that \phaseTwelve, the fully evaluated predecessor of \method, achieves the best overall packet delivery ratio and deadline delivery among GPSR, predictive geographic routing, Evo-QGeo, IQMR Q($\lambda$), DRAMA, and internal Lite-GLOBE variants, while using fewer input bytes than predictive and message-passing RL baselines. The current Phase 13 \method\ implementation adds link-loss-aware switching, top-$k$ onward stability, energy-aware tie breaking, and drop suppression; its full-scale validation is left as an explicit experimental TODO in this draft.
+\end{abstract}
+
+\begin{IEEEkeywords}
+FANET, UAV routing, geographic routing, policy distillation, knowledge distillation, reinforcement learning, decentralized execution, routing holes
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_problem_formulation}
+\input{sections/04_method}
+\input{sections/05_theoretical_analysis}
+\input{sections/06_experimental_setup}
+\input{sections/07_results}
+\input{sections/08_ablation}
+\input{sections/09_discussion}
+\input{sections/10_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+% [TODO] IEEE Access는 전 저자 biography(사진+2~3문단)를 필수로 요구합니다.
+% 아래는 형식만 갖춘 자리표시자이며, 실제 약력 내용으로 반드시 교체하세요.
+\begin{IEEEbiography}{Kyeongeun Kim}
+[TODO: write a 2--3 sentence author biography -- affiliation, research area, degree program, etc. This was intentionally left as a placeholder rather than fabricated.]
+\end{IEEEbiography}
+
+\begin{IEEEbiography}{[TODO: Co-Author Name]}
+[TODO: co-author biography]
+\end{IEEEbiography}
+
+\end{document}

@@ -1,0 +1,15 @@
+scenario,switch_activation_rate
+heldout_medium,0.03244491826581379
+ood_extreme_mobility,0.1392135432533887
+ood_fast_mobility,0.07238471472302535
+ood_link_loss,0.04315737024530144
+ood_link_loss_30,0.05290584172879735
+ood_nodes_10,0.04500148214021047
+ood_nodes_16,0.049585889838345665
+ood_nodes_24,0.05919334996810212
+ood_sparse,0.04205816554809843
+predictive_break_225_link_loss,0.1864184008762322
+predictive_break_45,0.16666666666666666
+structural_hole_225_link_loss,0.10909090909090909
+structural_hole_45,0.1
+unconditional_sparse,0.12438813581296186

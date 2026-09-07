@@ -1,0 +1,1 @@
+Main document: main.tex. Compiler: pdfLaTeX. Red text / red frames mark deletion or supplement-relocation candidates. Blue marks author input. The manuscript is an editorial review copy. Removing red candidates requires also editing adjacent explanations; review the supplied reviewer report. Scientific data were not changed or rerun.

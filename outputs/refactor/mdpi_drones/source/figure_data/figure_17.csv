@@ -1,0 +1,11 @@
+environment,method,p95_ms
+2026-08-29 bundle cpu,Exact,2.37623943
+2026-08-29 bundle cpu,Fast,0.8739735000000002
+2026-08-29 bundle cuda,Exact,6.03393279
+2026-08-29 bundle cuda,Fast,1.9596534399999999
+2026-09-05 colab-cli cpu,Exact,2.20837892
+2026-09-05 colab-cli cpu,Fast,0.8467172099999999
+2026-09-05 colab-cli cuda,Exact,5.8360403
+2026-09-05 colab-cli cuda,Fast,2.00457077
+2026-09-05 current local CPU,Exact,0.9180985599999995
+2026-09-05 current local CPU,Fast,0.27087063999999994

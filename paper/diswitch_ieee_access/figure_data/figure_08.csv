@@ -1,0 +1,29 @@
+mean_episode_p95_ms,method,scenario
+0.79448346455,DiSwitch,heldout_medium
+0.49576207735000005,Early Exit,heldout_medium
+0.9496909594999999,DiSwitch,ood_extreme_mobility
+0.5854939817999999,Early Exit,ood_extreme_mobility
+0.78904354035,DiSwitch,ood_fast_mobility
+0.5118813064,Early Exit,ood_fast_mobility
+0.8139937174,DiSwitch,ood_link_loss
+0.4998189183499999,Early Exit,ood_link_loss
+0.813575633,DiSwitch,ood_link_loss_30
+0.53735418955,Early Exit,ood_link_loss_30
+0.7994842899,DiSwitch,ood_nodes_10
+0.49741420805,Early Exit,ood_nodes_10
+0.97957331505,DiSwitch,ood_nodes_16
+0.5615334833,Early Exit,ood_nodes_16
+0.9400527779,DiSwitch,ood_nodes_24
+0.5878275551000001,Early Exit,ood_nodes_24
+0.80365834835,DiSwitch,ood_sparse
+0.48831174585,Early Exit,ood_sparse
+0.8134054820500001,DiSwitch,predictive_break_225_link_loss
+0.70285233905,Early Exit,predictive_break_225_link_loss
+0.8670027189999999,DiSwitch,predictive_break_45
+0.79397713825,Early Exit,predictive_break_45
+0.8110251384,DiSwitch,structural_hole_225_link_loss
+0.6809254591,Early Exit,structural_hole_225_link_loss
+0.83477826965,DiSwitch,structural_hole_45
+0.64289281465,Early Exit,structural_hole_45
+0.7663599519,DiSwitch,unconditional_sparse
+0.6069581712500001,Early Exit,unconditional_sparse

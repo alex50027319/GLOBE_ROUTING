@@ -1,0 +1,146 @@
+\begin{thebibliography}{999}
+
+\bibitem[Alam and Moh(2024)]{alam2024joint}
+Alam, M.M.; Moh, S.
+\newblock Joint Trajectory Control, Frequency Allocation, and Routing for UAV
+  Swarm Networks: A Multi-Agent Deep Reinforcement Learning Approach.
+\newblock {\em IEEE Transactions on Mobile Computing} {\bf 2024}, {\em 23}.
+\newblock {\url{https://doi.org/10.1109/TMC.2024.3403890}}.
+
+\bibitem[Wu et~al.(2026)Wu, Wu, Li, Meng, and Zhang]{wu2026aoi}
+Wu, H.; Wu, S.; Li, A.; Meng, S.; Zhang, Q.
+\newblock AoI-Aware Joint Sampling-Buffering-Routing Optimization for
+  Autonomous UAV Swarms via a MARL Approach.
+\newblock {\em IEEE Transactions on Mobile Computing} {\bf 2026}.
+\newblock {\url{https://doi.org/10.1109/TMC.2026.3699777}}.
+
+\bibitem[Jia et~al.(2025)Jia, He, Zhu, Wang, Wu, and Han]{jia2025trusted}
+Jia, Z.; He, S.; Zhu, Q.; Wang, W.; Wu, Q.; Han, Z.
+\newblock Trusted Routing for Blockchain-Empowered UAV Networks via Multi-Agent
+  Deep Reinforcement Learning.
+\newblock {\em IEEE Transactions on Communications} {\bf 2025}.
+\newblock {\url{https://doi.org/10.1109/TCOMM.2025.3597655}}.
+
+\bibitem[Cui et~al.(2022)Cui, Zhang, Feng, Wei, Shi, and Yang]{cui2022tarraq}
+Cui, Y.; Zhang, Q.; Feng, Z.; Wei, Z.; Shi, C.; Yang, H.
+\newblock Topology-Aware Resilient Routing Protocol for FANETs: An Adaptive
+  Q-Learning Approach.
+\newblock {\em IEEE Internet of Things Journal} {\bf 2022}, {\em
+  9},~18632--18650.
+\newblock {\url{https://doi.org/10.1109/JIOT.2022.3162849}}.
+
+\bibitem[Zhang et~al.(2025)Zhang, Huang, Shi, Zhang, Fan, and Li]{zhang2025gat}
+Zhang, J.; Huang, H.; Shi, C.; Zhang, Y.; Fan, B.; Li, D.
+\newblock Spatiotemporal-Aware Resilient Routing Algorithm Based on Graph
+  Attention Double DQN.
+\newblock In Proceedings of the Proceedings of the 17th International
+  Conference on Wireless Communications and Signal Processing,  2025.
+\newblock {\url{https://doi.org/10.1109/WCSP68525.2025.1010249}}.
+
+\bibitem[Shou et~al.(2026)Shou, Liu, and Hou]{shou2026adaptive}
+Shou, Y.; Liu, D.; Hou, X.
+\newblock Adaptive Intelligent Routing in Ultra-High-Speed FANETs Using Deep
+  Reinforcement Learning.
+\newblock {\em IEEE Transactions on Vehicular Technology} {\bf 2026}.
+\newblock {\url{https://doi.org/10.1109/TVT.2026.3668740}}.
+
+\bibitem[Tho et~al.(2025)Tho, Ly, Binh, and Vo]{tho2025qlr}
+Tho, M.C.; Ly, N.T.H.; Binh, L.H.; Vo, T.T.
+\newblock QLR-FANET: A Q-learning and Rate Control-Based Routing Protocol for
+  Flying Ad Hoc Network.
+\newblock {\em ETRI Journal} {\bf 2025}, {\em 47},~1015--1027.
+\newblock {\url{https://doi.org/10.4218/etrij.2024-0298}}.
+
+\bibitem[Sharvari et~al.(2025)Sharvari, Das, Bapat, and
+  Das]{sharvari2025improved}
+Sharvari, N.P.; Das, D.; Bapat, J.; Das, D.
+\newblock Improved Q-Learning-Based Multi-Hop Routing for UAV-Assisted
+  Communication.
+\newblock {\em IEEE Transactions on Network and Service Management} {\bf 2025},
+  {\em 22}.
+\newblock {\url{https://doi.org/10.1109/TNSM.2024.3522153}}.
+
+\bibitem[Dong et~al.(2026)Dong, Sun, Tao, and Zhai]{dong2026predictive}
+Dong, Z.; Sun, H.; Tao, Y.; Zhai, D.
+\newblock Predictive-Q Learning Based Interference-and-Mobility Aware Dual-Path
+  Routing for UAV Swarm Networks with Mobile Edge Computing.
+\newblock {\em Computers, Materials \& Continua} {\bf 2026}, {\em 88}.
+\newblock {\url{https://doi.org/10.32604/cmc.2026.084301}}.
+
+\bibitem[Ke et~al.(2024)Ke, Huang, Qiu, Song, Xu, Yin, and
+  Yang]{ke2024distributed}
+Ke, Y.; Huang, K.; Qiu, X.; Song, B.; Xu, L.; Yin, J.; Yang, Y.
+\newblock Distributed Routing Optimization Algorithm for FANET Based on
+  Multiagent Reinforcement Learning.
+\newblock {\em IEEE Sensors Journal} {\bf 2024}, {\em 24}.
+\newblock {\url{https://doi.org/10.1109/JSEN.2024.3415127}}.
+
+\bibitem[Wang et~al.(2025)Wang, Liu, Song, Yu, Wang, Chen, and
+  Liu]{wang2025graph}
+Wang, C.; Liu, Y.; Song, R.; Yu, X.; Wang, X.; Chen, X.; Liu, J.
+\newblock Joint Optimization of Routing and Power Control in UAV Networks Via
+  Graph Reinforcement Learning.
+\newblock In Proceedings of the Proceedings of the 17th International
+  Conference on Wireless Communications and Signal Processing,  2025.
+\newblock {\url{https://doi.org/10.1109/WCSP68525.2025.1010551}}.
+
+\bibitem[Zheng et~al.(2026)Zheng, Wei, Li, Yu, Guo, Zhao, and
+  Huang]{zheng2026dual}
+Zheng, F.; Wei, J.; Li, S.; Yu, P.; Guo, S.; Zhao, J.; Huang, Y.
+\newblock A Dual-Layer Deep Reinforcement Learning Routing Approach for
+  Integrated UAV and Satellite IoT Networks.
+\newblock {\em IEEE Internet of Things Journal} {\bf 2026}, {\em 13}.
+\newblock {\url{https://doi.org/10.1109/JIOT.2025.3602147}}.
+
+\bibitem[Sun et~al.(2026)Sun, Cao, Lyu, Xu, Huang, Xu, Tang, Fu, and
+  Wu]{sun2026harsh}
+Sun, S.; Cao, C.; Lyu, Y.; Xu, X.; Huang, R.; Xu, Y.; Tang, S.; Fu, C.; Wu, W.
+\newblock Intelligent Maintenance and Routing Decision Making for UAV Clusters
+  in Harsh Environments.
+\newblock {\em Drones} {\bf 2026}, {\em 10},~455.
+\newblock {\url{https://doi.org/10.3390/drones10060455}}.
+
+\bibitem[Li et~al.(2024)Li, Xiao, Qi, Lv, Chen, and Liu]{li2024rlfr}
+Li, J.; Xiao, L.; Qi, X.; Lv, Z.; Chen, Q.; Liu, Y.J.
+\newblock Reinforcement Learning Based Energy-Efficient Fast Routing for
+  FANETs.
+\newblock {\em IEEE Transactions on Communications} {\bf 2024}, {\em 72}.
+\newblock {\url{https://doi.org/10.1109/TCOMM.2024.3409561}}.
+
+\bibitem[Cürmen et~al.(2026)Cürmen, Okay, and Özdemir]{curmen2026routeppo}
+Cürmen, N.; Okay, F.Y.; Özdemir, S.
+\newblock RoutePPO: eBPF-Based Proximal Policy Optimization for Adaptive
+  Routing in UAV Swarm Networks.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Smart Applications, Communications and Networking,  2026.
+\newblock {\url{https://doi.org/10.1109/SMARTNETS69662.2026.11604730}}.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov]{schulman2017ppo}
+Schulman, J.; Wolski, F.; Dhariwal, P.; Radford, A.; Klimov, O.
+\newblock Proximal Policy Optimization Algorithms,  2017,
+  \href{http://arxiv.org/abs/1707.06347}{{\normalfont [1707.06347]}}.
+\newblock {\url{https://doi.org/10.48550/arXiv.1707.06347}}.
+
+\bibitem[Hinton et~al.(2015)Hinton, Vinyals, and Dean]{hinton2015distilling}
+Hinton, G.; Vinyals, O.; Dean, J.
+\newblock Distilling the Knowledge in a Neural Network.
+\newblock In Proceedings of the NIPS Deep Learning and Representation Learning
+  Workshop,  2015,  \href{http://arxiv.org/abs/1503.02531}{{\normalfont
+  [1503.02531]}}.
+
+\bibitem[Zhang et~al.(2026)Zhang, Lei, Shen, Fan, Pan, and Cao]{zhang2026large}
+Zhang, X.; Lei, L.; Shen, G.; Fan, J.; Pan, Y.; Cao, P.
+\newblock A Large-Scale UAV Swarms Routing Approach With Deep Reinforcement
+  Learning Leveraging Intelligent Endogenous Network.
+\newblock {\em IEEE Transactions on Vehicular Technology} {\bf 2026}.
+\newblock {\url{https://doi.org/10.1109/TVT.2026.3672174}}.
+
+\bibitem[Zhao et~al.(2026)Zhao, Zhang, Xu, Li, Liu, and
+  Xing]{zhao2026multipath}
+Zhao, Z.; Zhang, T.; Xu, X.; Li, J.; Liu, Y.; Xing, W.
+\newblock Multipath Routing for Multi-Hop UAV Networks,  2026,
+  \href{http://arxiv.org/abs/2601.10299}{{\normalfont [2601.10299]}}.
+\newblock {\url{https://doi.org/10.48550/arXiv.2601.10299}}.
+
+\end{thebibliography}

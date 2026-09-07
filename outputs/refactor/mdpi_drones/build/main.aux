@@ -1,0 +1,160 @@
+\relax 
+\providecommand*\new@tpo@label[2]{}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{Definitions/mdpi}
+\def\@LN@column{1}
+\newmarginnote{note.1.1}{{1}{10945661sp}}
+\citation{alam2024joint,wu2026aoi,jia2025trusted,cui2022tarraq,zhang2025gat,shou2026adaptive}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\citation{cui2022tarraq,tho2025qlr,sharvari2025improved}
+\citation{dong2026predictive}
+\citation{shou2026adaptive,zhang2025gat,ke2024distributed,wang2025graph}
+\citation{alam2024joint,wu2026aoi,wang2025graph,zheng2026dual}
+\citation{sun2026harsh}
+\citation{li2024rlfr}
+\citation{curmen2026routeppo}
+\citation{shou2026adaptive}
+\citation{dong2026predictive}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of Fused Exact SwitchGLOBE{}. The global graph teacher is confined to training. Both deployed branches use strict-local observations; the exact risk switch returns a masked neighbor or an explicit drop action.}}{3}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:architecture}{{1}{3}{Overview of \FSG {}. The global graph teacher is confined to training. Both deployed branches use strict-local observations; the exact risk switch returns a masked neighbor or an explicit drop action}{figure.caption.1}{}}
+\newlabel{fig:architecture@cref}{{[figure][1][]1}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work and Research Gap}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Learning-Based UAV and FANET Routing}{3}{subsection.2.1}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Deployment and Latency Reporting}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Metric coverage in the 45-paper project corpus. Generic network delay is common, while directly scoped decision latency is uncommon.}}{4}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:litcoverage}{{2}{4}{Metric coverage in the 45-paper project corpus. Generic network delay is common, while directly scoped decision latency is uncommon}{figure.caption.2}{}}
+\newlabel{fig:litcoverage@cref}{{[figure][2][]2}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Positioning and Novelty Boundary}{4}{subsection.2.3}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Claim--gap matrix used to delimit the contribution.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:novelty}{{1}{5}{Claim--gap matrix used to delimit the contribution}{table.caption.3}{}}
+\newlabel{tab:novelty@cref}{{[table][1][]1}{[1][4][]5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Dynamic FANET and Local Action Space}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Objective and Constraints}{5}{subsection.3.2}\protected@file@percent }
+\citation{schulman2017ppo}
+\citation{hinton2015distilling}
+\def\@LN@column{1}
+\newlabel{eq:gate}{{5}{6}{Objective and Constraints}{equation.5}{}}
+\newlabel{eq:gate@cref}{{[equation][5][]5}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Proposed Method}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Privileged Global PPO Teacher}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Masked Global-to-Local Distillation}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Normal Geographic-Residual Branch}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Predictive Local Branch}{6}{subsection.4.4}\protected@file@percent }
+\def\@LN@column{1}
+\newlabel{eq:danger}{{10}{7}{Predictive Local Branch}{equation.10}{}}
+\newlabel{eq:danger@cref}{{[equation][10][]10}{[1][6][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Exact Risk Switch}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{eq:switch}{{12}{7}{Exact Risk Switch}{equation.12}{}}
+\newlabel{eq:switch@cref}{{[equation][12][]12}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Fused Exact Execution}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Legacy repeated execution versus Fused Exact. Fusion removes duplicate branch evaluations; it does not prune a branch or approximate its logits.}}{7}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:fusion}{{3}{7}{Legacy repeated execution versus Fused Exact. Fusion removes duplicate branch evaluations; it does not prune a branch or approximate its logits}{figure.caption.4}{}}
+\newlabel{fig:fusion@cref}{{[figure][3][]3}{[1][7][]7}{}{}{}}
+\def\@LN@column{1}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Fused Exact SwitchGLOBE decision}}{8}{algorithm.1}\protected@file@percent }
+\newlabel{alg:fused}{{1}{8}{Fused Exact SwitchGLOBE decision}{algorithm.1}{}}
+\newlabel{alg:fused@cref}{{[algorithm][1][]1}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Runtime Model and Candidate Optimizations}{8}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Methodology}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Common-Simulator Routing Evaluation}{8}{subsection.5.1}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evaluation protocol. The seed, not the individual packet decision, is the primary inferential unit.}}{9}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:protocol}{{4}{9}{Evaluation protocol. The seed, not the individual packet decision, is the primary inferential unit}{figure.caption.5}{}}
+\newlabel{fig:protocol@cref}{{[figure][4][]4}{[1][8][]9}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Metrics and Scope}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Statistical Analysis}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Decision-Latency Benchmark and Profiling}{9}{subsection.5.4}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Overall Routing Performance}{10}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Five-seed, 14-scenario macro means. Parentheses show 95\% CI where non-degenerate. Energy is a simulator proxy; p95 delay is conditional on successful delivery.}}{10}{table.caption.6}\protected@file@percent }
+\newlabel{tab:overall}{{2}{10}{Five-seed, 14-scenario macro means. Parentheses show 95\% CI where non-degenerate. Energy is a simulator proxy; p95 delay is conditional on successful delivery}{table.caption.6}{}}
+\newlabel{tab:overall@cref}{{[table][2][]2}{[1][10][]10}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Common-simulator comparison. Error bars are five-seed 95\% $t$ intervals over scenario-macro summaries. Small input size for AODV/OLSR is not wireless routing overhead.}}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:external}{{5}{10}{Common-simulator comparison. Error bars are five-seed 95\% $t$ intervals over scenario-macro summaries. Small input size for AODV/OLSR is not wireless routing overhead}{figure.caption.7}{}}
+\newlabel{fig:external@cref}{{[figure][5][]5}{[1][10][]10}{}{}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Scenario Robustness and Failure Localization}{11}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Five-seed scenario-level reliability. The heatmap localizes both predictive recovery and the node-scale or link-loss conditions in which approximations degrade.}}{11}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:heatmap}{{6}{11}{Five-seed scenario-level reliability. The heatmap localizes both predictive recovery and the node-scale or link-loss conditions in which approximations degrade}{figure.caption.8}{}}
+\newlabel{fig:heatmap@cref}{{[figure][6][]6}{[1][11][]11}{}{}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablation Evidence}{12}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Directional component contributions with five-seed 95\% intervals. Positive values favor the complete Exact policy under the metric's preferred direction.}}{12}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:ablation}{{7}{12}{Directional component contributions with five-seed 95\% intervals. Positive values favor the complete Exact policy under the metric's preferred direction}{figure.caption.9}{}}
+\newlabel{fig:ablation@cref}{{[figure][7][]7}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Exact Fusion and Batch-One Decision Latency}{12}{subsection.6.4}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Same-session batch-one end-to-end decision latency. Values are means of five seed-specific statistics; paired p95 change is relative to Exact and positive means faster.}}{13}{table.caption.10}\protected@file@percent }
+\newlabel{tab:latency}{{3}{13}{Same-session batch-one end-to-end decision latency. Values are means of five seed-specific statistics; paired p95 change is relative to Exact and positive means faster}{table.caption.10}{}}
+\newlabel{tab:latency@cref}{{[table][3][]3}{[1][12][]13}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Latency summary across the verified implementations. The low Fast latency must be read together with its reliability failure.}}{13}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:latencysummary}{{8}{13}{Latency summary across the verified implementations. The low Fast latency must be read together with its reliability failure}{figure.caption.11}{}}
+\newlabel{fig:latencysummary@cref}{{[figure][8][]8}{[1][13][]13}{}{}{}}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Paired p95 latency effects versus Exact. Positive values favor the candidate. Intervals are based on five matched checkpoints, not on 10,000 pseudo-independent individual calls.}}{14}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:forest}{{9}{14}{Paired p95 latency effects versus Exact. Positive values favor the candidate. Intervals are based on five matched checkpoints, not on 10,000 pseudo-independent individual calls}{figure.caption.12}{}}
+\newlabel{fig:forest@cref}{{[figure][9][]9}{[1][13][]14}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Why CUDA Is Slower Than the CPU}{14}{subsection.6.5}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces CPU and CUDA decision latency in the verified A100 session, with an older bundle retained only as an independent reproducibility reference.}}{15}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:device}{{10}{15}{CPU and CUDA decision latency in the verified A100 session, with an older bundle retained only as an independent reproducibility reference}{figure.caption.13}{}}
+\newlabel{fig:device@cref}{{[figure][10][]10}{[1][14][]15}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Why Fast Does Not Replace Exact}{15}{subsection.6.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces A100 p95 decision latency versus connected-pair PDR. The upper-left region is preferred; Exact and Fast represent distinct quality--latency choices.}}{15}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:pareto}{{11}{15}{A100 p95 decision latency versus connected-pair PDR. The upper-left region is preferred; Exact and Fast represent distinct quality--latency choices}{figure.caption.14}{}}
+\newlabel{fig:pareto@cref}{{[figure][11][]11}{[1][15][]15}{}{}{}}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Decision record for optimization candidates. Fused Exact is accepted because it preserves exact behavior; Fast fails reliability, and Python Early Exit fails latency.}}{16}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:decision}{{12}{16}{Decision record for optimization candidates. Fused Exact is accepted because it preserves exact behavior; Fast fails reliability, and Python Early Exit fails latency}{figure.caption.15}{}}
+\newlabel{fig:decision@cref}{{[figure][12][]12}{[1][15][]16}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Early-Exit Calibration as a Negative Result}{16}{subsection.6.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Early-exit calibration. Zero observed divergence at margin zero is empirical evidence for the evaluated trajectories, not formal equivalence for unseen states.}}{16}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:gate}{{13}{16}{Early-exit calibration. Zero observed divergence at margin zero is empirical evidence for the evaluated trajectories, not formal equivalence for unseen states}{figure.caption.16}{}}
+\newlabel{fig:gate@cref}{{[figure][13][]13}{[1][16][]16}{}{}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{17}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Answering the Research Questions}{17}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}End-to-End Delay Versus Decision Latency}{17}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Practical Deployment Guidance}{17}{subsection.7.3}\protected@file@percent }
+\citation{curmen2026routeppo,li2024rlfr}
+\citation{zhang2026large,zhao2026multipath}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Threats to Validity and Limitations}{18}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Future Work}{18}{section.8}\protected@file@percent }
+\bibdata{references}
+\bibcite{alam2024joint}{{1}{2024}{{Alam and Moh}}{{}}}
+\bibcite{wu2026aoi}{{2}{2026}{{Wu et~al.}}{{Wu, Wu, Li, Meng, and Zhang}}}
+\bibcite{jia2025trusted}{{3}{2025}{{Jia et~al.}}{{Jia, He, Zhu, Wang, Wu, and Han}}}
+\bibcite{cui2022tarraq}{{4}{2022}{{Cui et~al.}}{{Cui, Zhang, Feng, Wei, Shi, and Yang}}}
+\bibcite{zhang2025gat}{{5}{2025}{{Zhang et~al.}}{{Zhang, Huang, Shi, Zhang, Fan, and Li}}}
+\bibcite{shou2026adaptive}{{6}{2026}{{Shou et~al.}}{{Shou, Liu, and Hou}}}
+\bibcite{tho2025qlr}{{7}{2025}{{Tho et~al.}}{{Tho, Ly, Binh, and Vo}}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusions}{19}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}References}{19}{section.10}\protected@file@percent }
+\bibcite{sharvari2025improved}{{8}{2025}{{Sharvari et~al.}}{{Sharvari, Das, Bapat, and Das}}}
+\bibcite{dong2026predictive}{{9}{2026}{{Dong et~al.}}{{Dong, Sun, Tao, and Zhai}}}
+\bibcite{ke2024distributed}{{10}{2024}{{Ke et~al.}}{{Ke, Huang, Qiu, Song, Xu, Yin, and Yang}}}
+\bibcite{wang2025graph}{{11}{2025}{{Wang et~al.}}{{Wang, Liu, Song, Yu, Wang, Chen, and Liu}}}
+\bibcite{zheng2026dual}{{12}{2026}{{Zheng et~al.}}{{Zheng, Wei, Li, Yu, Guo, Zhao, and Huang}}}
+\bibcite{sun2026harsh}{{13}{2026}{{Sun et~al.}}{{Sun, Cao, Lyu, Xu, Huang, Xu, Tang, Fu, and Wu}}}
+\bibcite{li2024rlfr}{{14}{2024}{{Li et~al.}}{{Li, Xiao, Qi, Lv, Chen, and Liu}}}
+\bibcite{curmen2026routeppo}{{15}{2026}{{Cürmen et~al.}}{{Cürmen, Okay, and Özdemir}}}
+\bibcite{schulman2017ppo}{{16}{2017}{{Schulman et~al.}}{{Schulman, Wolski, Dhariwal, Radford, and Klimov}}}
+\bibcite{hinton2015distilling}{{17}{2015}{{Hinton et~al.}}{{Hinton, Vinyals, and Dean}}}
+\bibcite{zhang2026large}{{18}{2026}{{Zhang et~al.}}{{Zhang, Lei, Shen, Fan, Pan, and Cao}}}
+\bibcite{zhao2026multipath}{{19}{2026}{{Zhao et~al.}}{{Zhao, Zhang, Xu, Li, Liu, and Xing}}}
+\def\@LN@column{1}
+\newlabel{LastPage}{{9}{20}{Conclusions}{page.20}{}}
+\gdef\lastpage@lastpage{20}
+\gdef\lastpage@lastpageHy{20}
+\gdef \@abspage@last{20}

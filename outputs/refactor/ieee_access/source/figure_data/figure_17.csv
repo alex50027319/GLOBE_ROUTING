@@ -1,0 +1,11 @@
+environment,method,p95_ms
+2026-08-29 bundle cpu,DiSwitch,2.37623943
+2026-08-29 bundle cpu,Fast-DiSwitch,0.8739735000000002
+2026-08-29 bundle cuda,DiSwitch,6.03393279
+2026-08-29 bundle cuda,Fast-DiSwitch,1.9596534399999999
+2026-09-05 colab-cli cpu,DiSwitch,2.20837892
+2026-09-05 colab-cli cpu,Fast-DiSwitch,0.8467172099999999
+2026-09-05 colab-cli cuda,DiSwitch,5.8360403
+2026-09-05 colab-cli cuda,Fast-DiSwitch,2.00457077
+2026-09-05 current local CPU,DiSwitch,0.9180985599999995
+2026-09-05 current local CPU,Fast-DiSwitch,0.27087063999999994

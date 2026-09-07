@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from .evaluator import EpisodeResult, EvaluationSummary
@@ -115,6 +116,12 @@ def episode_row(
         ),
         "freshness_cache_capacity_evictions": (
             result.freshness_cache_capacity_evictions
+        ),
+        "action_sequence": json.dumps(
+            result.action_sequence, separators=(",", ":")
+        ),
+        "node_trajectory": json.dumps(
+            result.node_trajectory, separators=(",", ":")
         ),
     }
 
