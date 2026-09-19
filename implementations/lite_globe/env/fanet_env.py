@@ -9,6 +9,7 @@ import numpy as np
 from gymnasium import spaces
 from numpy.typing import NDArray
 
+from .beacon import BeaconCache
 from .config import FanetConfig
 from .global_observation import build_global_observation
 from .graph_utils import connected_pairs, shortest_path
@@ -99,6 +100,17 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
             self.config.reward_failure,
             self.config.reward_progress,
         )
+        self.beacon_cache = (
+            BeaconCache(
+                self.config.beacon,
+                num_nodes=self.config.num_nodes,
+                communication_radius=self.config.communication_radius,
+                max_speed=self.config.max_speed,
+                time_step=self.config.time_step,
+            )
+            if self.config.beacon.enabled
+            else None
+        )
         self.mobility: MobilityState
         self.adjacency: NDArray[np.bool_]
         self.distances: NDArray[np.float32]
@@ -175,6 +187,12 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
             self.config.max_queue_size + 1,
             size=self.config.num_nodes,
         ).astype(np.float32)
+        if self.beacon_cache is not None:
+            self.beacon_cache.reset(
+                self.mobility.positions,
+                self.mobility.velocities,
+                self.np_random,
+            )
         source, destination = self._sample_endpoints(
             options,
             endpoint_candidates=endpoint_candidates,
@@ -221,6 +239,14 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
             failed = True
         elif mask[action] == 0:
             self._drop("invalid_action")
+            failed = True
+        elif self.config.beacon.degrade_topology and not bool(
+            self.adjacency[self.packet.current, int(action)]
+        ):
+            # The relay believed this neighbour was reachable because its beacon
+            # entry is stale or noisy. The transmission still costs energy.
+            self._record_transmission(int(action))
+            self._drop("link_failure")
             failed = True
         else:
             self._record_transmission(int(action))
@@ -272,6 +298,12 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
                     self.mobility, self.np_random
                 )
             self._refresh_links()
+            if self.beacon_cache is not None:
+                self.beacon_cache.step(
+                    self.mobility.positions,
+                    self.mobility.velocities,
+                    self.np_random,
+                )
         return self._observation(), reward, terminated, truncated, self._info()
 
     def _sample_endpoints(
@@ -307,15 +339,58 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
         )
 
     def _observation(self) -> dict[str, NDArray[np.generic]]:
+        if self.beacon_cache is None:
+            return build_observation(
+                config=self.config,
+                positions=self.mobility.positions,
+                velocities=self.mobility.velocities,
+                queues=self.queues,
+                adjacency=self.adjacency,
+                distances=self.distances,
+                packet=self.packet,
+            )
+        positions, velocities, distances, adjacency = self._believed_state()
         return build_observation(
             config=self.config,
-            positions=self.mobility.positions,
-            velocities=self.mobility.velocities,
+            positions=positions,
+            velocities=velocities,
             queues=self.queues,
-            adjacency=self.adjacency,
-            distances=self.distances,
+            adjacency=adjacency,
+            distances=distances,
             packet=self.packet,
         )
+
+    def _believed_state(
+        self,
+    ) -> tuple[
+        NDArray[np.float32],
+        NDArray[np.float32],
+        NDArray[np.float32],
+        NDArray[np.bool_],
+    ]:
+        """Return the forwarding relay's beacon-derived view of the network.
+
+        The relay knows its own kinematics exactly; every other node is read
+        from the beacon cache. Distances are recomputed from believed positions
+        so link margin and predicted lifetime degrade consistently. Adjacency
+        stays exact unless ``beacon.degrade_topology`` is set, which isolates
+        the value of the risk signal from the cost of not knowing the
+        neighbour set.
+        """
+
+        assert self.beacon_cache is not None
+        positions, velocities = self.beacon_cache.believed_state()
+        current = self.packet.current
+        positions[current] = self.mobility.positions[current]
+        velocities[current] = self.mobility.velocities[current]
+        np.clip(positions, 0.0, self.config.area_size, out=positions)
+        delta = positions[:, None, :] - positions[None, :, :]
+        distances = np.linalg.norm(delta, axis=-1).astype(np.float32)
+        if not self.config.beacon.degrade_topology:
+            return positions, velocities, distances, self.adjacency
+        believed = distances <= self.config.communication_radius
+        np.fill_diagonal(believed, False)
+        return positions, velocities, distances, believed.astype(np.bool_)
 
     def global_observation(self) -> dict[str, NDArray[np.generic]]:
         """Return privileged full-graph state for training the Teacher only."""
@@ -377,7 +452,12 @@ class FanetRoutingEnv(gym.Env[dict[str, NDArray[np.generic]], int]):
         )
 
     def _info(self) -> dict[str, Any]:
+        beacon_info: dict[str, Any] = {}
+        if self.beacon_cache is not None:
+            beacon_info = self.beacon_cache.control_accounting()
+            beacon_info["beacon_setting"] = self.config.beacon.label()
         return {
+            **beacon_info,
             "source": self.packet.source,
             "destination": self.packet.destination,
             "current_node": self.packet.current,

@@ -61,8 +61,13 @@ def aggregate_seed_summaries(
         for metric in SUMMARY_METRICS:
             if metric == "mean_delay_steps" and int(row["delivered"]) == 0:
                 continue
+            value = row.get(metric)
+            if value is None:
+                # Delivery-conditional metrics are None when a cell delivered
+                # nothing; report N/A rather than folding a zero into the mean.
+                continue
             grouped[(row["scenario"], row["method"], metric)].append(
-                float(row[metric])
+                float(value)
             )
     aggregated: list[dict[str, Any]] = []
     for scenario, method in sorted(combinations):

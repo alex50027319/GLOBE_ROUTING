@@ -47,8 +47,13 @@ def aggregate_baseline(
                 and int(row["delivered"]) == 0
             ):
                 continue
+            value = row.get(metric)
+            if value is None:
+                # Delivery-conditional metrics are None when a cell delivered
+                # nothing; report N/A rather than folding a zero into the mean.
+                continue
             grouped[(row["scenario"], row["method"], metric)].append(
-                float(row[metric])
+                float(value)
             )
     output: list[dict[str, Any]] = []
     for scenario in BASELINE_SCENARIOS:

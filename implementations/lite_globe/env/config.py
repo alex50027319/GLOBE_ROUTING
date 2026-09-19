@@ -8,6 +8,8 @@ from typing import Any
 
 import yaml
 
+from .beacon import BeaconDegradation
+
 
 @dataclass(frozen=True)
 class FanetConfig:
@@ -33,6 +35,7 @@ class FanetConfig:
     mask_visited_actions: bool = False
     include_forwardability: bool = False
     include_risk_features: bool = False
+    beacon: BeaconDegradation = BeaconDegradation()
     seed: int = 42
 
     def __post_init__(self) -> None:
@@ -58,6 +61,15 @@ class FanetConfig:
         mobility = raw.get("mobility", {})
         reward = raw.get("reward", {})
         runtime = raw.get("runtime", {})
+        beacon_raw = raw.get("beacon", {})
+        beacon = BeaconDegradation(
+            beacon_period=int(beacon_raw.get("period", 1)),
+            beacon_loss=float(beacon_raw.get("loss", 0.0)),
+            position_noise_std=float(beacon_raw.get("position_noise_std", 0.0)),
+            velocity_noise_std=float(beacon_raw.get("velocity_noise_std", 0.0)),
+            dead_reckon=bool(beacon_raw.get("dead_reckon", True)),
+            degrade_topology=bool(beacon_raw.get("degrade_topology", False)),
+        )
         return cls(
             num_nodes=int(env.get("num_nodes", cls.num_nodes)),
             max_nodes=int(env.get("max_nodes", cls.max_nodes)),
@@ -95,5 +107,6 @@ class FanetConfig:
             include_risk_features=bool(
                 env.get("include_risk_features", cls.include_risk_features)
             ),
+            beacon=beacon,
             seed=int(runtime.get("seed", cls.seed)),
         )

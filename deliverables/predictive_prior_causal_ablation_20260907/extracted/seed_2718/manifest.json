@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "predictive_prior_matched_causal_ablation",
+  "mode": "full",
+  "config": {
+    "training_seed": 2718,
+    "methods": [
+      "Fixed Manual Prior",
+      "Shortest-Oracle Only",
+      "Risk-Oracle Only",
+      "Shortest+Risk (No Teacher)",
+      "Teacher Distillation Only",
+      "Teacher+Shortest+Risk",
+      "Existing Phase11 Predictive Prior"
+    ],
+    "training_scenarios": [
+      "train_easy",
+      "train_medium",
+      "train_hard",
+      "train_mobility_stress",
+      "train_link_loss_stress",
+      "train_structural_hole_0",
+      "train_structural_hole_90",
+      "train_structural_hole_180",
+      "train_predictive_break_0",
+      "train_predictive_break_90",
+      "train_predictive_break_180",
+      "train_predictive_break_0_link_loss",
+      "train_predictive_break_90_link_loss",
+      "train_predictive_break_180_link_loss"
+    ],
+    "evaluation_scenarios": [
+      "heldout_medium",
+      "ood_link_loss",
+      "ood_fast_mobility",
+      "ood_sparse",
+      "ood_nodes_10",
+      "unconditional_sparse",
+      "structural_hole_45",
+      "structural_hole_225_link_loss",
+      "predictive_break_45",
+      "predictive_break_225_link_loss",
+      "ood_link_loss_30",
+      "ood_extreme_mobility",
+      "ood_nodes_16",
+      "ood_nodes_24"
+    ],
+    "common_state_rollouts": [
+      "shortest_oracle",
+      "risk_oracle"
+    ],
+    "train_episodes_per_scenario_rollout": 100,
+    "evaluation_episodes_per_scenario": 200,
+    "epochs": 120,
+    "batch_size": 512,
+    "learning_rate": 0.005,
+    "warmup": 50,
+    "latency_repeats": 2000,
+    "residual_weight": 0.0,
+    "objective_weights": {
+      "teacher_kl": 1.0,
+      "teacher_action": 0.05,
+      "shortest": 0.3,
+      "risk": 1.0
+    }
+  },
+  "config_sha256": "ff705e84276c8f4a5c8ae62e86de08cafe61694b86dff631441550c01765db1a",
+  "dataset_samples": 8630,
+  "train_samples": 6031,
+  "validation_samples": 1291,
+  "test_samples": 1308,
+  "episode_rows": 19600,
+  "seed_summary_rows": 98,
+  "latency_raw_rows": 28000,
+  "checkpoint_sha256": {
+    "teacher": "81bea604aacc17bcfd1208e75f54f522c85bec31fab0a061f22cb7412ab48042",
+    "legacy": "9b81819b73a456914e8bd4834acc12decd4622eef7650e54c76b57e65bd6c2c4"
+  },
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "torch": "2.11.0+cu128",
+  "cuda_device": "NVIDIA A100-SXM4-40GB",
+  "git_commit_hash": null,
+  "dirty_files": []
+}

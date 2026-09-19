@@ -50,8 +50,15 @@ def aggregate_generalization(
                 and int(row["delivered"]) == 0
             ):
                 continue
+            value = row.get(metric)
+            if value is None:
+                # Delivery-conditional metrics are None when a cell delivered
+                # nothing. The simulation protocol requires reporting these as
+                # N/A rather than folding a zero into the mean, so the row is
+                # skipped and the cell falls through to the count=0 branch.
+                continue
             grouped[(row["scenario"], row["method"], metric)].append(
-                float(row[metric])
+                float(value)
             )
     output: list[dict[str, Any]] = []
     for scenario in PHASE7_SCENARIOS:

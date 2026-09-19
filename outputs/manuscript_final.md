@@ -1,0 +1,425 @@
+# DiSwitch: Global-to-Local Policy Distillation With Risk-Switched Predictive Recovery for Decentralized UAV Routing
+
+**Authors:** Kyung Eun Kim¹, Howon Lee¹
+**Affiliation:** ¹ Department of Military Digital Convergence, Ajou University, Suwon 16499, Republic of Korea
+**Corresponding author:** Howon Lee *(institutional e-mail address to be inserted before submission)*
+
+> **Manuscript status note.** This Markdown file consolidates the verified IEEE Access draft held at `outputs/refactor/ieee_access/source/main.tex` into the IMRaD-style manuscript format. All quantitative claims are transcribed unchanged from that LaTeX source, which in turn is generated from the audited raw episode archives, seed summaries, and A100 benchmark manifests in this repository. Items still requiring author action before journal submission (corresponding e-mail, data-repository URL, conflict-of-interest confirmation) are marked `[TO CONFIRM]` rather than filled with invented values.
+
+---
+
+## Abstract
+
+**Background/Objective.** Flying ad hoc networks (FANETs) require reliable packet-forwarding decisions under rapid topology change and constrained onboard computation. Global graph policies can learn strong routing preferences, but their information requirements conflict with decentralized forwarding, whereas compact approximations can reduce inference time while degrading delivery. This work asks whether privileged global training information can be converted into a strictly local policy without sacrificing reliability, and how the resulting policy's decision latency should be engineered and measured.
+
+**Methods.** We present DiSwitch (Distilled Policy Switch), a deployment-oriented framework with privileged global training, strict-local execution, risk-switched predictive recovery, and semantics-preserving execution reuse. A proximal-policy-optimization (PPO) graph teacher is used only during training; its masked preferences are distilled into one-hop normal and predictive student branches. A calibrated local switch selects between branches using link margin, estimated link lifetime, and onward-connectivity evidence. DiSwitch evaluates each branch once per decision and reuses its logits for action selection and diagnostics, removing a legacy repeated-forward path without changing the policy definition. A common-simulator evaluation covers eight methods, five training seeds, 14 held-out or stress scenarios, and 200 episodes per seed–scenario pair (14,000 episodes per method; 112,000 rows in the combined archive).
+
+**Results.** DiSwitch obtains a connected-pair packet delivery ratio (PDR) of 0.9053 and a deadline-delivery ratio of 0.8376, the highest among the eight evaluated methods. Against the strongest adapted baseline (Evo-QGeo), the paired gains are 1.84 and 2.23 percentage points, respectively (95% CI 1.52–2.16 pp and 1.89–2.57 pp). On an NVIDIA A100-SXM4-40GB, computation reuse reduces batch-one CUDA p95 decision latency from 10.004 ms (legacy repeated execution) to 5.836 ms (41.66% reduction); the session's host CPU reaches 2.208 ms. A compact single-pass variant, Fast-DiSwitch, reaches 2.005 ms on CUDA but fails the predeclared reliability non-inferiority gate (paired connected-PDR change −0.01809, 95% CI [−0.03606, −0.00011]).
+
+**Conclusion.** Semantics-preserving implementation optimization can improve latency without surrendering routing evidence, while approximate acceleration requires joint latency-and-reliability validation before it can replace the calibrated policy.
+
+**Keywords:** Decentralized systems; flying ad hoc networks; graph neural networks; inference latency; policy distillation; reinforcement learning; UAV routing.
+
+---
+
+## 1. Introduction
+
+Unmanned aerial vehicles can form infrastructure-free multihop networks for disaster response, sensing, inspection, and temporary coverage. The routing graph in such a flying ad hoc network (FANET) evolves quickly because relative motion changes both connectivity and link quality. A next hop that offers immediate geographic progress may disappear before transmission, or may lead to a relay with no stable onward neighbor. Reliable routing therefore needs enough structural and temporal context to anticipate failure, yet an onboard relay cannot assume continuous access to a global graph, a centralized controller, or unlimited compute.
+
+Reinforcement learning (RL) has been applied to joint trajectory and routing control, age-of-information optimization, trusted routing, topology-aware recovery, graph-based forwarding, and high-speed FANETs [1–6]. These studies demonstrate the value of learned adaptation but leave two related deployment questions open. First, can global training information be converted into a policy that uses only the observation available at the forwarding relay? Second, if two local experts are needed to cover ordinary and imminent-link-failure conditions, how should their runtime be engineered and measured without confusing network end-to-end delay with neural decision time?
+
+This work addresses both questions. The proposed method, DiSwitch, is learned through a sequence of global-teacher, local-distillation, geographic-prior, predictive-feature, and risk-calibration stages. Its deployed policy contains a normal geographic-residual branch and a predictive-prior branch. The normal branch retains efficient routing in common states; the predictive branch recovers states in which the nominal link is locally unsafe. A calibrated switch uses only local features and the masked branch preferences — no global graph or teacher messages are required during execution.
+
+The systems contribution is the semantics-preserving execution path inside DiSwitch. The original instrumented adapter obtained an action and later recomputed both branches for diagnostics, performing four branch forwards per routing decision even though the mathematical policy required only one forward of each branch. The revised `decide` operation evaluates both branches once, applies the original switch and mask, and returns action metadata from those same logits. DiSwitch is therefore not a smaller approximate model and not an early-exit policy; it is the canonical two-branch policy with redundant execution removed.
+
+### 1.1 Research Questions
+
+1. Does strict-local global-to-local distillation with risk-switched recovery improve delivery reliability over conventional, value-based, and graph-RL references in a common simulator?
+2. Which component of the proposed method accounts for the observed improvement, and where does the method fail?
+3. How much latency is removed by semantics-preserving computation reuse, and why can a large GPU be slower than its host CPU for batch-one routing?
+4. Can a faster distilled or conditionally evaluated policy replace DiSwitch without violating a predeclared delivery-quality gate?
+
+### 1.2 Contributions
+
+1. We formulate a strict deployment contract that allows privileged graph information for offline learning but restricts online forwarding to relay-local and one-hop information.
+2. We combine a geographic-residual normal policy with a predictive local policy through an interpretable risk switch based on margin, link lifetime, and onward lifetime.
+3. We introduce a semantics-preserving computation-reuse path that eliminates repeated diagnostic forwards and preserves the branch logits, mask, switch rule, and selected action.
+4. We evaluate eight methods over five seeds, 14 scenarios, and 200 episodes per seed–scenario cell, using seed-paired scenario-macro inference and explicit definitions for reliability, conditional delay, an energy proxy, and policy-input footprint.
+5. We benchmark CPU and A100 CUDA batch-one execution in the same session and profile device-to-host scalar synchronization. We also report negative results: calibrated early exit is behaviorally accurate on the evaluated trajectories but slower, whereas Fast-DiSwitch is faster but fails the reliability gate.
+
+Figures 1 and 2 separate the privileged training path from the decentralized forwarding path.
+
+**Figure 1.** Privileged training stage of DiSwitch. Global graph knowledge is transferred through policy distillation, while the teacher is removed before deployment.
+`outputs/refactor/ieee_access/source/figures/figure_01_training.png`
+
+**Figure 2.** Strict-local deployment stage of DiSwitch. Local input splits into normal and predictive policies, whose outputs reconverge at the risk switch before masked next-hop selection.
+`outputs/refactor/ieee_access/source/figures/figure_02_deployment.png`
+
+---
+
+## 2. Related Work and Research Gap
+
+### 2.1 Learning-Based UAV and FANET Routing
+
+Topology-aware Q-learning, Q-learning with rate control, and improved multihop Q-learning provide lightweight value-based adaptation [4,7,8]. Predictive-Q explicitly couples mobility and interference with dual-path preparation [9]; its reported lightweight decision path motivates our predictive-recovery design, but a destination-indexed table and a learned dual-branch policy have different state scaling and runtime behavior. Recent deep RL methods use recurrent DQN, graph attention, multi-agent actors, and broader joint optimization [5,6,10,11]. The UAV literature therefore establishes that topology and motion prediction matter, but it does not by itself guarantee decentralized observability or low batch-one inference latency.
+
+Some methods optimize substantially broader actions. Joint trajectory, frequency allocation, routing, scheduling, power, or buffering can improve a system objective [1,2,11,12]. These settings are complementary, not numerically interchangeable, with per-hop next-hop selection. Similarly, resilient cluster maintenance and routing in harsh environments provides strong venue-level evidence that graph RL is relevant to UAV resilience [13], but its cluster-level maintenance objective differs from our strict-local forwarding contract.
+
+### 2.2 Deployment and Latency Reporting
+
+Only a minority of the 45 records in the project literature database reports a scoped routing-decision runtime. Many report network end-to-end delay, which includes queueing, medium access, retransmission, propagation, and multihop forwarding. RLFR includes a Raspberry Pi 4B testbed and local forwarding design [14]; RoutePPO reports an eBPF/P4 forwarding-plane update path [15]; an ultra-high-speed recurrent method reports online decision time [6]; and Predictive-Q reports both per-packet and per-slot computational quantities [9]. Hardware, batch size, synchronization, and timed scope are not uniform across these studies. Consequently, those values are contextual references rather than fair direct baselines for the present PyTorch policy.
+
+Figure 3 visualizes the metric imbalance. The database count is a project audit, not a systematic-review meta-analysis: tags are inherited from the curated records, and the decision-latency count was manually restricted to explicitly scoped compute or forwarding decisions.
+
+**Figure 3.** Metric coverage in the 45-paper project corpus. Generic network delay is common, while directly scoped decision latency is uncommon.
+`outputs/refactor/ieee_access/source/figures/figure_05_literature_coverage.png`
+
+### 2.3 Positioning and Novelty Boundary
+
+Table 1 states the novelty boundary conservatively. The work does not claim the first use of RL, graph encoders, policy distillation, prediction, or conditional computation in isolation. Its contribution is their deployment-constrained composition and the semantics-preserving-versus-approximate validation discipline.
+
+**Table 1.** Claim–gap matrix used to delimit the contribution.
+
+| Literature capability | Remaining gap | Proposed element | Evidence in this paper |
+|---|---|---|---|
+| Graph or multi-agent RL | Global or exchanged state may be required online | Privileged teacher, strict-local student | Observation contract and ablation |
+| Predictive or dual-path routing | Prediction can add cost or override a sound nominal action | Calibrated risk-switched predictive recovery | Scenario heatmap and component effects |
+| Compact learned routing | Faster approximation can alter route outcomes | Predeclared reliability gate | DiSwitch–Fast-DiSwitch paired five-seed test |
+| GPU inference | Large accelerators are often assumed to be faster | Synchronized batch-one CPU/CUDA scope | Same-session A100 benchmark |
+| Instrumented policy adapters | Diagnostic work can duplicate inference invisibly | Semantics-preserving tensor reuse | Legacy–DiSwitch equivalence and latency |
+
+---
+
+## 3. Methods
+
+### 3.1 System Model: Dynamic FANET and Local Action Space
+
+At decision step $t$, the network is a dynamic graph $\mathcal{G}_t=(\mathcal{V},\mathcal{E}_t)$. A directed edge $(u,v)\in\mathcal{E}_t$ indicates that relay $u$ can currently attempt a transmission to $v$. For a packet with destination $d$, the action space at relay $u$ is
+
+$$\mathcal{A}_u(t)=\mathcal{N}_u(t)\cup\{\mathrm{DROP}\},$$
+
+where $\mathcal{N}_u(t)$ is the set of reachable one-hop neighbors. Padding permits a fixed maximum number of candidates, and a Boolean mask $M_u(t)$ excludes padding, disconnected candidates, and prohibited actions. The explicit DROP action prevents an invalid padded index from being interpreted as a relay.
+
+The teacher observes a privileged state $s_t$ that may contain the full graph, positions or motion states, link features, the current relay, destination, and packet context. The deployed student receives
+
+$$o_u(t)=\big(x_u, x_d, x_p, \{x_v,x_{uv},f_v,r_v\}_{v\in\mathcal{N}_u(t)},M_u\big),$$
+
+where $x_u$, $x_d$, and $x_p$ are relay, destination, and packet features; $x_v$ and $x_{uv}$ are neighbor and link features; $f_v$ denotes bounded forwardability features; and $r_v=[m_v,\ell_v,q_v,o_v]$ contains normalized link margin, current-link lifetime, queue headroom, and best-onward-link lifetime. The deployment contract excludes the full adjacency matrix, remote hidden states, and teacher queries.
+
+### 3.2 Objective and Constraints
+
+Let $Y_e\in\{0,1\}$ denote delivery in episode $e$, $C_e\in\{0,1\}$ indicate that the source–destination pair was initially connected, and $D_e$ denote delivery before a deadline. We seek a local policy that maximizes reliability and deadline delivery while controlling delay and execution cost:
+
+$$\max_{\pi} \; \mathbb{E}[\mathrm{PDR}_C(\pi)] + \lambda_D\mathbb{E}[\mathrm{DDR}(\pi)] - \lambda_L\mathbb{E}[L_{95}(\pi)] - \lambda_E\mathbb{E}[E_{\mathrm{proxy}}(\pi)]$$
+$$\text{s.t.}\quad a_t\in\mathcal{A}_u(t),\;\; \pi(a_t\mid o_u(t)), \;\; T_{\mathrm{dec},95}\leq B_T.$$
+
+This multi-objective expression describes the design goal; training uses staged PPO and distillation losses rather than a single scalar solution of the constrained program. Approximate speed variants are judged by a separate acceptance rule. If $\Delta_C$ and $\Delta_D$ are seed-paired changes relative to DiSwitch, a candidate is eligible only if
+
+$$\mathrm{LCB}_{0.95}(\Delta_C)\geq-0.005,\qquad \mathrm{LCB}_{0.95}(\Delta_D)\geq-0.005, \tag{gate}$$
+
+and delay and energy show no material directional degradation.
+
+### 3.3 Proposed Method: DiSwitch
+
+**3.3.1 Privileged global PPO teacher.** The graph-aware teacher is trained offline using proximal policy optimization (PPO) [16]. Given advantage estimate $\hat A_t$, probability ratio $\rho_t(\theta)$, and clip parameter $\epsilon$, its actor loss is
+
+$$\mathcal{L}_{\mathrm{PPO}}(\theta)=-\mathbb{E}_t\!\left[\min\left(\rho_t\hat A_t,\operatorname{clip}(\rho_t,1-\epsilon,1+\epsilon)\hat A_t\right)\right].$$
+
+The same local validity mask used by the student is applied to the teacher's candidate logits before probabilities are produced. The teacher is a source of preferences, not an optimal-route oracle and not a deployment dependency.
+
+**3.3.2 Masked global-to-local distillation.** For temperature $\tau$, the teacher and student masked distributions are
+
+$$p_T^\tau(a)=\operatorname{softmax}\!\left(\frac{z_T(a)+\log M(a)}{\tau}\right),\qquad p_S^\tau(a)=\operatorname{softmax}\!\left(\frac{z_S(a)+\log M(a)}{\tau}\right).$$
+
+The principal distillation term is [17]
+
+$$\mathcal{L}_{\mathrm{KD}}=\tau^2 D_{\mathrm{KL}}(p_T^\tau\Vert p_S^\tau).$$
+
+Auxiliary masked cross-entropy terms may supervise teacher action, shortest-path action, and risk-aware local action. Dataset partitions are made by scenario and episode seed, rather than by individual hops, so that transitions from one trajectory do not leak across partitions.
+
+**3.3.3 Normal geographic-residual branch.** For candidate $v$, let $\Delta d_v=d(u,d)-d(v,d)$ be geographic progress. A shared local encoder $h_\theta(o_u,v)$ and pooled neighbor context $\bar h$ generate a residual score $r_\theta(o_u,v)$. With a learnable positive prior scale $\alpha$ and forwardability feature $f_v$, the normal logit is
+
+$$z^N_v=\alpha\Delta d_v+w_f^\top f_v+r_\theta(o_u,v).$$
+
+The residual corrects greedy behavior while the prior provides a stable inductive bias. The branch also emits an explicit drop logit, and the structural mask is applied after all scores are assembled.
+
+**3.3.4 Predictive local branch.** The predictive branch uses the risk vector $r_v=[m_v,\ell_v,q_v,o_v]$. It is calibrated as a predictive-prior-only branch: the learned residual contribution is set to zero after checkpoint loading, preventing a learned residual from overriding a strong imminent-link-break signal. For calibrated gates $\gamma_m=0.04$, $\gamma_\ell=0.20$, and $\gamma_o=0.20$ *[values to re-verify against the current checkpoint calibration before final submission]*, candidate danger is
+
+$$D(v)=[\gamma_m-m_v]_+ + [\gamma_\ell-\ell_v]_+ + [\gamma_o-o_v]_+.$$
+
+Queue headroom is available to the predictive prior but is intentionally not part of the switch danger in the verified implementation. This distinction matters for source-to-code consistency.
+
+**3.3.5 Risk switch.** Let $a_N=\arg\max_a z^N_a$ and $a_P=\arg\max_a z^P_a$ after masking. Define the safety gain
+
+$$G(a_P,a_N)=(m_{a_P}+\ell_{a_P}+o_{a_P})-(m_{a_N}+\ell_{a_N}+o_{a_N}).$$
+
+For switch threshold $\eta=0.05$ *[to re-verify]*, the predictive branch is selected when at least one neighbor exists and
+
+$$S=\mathbf{1}\Big[a_N=\mathrm{DROP}\;\lor\;D(a_N)>\eta\;\lor\;\big(a_P\neq a_N\land G(a_P,a_N)>0.10\land D(a_P)<D(a_N)\big)\Big].$$
+
+The final logits are $z=(1-S)z^N+Sz^P$, followed by the unchanged action mask and softmax. The switch protects the ordinary branch from unnecessary replacement but allows predictive recovery for a drop, a risky nominal link, or a demonstrably safer alternative.
+
+**3.3.6 DiSwitch execution reuse.** Figure 4 distinguishes the policy from its runtime wrapper. The legacy instrumented path first obtained the action and then invoked diagnostics that recomputed both branch policies. DiSwitch returns a structured decision containing output logits, switch state, normal and predictive actions, normal probabilities, and diagnostics — every diagnostic is computed from already-available tensors.
+
+**Figure 4.** Legacy repeated execution versus DiSwitch. Tensor reuse removes duplicate branch evaluations without pruning a branch or approximating its logits.
+`outputs/refactor/ieee_access/source/figures/figure_02_fusion.png`
+
+**Semantic-equivalence proposition.** Assume deterministic evaluation mode, identical observations and parameters, and a legacy wrapper whose repeated diagnostic calls do not mutate policy state. Then DiSwitch returns the same masked logits, action, switch indicator, and deterministic diagnostics as the mathematical two-branch policy.
+
+*Justification.* The normal and predictive modules are pure deterministic mappings in evaluation mode. Re-evaluating either mapping produces the same logits. Replacing the second evaluation with references to the first logits therefore leaves the danger, switch, mask, and all diagnostics unchanged. The implementation is additionally protected by regression tests that count branch forwards and compare replayed outcomes. This is an implementation-equivalence argument, not a claim of equivalence under stochastic training mode or stateful layers.
+
+**Algorithm 1 — DiSwitch decision.**
+
+```
+Require: local observation o, action mask M, normal policy π_N, predictive policy π_P
+1: z_N, p_N ← π_N(o)                         # one normal forward
+2: z_P, p_P ← π_P(o)                         # one predictive forward
+3: a_N ← argmax mask(z_N, M); a_P ← argmax mask(z_P, M)
+4: compute D(a_N), D(a_P), and G(a_P, a_N) from local risk features
+5: S ← switch rule (Sec. 3.3.5)
+6: z ← where(S, z_P, z_N)
+7: z̃ ← mask(z, M); p ← softmax(z̃)
+8: derive diagnostics from z_N, z_P, a_N, a_P, S without another forward
+9: return argmax z̃, p, S, diagnostics
+```
+
+**3.3.7 Runtime model and candidate optimizations.** Decision time is decomposed as
+
+$$T_{\mathrm{dec}}=T_{\mathrm{pre}}+T_N+T_P+T_{\mathrm{gate}}+T_{\mathrm{mask}}+T_{\mathrm{extract}}+T_{\mathrm{sync}}+T_{\mathrm{runtime}}.$$
+
+Component timers diagnose bottlenecks but are not added to reconstruct end-to-end time because their instrumentation and synchronization boundaries differ; the primary statistic times the complete observation-to-action call.
+
+Three alternatives were tested. *Buffered DiSwitch* reuses input-tensor storage. *Calibrated Early Exit* evaluates only the normal branch when its chosen candidate is not drop, a live candidate exists, and $D(a_N)=0$; its expected time is $\mathbb{E}[T_{EE}]=T_N+(1-p_{\mathrm{skip}})T_P+T_g$, so it helps only if $T_g<p_{\mathrm{skip}}T_P$. *Fast-DiSwitch* distills DiSwitch into a compact single-pass network. It changes the policy family and must therefore pass the reliability gate above; it cannot inherit DiSwitch's behavioral evidence merely because it is trained from DiSwitch.
+
+### 3.4 Experimental Methodology
+
+**3.4.1 Common-simulator routing evaluation.** The full comparison uses eight policies: AODV, OLSR, Greedy Geographic, adapted Evo-QGeo, adapted RDQN-HERP, GAT-GRU-DDQN, Fast-DiSwitch, and DiSwitch. "Adapted" means that the published organizing idea was implemented inside the common simulator; the values are not copied from the original papers and should not be read as a reproduction of their reported testbeds. All methods receive the simulator information permitted by their contracts and use the same episode and scenario schedule.
+
+Five training seeds (42, 77, 123, 314, and 2718), 14 held-out or stress scenarios, and 200 episodes per seed–scenario cell produce 14,000 episodes per method and 112,000 episode rows in the combined archive. Scenarios cover nominal held-out mobility, stochastic link loss, high or extreme mobility, sparse connectivity, node-count shifts, structural geographic holes, predictive breaks, and predictive breaks with loss. Figure 5 summarizes the design.
+
+**Figure 5.** Evaluation protocol. The seed, not the individual packet decision, is the primary inferential unit.
+`outputs/refactor/ieee_access/source/figures/figure_04_protocol.png`
+
+**3.4.2 Metrics and scope.** For episode set $\mathcal{E}$, connected-pair PDR is
+
+$$\mathrm{PDR}_C=\frac{\sum_{e\in\mathcal E}Y_e C_e}{\sum_{e\in\mathcal E}C_e},$$
+
+and overall PDR is $|\mathcal E|^{-1}\sum_e Y_e$. Deadline delivery ratio is $|\mathcal E|^{-1}\sum_e D_e$. The p95 successful delay is the 0.95 quantile of forwarding steps among delivered packets only. A missing-delivery cell is reported as N/A, never as zero, because a policy that drops every packet could otherwise appear to have zero delay. Network end-to-end delay in steps and local decision latency in milliseconds are deliberately reported as different metrics.
+
+Energy per delivered packet is a simulator proxy that aggregates modeled transmission cost and a failure penalty under the synthesis aggregation; it is **not** a physical Joule measurement. Mean policy-input bytes is the in-memory tensor footprint consumed by the policy and is **not** wireless control-plane overhead. These qualifications are repeated wherever the metrics are reported because removing the scope would create invalid cross-paper claims.
+
+**3.4.3 Statistical analysis.** Episode outcomes are first aggregated within each seed and scenario, then averaged across the 14 scenarios. The primary reported mean is therefore a five-seed scenario-macro estimate. For method $A$ and reference $B$, a directional paired difference is $d_s=x_{A,s}-x_{B,s}$ for higher-is-better metrics and $d_s=x_{B,s}-x_{A,s}$ for lower-is-better metrics. A two-sided 95% Student-$t$ interval is formed across the five paired seed differences. Deterministic bootstrap intervals and exact sign-flip checks are retained in the latency analysis. With five pairs, the smallest attainable two-sided exact sign-flip $p$-value is $2/2^5=0.0625$; hence effect sizes and intervals, rather than a ritual $p<0.05$ threshold, lead the interpretation.
+
+The repository also contains a pooled full-analysis table whose weighting differs from the scenario-macro synthesis, especially for the failure-penalized energy metric. This paper uses the combined synthesis consistently; the alternate aggregation is disclosed in the statistical audit rather than mixed selectively into figures.
+
+**3.4.4 Decision-latency benchmark and profiling.** The confirmatory runtime environment is a Google Colab session with an NVIDIA A100-SXM4-40GB, PyTorch 2.11.0+cu128, CUDA runtime 12.8, and Python 3.13.15. CPU and CUDA variants were executed in the same session, with batch size one, one CPU thread, 50 warm-up calls, 2,000 timed repetitions per seed and component, and five checkpoints. CUDA measurements synchronize around the timed end-to-end call. The primary latency statistic is the mean across seed-specific p95 values; cold start is stored separately.
+
+Operator profiling is a distinct short run on seed 42 and the held-out-medium scenario after 50 warm-up calls, with 30 profiled decisions. Profiler event totals attribute bottlenecks but are not substituted for the 2,000-repeat latency statistic. The study records code bundle, checkpoint archive, result archive, hardware, package freeze, and SHA-256 hashes. An attempted expanded rerun for additional p90, maximum, coefficient-of-variation, and peak-device-memory fields was interrupted when the backend reclaimed the session; no values are imputed from that failed job.
+
+---
+
+## 4. Results
+
+### 4.1 Overall Routing Performance
+
+Table 2 and Figure 6 show the scenario-macro results. DiSwitch has the highest connected-pair PDR and deadline delivery among the eight common-simulator methods. It does not universally minimize every cost: AODV and OLSR have smaller policy inputs and lower conditional successful delay, partly because they solve no neural inference problem and because unsuccessful packets are excluded from the conditional delay statistic. Reliability and delay must therefore be interpreted jointly.
+
+**Table 2.** Five-seed, 14-scenario macro means. Parentheses show 95% CI where non-degenerate. Energy is a simulator proxy; p95 delay is conditional on successful delivery.
+
+| Method | Connected PDR | Deadline ratio | p95 delay (steps) | Energy/deliv. (proxy) | Input bytes |
+|---|---|---|---|---|---|
+| AODV | 0.7982 | 0.7357 | 3.857 | 15.420 | 143 |
+| OLSR | 0.7657 | 0.7039 | 3.139 | 27.164 | 138 |
+| Greedy Geographic | 0.6832 | 0.6371 | 3.568 | 25.761 | 2284 |
+| Evo-QGeo (Adapted) | 0.8869 (0.8850–0.8887) | 0.8154 (0.8132–0.8175) | 4.557 (4.465–4.650) | 2.248 (2.239–2.258) | 6452 |
+| RDQN-HERP (Adapted) | 0.7251 (0.5977–0.8526) | 0.5996 (0.4527–0.7465) | 6.163 (5.674–6.652) | 3.348 (2.714–3.983) | 4977 |
+| GAT-GRU-DDQN | 0.6758 (0.5660–0.7855) | 0.5817 (0.4841–0.6793) | 5.494 (5.116–5.872) | 13.191 (−13.066–39.448) | 4451 |
+| Fast-DiSwitch | 0.8872 (0.8682–0.9062) | 0.8150 (0.7910–0.8390) | 4.486 (4.301–4.672) | 2.369 (2.229–2.510) | 6437 |
+| **DiSwitch** | **0.9053 (0.9039–0.9067)** | **0.8376 (0.8363–0.8390)** | **4.264 (4.183–4.346)** | **2.228 (2.225–2.231)** | **4821 (4691–4952)** |
+
+**Figure 6.** Common-simulator comparison. Error bars are five-seed 95% $t$ intervals over scenario-macro summaries. Small input size for AODV/OLSR is not wireless routing overhead.
+`outputs/refactor/ieee_access/source/figures/figure_03_external_results.png`
+
+Against Evo-QGeo, the strongest adapted baseline by connected PDR, DiSwitch improves connected PDR by 0.01841 (95% CI 0.01520–0.02161) and deadline ratio by 0.02229 (0.01890–0.02567). DiSwitch also has 0.2929 fewer p95 successful-delay steps (0.1503–0.4354), a 0.02031 lower energy proxy per delivered packet (0.00826–0.03237), and 1,630 fewer policy-input bytes (1,507–1,753). These are paired scenario-macro contrasts; they do not imply that every scenario or every packet is superior.
+
+### 4.2 Scenario Robustness and Failure Localization
+
+The scenario heatmap in Figure 7 shows why aggregate reliability alone is insufficient. The predictive-recovery mechanism is most useful in structural-hole and link-break settings where the normal geographic-residual policy can collapse. DiSwitch remains vulnerable in the predictive-break-plus-loss scenario, where Evo-QGeo retains an advantage. This failure persisted after switch recalibration and predictive-student retraining, suggesting a policy-family limitation rather than a threshold-only defect.
+
+**Figure 7.** Five-seed scenario-level reliability. The heatmap localizes both predictive recovery and the node-scale or link-loss conditions in which approximations degrade.
+`outputs/refactor/ieee_access/source/supplementary_figures/07_reliability_heatmap.png`
+
+The three node-count-shift cases provide a limited generalization test, not a scalability proof. The full graph teacher is absent online, but the local tensor size still depends on the maximum candidate capacity and neighborhood representation. Larger swarms with higher local degree, realistic radio interference, and multiple concurrent flows require separate validation.
+
+### 4.3 Ablation Evidence
+
+Figure 8 reports the seed-level contribution analysis. Removing the switch, relying on the predictive prior alone, or using the geographic-residual predecessor changes different scenario families. The result supports the architectural interpretation: global-to-local distillation supplies a capable normal policy, predictive features offer recovery information, and the calibrated switch prevents always-on predictive behavior from replacing safe nominal decisions indiscriminately.
+
+**Figure 8.** Directional component contributions with five-seed 95% intervals. Positive values favor the complete DiSwitch policy under the metric's preferred direction.
+`outputs/refactor/ieee_access/source/supplementary_figures/16_ablation_contribution.png`
+
+The project history includes additional negative interventions: increasing the Fast-DiSwitch hidden dimension from 32 to 48 worsened the 24-node OOD case; density-augmented distillation improved node-count cases but introduced seed-specific predictive-break failures; switch recalibration under stochastic loss did not change the limiting outcome; and retraining the predictive student on that loss family reproduced the same failure pattern. These results are not promoted as separate contributions, but they constrain the explanation and motivate worst-scenario reweighting and action-space shielding as future directions.
+
+### 4.4 Semantics-Preserving Reuse and Batch-One Decision Latency
+
+Table 3 reports the same-session A100 results. The DiSwitch CUDA p95 is 5.836 ms, compared with 10.004 ms for legacy repeated execution — a 41.66% reduction. On the Colab host CPU, the corresponding values are 2.208 and 3.775 ms, a 41.51% reduction. The policy result is unchanged because the speedup removes duplicate evaluation rather than changing either branch.
+
+**Table 3.** Same-session batch-one end-to-end decision latency. Values are means of five seed-specific statistics; paired p95 change is relative to DiSwitch and positive means faster.
+
+| Variant | Device | Mean (ms) | p50 | p95 | p99 | p95 change |
+|---|---|---|---|---|---|---|
+| DiSwitch | CPU | 2.168 | 2.161 | 2.208 | 2.344 | reference |
+| Early Exit | CPU | 2.366 | 2.356 | 2.427 | 2.581 | −9.90% |
+| Fast-DiSwitch | CPU | 0.812 | 0.814 | 0.847 | 0.927 | +61.66% |
+| Fast-DiSwitch + Top-2 | CPU | 0.853 | 0.852 | 0.881 | 0.933 | +60.11% |
+| Buffered DiSwitch | CPU | 2.187 | 2.179 | 2.244 | 2.370 | −1.62% |
+| Legacy repeated | CPU | 3.698 | 3.687 | 3.775 | 3.935 | −70.97% |
+| DiSwitch | CUDA | 5.671 | 5.648 | 5.836 | 6.101 | reference |
+| Early Exit | CUDA | 6.198 | 6.172 | 6.386 | 6.663 | −9.42% |
+| Fast-DiSwitch | CUDA | 1.957 | 1.950 | 2.005 | 2.120 | +65.65% |
+| Fast-DiSwitch + Top-2 | CUDA | 2.040 | 2.032 | 2.092 | 2.183 | +64.16% |
+| Buffered DiSwitch | CUDA | 5.626 | 5.602 | 5.788 | 6.020 | +0.83% |
+| Legacy repeated | CUDA | 9.741 | 9.706 | 10.004 | 10.376 | −71.43% |
+
+**Figure 9.** Latency summary across the verified implementations. The low Fast-DiSwitch latency must be read together with its reliability failure.
+`outputs/refactor/ieee_access/source/supplementary_figures/02_latency_summary.png`
+
+The paired CUDA p95 reduction for Buffered DiSwitch is only 0.83% (95% $t$ CI 0.21–1.44); it is classified as "hold" because the effect is small and is negative on CPU. Early Exit is 9.42% slower on CUDA (CI −10.62 to −8.22). Figure 10 shows the uncertainty and direction of these effects.
+
+**Figure 10.** Paired p95 latency effects versus DiSwitch. Positive values favor the candidate. Intervals are based on five matched checkpoints, not on 10,000 pseudo-independent individual calls.
+`outputs/refactor/ieee_access/source/supplementary_figures/04_latency_forest.png`
+
+### 4.5 Why CUDA Is Slower Than the CPU
+
+DiSwitch is 62.16% faster on the A100-session host CPU than on CUDA at p95 (2.208 versus 5.836 ms). This result is consistent with a fine-grained batch-one workload: the model has small matrix operations, while each CUDA decision launches many kernels, constructs or transfers small tensors, and materializes scalar values for Python-side conditions and action extraction. The fixed launch and synchronization costs dominate the compute saved by parallel arithmetic.
+
+Operator profiling supports this attribution. Across 30 DiSwitch profiled calls, the local-scalar materialization operator occurs 1,050 times and is paired with 1,050 device-to-host copies. Early Exit increases these counts to 1,140; Fast-DiSwitch reduces them to 300. The profiler cannot apportion the complete synchronized p95, but it identifies a plausible synchronization mechanism and explains why Python conditional execution does not satisfy $T_g<p_{\mathrm{skip}}T_P$.
+
+Figure 11 shows the device comparison. It does not imply that every CPU is faster than every embedded GPU; deployment must be remeasured on the target flight computer, preferably including power and forwarding-table update time.
+
+**Figure 11.** CPU and CUDA decision latency in the verified A100 session, with an older bundle retained only as an independent reproducibility reference.
+`outputs/refactor/ieee_access/source/supplementary_figures/17_device_comparison.png`
+
+### 4.6 Why Fast-DiSwitch Does Not Replace DiSwitch
+
+Fast-DiSwitch reduces CUDA p95 to 2.005 ms, 65.65% below DiSwitch, but connected PDR decreases from 0.90529 to 0.88720. The directional paired change is −0.01809 with 95% CI [−0.03606, −0.00011], below the predeclared −0.005 non-inferiority floor. Deadline ratio decreases by 0.02264 with CI [−0.04625, 0.00096]; successful p95 delay and energy proxy also worsen. The compact model is therefore a latency–quality research candidate, not the final method.
+
+**Figure 12.** A100 p95 decision latency versus connected-pair PDR. The upper-left region is preferred; DiSwitch and Fast-DiSwitch represent distinct quality–latency choices.
+`outputs/refactor/ieee_access/source/supplementary_figures/05_pareto_connected_pair_pdr.png`
+
+**Figure 13.** Decision record for optimization candidates. DiSwitch is accepted because it preserves the validated policy behavior; Fast-DiSwitch fails reliability, and Python Early Exit fails latency.
+`outputs/refactor/ieee_access/source/supplementary_figures/20_failed_candidate_tradeoff.png`
+
+### 4.7 Early-Exit Calibration as a Negative Result
+
+At a zero danger margin, Early Exit skips the predictive branch for 32,285 of 43,467 decisions (74.27%) and produces no episode-trajectory mismatch over 14,000 paired episodes for the current checkpoints and scenarios. Positive margins increase the skip rate but cause action divergence. Figure 14 shows this empirical calibration boundary.
+
+**Figure 14.** Early-exit calibration. Zero observed divergence at margin zero is empirical evidence for the evaluated trajectories, not formal equivalence for unseen states.
+`outputs/refactor/ieee_access/source/supplementary_figures/12_gate_calibration.png`
+
+Despite the high skip rate, Early Exit is slower. Its Python branch requires scalar materialization and control flow before saving a small predictive multilayer-perceptron call. This negative result rules out the naive "high skip rate implies low latency" argument and motivates a tensor-only conditional graph, such as a deployment-runtime conditional operator, for future work.
+
+---
+
+## 5. Discussion
+
+### 5.1 Answering the Research Questions
+
+**RQ1.** The common-simulator evidence supports the strict-local architecture: DiSwitch provides the strongest scenario-macro reliability and deadline delivery among the eight implementations, with paired advantages over the strongest adapted baseline. The claim is deliberately limited to the evaluated simulator, information contracts, and scenarios.
+
+**RQ2.** Recovery is not attributable to a single black-box network. The geographic prior stabilizes nominal forwarding, the distilled residual transfers global structural preference to local features, predictive risk exposes impending breaks, and the calibrated switch determines when the predictive prior should replace the nominal choice. The ablation and scenario heatmap show complementary roles and a remaining predictive-break-with-loss weakness.
+
+**RQ3.** Semantics-preserving execution reuse materially reduces the avoidable portion of decision latency, but the remaining model is too fine-grained to benefit automatically from the A100 at batch one. Host-device synchronization and launch overhead are part of the routing system, not incidental benchmarking noise. For online packet routing, batching decisions can change the control semantics or add waiting delay; batch one is therefore the deployment-relevant primary measurement.
+
+**RQ4.** Neither Fast-DiSwitch nor the tested Early Exit is an acceptable replacement. Fast-DiSwitch wins the timer and loses the predeclared quality gate. Early Exit preserves observed trajectories at its conservative threshold but loses the timer. DiSwitch is the final proposed implementation because it is the only tested change that offers a large latency reduction relative to the duplicated legacy path without changing the policy.
+
+### 5.2 End-to-End Delay Versus Decision Latency
+
+Both quantities should be measured, but they answer different questions. Network end-to-end delay can be written schematically as
+
+$$T_{\mathrm{E2E}}=\sum_{h=1}^{H}\big(T_{\mathrm{queue},h}+T_{\mathrm{MAC},h}+T_{\mathrm{tx},h}+T_{\mathrm{prop},h}+T_{\mathrm{decision},h}+T_{\mathrm{update},h}\big).$$
+
+The simulator's successful delay in steps captures the route-level effect of hop count, retries, and connectivity under its abstraction. The microbenchmark isolates observation-to-action software latency. A future hardware-in-the-loop evaluation should add routing-table update and real radio timing. Combining these terms into one unlabeled "delay" would make comparison with RoutePPO, RLFR, Predictive-Q, and simulation papers misleading.
+
+### 5.3 Practical Deployment Guidance
+
+The present evidence supports a CPU-first batch-one deployment profile for the current PyTorch implementation. The unified decision API should be the only adapter entry point, and regression tests should assert one normal and one predictive forward per decision. A GPU path should avoid repeated small tensor creation and should keep gate and action extraction tensor-resident. If multiple independent flows can be accumulated without violating their deadlines, micro-batching may amortize launches, but the queuing time introduced by batching must be included in end-to-end latency.
+
+The local observation is compatible with decentralized forwarding, yet feature acquisition is not free. Link-lifetime and onward-connectivity estimates require beacons or local prediction. The current policy-input byte metric measures memory presented to the model, not the over-the-air bytes required to maintain those estimates. A complete implementation must instrument both quantities.
+
+### 5.4 Threats to Validity and Limitations
+
+- **Simulation validity.** The routing results come from a project simulator rather than flight or wireless testbed measurements. Radio, mobility, interference, clocking, and energy abstractions may not reproduce real vehicles. The adapted baselines are controlled common-environment implementations, not authoritative reproductions of every original paper.
+- **Statistical power.** Five training seeds permit paired effect estimation but cannot produce a two-sided exact sign-flip $p<0.05$. Some deterministic baselines have zero between-seed variance because their policy does not depend on training seed. Future confirmation should use at least 10 independent seeds, randomized runtime block order, and hierarchical bootstrap over seeds and scenario families.
+- **Aggregation.** Scenario-macro weighting gives each scenario equal influence. A traffic-weighted operational deployment could produce different priorities. Failure-penalized energy is particularly sensitive to aggregation and must not be compared with raw transmission-only energy without restating the formula.
+- **Latency trace granularity.** The primary A100 archive stores seed/component aggregates rather than every one of the 2,000 raw timings. It includes warm-up and synchronized percentiles, but a stricter replication should retain the randomized raw timing order. The short operator profile is attribution evidence, not a latency sample.
+- **Hardware representativeness.** An A100 is not an onboard computer. Its value here is controlled profiling of CUDA behavior, not a claim of flight readiness. Jetson Orin, Raspberry Pi-class processors, or the target autopilot companion computer should be measured under thermal and power constraints.
+- **Equivalence scope.** DiSwitch is equivalent to the legacy two-branch decision under deterministic evaluation assumptions. Early Exit's zero mismatch is only empirical for the current checkpoints and trajectory set. Fast-DiSwitch is explicitly approximate. No result establishes formal safety for all reachable network states.
+- **Provenance.** The synthesis manifest records the source commit and a dirty-file list. The archive is internally complete and cross-experiment row counts were verified, but the non-clean generation state is a reproducibility weakness. A release candidate should rerun or freeze the final bundle under a clean tag and publish hashes.
+
+---
+
+## 6. Future Work
+
+The immediate systems direction is tensor-only conditional computation. The normal branch, danger computation, conditional predictive branch, and action selection should be captured in one compiled graph without Python `.item()` calls. Its acceptance criterion remains identical to the reliability gate defined in Section 3.2. A second direction is conservative action-space pruning: remove only disconnected or provably risk-infeasible candidates before the policy head, then test whether the action remains identical on exhaustive replay.
+
+Approximate acceleration requires a better training objective. Candidate losses include branch-logit distillation, switch-logit calibration, pairwise candidate ranking, worst-scenario reweighting, and selective cascades that invoke Fast-DiSwitch only at high confidence and low risk. The cascade must be calibrated on held-out scenario families and confirmed on new seeds, not tuned on the final evaluation archive.
+
+The next empirical stage should combine a clean 10-seed simulator run with target-device measurements. We recommend separately recording model inference, observation construction, routing-table update, radio-control traffic, end-to-end packet delay, energy in joules, temperature, and power mode. RoutePPO and RLFR suggest useful forwarding-plane and small-device precedents [14,15]; larger-scale and multipath work suggests expanding density, concurrency, and failover conditions [18,19].
+
+---
+
+## 7. Conclusion
+
+This paper presented DiSwitch, a decentralized UAV-routing framework that uses privileged global learning, strict-local deployment, policy distillation, risk-switched predictive recovery, and semantics-preserving computation reuse. In the common simulator, DiSwitch achieved 0.9053 connected-pair PDR and 0.8376 deadline delivery across five seeds and 14 scenario families, outperforming the strongest adapted baseline in paired scenario-macro comparisons. Computation reuse removed legacy duplicate forwards and reduced A100 CUDA p95 decision latency from 10.004 to 5.836 ms without changing the policy. The same benchmark showed that the host CPU was faster than CUDA for this batch-one workload. Fast-DiSwitch reached 2.005 ms but failed the reliability gate, while a conservative Early Exit skipped most predictive calls yet ran slower because of control and synchronization overhead. The resulting conclusion is narrower and stronger than a universal speed or accuracy claim: DiSwitch provides a verified implementation speedup while retaining the evidence-backed routing behavior; approximate acceleration remains future work until it passes both latency and reliability criteria.
+
+---
+
+## Author Contributions
+
+Kyung Eun Kim: conceptualization, methodology, software, validation, formal analysis, investigation, data curation, visualization, and writing — original draft. Howon Lee: conceptualization, supervision, project administration, and writing — review and editing. Both authors approved the manuscript. *[TO CONFIRM: verify these roles against the final CRediT statement before submission.]*
+
+## Data Availability
+
+The study is accompanied by source code, configuration files, raw episode archives, seed summaries, paired-effect tables, A100 benchmark manifests, operator profiles, figure-source CSV files, and SHA-256 records in the project repository. *[TO CONFIRM: insert the final public repository URL and archival DOI, or state the approved access conditions, before submission.]*
+
+## Conflicts of Interest
+
+The authors declare no conflict of interest. *[TO CONFIRM: reconfirm this statement for both authors immediately before submission.]*
+
+## Acknowledgment
+
+OpenAI Codex was used to assist with initial English drafting, LaTeX restructuring, and figure-layout preparation for the abstract, related-work synthesis, methods, results, and supplementary material of the source LaTeX draft [20]. Claude Code (Anthropic) was subsequently used to consolidate that verified draft into this IMRaD-structured Markdown manuscript, transcribing figures, tables, and numerical results without altering their values. The authors are responsible for verifying every claim, reference, calculation, and final submission file. *[TO CONFIRM: revisit the target journal's current AI-disclosure policy and adjust wording/placement before submission — see Section 5 of the manuscript guideline for publisher-specific requirements.]*
+
+## Supplementary Materials
+
+Supplementary figures (scenario heatmaps, latency ECDF, gate calibration, ablation contributions, and device comparisons), raw statistical audit tables, and the alternate pooled-aggregation analysis are retained under `outputs/refactor/ieee_access/source/` and `outputs/refactor/ieee_access/source/supplementary_figures/` in this repository, alongside the compiled PDF at `outputs/refactor/ieee_access/source/build/main.pdf`.
+
+---
+
+## References
+
+1. Alam, M. M., & Moh, S. (2024). Joint Trajectory Control, Frequency Allocation, and Routing for UAV Swarm Networks: A Multi-Agent Deep Reinforcement Learning Approach. *IEEE Transactions on Mobile Computing*, 23(12). https://doi.org/10.1109/TMC.2024.3403890
+2. Wu, H., Wu, S., Li, A., Meng, S., & Zhang, Q. (2026). AoI-Aware Joint Sampling-Buffering-Routing Optimization for Autonomous UAV Swarms via a MARL Approach. *IEEE Transactions on Mobile Computing*. https://doi.org/10.1109/TMC.2026.3699777
+3. Jia, Z., He, S., Zhu, Q., Wang, W., Wu, Q., & Han, Z. (2025). Trusted Routing for Blockchain-Empowered UAV Networks via Multi-Agent Deep Reinforcement Learning. *IEEE Transactions on Communications*. https://doi.org/10.1109/TCOMM.2025.3597655
+4. Cui, Y., Zhang, Q., Feng, Z., Wei, Z., Shi, C., & Yang, H. (2022). Topology-Aware Resilient Routing Protocol for FANETs: An Adaptive Q-Learning Approach. *IEEE Internet of Things Journal*, 9(19), 18632–18650. https://doi.org/10.1109/JIOT.2022.3162849
+5. Zhang, J., Huang, H., Shi, C., Zhang, Y., Fan, B., & Li, D. (2025). Spatiotemporal-Aware Resilient Routing Algorithm Based on Graph Attention Double DQN. In *Proc. 17th Int. Conf. on Wireless Communications and Signal Processing*. https://doi.org/10.1109/WCSP68525.2025.1010249
+6. Shou, Y., Liu, D., & Hou, X. (2026). Adaptive Intelligent Routing in Ultra-High-Speed FANETs Using Deep Reinforcement Learning. *IEEE Transactions on Vehicular Technology*. https://doi.org/10.1109/TVT.2026.3668740
+7. Tho, M. C., Ly, N. T. H., Binh, L. H., & Vo, T. T. (2025). QLR-FANET: A Q-learning and Rate Control-Based Routing Protocol for Flying Ad Hoc Network. *ETRI Journal*, 47(6), 1015–1027. https://doi.org/10.4218/etrij.2024-0298
+8. Sharvari, N. P., Das, D., Bapat, J., & Das, D. (2025). Improved Q-Learning-Based Multi-Hop Routing for UAV-Assisted Communication. *IEEE Transactions on Network and Service Management*, 22(2). https://doi.org/10.1109/TNSM.2024.3522153
+9. Dong, Z., Sun, H., Tao, Y., & Zhai, D. (2026). Predictive-Q Learning Based Interference-and-Mobility Aware Dual-Path Routing for UAV Swarm Networks with Mobile Edge Computing. *Computers, Materials & Continua*, 88(3). https://doi.org/10.32604/cmc.2026.084301
+10. Ke, Y., Huang, K., Qiu, X., Song, B., Xu, L., Yin, J., & Yang, Y. (2024). Distributed Routing Optimization Algorithm for FANET Based on Multiagent Reinforcement Learning. *IEEE Sensors Journal*, 24(15). https://doi.org/10.1109/JSEN.2024.3415127
+11. Wang, C., Liu, Y., Song, R., Yu, X., Wang, X., Chen, X., & Liu, J. (2025). Joint Optimization of Routing and Power Control in UAV Networks via Graph Reinforcement Learning. In *Proc. 17th Int. Conf. on Wireless Communications and Signal Processing*. https://doi.org/10.1109/WCSP68525.2025.1010551
+12. Zheng, F., Wei, J., Li, S., Yu, P., Guo, S., Zhao, J., & Huang, Y. (2026). A Dual-Layer Deep Reinforcement Learning Routing Approach for Integrated UAV and Satellite IoT Networks. *IEEE Internet of Things Journal*, 13(3). https://doi.org/10.1109/JIOT.2025.3602147
+13. Sun, S., Cao, C., Lyu, Y., Xu, X., Huang, R., Xu, Y., Tang, S., Fu, C., & Wu, W. (2026). Intelligent Maintenance and Routing Decision Making for UAV Clusters in Harsh Environments. *Drones*, 10(6), 455. https://doi.org/10.3390/drones10060455
+14. Li, J., Xiao, L., Qi, X., Lv, Z., Chen, Q., & Liu, Y.-J. (2024). Reinforcement Learning Based Energy-Efficient Fast Routing for FANETs. *IEEE Transactions on Communications*, 72(11). https://doi.org/10.1109/TCOMM.2024.3409561
+15. Cürmen, N., Okay, F. Y., & Özdemir, S. (2026). RoutePPO: eBPF-Based Proximal Policy Optimization for Adaptive Routing in UAV Swarm Networks. In *Proc. Int. Conf. on Smart Applications, Communications and Networking*. https://doi.org/10.1109/SMARTNETS69662.2026.11604730
+16. Schulman, J., Wolski, F., Dhariwal, P., Radford, A., & Klimov, O. (2017). Proximal Policy Optimization Algorithms. arXiv:1707.06347. https://doi.org/10.48550/arXiv.1707.06347
+17. Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the Knowledge in a Neural Network. In *NIPS Deep Learning and Representation Learning Workshop*. arXiv:1503.02531.
+18. Zhang, X., Lei, L., Shen, G., Fan, J., Pan, Y., & Cao, P. (2026). A Large-Scale UAV Swarms Routing Approach With Deep Reinforcement Learning Leveraging Intelligent Endogenous Network. *IEEE Transactions on Vehicular Technology*. https://doi.org/10.1109/TVT.2026.3672174
+19. Zhao, Z., Zhang, T., Xu, X., Li, J., Liu, Y., & Xing, W. (2026). Multipath Routing for Multi-Hop UAV Networks. arXiv:2601.10299. https://doi.org/10.48550/arXiv.2601.10299
+20. OpenAI. (2026). *Codex* [Software system]. https://openai.com/codex/ (Accessed September 5, 2026).
+
+---
+
+*Source of truth for all figures, tables, and statistics: `outputs/refactor/ieee_access/source/main.tex` (compiled to `outputs/refactor/ieee_access/source/build/main.pdf`), generated from the audited raw episode archives and A100 benchmark manifests under this repository's experiment-tracking rules (see `CLAUDE.md` and `.claude/context/`). Per repository research-integrity rules, this manuscript keeps `energy_per_delivered_packet` labeled as a simulator proxy (never Joules), keeps `policy_input_bytes` distinct from routing-control overhead, and does not merge Phase 13/P+ results into DiSwitch/SwitchGLOBE figures.*
