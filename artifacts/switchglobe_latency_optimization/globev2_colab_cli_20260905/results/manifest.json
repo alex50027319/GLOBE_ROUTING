@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "switchglobe_unified_latency",
+  "variants": [
+    "legacy_repeated",
+    "exact",
+    "early_exit",
+    "fast",
+    "fast_top2"
+  ],
+  "training_seeds": [
+    42,
+    77,
+    123,
+    314,
+    2718
+  ],
+  "warmup": 50,
+  "repeats": 2000,
+  "runtime_rows": 220,
+  "deployment_cost_rows": 50,
+  "torch": "2.11.0+cu128",
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "cuda_available": true,
+  "early_exit_executed": true,
+  "fast_checkpoint_dir": "/content/switchglobe_checkpoints/fast",
+  "config_sha256": "f770e1063019125d0d908d8214e2d0658fb93406807b98e35e41d8fcf7c722ff",
+  "checkpoint_sha256": {
+    "switchglobe_exact_seed_42": "4d5740be9e3a4c088812281a8a8a261cf45e577d10fc4a8e3baef63c50f684db",
+    "fast_switchglobe_seed_42": "1ba1b49aa42851fffd0a26c00e80191b1d7a0ad81c34aa2d72d31ba88fb95aa8",
+    "switchglobe_exact_seed_77": "6d230ff309aefeda2abadb8ecd12470a248cef812138a02aa355edf28cee22ad",
+    "fast_switchglobe_seed_77": "5c66228664f2f23efd6306017410f38c248226cdcdfd3e8b5167bb37d1057e4b",
+    "switchglobe_exact_seed_123": "6976ad2938264892a4476f326e71bda91901d396109a3199a43c69dea1846bda",
+    "fast_switchglobe_seed_123": "8ea097e4b84adac3656001ba9aa38b8ebd325686674c09a6814a01b6dcf09fec",
+    "switchglobe_exact_seed_314": "0e0936d0ec043a3ecdce1be9918ca246ff36a72c83bbfbd18a28fa6c9c6f06aa",
+    "fast_switchglobe_seed_314": "5f6098b81c7948fecbde29902eef592130a96d3c61a87e8717ad95fe0137faaa",
+    "switchglobe_exact_seed_2718": "5c453f578f894e63da34d942420ece20a3c3de6a100e6383f84b1afc5e3cd7bd",
+    "fast_switchglobe_seed_2718": "08f88b244b3e5325616530a7bebd32b070a78d9cbb2f5c25ba640767753d9fb2"
+  },
+  "git_commit_hash": null,
+  "dirty_files": [],
+  "execution_backend": "google_colab_cli",
+  "requested_accelerator": "A100",
+  "verified_gpu_name": "NVIDIA A100-SXM4-40GB",
+  "source_git_commit": "92d17df3f4451e0412858a9927a898a2696023b3",
+  "torch_num_threads": 1,
+  "batch_size": 1,
+  "elapsed_seconds": 774.589204788208
+}

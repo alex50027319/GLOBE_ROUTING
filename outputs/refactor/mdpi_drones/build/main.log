@@ -1,0 +1,1850 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.9.5)  7 SEP 2026 01:07
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/source/main.
+tex
+
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/source/main.t
+ex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-08-10>
+(./Definitions/mdpi.cls
+Document Class: Definitions/mdpi 13/03/2026 MDPI paper class
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/base
+/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/base
+/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/base
+/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/base
+/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tool
+s/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count284
+\calc@Bcount=\count285
+\calc@Adimen=\dimen151
+\calc@Bdimen=\dimen152
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count286
+\calc@Cskip=\skip53
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tool
+s/indentfirst.sty
+Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/fanc
+yhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip54
+\f@nch@offset@elh=\skip55
+\f@nch@offset@erh=\skip56
+\f@nch@offset@olh=\skip57
+\f@nch@offset@orh=\skip58
+\f@nch@offset@elf=\skip59
+\f@nch@offset@erf=\skip60
+\f@nch@offset@olf=\skip61
+\f@nch@offset@orf=\skip62
+\f@nch@height=\skip63
+\f@nch@footalignment=\skip64
+\f@nch@widthL=\skip65
+\f@nch@widthC=\skip66
+\f@nch@widthR=\skip67
+\@temptokenb=\toks19
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics/graphicx.sty
+Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics/keyval.sty
+Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics/graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/epst
+opdf-pkg/epstopdf.sty
+Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/in
+fwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grfe
+xt/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/kv
+definekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/kvop
+tions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/lt
+xcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/kvse
+tkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pd
+ftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/if
+tex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/epst
+opdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/late
+xconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/last
+page/lastpage.sty
+Package: lastpage 2025/08/14 v2.1h lastpage: 2.09 or 2e? (HMM)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/last
+page/lastpage2e.sty
+Package: lastpage2e 2025/08/14 v2.1h Decide which 2e lastpage version to use (H
+MM)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/last
+page/lastpagemodern.sty
+Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
+\c@lastpagecount=\count287
+) 
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/base
+/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/floa
+t/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count288
+\float@exts=\toks21
+\float@box=\box53
+\@float@everytoks=\toks22
+\@floatcapt=\box54
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsm
+ath/amsmath.sty
+Package: amsmath 2026/05/19 v2.18d AMS math features
+\@mathmargin=\skip68
+
+For additional information on amsmath, use the `?' option.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsm
+ath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsm
+ath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks23
+\ex@=\dimen155
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsm
+ath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen156
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsm
+ath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count289
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count290
+\leftroot@=\count291
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count292
+\DOTSCASE@=\count293
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box55
+\strutbox@=\box56
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen157
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count294
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count295
+\dotsspace@=\muskip17
+\c@parentequation=\count296
+\dspbrk@lvl=\count297
+\tag@help=\toks24
+\row@=\count298
+\column@=\count299
+\maxfields@=\count300
+\andhelp@=\toks25
+\eqnshift@=\dimen158
+\alignsep@=\dimen159
+\tagshift@=\dimen160
+\tagwidth@=\dimen161
+\totwidth@=\dimen162
+\lineht@=\dimen163
+\@envbody=\toks26
+\multlinegap=\skip69
+\multlinetaggap=\skip70
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2965.
+LaTeX Info: Redefining \] on input line 2966.
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsf
+onts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsf
+onts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/line
+no/lineno.sty
+Package: lineno 2026/03/08 line numbers on paragraphs v5.9
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/etoo
+lbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count301
+)
+\linenopenalty=\count302
+\output=\toks28
+\linenoprevgraf=\count303
+\linenumbersep=\dimen164
+\linenumberwidth=\dimen165
+\c@linenumber=\count304
+\c@pagewiselinenumber=\count305
+\c@LN@truepage=\count306
+\c@internallinenumber=\count307
+\c@internallinenumbers=\count308
+\quotelinenumbersep=\dimen166
+\bframerule=\dimen167
+\bframesep=\dimen168
+\bframebox=\box57
+\@LN@amsmath@ams@eqpen=\count309
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/sets
+pace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/enum
+item/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip71
+\enit@outerparindent=\dimen169
+\enit@toks=\toks29
+\enit@inbox=\box58
+\enit@count@id=\count310
+\enitdp@description=\count311
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/mathpazo.sty
+Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
+\symupright=\mathgroup6
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/book
+tabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen170
+\lightrulewidth=\dimen171
+\cmidrulewidth=\dimen172
+\belowrulesep=\dimen173
+\belowbottomsep=\dimen174
+\aboverulesep=\dimen175
+\abovetopsep=\dimen176
+\cmidrulesep=\dimen177
+\cmidrulekern=\dimen178
+\defaultaddspace=\dimen179
+\@cmidla=\count312
+\@cmidlb=\count313
+\@aboverulesep=\dimen180
+\@belowrulesep=\dimen181
+\@thisruleclass=\count314
+\@lastruleclass=\count315
+\@thisrulewidth=\dimen182
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/titl
+esec/titlesec.sty
+Package: titlesec 2025/01/04 v2.17 Sectioning titles
+\ttl@box=\box59
+\beforetitleunit=\skip72
+\aftertitleunit=\skip73
+\ttl@plus=\dimen183
+\ttl@minus=\dimen184
+\ttl@toksa=\toks30
+\titlewidth=\dimen185
+\titlewidthlast=\dimen186
+\titlewidthfirst=\dimen187
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tabt
+o-ltx/tabto.sty
+Package: tabto 2018/12/28  v 1.4  Another tabbing mechanism
+\CurrentLineWidth=\dimen188
+\TabPrevPos=\dimen189
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/xcol
+or/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/grap
+hics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/colo
+rtbl/colortbl.sty
+Package: colortbl 2026/05/01 v1.0l Color table columns (DPC)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tool
+s/array.sty
+Package: array 2026/02/24 v2.7b Tabular extension package (FMi)
+\col@sep=\dimen190
+\ar@mcellbox=\box60
+\extrarowheight=\dimen191
+\NC@list=\toks31
+\extratabsurround=\skip74
+\backup@length=\skip75
+\ar@cellbox=\box61
+)
+new hooks used!!
+\minrowclearance=\skip76
+\rownum=\count316
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/so
+ul/soul.sty
+Package: soul 2026-03-06 v3.2 Permit use of UTF-8 characters in soul (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/so
+ul/soul-ori.sty
+Package: soul-ori 2026-03-06 v3.2 letterspacing/underlining (mf)
+\SOUL@word=\toks32
+\SOUL@lasttoken=\toks33
+\SOUL@syllable=\toks34
+\SOUL@cmds=\toks35
+\SOUL@buffer=\toks36
+\SOUL@token=\toks37
+\SOUL@syllgoal=\dimen192
+\SOUL@syllwidth=\dimen193
+\SOUL@charkern=\dimen194
+\SOUL@hyphkern=\dimen195
+\SOUL@dimen=\dimen196
+\SOUL@dimeni=\dimen197
+\SOUL@minus=\count317
+\SOUL@comma=\count318
+\SOUL@apo=\count319
+\SOUL@grave=\count320
+\SOUL@spaceskip=\skip77
+\SOUL@ttwidth=\dimen198
+\SOUL@uldp=\dimen199
+\SOUL@ulht=\dimen256
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/et
+excmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/mult
+irow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip78
+\multirow@cntb=\count321
+\multirow@dima=\skip79
+\bigstrutjot=\dimen257
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+\MT@toks=\toks38
+\MT@tempbox=\box62
+\MT@count=\count322
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks39
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen258
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count323
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/microtype-pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip80
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+frontendlayer/tikz.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+basiclayer/pgf.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+utilities/pgfrcs.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen259
+\pgfutil@tempdimb=\dimen260
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfutil-latex.def
+\pgfutil@abb=\box63
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfrcs.code.tex
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/pgf.revision.tex)
+Package: pgfrcs 2026-08-01 v3.1.12 (3.1.12)
+))
+Package: pgf 2026-08-01 v3.1.12 (3.1.12)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+basiclayer/pgfcore.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+systemlayer/pgfsys.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgfsys.code.tex
+Package: pgfsys 2026-08-01 v3.1.12 (3.1.12)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks43
+))
+\pgf@x=\dimen261
+\pgf@y=\dimen262
+\pgf@xa=\dimen263
+\pgf@ya=\dimen264
+\pgf@xb=\dimen265
+\pgf@yb=\dimen266
+\pgf@xc=\dimen267
+\pgf@yc=\dimen268
+\pgf@xd=\dimen269
+\pgf@yd=\dimen270
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count324
+\c@pgf@countb=\count325
+\c@pgf@countc=\count326
+\c@pgf@countd=\count327
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+\pgf@sys@id@count=\count328
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgf.cfg
+File: pgf.cfg 2026-08-01 v3.1.12 (3.1.12)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2026-08-01 v3.1.12 (3.1.12)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2026-08-01 v3.1.12 (3.1.12)
+)))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfsyssoftpath@smallbuffer@items=\count329
+\pgfsyssoftpath@bigbuffer@items=\count330
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2026-08-01 v3.1.12 (3.1.12)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcore.code.tex
+Package: pgfcore 2026-08-01 v3.1.12 (3.1.12)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmath.code.tex
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathutil.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen271
+\pgfmath@count=\count331
+\pgfmath@box=\box64
+\pgfmath@toks=\toks47
+\pgfmath@stack@operand=\toks48
+\pgfmath@stack@operation=\toks49
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.basic.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.trigonometric.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.random.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.comparison.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.base.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.round.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.misc.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfunctions.integerarithmetics.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathcalc.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count332
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfint.code.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@picminx=\dimen272
+\pgf@picmaxx=\dimen273
+\pgf@picminy=\dimen274
+\pgf@picmaxy=\dimen275
+\pgf@pathminx=\dimen276
+\pgf@pathmaxx=\dimen277
+\pgf@pathminy=\dimen278
+\pgf@pathmaxy=\dimen279
+\pgf@xx=\dimen280
+\pgf@xy=\dimen281
+\pgf@yx=\dimen282
+\pgf@yy=\dimen283
+\pgf@zx=\dimen284
+\pgf@zy=\dimen285
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@path@lastx=\dimen286
+\pgf@path@lasty=\dimen287
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@shorten@end@additional=\dimen288
+\pgf@shorten@start@additional=\dimen289
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfpic=\box65
+\pgf@hbox=\box66
+\pgf@layerbox@main=\box67
+\pgf@picture@serial@count=\count333
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgflinewidth=\dimen290
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@pt@x=\dimen291
+\pgf@pt@y=\dimen292
+\pgf@pt@temp=\dimen293
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfarrowsep=\dimen294
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@max=\dimen295
+\pgf@sys@shading@range@num=\count334
+\pgf@shadingcount=\count335
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfexternal@startupbox=\box68
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfnodeparttextbox=\box69
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2026-08-01 v3.1.12 (3.1.12)
+\pgf@nodesepstart=\dimen296
+\pgf@nodesepend=\dimen297
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2026-08-01 v3.1.12 (3.1.12)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+utilities/pgffor.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+utilities/pgfkeys.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgfkeys.code.tex))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pgf/
+math/pgfmath.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/math/pgfmath.code.tex))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/utilities/pgffor.code.tex
+Package: pgffor 2026-08-01 v3.1.12 (3.1.12)
+\pgffor@iter=\dimen298
+\pgffor@skip=\dimen299
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2026-08-01 v3.1.12 (3.1.12)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgf@plot@mark@count=\count336
+\pgfplotmarksize=\dimen300
+)
+\tikz@lastx=\dimen301
+\tikz@lasty=\dimen302
+\tikz@lastxsaved=\dimen303
+\tikz@lastysaved=\dimen304
+\tikz@lastmovetox=\dimen305
+\tikz@lastmovetoy=\dimen306
+\tikzleveldistance=\dimen307
+\tikzsiblingdistance=\dimen308
+\tikz@figbox=\box70
+\tikz@figbox@bg=\box71
+\tikz@tempbox=\box72
+\tikz@tempbox@bg=\box73
+\tikztreelevel=\count337
+\tikznumberofchildren=\count338
+\tikznumberofcurrentchild=\count339
+\tikz@fig@count=\count340
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2026-08-01 v3.1.12 (3.1.12)
+\pgfmatrixcurrentrow=\count341
+\pgfmatrixcurrentcolumn=\count342
+\pgf@matrix@numberofcolumns=\count343
+)
+\tikz@expandcount=\count344
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pg
+f/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2026-08-01 v3.1.12 (3.1.12)
+)))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/refc
+ount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/chan
+gepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count345
+\cp@tempcnt=\count346
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/fran
+kenstein/attrib.sty
+Package: attrib 2001/08/31 v1.3 attribution of block elements (Frankenstein's h
+at)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/fran
+kenstein/moredefs.sty
+Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
+
+\sc@toks@a=\toks52
+\sc@toks@b=\toks53
+)
+\AttribMinSkip=\skip81
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/was/
+upgreek.sty
+Package: upgreek 2003/02/12 v2.0 (WaS)
+Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
+\symugrf@m=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
+(Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tool
+s/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen309
+\TX@old@table=\dimen310
+\TX@old@col=\dimen311
+\TX@target=\dimen312
+\TX@delta=\dimen313
+\TX@cols=\count347
+\TX@ftn=\toks54
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/pbox
+/pbox.sty
+Package: pbox 2011/12/07 v1.2 Dynamic parboxes
+\pb@xlen=\skip82
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/ragg
+ed2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip83
+\RaggedLeftLeftskip=\skip84
+\RaggedRightLeftskip=\skip85
+\CenteringRightskip=\skip86
+\RaggedLeftRightskip=\skip87
+\RaggedRightRightskip=\skip88
+\CenteringParfillskip=\skip89
+\RaggedLeftParfillskip=\skip90
+\RaggedRightParfillskip=\skip91
+\JustifyingParfillskip=\skip92
+\CenteringParindent=\skip93
+\RaggedLeftParindent=\skip94
+\RaggedRightParindent=\skip95
+\JustifyingParindent=\skip96
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tocl
+oft/tocloft.sty
+Package: tocloft 2026-08-21 v3.0b parameterised ToC, etc., typesetting
+Package tocloft Info: The document has section divisions on input line 64.
+\cftparskip=\skip97
+\cftbeforetoctitleskip=\skip98
+\cftaftertoctitleskip=\skip99
+\cftbeforepartskip=\skip100
+\cftpartnumwidth=\skip101
+\cftpartindent=\skip102
+\cftbeforesecskip=\skip103
+\cftsecindent=\skip104
+\cftsecnumwidth=\skip105
+\cftbeforesubsecskip=\skip106
+\cftsubsecindent=\skip107
+\cftsubsecnumwidth=\skip108
+\cftbeforesubsubsecskip=\skip109
+\cftsubsubsecindent=\skip110
+\cftsubsubsecnumwidth=\skip111
+\cftbeforeparaskip=\skip112
+\cftparaindent=\skip113
+\cftparanumwidth=\skip114
+\cftbeforesubparaskip=\skip115
+\cftsubparaindent=\skip116
+\cftsubparanumwidth=\skip117
+\cftbeforeloftitleskip=\skip118
+\cftafterloftitleskip=\skip119
+\cftbeforefigskip=\skip120
+\cftfigindent=\skip121
+\cftfignumwidth=\skip122
+\cftbeforelottitleskip=\skip123
+\cftafterlottitleskip=\skip124
+\cftbeforetabskip=\skip125
+\cfttabindent=\skip126
+\cfttabnumwidth=\skip127
+\cftbeforesubfigskip=\skip128
+\cftsubfigindent=\skip129
+\cftsubfignumwidth=\skip130
+\cftbeforesubtabskip=\skip131
+\cftsubtabindent=\skip132
+\cftsubtabnumwidth=\skip133
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/marg
+innote/marginnote.sty
+Package: marginnote 2026-06-15 1.5 non floating margin notes for LaTeX 
+\c@mn@abspage=\count348
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/marg
+infix/marginfix.sty
+Package: marginfix 2020/05/06 v1.2 Fix Margin Paragraphs
+\Mfx@inject@insert=\insert252
+\Mfx@marginbox=\box74
+\Mfx@marginpos@min=\dimen314
+\Mfx@marginpos@max=\dimen315
+\Mfx@marginspace=\dimen316
+\Mfx@marginheight=\dimen317
+\Mfx@piece@content=\box75
+\Mfx@piece@count=\count349
+\Mfx@mparshift=\dimen318
+\marginheightadjustment=\dimen319
+\marginposadjustment=\dimen320
+\Mfx@strutheight=\dimen321
+)
+==> First Aid for marginfix.sty applied!
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/enot
+ez/enotez.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/l3ke
+rnel/expl3.sty
+Package: expl3 2026-08-10 L3 programming layer (loader) 
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/l3ke
+rnel/l3backend-pdftex.def
+File: l3backend-pdftex.def 2026-08-10 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count350
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/l3pa
+ckages/xparse/xparse.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/l3pa
+ckages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/l3pa
+ckages/xtemplate/xtemplate.sty
+Package: xtemplate 2025-10-09 L3 Experimental prototype document functions
+)
+Package: enotez 2022/01/04 v0.10d Endnotes for LaTeX2e
+\l__enotez_list_preamble_skip=\skip134
+\l__enotez_list_postamble_skip=\skip135
+\g__enotez_endnote_id_int=\count351
+\g__enotez_endnote_mark_int=\count352
+\c@endnote=\count353
+\g__enotez_list_printed_int=\count354
+\l__enotez_tmpa_int=\count355
+
+LaTeX template Info: Declaring template type 'enotez-list' taking 1
+(template)           argument(s) on line 473.
+
+\l__enotez_list_notes_sep_dim=\dimen322
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tran
+slations/translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
+ (CN)
+))
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/xs
+tring/xstring.sty
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/xs
+tring/xstring.tex
+\xs_counta=\count356
+\xs_countb=\count357
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/subf
+ig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/capt
+ion/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/capt
+ion/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen323
+\captionmargin=\dimen324
+\caption@leftmargin=\dimen325
+\caption@rightmargin=\dimen326
+\caption@width=\dimen327
+\caption@indent=\dimen328
+\caption@parindent=\dimen329
+\caption@hangindent=\dimen330
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count358
+\c@continuedfloat=\count359
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen331
+\caption@adjustwidth@linewidth=\dimen332
+Package caption Info: float package is loaded.
+)
+\c@KVtest=\count360
+\sf@farskip=\skip136
+\sf@captopadj=\dimen333
+\sf@capskip=\skip137
+\sf@nearskip=\skip138
+\c@subfigure=\count361
+\c@subfigure@save=\count362
+\c@lofdepth=\count363
+\c@subtable=\count364
+\c@subtable@save=\count365
+\c@lotdepth=\count366
+\sf@top=\skip139
+\sf@bottom=\skip140
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/al
+phalph/alphalph.sty
+Package: alphalph 2019/12/09 v2.6 Convert numbers to letters (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/in
+tcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)) (./Definitions/journalnames.tex)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/amsc
+ls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks55
+\thm@bodyfont=\toks56
+\thm@headfont=\toks57
+\thm@notefont=\toks58
+\thm@headpunct=\toks59
+\thm@preskip=\skip141
+\thm@postskip=\skip142
+\thm@headsep=\skip143
+\dth@everypar=\toks60
+)
+\c@theorem=\count367
+\c@lemma=\count368
+\c@corollary=\count369
+\c@proposition=\count370
+\c@characterization=\count371
+\c@property=\count372
+\c@problem=\count373
+\c@example=\count374
+\c@examplesanddefinitions=\count375
+\c@remark=\count376
+\c@definition=\count377
+\c@hypothesis=\count378
+\c@notation=\count379
+\c@assumption=\count380
+\c@algorithm=\count381
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/natb
+ib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip144
+\bibsep=\skip145
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count382
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrextend.sty
+Package: scrextend 2026/02/02 v3.49.2 KOMA-Script package (extend other classes
+ with features of KOMA-Script classes)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrkbase.sty
+Package: scrkbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-dependent
+ basics and keyval usage)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrbase.sty
+Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independen
+t basics and keyval usage)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrlfile.sty
+Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrlfile-hook.sty
+Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hook
+s)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/koma
+-script/scrlogo.sty
+Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
+)))
+Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 370.
+)))
+\MyLen=\skip146
+\MyBox=\box76
+\leftcolumnlength=\skip147
+\extralength=\skip148
+\fulllength=\skip149
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/geom
+etry/geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/if
+tex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count383
+\Gm@cntv=\count384
+\c@Gm@tempcnt=\count385
+\Gm@bindingoffset=\dimen334
+\Gm@wd@mp=\dimen335
+\Gm@odd@mp=\dimen336
+\Gm@even@mp=\dimen337
+\Gm@layoutwidth=\dimen338
+\Gm@layoutheight=\dimen339
+\Gm@layouthoffset=\dimen340
+\Gm@layoutvoffset=\dimen341
+\Gm@dimlist=\toks61
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/newf
+loat/newfloat.sty
+Package: newfloat 2023/10/01 v1.2 Defining new floating environments (AR)
+)
+Package newfloat Info: New float `listing' with options `' on input line 1561.
+\c@listing=\count386
+Package newfloat Info: float type `listing'=4 on input line 1561.
+\c@lolistingdepth=\count387
+Package newfloat Info: New float `boxenv' with options `name=Box' on input line
+ 1562.
+\c@boxenv=\count388
+Package newfloat Info: float type `boxenv'=8 on input line 1562.
+\c@loboxenvdepth=\count389
+Package newfloat Info: New float `chart' with options `' on input line 1563.
+\c@chart=\count390
+Package newfloat Info: float type `chart'=16 on input line 1563.
+\c@lochartdepth=\count391
+Package newfloat Info: New float `scheme' with options `' on input line 1564.
+\c@scheme=\count392
+Package newfloat Info: float type `scheme'=32 on input line 1564.
+\c@loschemedepth=\count393
+Package newfloat Info: New float `figurewide' with options `' on input line 156
+5.
+\c@figurewide=\count394
+Package newfloat Info: float type `figurewide'=64 on input line 1565.
+\c@lofigurewidedepth=\count395
+Package newfloat Info: New float `graph' with options `' on input line 1566.
+\c@graph=\count396
+Package newfloat Info: float type `graph'=128 on input line 1566.
+\c@lographdepth=\count397
+\@justcentbox=\box77
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/seqs
+plit/seqsplit.sty
+Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins,
+ etc.) 
+)
+\cellWidtha=\skip150
+\cellWidthb=\skip151
+\cellWidthc=\skip152
+\cellWidthd=\skip153
+\cellWidthe=\skip154
+\cellWidthf=\skip155
+\cellWidthg=\skip156
+\cellWidthh=\skip157
+\cellWidthi=\skip158
+\cellWidthj=\skip159
+\cellWidthk=\skip160
+\cellWidthl=\skip161
+\cellWidthm=\skip162
+\cellWidthn=\skip163
+\cellWidtho=\skip164
+\cellWidthp=\skip165
+\cellWidthq=\skip166
+\cellWidthr=\skip167
+\cellWidths=\skip168
+\cellWidtht=\skip169
+\cellWidthu=\skip170
+\cellWidthv=\skip171
+\cellWidthw=\skip172
+\cellWidthx=\skip173
+\cellWidthy=\skip174
+\cellWidthz=\skip175
+\cellWidthA=\skip176
+\cellWidthB=\skip177
+\cellWidthC=\skip178
+\cellWidthD=\skip179
+\cellWidthE=\skip180
+\cellWidthF=\skip181
+\cellWidthG=\skip182
+\cellWidthH=\skip183
+\cellWidthI=\skip184
+\cellWidthJ=\skip185
+\cellWidthK=\skip186
+\cellWidthL=\skip187
+\cellWidthM=\skip188
+\cellWidthN=\skip189
+\cellWidthO=\skip190
+\cellWidthP=\skip191
+\cellWidthQ=\skip192
+\cellWidthR=\skip193
+\cellWidthS=\skip194
+\cellWidthT=\skip195
+\cellWidthU=\skip196
+\cellWidthV=\skip197
+\cellWidthW=\skip198
+\cellWidthX=\skip199
+\cellWidthY=\skip256
+\cellWidthZ=\skip257
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/algo
+rithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+\@float@every@algorithm=\toks62
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/algo
+rithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/algo
+rithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count398
+\c@ALG@rem=\count399
+\c@ALG@nested=\count400
+\ALG@tlm=\skip258
+\ALG@thistlm=\skip259
+\c@ALG@Lnr=\count401
+\c@ALG@blocknr=\count402
+\c@ALG@storecount=\count403
+\c@ALG@tmpcounter=\count404
+\ALG@tmplength=\skip260
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+Package translations Info: No language package found. I am going to use `englis
+h' as default language. on input line 42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hype
+rref/hyperref.sty
+Package: hyperref 2026-06-17 v7.01r Hypertext links for LaTeX
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/pd
+fescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hyco
+lor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hype
+rref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/ge
+ttitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count405
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/st
+ringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen342
+\Hy@linkcounter=\count406
+\Hy@pagecounter=\count407
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hype
+rref/pd1enc.def
+File: pd1enc.def 2026-06-17 v7.01r Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count408
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hype
+rref/puenc.def
+File: puenc.def 2026-06-17 v7.01r Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4070.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4070.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 4070.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4070.
+Package hyperref Info: Option `hyperfootnotes' set `true' on input line 4070.
+Package hyperref Info: Hyper figures OFF on input line 4199.
+Package hyperref Info: Link nesting OFF on input line 4204.
+Package hyperref Info: Hyper index ON on input line 4207.
+Package hyperref Info: Plain pages OFF on input line 4214.
+Package hyperref Info: Backreferencing OFF on input line 4219.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4466.
+\c@Hy@tempcnt=\count409
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/url/
+url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4805.
+\XeTeXLinkMargin=\dimen343
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/bi
+tset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/bi
+gintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count410
+\Field@Width=\dimen344
+\Fld@charsize=\dimen345
+Package hyperref Info: Hyper figures OFF on input line 6091.
+Package hyperref Info: Link nesting OFF on input line 6096.
+Package hyperref Info: Hyper index ON on input line 6099.
+Package hyperref Info: backreferencing OFF on input line 6106.
+Package hyperref Info: Link coloring ON on input line 6109.
+Package hyperref Info: Link coloring with OCG OFF on input line 6116.
+Package hyperref Info: PDF/A mode OFF on input line 6121.
+\Hy@abspage=\count411
+\c@Item=\count412
+\c@Hfootnote=\count413
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/hype
+rref/hpdftex.def
+File: hpdftex.def 2026-06-17 v7.01r Hyperref driver for pdfTeX
+Package hyperref Info: \pdfmajorversion.\pdfminorversion:=1.7 on input line 204
+.
+\Fld@listcount=\count414
+\c@bookmark@seq@number=\count415
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/reru
+nfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/generic/un
+iquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip261
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/clev
+eref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `amsthm' support loaded on input line 3026.
+Package cleveref Info: `algorithmicx' support loaded on input line 3120.
+Package cleveref Info: `subfig' support loaded on input line 3164.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+25.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+52.
+Package cleveref Info: no abbreviation of names on input line 7852.
+)
+==> First Aid for cleveref.sty applied!
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 42
+.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/t1ppl.fd
+File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
+)
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/build/main.au
+x)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/context/ba
+se/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count416
+\scratchdimen=\dimen346
+\scratchbox=\box78
+\nofMPsegments=\count417
+\nofMParguments=\count418
+\everyMPshowfont=\toks63
+\MPscratchCnt=\count419
+\MPscratchDim=\dimen347
+\MPnumerator=\count420
+\makeMPintoPDFobject=\count421
+\everyMPtoPDFconversion=\toks64
+)
+LaTeX Info: Redefining \microtypecontext on input line 42.
+Package microtype Info: Applying patch `item' on input line 42.
+Package microtype Info: Applying patch `toc' on input line 42.
+Package microtype Info: Applying patch `eqnum' on input line 42.
+Package microtype Info: Applying patch `footnote' on input line 42.
+Package microtype Info: Applying patch `verbatim' on input line 42.
+LaTeX Info: Redefining \microtypesetup on input line 42.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/mt-ppl.cfg
+File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+)
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/tran
+slations/translations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `english'. on input line 42.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: scrextend package is loaded.
+\caption@addmargin@hsize=\dimen348
+\caption@addmargin@linewidth=\dimen349
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(167.01753pt, 394.35522pt, 36.13512pt)
+* v-part:(T,H,B)=(36.13512pt, 778.18271pt, 30.72902pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=394.35522pt
+* \textheight=706.18271pt
+* \oddsidemargin=94.74754pt
+* \evensidemargin=94.74754pt
+* \topmargin=-36.13487pt
+* \headheight=24.0pt
+* \headsep=24.0pt
+* \topskip=10.0pt
+* \footskip=36.0pt
+* \marginparwidth=116.65646pt
+* \marginparsep=14.51074pt
+* \columnsep=10.0pt
+* \skip\footins=17.07182pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemargintrue
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package newfloat Info: `float' package detected.
+Package hyperref Info: Link coloring ON on input line 42.
+
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/build/main.ou
+t)
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/build/main.ou
+t)
+\@outlinefile=\write4
+\openout4 = `main.out'.
+
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 4
+2.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 4
+2.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/ot1ppl.fd
+File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
+)
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
+42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
+42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
+42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 42.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 42.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 42.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 42.
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
+42.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/psnf
+ss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zplm' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+(/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/tex/latex/micr
+otype/mt-eur.cfg
+File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
+)
+LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 42.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 42.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 42.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 42.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 42.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 42.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 42.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 42.
+
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 42
+.
+Package marginnote Info: right page because not two side mode on input line 42.
+
+Package marginnote Info: xpos seems to be 167.01753pt on input line 42.
+<Definitions/logo-mdpi-eps-converted-to.pdf, id=158, 74.2775pt x 49.18375pt>
+File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
+<use Definitions/logo-mdpi-eps-converted-to.pdf>
+Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on in
+put line 42.
+(pdftex.def)             Requested size: 42.96877pt x 28.45274pt.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 42.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 42.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 42.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 42.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+[1
+
+{/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-var/fonts/map/pdfte
+x/updmap/pdftex.map}{/Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf
+-dist/fonts/enc/dvips/base/8r.enc}{/Users/alex/.cache/codex-runtimes/codex-texl
+ive/full/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./Definitions/lo
+go-mdpi-eps-converted-to.pdf>]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [2]
+<figures/figure_01_architecture.pdf, id=191, 602.55112pt x 314.95267pt>
+File: figures/figure_01_architecture.pdf Graphic file (type pdf)
+<use figures/figure_01_architecture.pdf>
+Package pdftex.def Info: figures/figure_01_architecture.pdf  used on input line
+ 77.
+(pdftex.def)             Requested size: 394.35522pt x 206.1345pt.
+ [3 <./figures/figure_01_architecture.pdf>]
+<figures/figure_05_literature_coverage.pdf, id=313, 595.97908pt x 308.39742pt>
+File: figures/figure_05_literature_coverage.pdf Graphic file (type pdf)
+<use figures/figure_05_literature_coverage.pdf>
+Package pdftex.def Info: figures/figure_05_literature_coverage.pdf  used on inp
+ut line 98.
+(pdftex.def)             Requested size: 347.03452pt x 179.57648pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Graph or multi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Observation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/ppl/m/n/9 (+20) con-tract and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Scenario
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/ppl/m/n/9 (+20) heatmap and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/ppl/m/n/9 (+20) com-po-nent
+ []
+
+
+Underfull \hbox (badness 5847) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Compact learned
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Predeclared re-li-a-bil-ity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Exact--Fast
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Same-session
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/ppl/m/n/9 (+20) A100 bench-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Exact-semantics ten-sor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ppl/m/n/9 (+20) Legacy--fused
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/ppl/m/n/9 (+20) equiv-a-lence
+ []
+
+[4 <./figures/figure_05_literature_coverage.pdf>] [5] [6]
+<figures/figure_02_fusion.pdf, id=422, 602.55112pt x 290.41234pt>
+File: figures/figure_02_fusion.pdf Graphic file (type pdf)
+<use figures/figure_02_fusion.pdf>
+Package pdftex.def Info: figures/figure_02_fusion.pdf  used on input line 214.
+(pdftex.def)             Requested size: 394.35522pt x 190.07301pt.
+ [7 <./figures/figure_02_fusion.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 226.
+<figures/figure_04_protocol.pdf, id=512, 602.55112pt x 225.91603pt>
+File: figures/figure_04_protocol.pdf Graphic file (type pdf)
+<use figures/figure_04_protocol.pdf>
+Package pdftex.def Info: figures/figure_04_protocol.pdf  used on input line 265
+.
+(pdftex.def)             Requested size: 394.35522pt x 147.8606pt.
+ [8] [9 <./figures/figure_04_protocol.pdf>]
+<figures/figure_03_external_results.pdf, id=630, 789.35649pt x 514.63464pt>
+File: figures/figure_03_external_results.pdf Graphic file (type pdf)
+<use figures/figure_03_external_results.pdf>
+Package pdftex.def Info: figures/figure_03_external_results.pdf  used on input 
+line 319.
+(pdftex.def)             Requested size: 394.35522pt x 257.10466pt.
+ [10 <./figures/figure_03_external_results.pdf>]
+<supplementary_figures/07_reliability_heatmap.png, id=740, 541.42274pt x 570.63
+188pt>
+File: supplementary_figures/07_reliability_heatmap.png Graphic file (type png)
+<use supplementary_figures/07_reliability_heatmap.png>
+Package pdftex.def Info: supplementary_figures/07_reliability_heatmap.png  used
+ on input line 332.
+(pdftex.def)             Requested size: 394.35522pt x 415.63486pt.
+ [11 <./supplementary_figures/07_reliability_heatmap.png>]
+<supplementary_figures/16_ablation_contribution.png, id=750, 636.87938pt x 389.
+65575pt>
+File: supplementary_figures/16_ablation_contribution.png Graphic file (type png
+)
+<use supplementary_figures/16_ablation_contribution.png>
+Package pdftex.def Info: supplementary_figures/16_ablation_contribution.png  us
+ed on input line 345.
+(pdftex.def)             Requested size: 362.80608pt x 221.96933pt.
+ [12 <./supplementary_figures/16_ablation_contribution.png>]
+<supplementary_figures/02_latency_summary.png, id=760, 751.00575pt x 396.88275p
+t>
+File: supplementary_figures/02_latency_summary.png Graphic file (type png)
+<use supplementary_figures/02_latency_summary.png>
+Package pdftex.def Info: supplementary_figures/02_latency_summary.png  used on 
+input line 382.
+(pdftex.def)             Requested size: 362.80608pt x 191.7309pt.
+<supplementary_figures/04_latency_forest.png, id=762, 605.56238pt x 389.65575pt
+>
+File: supplementary_figures/04_latency_forest.png Graphic file (type png)
+<use supplementary_figures/04_latency_forest.png>
+Package pdftex.def Info: supplementary_figures/04_latency_forest.png  used on i
+nput line 391.
+(pdftex.def)             Requested size: 354.91728pt x 228.38469pt.
+ [13 <./supplementary_figures/02_latency_summary.png>]
+<supplementary_figures/17_device_comparison.png, id=773, 701.92238pt x 388.1501
+3pt>
+File: supplementary_figures/17_device_comparison.png Graphic file (type png)
+<use supplementary_figures/17_device_comparison.png>
+Package pdftex.def Info: supplementary_figures/17_device_comparison.png  used o
+n input line 406.
+(pdftex.def)             Requested size: 362.80608pt x 200.62508pt.
+ [14 <./supplementary_figures/04_latency_forest.png>]
+<supplementary_figures/05_pareto_connected_pair_pdr.png, id=782, 553.16663pt x 
+389.65575pt>
+File: supplementary_figures/05_pareto_connected_pair_pdr.png Graphic file (type
+ png)
+<use supplementary_figures/05_pareto_connected_pair_pdr.png>
+Package pdftex.def Info: supplementary_figures/05_pareto_connected_pair_pdr.png
+  used on input line 417.
+(pdftex.def)             Requested size: 354.91728pt x 250.00906pt.
+<supplementary_figures/20_failed_candidate_tradeoff.png, id=783, 637.1805pt x 4
+11.33675pt>
+File: supplementary_figures/20_failed_candidate_tradeoff.png Graphic file (type
+ png)
+<use supplementary_figures/20_failed_candidate_tradeoff.png>
+Package pdftex.def Info: supplementary_figures/20_failed_candidate_tradeoff.png
+  used on input line 424.
+(pdftex.def)             Requested size: 362.80608pt x 234.21959pt.
+ [15 <./supplementary_figures/17_device_comparison.png> <./supplementary_figure
+s/05_pareto_connected_pair_pdr.png>]
+<supplementary_figures/12_gate_calibration.png, id=793, 606.76688pt x 389.65575
+pt>
+File: supplementary_figures/12_gate_calibration.png Graphic file (type png)
+<use supplementary_figures/12_gate_calibration.png>
+Package pdftex.def Info: supplementary_figures/12_gate_calibration.png  used on
+ input line 435.
+(pdftex.def)             Requested size: 347.03452pt x 222.86118pt.
+ [16 <./supplementary_figures/20_failed_candidate_tradeoff.png> <./supplementar
+y_figures/12_gate_calibration.png>] [17] [18]
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/build/main.bb
+l [19]) [20] 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+
+(/Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_drones/build/main.au
+x)
+ ***********
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-08-10>
+ ***********
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 42C5FFA33DBAB0459D6B19DCEBEA1286;7288.
+ ) 
+Here is how much of TeX's memory you used:
+ 35508 strings out of 467099
+ 676040 string characters out of 5392925
+ 1155667 words of memory out of 5000000
+ 63607 multiletter control sequences out of 15000+600000
+ 702779 words of font info for 453 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 123i,14n,121p,2326b,807s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmex10.pfb></Users/alex/.cache/codex-runtimes/codex-texlive/
+full/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/alex/.cache/c
+odex-runtimes/codex-texlive/full/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></Users/alex/.cache/codex-runtimes/codex-texl
+ive/full/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></Users/alex/.cache/c
+odex-runtimes/codex-texlive/full/texmf-dist/fonts/type1/public/mathpazo/fplmri.
+pfb></Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb></Users/alex/.cache/codex-runtimes/codex-t
+exlive/full/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></Users/alex/.c
+ache/codex-runtimes/codex-texlive/full/texmf-dist/fonts/type1/public/cm-super/s
+ftt1000.pfb></Users/alex/.cache/codex-runtimes/codex-texlive/full/texmf-dist/fo
+nts/type1/urw/palatino/uplb8a.pfb></Users/alex/.cache/codex-runtimes/codex-texl
+ive/full/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/alex/.cache/cod
+ex-runtimes/codex-texlive/full/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+
+Output written on /Users/alex/Documents/GLOBE_ROUTING/outputs/refactor/mdpi_dro
+nes/build/main.pdf (20 pages, 983452 bytes).
+PDF statistics:
+ 944 PDF objects out of 1000 (max. 8388607)
+ 506 compressed objects within 6 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 94587 words of extra memory for PDF output out of 106986 (max. 10000000)
+

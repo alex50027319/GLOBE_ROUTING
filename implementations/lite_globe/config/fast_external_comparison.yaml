@@ -1,0 +1,18 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42, 77, 123, 314, 2718]
+  evaluation_episodes: 200
+  exact_hidden_dim: 64
+  fast_hidden_dim: 32
+
+training:
+  dataset_episodes_per_scenario: 100
+  epochs: 60
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  temperature: 1.0
+  action_coefficient: 1.0
+  switch_coefficient: 0.2

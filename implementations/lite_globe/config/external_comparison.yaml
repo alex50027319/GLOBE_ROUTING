@@ -1,0 +1,12 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42, 77, 123, 314, 2718]
+  evaluation_episodes: 200
+  hidden_dim: 64
+
+training:
+  tabular_episodes_per_stage: 350
+  neural_episodes_per_stage: 450
+  neural_batch_size: 64

@@ -1,0 +1,109 @@
+method,metric,metric_label,unit,higher_is_better,count,mean,standard_deviation,ci95_low,ci95_high
+Geo-Residual Student,connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.8052815533980583,0.0010492626086296155,0.8039789306554292,0.8065841761406873
+Predictive Prior Only,connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.9116116504854368,0.0008940477229686882,0.9105017215816938,0.9127215793891797
+Predictive Student (No Switch),connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.8949902912621359,0.037907965603021516,0.8479288809772612,0.9420517015470107
+DiSwitch,connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.9116116504854368,0.0012463539056995214,0.910064345807298,0.9131589551635756
+Fast-DiSwitch,connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.892504854368932,0.016579841078022874,0.8719215629414263,0.9130881457964377
+Fast-DiSwitch + Top-2,connected_pair_pdr,Connected-pair PDR,ratio,True,5,0.892504854368932,0.016579841078022874,0.8719215629414263,0.9130881457964377
+Geo-Residual Student,deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.74,0.0008748177652797396,0.7389139444145468,0.7410860555854532
+Predictive Prior Only,deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.8375714285714286,0.0010832679205787803,0.8362265894262032,0.8389162677166541
+Predictive Student (No Switch),deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.8222857142857143,0.03502149485731321,0.77880775623517,0.8657636723362586
+DiSwitch,deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.8376428571428571,0.001089139334426923,0.8362907288431846,0.8389949854425297
+Fast-DiSwitch,deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.8150000000000001,0.019320405306941416,0.7910143941634376,0.8389856058365626
+Fast-DiSwitch + Top-2,deadline_delivery_ratio,Deadline delivery ratio,ratio,True,5,0.8150000000000001,0.019320405306941416,0.7910143941634376,0.8389856058365626
+Geo-Residual Student,drop_rate,Drop rate,ratio,False,5,0.2442857142857143,0.0011007882148158907,0.24291912430943563,0.24565230426199297
+Predictive Prior Only,drop_rate,Drop rate,ratio,False,5,0.14550000000000002,0.0007405871911902766,0.14458058696630374,0.1464194130336963
+Predictive Student (No Switch),drop_rate,Drop rate,ratio,False,5,0.16085714285714287,0.03486178979563589,0.11757745304158836,0.2041368326726974
+DiSwitch,drop_rate,Drop rate,ratio,False,5,0.14578571428571427,0.001195228609334396,0.1443018798706165,0.14726954870081205
+Fast-DiSwitch,drop_rate,Drop rate,ratio,False,5,0.1625,0.01529055330614832,0.14351731414027563,0.18148268585972438
+Fast-DiSwitch + Top-2,drop_rate,Drop rate,ratio,False,5,0.1625,0.01529055330614832,0.14351731414027563,0.18148268585972438
+Geo-Residual Student,energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,1.8836815849587354,0.003967044307608203,1.8787566385310182,1.8886065313864526
+Predictive Prior Only,energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,2.078117637544584,0.004262858673825153,2.0728254479521326,2.0834098271370354
+Predictive Student (No Switch),energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,2.054736612744861,0.04999913485434849,1.9926644397374624,2.11680878575226
+DiSwitch,energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,2.082755063438719,0.003019803288679685,2.0790060835267807,2.086504043350657
+Fast-DiSwitch,energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,2.227142582773686,0.11809079067911528,2.0805370062778548,2.373748159269517
+Fast-DiSwitch + Top-2,energy_per_delivered_packet,Energy / delivered packet,proxy units,False,5,2.227142582773686,0.11809079067911528,2.0805370062778548,2.373748159269517
+Geo-Residual Student,late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0005714285714285715,0.0001956151991089879,0.00032857915978692497,0.000814277983070218
+Predictive Prior Only,late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0007857142857142857,0.0003912303982179758,0.00030001546243099274,0.0012714131089975786
+Predictive Student (No Switch),late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0007857142857142857,0.000159719141249985,0.0005874285714285714,0.000984
+DiSwitch,late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0007142857142857144,0.0005050762722761054,8.725122966947007e-05,0.0013413201989019587
+Fast-DiSwitch,late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0057857142857142855,0.004190915831915987,0.0005828392092566094,0.010988589362171963
+Fast-DiSwitch + Top-2,late_delivery_ratio,Late-delivery ratio,ratio,False,5,0.0057857142857142855,0.004190915831915987,0.0005828392092566094,0.010988589362171963
+Geo-Residual Student,loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+Predictive Prior Only,loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+Predictive Student (No Switch),loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+DiSwitch,loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch,loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch + Top-2,loop_rate,Loop rate,ratio,False,5,0.0,0.0,0.0,0.0
+Geo-Residual Student,mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+Predictive Prior Only,mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+Predictive Student (No Switch),mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+DiSwitch,mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch,mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch + Top-2,mean_control_bytes,Control bytes,bytes / episode,False,5,0.0,0.0,0.0,0.0
+Geo-Residual Student,mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+Predictive Prior Only,mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+Predictive Student (No Switch),mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+DiSwitch,mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch,mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch + Top-2,mean_control_messages,Control messages,messages / episode,False,5,0.0,0.0,0.0,0.0
+Geo-Residual Student,mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,5315.7994285714285,4.422709805997198,5310.308789402589,5321.290067740268
+Predictive Prior Only,mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,6219.536785714286,14.602166535766878,6201.408707895913,6237.66486353266
+Predictive Student (No Switch),mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,6093.1879285714285,262.55486447483804,5767.235269208585,6419.140587934272
+DiSwitch,mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,6212.676214285714,7.967546772305627,6202.78478430126,6222.567644270169
+Fast-DiSwitch,mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,6436.931142857143,171.37904578844257,6224.170065870268,6649.692219844017
+Fast-DiSwitch + Top-2,mean_local_observation_bytes,Local observation bytes,bytes / episode,False,5,6436.931142857143,171.37904578844257,6224.170065870268,6649.692219844017
+Geo-Residual Student,mean_path_stretch,Mean path stretch,ratio,False,5,1.008025359220483,0.001194260874907412,1.0065427262137487,1.0095079922272174
+Predictive Prior Only,mean_path_stretch,Mean path stretch,ratio,False,5,1.1277073056543987,0.0028240533514793647,1.1242013424267188,1.1312132688820786
+Predictive Student (No Switch),mean_path_stretch,Mean path stretch,ratio,False,5,1.109249206124019,0.0368234435954878,1.0635341918893573,1.1549642203586805
+DiSwitch,mean_path_stretch,Mean path stretch,ratio,False,5,1.1258872807316394,0.0017093961002336373,1.1237651254027328,1.128009436060546
+Fast-DiSwitch,mean_path_stretch,Mean path stretch,ratio,False,5,1.1531053949221917,0.01956257220709717,1.128819147369189,1.1773916424751942
+Fast-DiSwitch + Top-2,mean_path_stretch,Mean path stretch,ratio,False,5,1.1531053949221917,0.01956257220709717,1.128819147369189,1.1773916424751942
+Geo-Residual Student,mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,3955.634857142857,3.2910619196048465,3951.5491191506526,3959.7205951350616
+Predictive Prior Only,mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,5423.833928571429,12.734023290811106,5408.025085096636,5439.6427720462225
+Predictive Student (No Switch),mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,5775.400500000001,406.907052392995,5270.239660164549,6280.561339835453
+DiSwitch,mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,4821.409928571428,104.91806629965424,4691.157827571575,4951.662029571282
+Fast-DiSwitch,mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,6436.931142857143,171.37904578844257,6224.170065870268,6649.692219844017
+Fast-DiSwitch + Top-2,mean_policy_input_bytes,Policy input bytes,bytes / episode,False,5,6436.931142857143,171.37904578844257,6224.170065870268,6649.692219844017
+Geo-Residual Student,mean_reward,Episode reward,reward,True,5,6.861284319430292,0.017892601524484738,6.839071281932431,6.883497356928154
+Predictive Prior Only,mean_reward,Episode reward,reward,True,5,8.376232753788639,0.012702273765294182,8.36046332623667,8.392002181340606
+Predictive Student (No Switch),mean_reward,Episode reward,reward,True,5,8.139722016262919,0.5380565115699009,7.471743720814079,8.80770031171176
+DiSwitch,mean_reward,Episode reward,reward,True,5,8.371806281369953,0.019528252826108407,8.347562640125249,8.396049922614656
+Fast-DiSwitch,mean_reward,Episode reward,reward,True,5,8.084283020689222,0.262476617182095,7.758427502597056,8.410138538781387
+Fast-DiSwitch + Top-2,mean_reward,Episode reward,reward,True,5,8.084283020689222,0.262476617182095,7.758427502597056,8.410138538781387
+Geo-Residual Student,mean_success_delay_steps,Mean successful delay,steps,False,5,2.732984482747452,0.004470711056391821,2.727434251709118,2.7385347137857856
+Predictive Prior Only,mean_success_delay_steps,Mean successful delay,steps,False,5,3.12689372852332,0.005250790098966494,3.1203750567023367,3.133412400344303
+Predictive Student (No Switch),mean_success_delay_steps,Mean successful delay,steps,False,5,3.068491041468016,0.12131498391557252,2.917882742105766,3.219099340830266
+DiSwitch,mean_success_delay_steps,Mean successful delay,steps,False,5,3.1219165755247777,0.003880446030717614,3.1170991378217807,3.1267340132277748
+Fast-DiSwitch,mean_success_delay_steps,Mean successful delay,steps,False,5,3.182025540083236,0.04333873991586901,3.1282220138858916,3.23582906628058
+Fast-DiSwitch + Top-2,mean_success_delay_steps,Mean successful delay,steps,False,5,3.182025540083236,0.04333873991586901,3.1282220138858916,3.23582906628058
+Geo-Residual Student,mean_throughput,Mean throughput proxy,packets / step,True,5,0.31437145691609975,0.0004192189447599099,0.3138510112935321,0.3148919025386674
+Predictive Prior Only,mean_throughput,Mean throughput proxy,packets / step,True,5,0.3290992913832199,0.0008652245044141776,0.3280251454948023,0.33017343727163756
+Predictive Student (No Switch),mean_throughput,Mean throughput proxy,packets / step,True,5,0.3268181405895691,0.006429278277441,0.3188364170114996,0.3347998641676386
+DiSwitch,mean_throughput,Mean throughput proxy,packets / step,True,5,0.3296352040816326,0.0006059471128751837,0.32888294198483253,0.3303874661784327
+Fast-DiSwitch,mean_throughput,Mean throughput proxy,packets / step,True,5,0.3196952252112966,0.00799719719174046,0.3097669852706244,0.32962346515196883
+Fast-DiSwitch + Top-2,mean_throughput,Mean throughput proxy,packets / step,True,5,0.3196952252112966,0.00799719719174046,0.3097669852706244,0.32962346515196883
+Geo-Residual Student,mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,2.412642857142857,0.0023904572186686504,2.409675188312662,2.4156105259730523
+Predictive Prior Only,mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,2.9632142857142854,0.006892949666292369,2.954656930362762,2.971771641065809
+Predictive Student (No Switch),mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,2.884571428571429,0.16627011923680216,2.6781529047851116,3.090989952357746
+DiSwitch,mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,2.9595,0.0037338085824815156,2.9548646075480414,2.9641353924519582
+Fast-DiSwitch,mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,3.056,0.0714640090663597,2.9672799381930988,3.1447200618069013
+Fast-DiSwitch + Top-2,mean_transmission_attempts,Transmission attempts,attempts / episode,False,5,3.056,0.0714640090663597,2.9672799381930988,3.1447200618069013
+Geo-Residual Student,overall_pdr,Overall PDR,ratio,True,5,0.7557142857142858,0.0011007882148159063,0.7543476957380071,0.7570808756905645
+Predictive Prior Only,overall_pdr,Overall PDR,ratio,True,5,0.8545,0.0007405871911902618,0.8535805869663038,0.8554194130336963
+Predictive Student (No Switch),overall_pdr,Overall PDR,ratio,True,5,0.8391428571428572,0.034861789795635874,0.7958631673273027,0.8824225469584117
+DiSwitch,overall_pdr,Overall PDR,ratio,True,5,0.8542142857142858,0.0011952286093344113,0.852730451299188,0.8556981201293836
+Fast-DiSwitch,overall_pdr,Overall PDR,ratio,True,5,0.8375,0.015290553306148298,0.8185173141402757,0.8564826858597243
+Fast-DiSwitch + Top-2,overall_pdr,Overall PDR,ratio,True,5,0.8375,0.015290553306148298,0.8185173141402757,0.8564826858597243
+Geo-Residual Student,p95_success_delay_steps,P95 successful delay,steps,False,5,4.0,0.0,4.0,4.0
+Predictive Prior Only,p95_success_delay_steps,P95 successful delay,steps,False,5,6.0,0.0,6.0,6.0
+Predictive Student (No Switch),p95_success_delay_steps,P95 successful delay,steps,False,5,6.0,0.0,6.0,6.0
+DiSwitch,p95_success_delay_steps,P95 successful delay,steps,False,5,6.0,0.0,6.0,6.0
+Fast-DiSwitch,p95_success_delay_steps,P95 successful delay,steps,False,5,6.0,0.0,6.0,6.0
+Fast-DiSwitch + Top-2,p95_success_delay_steps,P95 successful delay,steps,False,5,6.0,0.0,6.0,6.0
+Geo-Residual Student,switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.0,0.0,0.0,0.0
+Predictive Prior Only,switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.0,0.0,0.0,0.0
+Predictive Student (No Switch),switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.0,0.0,0.0,0.0
+DiSwitch,switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.09806059971835827,0.06721631785118824,0.01461389763574411,0.18150730180097244
+Fast-DiSwitch,switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.0,0.0,0.0,0.0
+Fast-DiSwitch + Top-2,switch_activation_rate,Switch activation rate,switch steps / routing step,,5,0.0,0.0,0.0,0.0

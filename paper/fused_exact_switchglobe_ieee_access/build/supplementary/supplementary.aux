@@ -1,0 +1,58 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {I}Artifact and Provenance Inventory}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Metric Definitions and Statistical Unit}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Complete Figure Portfolio}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Latency Tables}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Exact--Fast Reliability Gate}{1}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Evidence inventory.}}{2}{}\protected@file@percent }
+\newlabel{tab:inventory}{{1}{2}{}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Independent component timers for the local batch-one policy path over five seeds. Components are measured separately for bottleneck diagnosis and must not be summed to recreate the end-to-end timer.}}{2}{}\protected@file@percent }
+\newlabel{fig:s01}{{1}{2}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Operator-Profile Interpretation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Reproduction Checklist}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Mean, median, p95, and p99 latency summaries for exact and candidate variants. Fast variants are approximate policies and require a separate reliability judgment.}}{3}{}\protected@file@percent }
+\newlabel{fig:s02}{{2}{3}{}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Primary A100 session summary (five checkpoint means).}}{3}{}\protected@file@percent }
+\newlabel{tab:a100}{{2}{3}{}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Reporting Checklist for Submission}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Empirical distribution of five seed-specific p95 values. It avoids presenting thousands of correlated routing decisions as independent experimental replications.}}{4}{}\protected@file@percent }
+\newlabel{fig:s03}{{3}{4}{}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Paired CUDA p95 effects relative to Fused Exact. Positive reduction means faster.}}{4}{}\protected@file@percent }
+\newlabel{tab:paired}{{3}{4}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Fast minus Exact directional paired effects. Higher-is-better metrics use Fast$-$Exact; lower-is-better metrics use Exact$-$Fast, so negative always means degradation.}}{4}{}\protected@file@percent }
+\newlabel{tab:fast}{{4}{4}{}{table.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Paired p95 speed effects. Positive is faster than fused Exact. Confidence intervals are computed across matched checkpoints.}}{5}{}\protected@file@percent }
+\newlabel{fig:s04}{{4}{5}{}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Connected-pair PDR versus A100 decision latency. Reliability and latency originate from separate, explicitly scoped experiments: the full routing evaluation and the same-session microbenchmark.}}{5}{}\protected@file@percent }
+\newlabel{fig:s05}{{5}{5}{}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Deadline-delivery ratio versus A100 p95 decision latency. Exact occupies the reliability-oriented point; Fast occupies a lower-latency but lower-reliability point.}}{6}{}\protected@file@percent }
+\newlabel{fig:s06}{{6}{6}{}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Scenario-level reliability heatmap. It reveals that Fast degradation is concentrated in specific OOD node-density and predictive-break conditions rather than uniform across the benchmark.}}{7}{}\protected@file@percent }
+\newlabel{fig:s07}{{7}{7}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Diagnostic latency collected during the full 14,000-episode routing execution. It is useful for scenario localization but is not a same-session randomized microbenchmark and is not used as the primary A100 estimate.}}{8}{}\protected@file@percent }
+\newlabel{fig:s08}{{8}{8}{}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Seed-level variability for all optimized candidates. Matching seeds across variants enables paired rather than unpaired effect estimates.}}{9}{}\protected@file@percent }
+\newlabel{fig:s09}{{9}{9}{}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Switch activation by scenario. A switched action and the need to compute the predictive branch are different events: Exact computes both branches, while Early Exit attempts to skip a branch before the switch can be fully evaluated.}}{9}{}\protected@file@percent }
+\newlabel{fig:s10}{{10}{9}{}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Gate-score interval mass reconstructed from cumulative sweep counts. It is not a raw continuous-score histogram, a distinction needed for reproducible interpretation.}}{10}{}\protected@file@percent }
+\newlabel{fig:s11}{{11}{10}{}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Early-exit margin sweep. Margin zero is the only tested value with zero observed action divergence over the complete decision trace; positive margins trade additional skipping for mismatches.}}{10}{}\protected@file@percent }
+\newlabel{fig:s12}{{12}{10}{}{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Branch-use rate versus measured latency. A 74.27\% skip rate does not reduce p95 because Python control flow and synchronization exceed the small predictive-branch compute saved.}}{11}{}\protected@file@percent }
+\newlabel{fig:s13}{{13}{11}{}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Parameter and serialized-size comparison. Early Exit shares the Exact weights; Fast contains 7,011 parameters and is a separately distilled approximate model.}}{11}{}\protected@file@percent }
+\newlabel{fig:s14}{{14}{11}{}{figure.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Policy-input memory footprint. This is not radio control overhead; feature acquisition traffic should be instrumented independently on a network implementation.}}{12}{}\protected@file@percent }
+\newlabel{fig:s15}{{15}{12}{}{figure.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Directional ablation contributions with five-seed intervals. The plot separates the normal distilled policy, predictive information, and switching behavior.}}{12}{}\protected@file@percent }
+\newlabel{fig:s16}{{16}{12}{}{figure.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Device comparison. The current 2026-09-05 Colab-CLI run is primary; an older A100 bundle is shown only as an independent reproducibility reference and is not pooled with the current run.}}{13}{}\protected@file@percent }
+\newlabel{fig:s17}{{17}{13}{}{figure.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Worst-scenario localization. The figure prevents an acceptable macro average from hiding unacceptable OOD or link-loss behavior.}}{13}{}\protected@file@percent }
+\newlabel{fig:s18}{{18}{13}{}{figure.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Early-Exit paired latency differences across five seeds. The average direction is worse and improvement is not consistent.}}{14}{}\protected@file@percent }
+\newlabel{fig:s19}{{19}{14}{}{figure.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Candidate decision matrix. Fused Exact improves the duplicated legacy execution without an outcome change; buffering is too small; Early Exit is slower; Fast violates the quality gate.}}{14}{}\protected@file@percent }
+\newlabel{fig:s20}{{20}{14}{}{figure.20}{}}
+\gdef \@abspage@last{14}

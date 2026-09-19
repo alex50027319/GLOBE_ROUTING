@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "suite": "switchglobe_early_exit_full_paired_validation",
+  "episode_rows": 14000,
+  "paired_outcome_mismatches": 0,
+  "decision_steps": 43467.0,
+  "early_exit_steps": 32285.0,
+  "predictive_branch_steps": 11182.0,
+  "early_exit_rate": 0.7427473715692364,
+  "exact_episode_source": "artifacts/gated_switchglobe/calibration_guarded_20260905/raw/episodes.csv",
+  "config": {
+    "seeds": [
+      42,
+      77,
+      123,
+      314,
+      2718
+    ],
+    "scenario_count_per_seed": 14,
+    "episodes_per_scenario": 200,
+    "outcome_fields": [
+      "delivered",
+      "dropped",
+      "drop_reason",
+      "steps",
+      "hop_count",
+      "transmission_attempts",
+      "deadline_met"
+    ]
+  },
+  "config_sha256": "0d39a3433e957509bf971dc9bda91fa3e15d0d7172552672d07b41cb94975cd2",
+  "checkpoint_sha256": {
+    "switchglobe_exact_seed_42": "4d5740be9e3a4c088812281a8a8a261cf45e577d10fc4a8e3baef63c50f684db",
+    "switchglobe_exact_seed_77": "6d230ff309aefeda2abadb8ecd12470a248cef812138a02aa355edf28cee22ad",
+    "switchglobe_exact_seed_123": "6976ad2938264892a4476f326e71bda91901d396109a3199a43c69dea1846bda",
+    "switchglobe_exact_seed_314": "0e0936d0ec043a3ecdce1be9918ca246ff36a72c83bbfbd18a28fa6c9c6f06aa",
+    "switchglobe_exact_seed_2718": "5c453f578f894e63da34d942420ece20a3c3de6a100e6383f84b1afc5e3cd7bd"
+  },
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "torch": "2.14.0",
+  "git_commit_hash": "92d17df3f4451e0412858a9927a898a2696023b3",
+  "dirty_files": []
+}

@@ -1,0 +1,117 @@
+\relax 
+\citation{alam2024joint,wu2026aoi,jia2025trusted,cui2022tarraq,zhang2025gat,shou2026adaptive}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\citation{cui2022tarraq,tho2025qlr,sharvari2025improved}
+\citation{dong2026predictive}
+\citation{shou2026adaptive,zhang2025gat,ke2024distributed,wang2025graph}
+\citation{alam2024joint,wu2026aoi,wang2025graph,zheng2026dual}
+\citation{sun2026harsh}
+\citation{li2024rlfr}
+\citation{curmen2026routeppo}
+\citation{shou2026adaptive}
+\citation{dong2026predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work and Research Gap}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Learning-Based UAV and FANET Routing}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Deployment and Latency Reporting}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Positioning and Novelty Boundary}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Model and Problem Formulation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Dynamic FANET and Local Action Space}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Privileged training stage of DiSwitch{}. Global graph knowledge is transferred through policy distillation, while the teacher is removed before deployment.}}{3}{}\protected@file@percent }
+\newlabel{fig:training-flow}{{1}{3}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Strict-local deployment stage of DiSwitch{}. Local input splits into normal and predictive policies, whose outputs reconverge at the risk switch before masked next-hop selection.}}{3}{}\protected@file@percent }
+\newlabel{fig:deployment-flow}{{2}{3}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Objective and Constraints}{3}{}\protected@file@percent }
+\newlabel{eq:gate}{{3}{3}{}{equation.3}{}}
+\citation{schulman2017ppo}
+\citation{hinton2015distilling}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textcolor {ReviewRed}{Deletion/move candidate D02. Convenience-corpus counts; omit or move to a literature-audit appendix.} Metric coverage in the 45-paper project corpus. Generic network delay is common, while directly scoped decision latency is uncommon.}}{4}{}\protected@file@percent }
+\newlabel{fig:litcoverage}{{3}{4}{}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Claim--gap matrix used to delimit the contribution.}}{4}{}\protected@file@percent }
+\newlabel{tab:novelty}{{1}{4}{}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Proposed Method}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Privileged Global PPO Teacher}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Masked Global-to-Local Distillation}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Normal Geographic-Residual Branch}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Predictive Local Branch}{5}{}\protected@file@percent }
+\newlabel{eq:danger}{{8}{5}{}{equation.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Risk Switch}{5}{}\protected@file@percent }
+\newlabel{eq:switch}{{10}{5}{}{equation.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}DiSwitch Execution Reuse}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Runtime Model and Candidate Optimizations}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textcolor {ReviewRed}{Deletion/move candidate D01. Internal wrapper comparison; move to implementation appendix.} Legacy repeated execution versus DiSwitch{}. Tensor reuse removes duplicate branch evaluations without pruning a branch or approximating its logits.}}{6}{}\protected@file@percent }
+\newlabel{fig:fusion}{{4}{6}{}{figure.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces DiSwitch decision}}{6}{}\protected@file@percent }
+\newlabel{alg:fused}{{1}{6}{}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Methodology}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Common-Simulator Routing Evaluation}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Metrics and Scope}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Evaluation protocol. The seed, not the individual packet decision, is the primary inferential unit.}}{7}{}\protected@file@percent }
+\newlabel{fig:protocol}{{5}{7}{}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Statistical Analysis}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Decision-Latency Benchmark and Profiling}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Results}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Overall Routing Performance}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Scenario Robustness and Failure Localization}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Five-seed, 14-scenario macro means. Parentheses show 95\% CI where non-degenerate. Energy is a simulator proxy; p95 delay is conditional on successful delivery. Bold identifies the proposed method, not the winner of each column.}}{8}{}\protected@file@percent }
+\newlabel{tab:overall}{{2}{8}{}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Common-simulator comparison. Error bars are five-seed 95\% $t$ intervals over scenario-macro summaries. Small input size for AODV/OLSR is not wireless routing overhead.}}{8}{}\protected@file@percent }
+\newlabel{fig:external}{{6}{8}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Ablation Evidence}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Semantics-Preserving Reuse and Batch-One Decision Latency}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Why CUDA Is Slower Than the CPU}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-F}}Why Fast-DiSwitch Does Not Replace DiSwitch}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-G}}Early-Exit Calibration as a Negative Result}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Discussion}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Answering the Research Questions}{9}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Same-session batch-one end-to-end decision latency. Values are means of five seed-specific statistics; paired p95 change is relative to DiSwitch{} and positive means faster.}}{10}{}\protected@file@percent }
+\newlabel{tab:latency}{{3}{10}{}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}End-to-End Delay Versus Decision Latency}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}Practical Deployment Guidance}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Threats to Validity and Limitations}{10}{}\protected@file@percent }
+\citation{curmen2026routeppo,li2024rlfr}
+\citation{zhang2026large,zhao2026multipath}
+\citation{openai2026codex}
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{alam2024joint}{1}
+\bibcite{wu2026aoi}{2}
+\bibcite{jia2025trusted}{3}
+\bibcite{cui2022tarraq}{4}
+\bibcite{zhang2025gat}{5}
+\bibcite{shou2026adaptive}{6}
+\bibcite{tho2025qlr}{7}
+\bibcite{sharvari2025improved}{8}
+\bibcite{dong2026predictive}{9}
+\bibcite{ke2024distributed}{10}
+\bibcite{wang2025graph}{11}
+\bibcite{zheng2026dual}{12}
+\bibcite{sun2026harsh}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Future Work}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusions}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{REFERENCES}{11}{}\protected@file@percent }
+\bibcite{li2024rlfr}{14}
+\bibcite{curmen2026routeppo}{15}
+\bibcite{schulman2017ppo}{16}
+\bibcite{hinton2015distilling}{17}
+\bibcite{zhang2026large}{18}
+\bibcite{zhao2026multipath}{19}
+\bibcite{openai2026codex}{20}
+\@writefile{toc}{\contentsline {subsection}{Kyung Eun Kim}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Howon Lee}{12}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Five-seed scenario-level reliability. The heatmap localizes both predictive recovery and the node-scale or link-loss conditions in which approximations degrade.}}{13}{}\protected@file@percent }
+\newlabel{fig:heatmap}{{7}{13}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Directional component contributions with five-seed 95\% intervals. Positive values favor the complete DiSwitch{} policy under the metric's preferred direction.}}{14}{}\protected@file@percent }
+\newlabel{fig:ablation}{{8}{14}{}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Latency summary across the verified implementations. The low Fast-DiSwitch{} latency must be read together with its reliability failure.}}{14}{}\protected@file@percent }
+\newlabel{fig:latencysummary}{{9}{14}{}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Paired p95 latency effects versus DiSwitch{}. Positive values favor the candidate. Intervals are based on five matched checkpoints, not on 10,000 pseudo-independent individual calls.}}{15}{}\protected@file@percent }
+\newlabel{fig:forest}{{10}{15}{}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces CPU and CUDA decision latency in the verified A100 session, with an older bundle retained only as an independent reproducibility reference.}}{15}{}\protected@file@percent }
+\newlabel{fig:device}{{11}{15}{}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces A100 p95 decision latency versus connected-pair PDR. The upper-left region is preferred; DiSwitch{} and Fast-DiSwitch{} represent distinct quality--latency choices.}}{16}{}\protected@file@percent }
+\newlabel{fig:pareto}{{12}{16}{}{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces \textcolor {ReviewRed}{Deletion/move candidate D03. Redundant with the reliability--latency plot and acceptance discussion.} Decision record for optimization candidates. DiSwitch{} is accepted because it preserves the validated policy behavior; Fast-DiSwitch{} fails reliability, and Python Early Exit fails latency.}}{17}{}\protected@file@percent }
+\newlabel{fig:decision}{{13}{17}{}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Early-exit calibration. Zero observed divergence at margin zero is empirical evidence for the evaluated trajectories, not formal equivalence for unseen states.}}{17}{}\protected@file@percent }
+\newlabel{fig:gate}{{14}{17}{}{figure.14}{}}
+\gdef \@abspage@last{17}

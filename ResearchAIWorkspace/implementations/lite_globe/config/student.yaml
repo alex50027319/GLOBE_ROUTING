@@ -1,6 +1,0 @@
-model:
-  hidden_dim: 64
-
-runtime:
-  device: auto
-  seed: 42

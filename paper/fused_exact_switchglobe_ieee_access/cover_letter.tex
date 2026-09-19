@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+\begin{document}
+\begin{flushright}
+Corresponding Author\\
+Affiliation and postal address to be completed\\
+5 September 2026
+\end{flushright}
+
+Editors\\
+\emph{IEEE Access}
+
+Dear Editors,
+
+Please consider our manuscript, ``Fused Exact SwitchGLOBE: Exact-Semantics Global-to-Local Policy Distillation with Risk-Switched Predictive Recovery for Decentralized UAV Routing,'' as a Research Article in \emph{IEEE Access}.
+
+The manuscript addresses a practical tension in reinforcement-learning-based FANET routing: global graph information can improve learning, but decentralized relays require local observations and batch-one decisions; meanwhile, reducing inference cost through approximation can degrade delivery reliability. We contribute a strict global-training/local-execution architecture, an interpretable risk switch between normal and predictive local policies, and an exact-semantics fused execution path that removes redundant branch evaluations without changing the routing policy.
+
+The evaluation uses eight common-simulator methods, five training seeds, 14 held-out or stress scenarios, and 200 episodes per seed--scenario cell. SwitchGLOBE Exact attains 0.9053 connected-pair PDR and 0.8376 deadline delivery. In a same-session NVIDIA A100 batch-one benchmark, fusion reduces CUDA p95 decision latency from 10.004 to 5.836 ms relative to the legacy repeated path. We also report negative results: a compact policy is faster but fails a predeclared reliability gate, and a conservative early-exit implementation skips most predictive calls but becomes slower because of synchronization overhead. These findings provide both an algorithmic contribution and a reproducible systems lesson relevant to UAV networking.
+
+This draft is original, is not under consideration elsewhere, and has been approved by all authors [authors to confirm before submission]. The manuscript uses simulation and software profiling and does not involve human participants or animals. Author names, ORCID records, biographies, funding information, conflict declarations, data-repository DOI, and the clean release commit will be completed before submission. The source and PDF use the official IEEE Access LaTeX template dated May 13, 2026. The manuscript also discloses the use of OpenAI Codex for initial drafting and LaTeX restructuring; the authors remain responsible for all technical verification.
+
+We believe the work fits \emph{IEEE Access} because it integrates wireless networking, reinforcement learning, graph-based policy transfer, and measured systems optimization. Its common-simulator comparisons, exact-versus-approximate acceptance gate, operator profiling, complete negative results, and reproducibility artifacts are intended for the journal's broad engineering readership.
+
+Sincerely,
+
+\vspace{2em}
+Corresponding Author\\
+on behalf of all authors
+\end{document}

@@ -1,0 +1,17 @@
+metric,ms,variant
+mean_ms,0.6526329000000001,DiSwitch
+mean_ms,0.7266552460000001,Early Exit
+mean_ms,0.2122791684,Fast-DiSwitch
+mean_ms,0.2248380116,Fast-DiSwitch + Top-2
+p50_ms,0.5960751,DiSwitch
+p50_ms,0.6589833,Early Exit
+p50_ms,0.19835019999999998,Fast-DiSwitch
+p50_ms,0.2024709,Fast-DiSwitch + Top-2
+p95_ms,0.9180985599999995,DiSwitch
+p95_ms,1.0197860599999995,Early Exit
+p95_ms,0.27087063999999994,Fast-DiSwitch
+p95_ms,0.3263948699999996,Fast-DiSwitch + Top-2
+p99_ms,1.373816513999998,DiSwitch
+p99_ms,1.629660483999999,Early Exit
+p99_ms,0.45814055199999987,Fast-DiSwitch
+p99_ms,0.49123418199999963,Fast-DiSwitch + Top-2

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "purpose": "offline divergence calibration for a proposed early-exit gate; not a full-run PDR/latency result",
+  "episode_rows": 14000,
+  "gate_margins": [
+    "0.0000",
+    "0.0200",
+    "0.0500",
+    "0.1000",
+    "0.2000",
+    "0.3000",
+    "0.5000",
+    "1.0000"
+  ],
+  "mode": "full",
+  "device": "cpu",
+  "training_seeds": [
+    42,
+    77,
+    123,
+    314,
+    2718
+  ],
+  "evaluation_episodes": 200,
+  "hidden_dim": 64,
+  "switchglobe_checkpoint_dir": "ResearchAIWorkspace/artifacts/lite_globe/phase12/checkpoints",
+  "checkpoint_sha256": {
+    "switchglobe_exact_seed_42": "4d5740be9e3a4c088812281a8a8a261cf45e577d10fc4a8e3baef63c50f684db",
+    "switchglobe_exact_seed_77": "6d230ff309aefeda2abadb8ecd12470a248cef812138a02aa355edf28cee22ad",
+    "switchglobe_exact_seed_123": "6976ad2938264892a4476f326e71bda91901d396109a3199a43c69dea1846bda",
+    "switchglobe_exact_seed_314": "0e0936d0ec043a3ecdce1be9918ca246ff36a72c83bbfbd18a28fa6c9c6f06aa",
+    "switchglobe_exact_seed_2718": "5c453f578f894e63da34d942420ece20a3c3de6a100e6383f84b1afc5e3cd7bd"
+  },
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "torch": "2.14.0",
+  "git_commit_hash": "16672cef2b7361b01e66d09c03918df94ff8c5c7",
+  "dirty_files": [
+    "deliverables/",
+    "implementations/lite_globe/evaluation/gated_switchglobe_calibration.py",
+    "implementations/lite_globe/run_gated_switchglobe_calibration.py",
+    "tests/lite_globe/test_gated_switchglobe_calibration.py"
+  ]
+}

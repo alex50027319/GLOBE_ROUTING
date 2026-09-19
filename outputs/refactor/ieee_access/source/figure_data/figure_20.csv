@@ -1,0 +1,7 @@
+candidate,connected_pdr_change_pp,decision,p95_reduction_percent
+DiSwitch,0.0,adopt,41.664384153187015
+Buffered DiSwitch,0.0,hold,0.8283875284411611
+torch.compile (old),0.0,reject,-28.03881799074265
+Early Exit,0.0,reject,-9.415357361394511
+Fast-DiSwitch,-1.808596884842728,trade-off,65.65186895642238
+Fast-DiSwitch + Top-2,-1.808596884842728,trade-off,64.15831175805965

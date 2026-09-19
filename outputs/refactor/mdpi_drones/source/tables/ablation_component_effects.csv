@@ -1,0 +1,31 @@
+component,base_method,enhanced_method,metric,metric_label,effect_unit,count,mean,standard_deviation,ci95_low,ci95_high
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),connected_pair_pdr,Connected-pair PDR,percentage points,5,8.97087378640777,3.843286996112777,4.199567722117928,13.742179850697612
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),overall_pdr,Overall PDR,percentage points,5,8.342857142857145,3.5465742309319013,3.939909574118537,12.745804711595753
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),deadline_delivery_ratio,Deadline delivery ratio,percentage points,5,8.228571428571428,3.5423458732475988,3.830873217656345,12.62626963948651
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),p95_success_delay_steps,P95 successful delay,steps,5,-2.0,0.0,-2.0,-2.0
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),energy_per_delivered_packet,Energy / delivered packet,proxy units,5,-0.17105502778612608,0.04872488369433059,-0.23154526265219666,-0.1105647929200555
+Predictive/risk prior,Geo-Residual Student,Predictive Student (No Switch),mean_path_stretch,Mean path stretch,percentage points,5,-10.122384690353574,3.780863165156818,-14.816193757021946,-5.428575623685201
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),connected_pair_pdr,Connected-pair PDR,percentage points,5,-1.6621359223300947,3.738597834927715,-6.30347406329469,2.9792022186345
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),overall_pdr,Overall PDR,percentage points,5,-1.5357142857142847,3.454145690178631,-5.823915061549948,2.7524864901213784
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),deadline_delivery_ratio,Deadline delivery ratio,percentage points,5,-1.528571428571426,3.4183627779439467,-5.772348973376987,2.7152061162341354
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),p95_success_delay_steps,P95 successful delay,steps,5,0.0,0.0,0.0,0.0
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),energy_per_delivered_packet,Energy / delivered packet,proxy units,5,0.023381024799722993,0.05339443478176944,-0.0429062940321151,0.08966834363156109
+Geo-residual in predictive model,Predictive Prior Only,Predictive Student (No Switch),mean_path_stretch,Mean path stretch,percentage points,5,1.8458099530379801,3.935711002011647,-3.040237274292057,6.731857180368017
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,connected_pair_pdr,Connected-pair PDR,percentage points,5,1.6621359223300967,3.78311033915884,-3.0344629320783563,6.35873477673855
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,overall_pdr,Overall PDR,percentage points,5,1.5071428571428558,3.4911878862563195,-2.8270445064649006,5.841330220750612
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,deadline_delivery_ratio,Deadline delivery ratio,percentage points,5,1.535714285714287,3.4748550109233016,-2.7781963857800416,5.849624957208615
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,p95_success_delay_steps,P95 successful delay,steps,5,0.0,0.0,0.0,0.0
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,energy_per_delivered_packet,Energy / delivered packet,proxy units,5,-0.02801845069385749,0.049224205118162466,-0.0891285756019594,0.03309167421424443
+Risk switching,Predictive Student (No Switch),SwitchGLOBE Exact,mean_path_stretch,Mean path stretch,percentage points,5,-1.6638074607620503,3.8359335495288027,-6.4259844789215785,3.0983695573974783
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,connected_pair_pdr,Connected-pair PDR,percentage points,5,-1.9106796116504874,1.5713525498417111,-3.8614587123994495,0.040099489098474494
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,overall_pdr,Overall PDR,percentage points,5,-1.6714285714285702,1.4536635632435824,-3.4761009213614393,0.13324377850429925
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,deadline_delivery_ratio,Deadline delivery ratio,percentage points,5,-2.2642857142857187,1.901362293574945,-4.624760342103487,0.09618891353205017
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,p95_success_delay_steps,P95 successful delay,steps,5,0.0,0.0,0.0,0.0
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,energy_per_delivered_packet,Energy / delivered packet,proxy units,5,-0.144387519334967,0.11583638868902474,-0.28819433479693696,-0.0005807038729970238
+Fast distillation/compression,SwitchGLOBE Exact,FastSwitchGLOBE,mean_path_stretch,Mean path stretch,percentage points,5,-2.721811419055218,1.994309996122348,-5.197677360942111,-0.24594547716832427
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,connected_pair_pdr,Connected-pair PDR,percentage points,5,0.0,0.0,0.0,0.0
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,overall_pdr,Overall PDR,percentage points,5,0.0,0.0,0.0,0.0
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,deadline_delivery_ratio,Deadline delivery ratio,percentage points,5,0.0,0.0,0.0,0.0
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,p95_success_delay_steps,P95 successful delay,steps,5,0.0,0.0,0.0,0.0
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,energy_per_delivered_packet,Energy / delivered packet,proxy units,5,0.0,0.0,0.0,0.0
+Top-2 backup (normal routing),FastSwitchGLOBE,FastSwitchGLOBE + Top-2,mean_path_stretch,Mean path stretch,percentage points,5,0.0,0.0,0.0,0.0

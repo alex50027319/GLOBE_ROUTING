@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "figure_count": 20,
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "sources": [
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/switchglobe_latency_optimization/globev2_local_full_20260905",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/gated_switchglobe/calibration_guarded_20260905",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/gated_switchglobe/early_exit_full_validation_20260905",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/final_paper_simulation/full/ablation",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/switchglobe_latency_optimization/globev2_colab_cli_20260905/results",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/switchglobe_latency_optimization/globev2_colab_cli_20260905/profile/results",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/final_paper_simulation/full/final_latency_verified",
+    "/Users/alex/Documents/GLOBE_ROUTING/artifacts/switchglobe_latency_optimization/verified_candidate_1_2"
+  ]
+}

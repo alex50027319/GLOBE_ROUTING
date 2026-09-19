@@ -1,0 +1,751 @@
+ci95_high,ci95_low,count,mean,method,metric,scenario,standard_deviation
+0.8344792649942303,0.6715207350057697,5,0.753,Historical Untrained Local,connected_pair_pdr,heldout_medium,0.0656315472924416
+0.7859184542471833,0.5340815457528167,5,0.66,Historical Untrained Local,deadline_delivery_ratio,heldout_medium,0.10142731387550398
+6.502416424834141,5.237583575165857,5,5.869999999999999,Historical Untrained Local,p95_success_delay,heldout_medium,0.5094114250779999
+1.9297096676902612,1.5364167752776523,5,1.7330632214839568,Historical Untrained Local,mean_transmission_energy_proxy,heldout_medium,0.15839871082530704
+2.7923885936460753,1.8569866442956844,5,2.32468761897088,Historical Untrained Local,energy_per_delivered_packet,heldout_medium,0.3767331313100305
+0.7179731914822591,0.5660268085177409,5,0.642,Historical Untrained Local,connected_pair_pdr,ood_link_loss,0.06119640512317698
+0.6863680086857465,0.4616319913142536,5,0.5740000000000001,Historical Untrained Local,deadline_delivery_ratio,ood_link_loss,0.09051243008559653
+6.47686190924149,4.883138090758506,5,5.679999999999998,Historical Untrained Local,p95_success_delay,ood_link_loss,0.6418722614352461
+1.7168700684670728,1.421137040445424,5,1.5690035544562484,Historical Untrained Local,mean_transmission_energy_proxy,ood_link_loss,0.11910647583722209
+2.989501045326228,1.95877286970165,5,2.474136957513939,Historical Untrained Local,energy_per_delivered_packet,ood_link_loss,0.41512576855563726
+0.8449907121274031,0.6430092878725969,5,0.744,Historical Untrained Local,connected_pair_pdr,ood_fast_mobility,0.0813480178000669
+0.7926025719173839,0.44139742808261606,5,0.617,Historical Untrained Local,deadline_delivery_ratio,ood_fast_mobility,0.14144787025614772
+7.07997835259661,5.7200216474033905,5,6.4,Historical Untrained Local,p95_success_delay,ood_fast_mobility,0.5477225575051662
+2.071828507332408,1.552913443740878,5,1.812370975536643,Historical Untrained Local,mean_transmission_energy_proxy,ood_fast_mobility,0.20899303975851727
+3.206932260955229,1.7659760710666486,5,2.486454166010939,Historical Untrained Local,energy_per_delivered_packet,ood_fast_mobility,0.5803450996379614
+0.8722735765518116,0.7777264234481883,5,0.825,Historical Untrained Local,connected_pair_pdr,ood_sparse,0.038078865529319515
+0.8624792594423254,0.7295207405576747,5,0.796,Historical Untrained Local,deadline_delivery_ratio,ood_sparse,0.053549042941961146
+5.2799783525966095,3.9200216474033893,5,4.6,Historical Untrained Local,p95_success_delay,ood_sparse,0.5477225575051662
+1.4854603079582285,1.2852275122779844,5,1.3853439101181064,Historical Untrained Local,mean_transmission_energy_proxy,ood_sparse,0.0806437576487486
+1.8721254601305204,1.4957008414589104,5,1.6839131507947154,Historical Untrained Local,energy_per_delivered_packet,ood_sparse,0.15160501364448073
+0.7988811853942012,0.5731188146057989,5,0.686,Historical Untrained Local,connected_pair_pdr,ood_nodes_10,0.09092579392009728
+0.7592849528125705,0.48071504718742936,5,0.6199999999999999,Historical Untrained Local,deadline_delivery_ratio,ood_nodes_10,0.11219402836158439
+6.91163659307165,5.7483634069283465,5,6.329999999999998,Historical Untrained Local,p95_success_delay,ood_nodes_10,0.46850827100489767
+2.081126454142763,1.6505940396416157,5,1.8658602468921894,Historical Untrained Local,mean_transmission_energy_proxy,ood_nodes_10,0.17339692819554786
+3.553832705095999,2.013045279725526,5,2.7834389924107623,Historical Untrained Local,energy_per_delivered_packet,ood_nodes_10,0.6205521293237144
+0.91503656676773,0.6382101864790233,5,0.7766233766233767,Historical Untrained Local,connected_pair_pdr,unconditional_sparse,0.11149182353940132
+0.3492462355338489,0.22875376446615112,5,0.28900000000000003,Historical Untrained Local,deadline_delivery_ratio,unconditional_sparse,0.04852834223420372
+5.143210454341066,3.8967895456589314,5,4.519999999999999,Historical Untrained Local,p95_success_delay,unconditional_sparse,0.5019960159204451
+0.8971682485734305,0.7998598915729833,5,0.8485140700732069,Historical Untrained Local,mean_transmission_energy_proxy,unconditional_sparse,0.03919094038757519
+3.509747049393364,1.9425695939820857,5,2.7261583216877248,Historical Untrained Local,energy_per_delivered_packet,unconditional_sparse,0.6311807138156995
+0.6251706275274315,0.21482937247256864,5,0.42000000000000004,Historical Untrained Local,connected_pair_pdr,structural_hole_45,0.1652649388103841
+0.6251706275274315,0.21482937247256864,5,0.42000000000000004,Historical Untrained Local,deadline_delivery_ratio,structural_hole_45,0.1652649388103841
+4.0,4.0,5,4.0,Historical Untrained Local,p95_success_delay,structural_hole_45,0.0
+1.93716768758665,1.0895087257550777,5,1.5133382066708638,Historical Untrained Local,mean_transmission_energy_proxy,structural_hole_45,0.3413946434424162
+4.824416813875145,2.8699742550214102,5,3.8471955344482778,Historical Untrained Local,energy_per_delivered_packet,structural_hole_45,0.7871517326577062
+0.532430286361343,0.1818554279243713,5,0.35714285714285715,Historical Untrained Local,connected_pair_pdr,structural_hole_225_link_loss,0.14119402281473964
+0.3354310804076461,0.11456891959235392,5,0.225,Historical Untrained Local,deadline_delivery_ratio,structural_hole_225_link_loss,0.08895223437328598
+4.0,4.0,5,4.0,Historical Untrained Local,p95_success_delay,structural_hole_225_link_loss,0.0
+1.774133184811542,0.989402355852727,5,1.3817677703321345,Historical Untrained Local,mean_transmission_energy_proxy,structural_hole_225_link_loss,0.316050338182938
+6.179911465555474,3.038189189233527,5,4.609050327394501,Historical Untrained Local,energy_per_delivered_packet,structural_hole_225_link_loss,1.2653286340564216
+0.4490675063242779,-0.04106750632427786,5,0.20400000000000001,Historical Untrained Local,connected_pair_pdr,predictive_break_45,0.19740187435786924
+0.4490675063242779,-0.04106750632427786,5,0.20400000000000001,Historical Untrained Local,deadline_delivery_ratio,predictive_break_45,0.19740187435786924
+6.0,6.0,3,6.0,Historical Untrained Local,p95_success_delay,predictive_break_45,0.0
+2.5972386202051494,1.4877449197632826,5,2.042491769984216,Historical Untrained Local,mean_transmission_energy_proxy,predictive_break_45,0.44684858335659267
+368.7317006340164,-89.622667802249,5,139.5545164158837,Historical Untrained Local,energy_per_delivered_packet,predictive_break_45,184.60222003016457
+0.32527180387947313,-0.053178780623659216,5,0.13604651162790696,Historical Untrained Local,connected_pair_pdr,predictive_break_225_link_loss,0.1524209713749158
+0.27973375133634687,-0.045733751336346884,5,0.11699999999999999,Historical Untrained Local,deadline_delivery_ratio,predictive_break_225_link_loss,0.13108203538242758
+6.0,6.0,5,6.0,Historical Untrained Local,p95_success_delay,predictive_break_225_link_loss,0.0
+2.545724437264375,1.2510230354135634,5,1.8983737363389692,Historical Untrained Local,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.5214409843484668
+78.11205759355121,-14.717477730472773,5,31.697289931539217,Historical Untrained Local,energy_per_delivered_packet,predictive_break_225_link_loss,37.38709497554676
+0.6446045235217868,0.4913954764782131,5,0.568,Historical Untrained Local,connected_pair_pdr,ood_link_loss_30,0.06170494307589952
+0.6327028674652412,0.4392971325347589,5,0.536,Historical Untrained Local,deadline_delivery_ratio,ood_link_loss_30,0.07789415895944958
+5.226559999999998,4.893440000000001,5,5.06,Historical Untrained Local,p95_success_delay,ood_link_loss_30,0.1341640786499861
+1.3923786348124851,1.2269136488155232,5,1.3096461418140042,Historical Untrained Local,mean_transmission_energy_proxy,ood_link_loss_30,0.06664102243970775
+2.7975071011915014,1.8780692398624645,5,2.337788170526983,Historical Untrained Local,energy_per_delivered_packet,ood_link_loss_30,0.3703035949241267
+0.8625305948385062,0.6454694051614938,5,0.754,Historical Untrained Local,connected_pair_pdr,ood_extreme_mobility,0.08742139326274775
+0.7841750313979838,0.39182496860201604,5,0.588,Historical Untrained Local,deadline_delivery_ratio,ood_extreme_mobility,0.15801898620102584
+7.2799783525966095,5.92002164740339,5,6.6,Historical Untrained Local,p95_success_delay,ood_extreme_mobility,0.5477225575051662
+2.1737328606728163,1.55108647953181,5,1.8624096701023132,Historical Untrained Local,mean_transmission_energy_proxy,ood_extreme_mobility,0.25077082748118396
+3.3757519381817995,1.688312572869656,5,2.5320322555257277,Historical Untrained Local,energy_per_delivered_packet,ood_extreme_mobility,0.679616197540896
+0.6323273186143307,0.39967268138566936,5,0.516,Historical Untrained Local,connected_pair_pdr,ood_nodes_16,0.09370165420097983
+0.5112547650379418,0.22674523496205837,5,0.36900000000000005,Historical Untrained Local,deadline_delivery_ratio,ood_nodes_16,0.11458621208504975
+10.86190990367661,8.718090096323385,5,9.789999999999997,Historical Untrained Local,p95_success_delay,ood_nodes_16,0.8634234187234
+2.9761170512510553,2.34248255449409,5,2.6592998028725727,Historical Untrained Local,mean_transmission_energy_proxy,ood_nodes_16,0.2551962910009805
+7.233217406990681,3.5017423364606626,5,5.3674798717256715,Historical Untrained Local,energy_per_delivered_packet,ood_nodes_16,1.5028515695336713
+0.5410324634737429,0.24096753652625713,5,0.391,Historical Untrained Local,connected_pair_pdr,ood_nodes_24,0.12085114811204732
+0.3744623548968725,0.10153764510312746,5,0.238,Historical Untrained Local,deadline_delivery_ratio,ood_nodes_24,0.10992042576336757
+12.219549588516879,9.880450411483123,5,11.05,Historical Untrained Local,p95_success_delay,ood_nodes_24,0.9420721840708386
+3.777838110059743,2.9933914856599357,5,3.3856147978598394,Historical Untrained Local,mean_transmission_energy_proxy,ood_nodes_24,0.3159358747979493
+16.48989446017818,3.3529177367348852,5,9.921406098456533,Historical Untrained Local,energy_per_delivered_packet,ood_nodes_24,5.290917322127462
+0.632957806847286,0.47678976596824774,5,0.5548737864077669,Historical Untrained Local,connected_pair_pdr,ALL_POOLED,0.06289667783114115
+0.541646134647652,0.35163957963806236,5,0.4466428571428572,Historical Untrained Local,deadline_delivery_ratio,ALL_POOLED,0.0765251392600857
+7.2799783525966095,5.92002164740339,5,6.6,Historical Untrained Local,p95_success_delay,ALL_POOLED,0.5477225575051662
+1.962957182548169,1.6466282280997253,5,1.8047927053239472,Historical Untrained Local,mean_transmission_energy_proxy,ALL_POOLED,0.12740148512214608
+4.241473327219585,2.776616152460364,5,3.5090447398399744,Historical Untrained Local,energy_per_delivered_packet,ALL_POOLED,0.5899712211977499
+0.9045574668126017,0.8754425331873983,5,0.89,Historical PPO-only Local (No KD),connected_pair_pdr,heldout_medium,0.011726039399558583
+0.8891003034672689,0.8648996965327311,5,0.877,Historical PPO-only Local (No KD),deadline_delivery_ratio,heldout_medium,0.009746794344808973
+5.07997835259661,3.7200216474033905,5,4.4,Historical PPO-only Local (No KD),p95_success_delay,heldout_medium,0.5477225575051661
+1.4993836912850007,1.4046386546591307,5,1.4520111729720657,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,heldout_medium,0.03815856311710241
+1.6923902243814122,1.5710532107712094,5,1.6317217175763108,Historical PPO-only Local (No KD),energy_per_delivered_packet,heldout_medium,0.048868481739775045
+0.8416479972074837,0.7843520027925162,5,0.813,Historical PPO-only Local (No KD),connected_pair_pdr,ood_link_loss,0.023075961518428615
+0.8290408652090561,0.780959134790944,5,0.805,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_link_loss,0.019364916731037046
+4.9116365930716555,3.7483634069283465,5,4.330000000000001,Historical PPO-only Local (No KD),p95_success_delay,ood_link_loss,0.4685082710049001
+1.3858617910923299,1.2998256062189613,5,1.3428436986556456,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_link_loss,0.03465107310907626
+1.7595121324995957,1.5476322935846034,5,1.6535722130420996,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_link_loss,0.08533460426434229
+0.9237212301291974,0.8982787698708025,5,0.9109999999999999,Historical PPO-only Local (No KD),connected_pair_pdr,ood_fast_mobility,0.010246950765959608
+0.8932761653056347,0.8707238346943653,5,0.882,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_fast_mobility,0.009082951062292483
+5.035519999999998,4.924480000000004,5,4.980000000000001,Historical PPO-only Local (No KD),p95_success_delay,ood_fast_mobility,0.044721359549993255
+1.4806810720150325,1.3812895539392864,5,1.4309853129771595,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_fast_mobility,0.040029933502209604
+1.6185686164622615,1.5229209545356994,5,1.5707447854989804,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_fast_mobility,0.038522095453298065
+0.9012073247055395,0.8887926752944607,5,0.8950000000000001,Historical PPO-only Local (No KD),connected_pair_pdr,ood_sparse,0.0050000000000000044
+0.9012073247055395,0.8887926752944607,5,0.8950000000000001,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_sparse,0.0050000000000000044
+3.7552000000000003,2.6448,5,3.2,Historical PPO-only Local (No KD),p95_success_delay,ood_sparse,0.4472135954999579
+1.2371504699725653,1.1984484215534297,5,1.2177994457629975,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_sparse,0.01558724984396172
+1.3798674266058468,1.3414694622622465,5,1.3606684444340467,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_sparse,0.015464779983772194
+0.850825634900376,0.8191743650996239,5,0.835,Historical PPO-only Local (No KD),connected_pair_pdr,ood_nodes_10,0.012747548783981974
+0.8447712678113493,0.8112287321886507,5,0.828,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_nodes_10,0.013509256086106309
+5.1391431856837535,4.600856814316245,5,4.869999999999999,Historical PPO-only Local (No KD),p95_success_delay,ood_nodes_10,0.2167948338867881
+1.6876482171638536,1.5564971299770585,5,1.622072673570456,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_nodes_10,0.05282109983297475
+2.045379282827177,1.8413528815981481,5,1.9433660822126626,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_nodes_10,0.08217163226814753
+0.9546805194805195,0.925838961038961,5,0.9402597402597402,Historical PPO-only Local (No KD),connected_pair_pdr,unconditional_sparse,0.011615937545453456
+0.367552,0.356448,5,0.362,Historical PPO-only Local (No KD),deadline_delivery_ratio,unconditional_sparse,0.004472135954999583
+4.301920000000003,3.3580799999999935,5,3.8299999999999983,Historical PPO-only Local (No KD),p95_success_delay,unconditional_sparse,0.3801315561749681
+0.8251044540272371,0.7674118745733135,5,0.7962581643002753,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,unconditional_sparse,0.02323568614126092
+2.1630206391609037,1.9850578452685492,5,2.0740392422147265,Historical PPO-only Local (No KD),energy_per_delivered_packet,unconditional_sparse,0.07167451451892812
+0.672726216916055,0.11127378308394498,5,0.392,Historical PPO-only Local (No KD),connected_pair_pdr,structural_hole_45,0.22612496545052252
+0.672726216916055,0.11127378308394498,5,0.392,Historical PPO-only Local (No KD),deadline_delivery_ratio,structural_hole_45,0.22612496545052252
+4.0,4.0,5,4.0,Historical PPO-only Local (No KD),p95_success_delay,structural_hole_45,0.0
+2.035405242387372,0.8755896466674019,5,1.455497444527387,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,structural_hole_45,0.4671157264759127
+9.052882847641712,1.0520770593100597,5,5.052479953475886,Historical PPO-only Local (No KD),energy_per_delivered_packet,structural_hole_45,3.2223244988262554
+0.44876986095439286,0.1734523612678294,5,0.3111111111111111,Historical PPO-only Local (No KD),connected_pair_pdr,structural_hole_225_link_loss,0.11088412188300305
+0.28272501240126746,0.10927498759873253,5,0.196,Historical PPO-only Local (No KD),deadline_delivery_ratio,structural_hole_225_link_loss,0.06985699678629192
+4.0,4.0,5,4.0,Historical PPO-only Local (No KD),p95_success_delay,structural_hole_225_link_loss,0.0
+1.5393824263227782,0.9360888777444565,5,1.2377356520336174,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,structural_hole_225_link_loss,0.2429764742449926
+5.8154044598404875,3.784830262324138,5,4.800117361082313,Historical PPO-only Local (No KD),energy_per_delivered_packet,structural_hole_225_link_loss,0.8178137498205411
+0.5621648496455451,0.021835150354454935,5,0.29200000000000004,Historical PPO-only Local (No KD),connected_pair_pdr,predictive_break_45,0.21761778419972944
+0.5621648496455451,0.021835150354454935,5,0.29200000000000004,Historical PPO-only Local (No KD),deadline_delivery_ratio,predictive_break_45,0.21761778419972944
+6.0,6.0,5,6.0,Historical PPO-only Local (No KD),p95_success_delay,predictive_break_45,0.0
+2.925773389825866,1.7581805637409067,5,2.3419769767833865,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,predictive_break_45,0.47024800597389405
+39.00085950579799,-6.394834094096403,5,16.303012705850794,Historical PPO-only Local (No KD),energy_per_delivered_packet,predictive_break_45,18.28311541338545
+0.3086661486294415,0.07738036299846547,5,0.19302325581395346,Historical PPO-only Local (No KD),connected_pair_pdr,predictive_break_225_link_loss,0.09315034922555952
+0.2654528878213197,0.06654711217868028,5,0.16599999999999998,Historical PPO-only Local (No KD),deadline_delivery_ratio,predictive_break_225_link_loss,0.0801093003339812
+6.0,6.0,5,6.0,Historical PPO-only Local (No KD),p95_success_delay,predictive_break_225_link_loss,0.0
+2.3275941040398345,1.5405229478873814,5,1.9340585259636078,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,predictive_break_225_link_loss,0.31699290495069105
+23.10849798266142,2.8363293805405583,5,12.972413681600989,Historical PPO-only Local (No KD),energy_per_delivered_packet,predictive_break_225_link_loss,8.164615822348548
+0.7155995670519322,0.6884004329480677,5,0.702,Historical PPO-only Local (No KD),connected_pair_pdr,ood_link_loss_30,0.010954451150103288
+0.7096292842457386,0.6703707157542615,5,0.6900000000000001,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_link_loss_30,0.015811388300841858
+4.7552,3.6448,5,4.2,Historical PPO-only Local (No KD),p95_success_delay,ood_link_loss_30,0.4472135954999579
+1.323343324803601,1.2347801972274521,5,1.2790617610155266,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_link_loss_30,0.03566879927238034
+1.8539737074184803,1.7895793371971156,5,1.821776522307798,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_link_loss_30,0.02593483234568796
+0.921328,0.904672,5,0.913,Historical PPO-only Local (No KD),connected_pair_pdr,ood_extreme_mobility,0.006708203932499375
+0.8977997835259661,0.8842002164740339,5,0.891,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_extreme_mobility,0.005477225575051666
+4.0,4.0,5,4.0,Historical PPO-only Local (No KD),p95_success_delay,ood_extreme_mobility,0.0
+1.465892942065311,1.3394133500082714,5,1.4026531460367913,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_extreme_mobility,0.05093965518839753
+1.5962642623343628,1.4760235619437219,5,1.5361439121390423,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_extreme_mobility,0.04842694159503941
+0.7238197846138195,0.6941802153861805,5,0.709,Historical PPO-only Local (No KD),connected_pair_pdr,ood_nodes_16,0.011937336386313334
+0.6696208512540798,0.6143791487459203,5,0.642,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_nodes_16,0.022248595461287008
+7.877848278462742,6.122151721537258,5,7.0,Historical PPO-only Local (No KD),p95_success_delay,ood_nodes_16,0.7071067811865476
+2.3301148929110775,2.1519961588739713,5,2.2410555258925244,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_nodes_16,0.07173731941159477
+3.3239110963082825,3.0002295069882874,5,3.162070301648285,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_nodes_16,0.13036275878686576
+0.6348498417499993,0.5731501582500007,5,0.604,Historical PPO-only Local (No KD),connected_pair_pdr,ood_nodes_24,0.024849547279578377
+0.5450345758404341,0.47296542415956583,5,0.509,Historical PPO-only Local (No KD),deadline_delivery_ratio,ood_nodes_24,0.029025850547400013
+9.81377463245178,8.766225367548214,5,9.289999999999997,Historical PPO-only Local (No KD),p95_success_delay,ood_nodes_24,0.42190046219458016
+3.307656031063873,2.960350955965766,5,3.1340034935148195,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ood_nodes_24,0.13987711758826318
+5.436675044484995,4.945587033277092,5,5.191131038881044,Historical PPO-only Local (No KD),energy_per_delivered_packet,ood_nodes_24,0.1977856945237842
+0.6937051743094761,0.6546443402536307,5,0.6741747572815534,Historical PPO-only Local (No KD),connected_pair_pdr,ALL_POOLED,0.015731750757692523
+0.6196543605368229,0.5842027823203201,5,0.6019285714285715,Historical PPO-only Local (No KD),deadline_delivery_ratio,ALL_POOLED,0.014278122983024322
+6.0,6.0,5,6.0,Historical PPO-only Local (No KD),p95_success_delay,ALL_POOLED,0.0
+1.6894795076703466,1.5802366343305474,5,1.634858071000447,Historical PPO-only Local (No KD),mean_transmission_energy_proxy,ALL_POOLED,0.04399756679488293
+2.656388671425621,2.5420524323744673,5,2.599220551900044,Historical PPO-only Local (No KD),energy_per_delivered_packet,ALL_POOLED,0.04604891981448943
+0.9757997835259661,0.9622002164740339,5,0.969,Historical KD-only Local,connected_pair_pdr,heldout_medium,0.005477225575051666
+0.9757997835259661,0.9622002164740339,5,0.969,Historical KD-only Local,deadline_delivery_ratio,heldout_medium,0.005477225575051666
+4.0,4.0,5,4.0,Historical KD-only Local,p95_success_delay,heldout_medium,0.0
+1.311790061569636,1.2831041239088419,5,1.297447092739239,Historical KD-only Local,mean_transmission_energy_proxy,heldout_medium,0.011553261276631312
+1.348715139626646,1.3291803210457667,5,1.3389477303362063,Historical KD-only Local,energy_per_delivered_packet,heldout_medium,0.007867648104281668
+0.9224138740165779,0.9035861259834221,5,0.913,Historical KD-only Local,connected_pair_pdr,ood_link_loss,0.007582875444051557
+0.9211996752889493,0.900800324711051,5,0.9110000000000001,Historical KD-only Local,deadline_delivery_ratio,ood_link_loss,0.008215838362577499
+4.0,4.0,5,4.0,Historical KD-only Local,p95_success_delay,ood_link_loss,0.0
+1.2773153459117594,1.2355775196726286,5,1.256446432792194,Historical KD-only Local,mean_transmission_energy_proxy,ood_link_loss,0.016809909348661885
+1.3877794015971245,1.3644981822979703,5,1.3761387919475474,Historical KD-only Local,energy_per_delivered_packet,ood_link_loss,0.009376510978384234
+0.972552,0.961448,5,0.967,Historical KD-only Local,connected_pair_pdr,ood_fast_mobility,0.004472135954999583
+0.9720933612300452,0.9559066387699545,5,0.9639999999999999,Historical KD-only Local,deadline_delivery_ratio,ood_fast_mobility,0.006519202405202654
+3.0,3.0,5,3.0,Historical KD-only Local,p95_success_delay,ood_fast_mobility,0.0
+1.214497754912577,1.1859757815124508,5,1.200236768212514,Historical KD-only Local,mean_transmission_energy_proxy,ood_fast_mobility,0.011487224671311731
+1.2575485325794071,1.224885995276085,5,1.2412172639277461,Historical KD-only Local,energy_per_delivered_packet,ood_fast_mobility,0.013154836766543774
+0.9761934204528421,0.9658065795471577,5,0.9709999999999999,Historical KD-only Local,connected_pair_pdr,ood_sparse,0.004183300132670382
+0.9761934204528421,0.9658065795471577,5,0.9709999999999999,Historical KD-only Local,deadline_delivery_ratio,ood_sparse,0.004183300132670382
+3.302079999999983,2.8579200000000085,5,3.0799999999999956,Historical KD-only Local,p95_success_delay,ood_sparse,0.17888543819997302
+1.2153944864403339,1.1876770219481825,5,1.2015357541942582,Historical KD-only Local,mean_transmission_energy_proxy,ood_sparse,0.01116320871188532
+1.2564780796990194,1.2184487100323418,5,1.2374633948656806,Historical KD-only Local,energy_per_delivered_packet,ood_sparse,0.015316328479135449
+0.9700774390848667,0.9559225609151331,5,0.9629999999999999,Historical KD-only Local,connected_pair_pdr,ood_nodes_10,0.005700877125495695
+0.9661934204528422,0.9558065795471578,5,0.961,Historical KD-only Local,deadline_delivery_ratio,ood_nodes_10,0.004183300132670382
+4.0,4.0,5,4.0,Historical KD-only Local,p95_success_delay,ood_nodes_10,0.0
+1.4414490839510457,1.4196982783120635,5,1.4305736811315546,Historical KD-only Local,mean_transmission_energy_proxy,ood_nodes_10,0.008760136882952085
+1.4953848915327055,1.4757233594962655,5,1.4855541255144855,Historical KD-only Local,energy_per_delivered_packet,ood_nodes_10,0.00791868194799525
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Historical KD-only Local,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,Historical KD-only Local,deadline_delivery_ratio,unconditional_sparse,0.0
+4.025979434966783,2.73402056503322,5,3.3800000000000012,Historical KD-only Local,p95_success_delay,unconditional_sparse,0.5203364296299093
+0.7377972457558756,0.7092374910713742,5,0.7235173684136249,Historical KD-only Local,mean_transmission_energy_proxy,unconditional_sparse,0.011502441083440784
+1.8212767467085096,1.7519692408319731,5,1.7866229937702414,Historical KD-only Local,energy_per_delivered_packet,unconditional_sparse,0.027913597710897322
+0.128384,-0.06038399999999999,5,0.034,Historical KD-only Local,connected_pair_pdr,structural_hole_45,0.07602631123499286
+0.128384,-0.06038399999999999,5,0.034,Historical KD-only Local,deadline_delivery_ratio,structural_hole_45,0.07602631123499286
+4.0,4.0,1,4.0,Historical KD-only Local,p95_success_delay,structural_hole_45,0.0
+0.9109349319125744,0.520989039473295,5,0.7159619856929347,Historical KD-only Local,mean_transmission_energy_proxy,structural_hole_45,0.15705070659961273
+172.9348444634669,36.04337710108557,5,104.48911078227624,Historical KD-only Local,energy_per_delivered_packet,structural_hole_45,55.13303792542842
+0.07936507936507936,0.07936507936507936,5,0.07936507936507936,Historical KD-only Local,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.05,0.05,5,0.05,Historical KD-only Local,deadline_delivery_ratio,structural_hole_225_link_loss,0.0
+4.0,4.0,5,4.0,Historical KD-only Local,p95_success_delay,structural_hole_225_link_loss,0.0
+0.7708872788010634,0.750690819526233,5,0.7607890491636482,Historical KD-only Local,mean_transmission_energy_proxy,structural_hole_225_link_loss,0.008134123891089175
+14.066197781294544,13.128955635365429,5,13.597576708329987,Historical KD-only Local,energy_per_delivered_packet,structural_hole_225_link_loss,0.37747427047465365
+0.0,0.0,5,0.0,Historical KD-only Local,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,Historical KD-only Local,deadline_delivery_ratio,predictive_break_45,0.0
+,,0,,Historical KD-only Local,p95_success_delay,predictive_break_45,
+0.907029262205383,0.907029262205383,5,0.907029262205383,Historical KD-only Local,mean_transmission_energy_proxy,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,Historical KD-only Local,energy_per_delivered_packet,predictive_break_45,0.0
+0.03319999999999999,0.020288372093023255,5,0.026744186046511624,Historical KD-only Local,connected_pair_pdr,predictive_break_225_link_loss,0.005200158087208813
+0.028552,0.017447999999999998,5,0.023,Historical KD-only Local,deadline_delivery_ratio,predictive_break_225_link_loss,0.00447213595499958
+6.0,6.0,5,6.0,Historical KD-only Local,p95_success_delay,predictive_break_225_link_loss,0.0
+1.0836070794307098,1.0602472877785045,5,1.0719271836046071,Historical KD-only Local,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.009408155993256973
+32.281834423337365,18.13437939003786,5,25.20810690668761,Historical KD-only Local,energy_per_delivered_packet,predictive_break_225_link_loss,5.697887457326953
+0.7848146421228693,0.7651853578771307,5,0.775,Historical KD-only Local,connected_pair_pdr,ood_link_loss_30,0.007905694150420955
+0.7824138740165779,0.7635861259834221,5,0.773,Historical KD-only Local,deadline_delivery_ratio,ood_link_loss_30,0.007582875444051557
+4.0,4.0,5,4.0,Historical KD-only Local,p95_success_delay,ood_link_loss_30,0.0
+1.179601955293991,1.1520518757561056,5,1.1658269155250482,Historical KD-only Local,mean_transmission_energy_proxy,ood_link_loss_30,0.011095794422233038
+1.5326695021945655,1.476204122888933,5,1.5044368125417493,Historical KD-only Local,energy_per_delivered_packet,ood_link_loss_30,0.02274143128651016
+0.968776,0.963224,5,0.966,Historical KD-only Local,connected_pair_pdr,ood_extreme_mobility,0.002236067977499792
+0.9663998917629829,0.9596001082370168,5,0.9629999999999999,Historical KD-only Local,deadline_delivery_ratio,ood_extreme_mobility,0.002738612787525833
+4.103210454341064,2.856789545658927,5,3.4799999999999955,Historical KD-only Local,p95_success_delay,ood_extreme_mobility,0.5019960159204462
+1.2390361659901732,1.2046444063397947,5,1.221840286164984,Historical KD-only Local,mean_transmission_energy_proxy,ood_extreme_mobility,0.013851281059812749
+1.2798621743843426,1.249796268738253,5,1.2648292215612977,Historical KD-only Local,energy_per_delivered_packet,ood_extreme_mobility,0.012109043377116671
+0.9743228605960832,0.9316771394039167,5,0.953,Historical KD-only Local,connected_pair_pdr,ood_nodes_16,0.017175564037317684
+0.9680609924783516,0.9179390075216483,5,0.943,Historical KD-only Local,deadline_delivery_ratio,ood_nodes_16,0.02018662923818632
+5.7552,4.6448,5,5.2,Historical KD-only Local,p95_success_delay,ood_nodes_16,0.4472135954999579
+1.8039877622959473,1.7284122158626525,5,1.7661999890792999,Historical KD-only Local,mean_transmission_energy_proxy,ood_nodes_16,0.030438051019729653
+1.8997876931102435,1.8074503232305712,5,1.8536190081704074,Historical KD-only Local,energy_per_delivered_packet,ood_nodes_16,0.03718887534482864
+0.9303097563394671,0.8736902436605327,5,0.9019999999999999,Historical KD-only Local,connected_pair_pdr,ood_nodes_24,0.02280350850198278
+0.9170609924783517,0.8669390075216483,5,0.892,Historical KD-only Local,deadline_delivery_ratio,ood_nodes_24,0.020186629238186368
+7.3552,6.2448,5,6.8,Historical KD-only Local,p95_success_delay,ood_nodes_24,0.44721359549995787
+2.1652512387017104,2.056007946716412,5,2.1106295927090613,Historical KD-only Local,mean_transmission_energy_proxy,ood_nodes_24,0.04399773540435617
+2.4639042688960626,2.219613458204092,5,2.3417588635500772,Historical KD-only Local,energy_per_delivered_packet,ood_nodes_24,0.09838812301617056
+0.696239807044582,0.6810029114020201,5,0.688621359223301,Historical KD-only Local,connected_pair_pdr,ALL_POOLED,0.0061366596582922575
+0.6381931542058107,0.6238068457941893,5,0.631,Historical KD-only Local,deadline_delivery_ratio,ALL_POOLED,0.005794085654478062
+5.3552,4.2448,5,4.8,Historical KD-only Local,p95_success_delay,ALL_POOLED,0.4472135954999579
+1.2122048673641757,1.1920753271541604,5,1.202140097259168,Historical KD-only Local,mean_transmission_energy_proxy,ALL_POOLED,0.00810717223800595
+1.906770730565555,1.8677668167357933,5,1.8872687736506741,Historical KD-only Local,energy_per_delivered_packet,ALL_POOLED,0.015708826136868113
+0.9743892413923136,0.9656107586076863,5,0.97,Historical KD+PPO Local,connected_pair_pdr,heldout_medium,0.0035355339059327407
+0.9757997835259661,0.9622002164740339,5,0.969,Historical KD+PPO Local,deadline_delivery_ratio,heldout_medium,0.005477225575051666
+4.0,4.0,5,4.0,Historical KD+PPO Local,p95_success_delay,heldout_medium,0.0
+1.3130642758129587,1.2863766982835354,5,1.299720487048247,Historical KD+PPO Local,mean_transmission_energy_proxy,heldout_medium,0.010748421741820401
+1.3482936524476756,1.3315107233112184,5,1.339902187879447,Historical KD+PPO Local,energy_per_delivered_packet,heldout_medium,0.006759324641693148
+0.9174138740165779,0.8985861259834221,5,0.908,Historical KD+PPO Local,connected_pair_pdr,ood_link_loss,0.007582875444051557
+0.9126023890981717,0.8973976109018283,5,0.905,Historical KD+PPO Local,deadline_delivery_ratio,ood_link_loss,0.006123724356957951
+4.0,4.0,5,4.0,Historical KD+PPO Local,p95_success_delay,ood_link_loss,0.0
+1.2682676080443154,1.2281281663999242,5,1.2481978872221198,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_link_loss,0.01616615995960825
+1.4074070710219877,1.3422180657627798,5,1.3748125683923837,Historical KD+PPO Local,energy_per_delivered_packet,ood_link_loss,0.02625487160395896
+0.971776,0.966224,5,0.969,Historical KD+PPO Local,connected_pair_pdr,ood_fast_mobility,0.0022360679774997916
+0.9691934204528421,0.9588065795471576,5,0.9639999999999999,Historical KD+PPO Local,deadline_delivery_ratio,ood_fast_mobility,0.004183300132670381
+3.0,3.0,5,3.0,Historical KD+PPO Local,p95_success_delay,ood_fast_mobility,0.0
+1.2050560503186463,1.194096082191822,5,1.1995760662552342,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_fast_mobility,0.0044141271186618125
+1.2460419058539822,1.2298824951724245,5,1.2379622005132034,Historical KD+PPO Local,energy_per_delivered_packet,ood_fast_mobility,0.006508202586509209
+0.9793892413923136,0.9706107586076863,5,0.975,Historical KD+PPO Local,connected_pair_pdr,ood_sparse,0.0035355339059327407
+0.9793892413923136,0.9706107586076863,5,0.975,Historical KD+PPO Local,deadline_delivery_ratio,ood_sparse,0.0035355339059327407
+3.0,3.0,5,3.0,Historical KD+PPO Local,p95_success_delay,ood_sparse,0.0
+1.2105030330586033,1.1910558038150019,5,1.2007794184368026,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_sparse,0.007832371499047952
+1.2396586323260441,1.2234774056953903,5,1.2315680190107172,Historical KD+PPO Local,energy_per_delivered_packet,ood_sparse,0.00651698895991932
+0.9742761653056345,0.9517238346943652,5,0.9629999999999999,Historical KD+PPO Local,connected_pair_pdr,ood_nodes_10,0.009082951062292484
+0.974871782471748,0.9491282175282519,5,0.962,Historical KD+PPO Local,deadline_delivery_ratio,ood_nodes_10,0.01036822067666387
+4.0,4.0,5,4.0,Historical KD+PPO Local,p95_success_delay,ood_nodes_10,0.0
+1.4452976795931158,1.405962595460749,5,1.4256301375269325,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_nodes_10,0.01584220497490019
+1.4917897988318136,1.469025344020921,5,1.4804075714263674,Historical KD+PPO Local,energy_per_delivered_packet,ood_nodes_10,0.009168384082831037
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Historical KD+PPO Local,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,Historical KD+PPO Local,deadline_delivery_ratio,unconditional_sparse,0.0
+4.053342030629751,2.7266579693702497,5,3.3900000000000006,Historical KD+PPO Local,p95_success_delay,unconditional_sparse,0.5343220002957026
+0.7389313018366265,0.7119259336693239,5,0.7254286177529752,Historical KD+PPO Local,mean_transmission_energy_proxy,unconditional_sparse,0.010876411919938279
+1.824756380767512,1.7402665990025867,5,1.7825114898850494,Historical KD+PPO Local,energy_per_delivered_packet,unconditional_sparse,0.03402825926341762
+0.0,0.0,5,0.0,Historical KD+PPO Local,connected_pair_pdr,structural_hole_45,0.0
+0.0,0.0,5,0.0,Historical KD+PPO Local,deadline_delivery_ratio,structural_hole_45,0.0
+,,0,,Historical KD+PPO Local,p95_success_delay,structural_hole_45,
+0.645726774518713,0.645726774518713,5,0.645726774518713,Historical KD+PPO Local,mean_transmission_energy_proxy,structural_hole_45,0.0
+129.14535490374263,129.14535490374263,5,129.14535490374263,Historical KD+PPO Local,energy_per_delivered_packet,structural_hole_45,0.0
+0.07936507936507936,0.07936507936507936,5,0.07936507936507936,Historical KD+PPO Local,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.05,0.05,5,0.05,Historical KD+PPO Local,deadline_delivery_ratio,structural_hole_225_link_loss,0.0
+4.0,4.0,5,4.0,Historical KD+PPO Local,p95_success_delay,structural_hole_225_link_loss,0.0
+0.7708872788010634,0.750690819526233,5,0.7607890491636482,Historical KD+PPO Local,mean_transmission_energy_proxy,structural_hole_225_link_loss,0.008134123891089175
+14.066197781294544,13.128955635365429,5,13.597576708329987,Historical KD+PPO Local,energy_per_delivered_packet,structural_hole_225_link_loss,0.37747427047465365
+0.0,0.0,5,0.0,Historical KD+PPO Local,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,Historical KD+PPO Local,deadline_delivery_ratio,predictive_break_45,0.0
+,,0,,Historical KD+PPO Local,p95_success_delay,predictive_break_45,
+0.907029262205383,0.907029262205383,5,0.907029262205383,Historical KD+PPO Local,mean_transmission_energy_proxy,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,Historical KD+PPO Local,energy_per_delivered_packet,predictive_break_45,0.0
+0.030697548561608202,0.02279082353141506,5,0.02674418604651163,Historical KD+PPO Local,connected_pair_pdr,predictive_break_225_link_loss,0.003184433473867245
+0.02639989176298305,0.01960010823701695,5,0.023,Historical KD+PPO Local,deadline_delivery_ratio,predictive_break_225_link_loss,0.002738612787525831
+6.0,6.0,5,6.0,Historical KD+PPO Local,p95_success_delay,predictive_break_225_link_loss,0.0
+1.0834853366205055,1.0649495277105172,5,1.0742174321655114,Historical KD+PPO Local,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.007465296963379015
+28.488409032702723,19.073973957075832,5,23.781191494889278,Historical KD+PPO Local,energy_per_delivered_packet,predictive_break_225_link_loss,3.791663688555493
+0.8075990258668475,0.7464009741331525,5,0.777,Historical KD+PPO Local,connected_pair_pdr,ood_link_loss_30,0.024647515087732497
+0.8052469748179193,0.7467530251820808,5,0.776,Historical KD+PPO Local,deadline_delivery_ratio,ood_link_loss_30,0.023558437978779514
+4.0,4.0,5,4.0,Historical KD+PPO Local,p95_success_delay,ood_link_loss_30,0.0
+1.1755441941389502,1.125064319878223,5,1.1503042570085866,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_link_loss_30,0.02033076915393146
+1.5192791411734132,1.4429617146572131,5,1.4811204279153132,Historical KD+PPO Local,energy_per_delivered_packet,ood_link_loss_30,0.030736843220113202
+0.9743892413923136,0.9656107586076863,5,0.97,Historical KD+PPO Local,connected_pair_pdr,ood_extreme_mobility,0.0035355339059327407
+0.973552,0.962448,5,0.968,Historical KD+PPO Local,deadline_delivery_ratio,ood_extreme_mobility,0.004472135954999583
+4.096294146867108,2.8437058531328896,5,3.469999999999999,Historical KD+PPO Local,p95_success_delay,ood_extreme_mobility,0.5044799302251779
+1.2358430101274567,1.2072355423497214,5,1.221539276238589,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_extreme_mobility,0.011521657531547295
+1.2731571741219876,1.245483212505231,5,1.2593201933136093,Historical KD+PPO Local,energy_per_delivered_packet,ood_extreme_mobility,0.011145687928996315
+0.9648146421228692,0.9451853578771305,5,0.9549999999999998,Historical KD+PPO Local,connected_pair_pdr,ood_nodes_16,0.007905694150420955
+0.956599567051932,0.9294004329480678,5,0.943,Historical KD+PPO Local,deadline_delivery_ratio,ood_nodes_16,0.010954451150103286
+5.894871298869917,4.865128701130074,5,5.3799999999999955,Historical KD+PPO Local,p95_success_delay,ood_nodes_16,0.4147288270665541
+1.8055492493192242,1.7265026866167472,5,1.7660259679679857,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_nodes_16,0.03183600280807597
+1.8844860791092661,1.8139621497586136,5,1.8492241144339399,Historical KD+PPO Local,energy_per_delivered_packet,ood_nodes_16,0.02840351226016773
+0.9229215477310373,0.8830784522689625,5,0.9029999999999999,Historical KD+PPO Local,connected_pair_pdr,ood_nodes_24,0.01604680653588123
+0.9141322596679013,0.8758677403320989,5,0.8950000000000001,Historical KD+PPO Local,deadline_delivery_ratio,ood_nodes_24,0.015411035007422455
+7.2799783525966095,5.92002164740339,5,6.6,Historical KD+PPO Local,p95_success_delay,ood_nodes_24,0.5477225575051662
+2.1478984991241,2.0115911846096024,5,2.079744841866851,Historical KD+PPO Local,mean_transmission_energy_proxy,ood_nodes_24,0.05489777036831057
+2.3793328252073556,2.227570101642324,5,2.3034514634248398,Historical KD+PPO Local,energy_per_delivered_packet,ood_nodes_24,0.06112243630077799
+0.6905161691739964,0.683153733738625,5,0.6868349514563107,Historical KD+PPO Local,connected_pair_pdr,ALL_POOLED,0.0029652208417586044
+0.6330348352166928,0.6255365933547357,5,0.6292857142857142,Historical KD+PPO Local,deadline_delivery_ratio,ALL_POOLED,0.0030199168795156574
+5.2799783525966095,3.9200216474033893,5,4.6,Historical KD+PPO Local,p95_success_delay,ALL_POOLED,0.5477225575051662
+1.2075623857365478,1.1788246821745352,5,1.1931935339555415,Historical KD+PPO Local,mean_transmission_energy_proxy,ALL_POOLED,0.01157410999313736
+1.8940700702062414,1.8601861812554077,5,1.8771281257308245,Historical KD+PPO Local,energy_per_delivered_packet,ALL_POOLED,0.013646736137629428
+0.9807997835259661,0.9672002164740339,5,0.974,Privileged Global Teacher,connected_pair_pdr,heldout_medium,0.005477225575051666
+0.9807997835259661,0.9672002164740339,5,0.974,Privileged Global Teacher,deadline_delivery_ratio,heldout_medium,0.005477225575051666
+4.084832440994671,2.955167559005316,5,3.5199999999999934,Privileged Global Teacher,p95_success_delay,heldout_medium,0.4549725266430971
+1.3090025140049715,1.2979465727878798,5,1.3034745433964257,Privileged Global Teacher,mean_transmission_energy_proxy,heldout_medium,0.004452780280377978
+1.3514548854893629,1.325172282070697,5,1.33831358378003,Privileged Global Teacher,energy_per_delivered_packet,heldout_medium,0.010585318420353925
+0.9331548781697335,0.9048451218302663,5,0.9189999999999999,Privileged Global Teacher,connected_pair_pdr,ood_link_loss,0.01140175425099139
+0.9331548781697335,0.9048451218302663,5,0.9189999999999999,Privileged Global Teacher,deadline_delivery_ratio,ood_link_loss,0.01140175425099139
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,ood_link_loss,0.0
+1.281324386289685,1.2465314767035285,5,1.2639279314966068,Privileged Global Teacher,mean_transmission_energy_proxy,ood_link_loss,0.014012844194821636
+1.3970284084691227,1.353843699025119,5,1.3754360537471209,Privileged Global Teacher,energy_per_delivered_packet,ood_link_loss,0.01739264155356084
+0.9743892413923138,0.9656107586076864,5,0.9700000000000001,Privileged Global Teacher,connected_pair_pdr,ood_fast_mobility,0.0035355339059327407
+0.9757997835259662,0.962200216474034,5,0.9690000000000001,Privileged Global Teacher,deadline_delivery_ratio,ood_fast_mobility,0.0054772255750516665
+3.0,3.0,5,3.0,Privileged Global Teacher,p95_success_delay,ood_fast_mobility,0.0
+1.2108592092930248,1.1850766489808384,5,1.1979679291369316,Privileged Global Teacher,mean_transmission_energy_proxy,ood_fast_mobility,0.010383926061245888
+1.247215422703915,1.2228229072894392,5,1.235019164996677,Privileged Global Teacher,energy_per_delivered_packet,ood_fast_mobility,0.009824085484326242
+0.9817759999999999,0.9762239999999999,5,0.9789999999999999,Privileged Global Teacher,connected_pair_pdr,ood_sparse,0.0022360679774997916
+0.9817759999999999,0.9762239999999999,5,0.9789999999999999,Privileged Global Teacher,deadline_delivery_ratio,ood_sparse,0.0022360679774997916
+3.0,3.0,5,3.0,Privileged Global Teacher,p95_success_delay,ood_sparse,0.0
+1.214390236643928,1.2032844190595997,5,1.208837327851764,Privileged Global Teacher,mean_transmission_energy_proxy,ood_sparse,0.004472867987080415
+1.2408395348953989,1.228702496911942,5,1.2347710159036704,Privileged Global Teacher,energy_per_delivered_packet,ood_sparse,0.004888191998650287
+0.9714138740165779,0.9525861259834221,5,0.962,Privileged Global Teacher,connected_pair_pdr,ood_nodes_10,0.007582875444051557
+0.9714138740165779,0.9525861259834221,5,0.962,Privileged Global Teacher,deadline_delivery_ratio,ood_nodes_10,0.007582875444051557
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,ood_nodes_10,0.0
+1.4583767508571652,1.431064788281203,5,1.4447207695691842,Privileged Global Teacher,mean_transmission_energy_proxy,ood_nodes_10,0.01099989281678336
+1.5225763199971818,1.4811545709037495,5,1.5018654454504656,Privileged Global Teacher,energy_per_delivered_packet,ood_nodes_10,0.016682609279512803
+0.9906490695142417,0.9729872941221219,5,0.9818181818181818,Privileged Global Teacher,connected_pair_pdr,unconditional_sparse,0.007113279967599562
+0.38139989176298306,0.37460010823701695,5,0.378,Privileged Global Teacher,deadline_delivery_ratio,unconditional_sparse,0.002738612787525833
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,unconditional_sparse,0.0
+0.7800251516526401,0.761858206459178,5,0.770941679055909,Privileged Global Teacher,mean_transmission_energy_proxy,unconditional_sparse,0.007316737103042899
+1.9456952078119147,1.8805382148123282,5,1.9131167113121215,Privileged Global Teacher,energy_per_delivered_packet,unconditional_sparse,0.02624197866652628
+1.0,1.0,5,1.0,Privileged Global Teacher,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Privileged Global Teacher,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,Privileged Global Teacher,mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Privileged Global Teacher,energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Privileged Global Teacher,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Privileged Global Teacher,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,structural_hole_225_link_loss,0.0
+2.088590569982729,1.9242420816612966,5,2.0064163258220127,Privileged Global Teacher,mean_transmission_energy_proxy,structural_hole_225_link_loss,0.06619135300541297
+3.3553813147079037,3.2270617245854183,5,3.291221519646661,Privileged Global Teacher,energy_per_delivered_packet,structural_hole_225_link_loss,0.051680714401798965
+0.7640080751587589,-0.2740080751587589,5,0.24500000000000002,Privileged Global Teacher,connected_pair_pdr,predictive_break_45,0.4180610003336834
+0.7640080751587589,-0.2740080751587589,5,0.24500000000000002,Privileged Global Teacher,deadline_delivery_ratio,predictive_break_45,0.4180610003336834
+6.0,6.0,4,6.0,Privileged Global Teacher,p95_success_delay,predictive_break_45,0.0
+3.4502574820900147,-0.005088151049991607,5,1.7225846655200114,Privileged Global Teacher,mean_transmission_energy_proxy,predictive_break_45,1.3916404397438948
+156.14664299418422,-34.654827659792225,5,60.745907667196,Privileged Global Teacher,energy_per_delivered_packet,predictive_break_45,76.84529153264097
+0.11169673005053554,0.058070711809929565,5,0.08488372093023255,Privileged Global Teacher,connected_pair_pdr,predictive_break_225_link_loss,0.02159787862907757
+0.09605918784346057,0.04994081215653942,5,0.073,Privileged Global Teacher,deadline_delivery_ratio,predictive_break_225_link_loss,0.01857417562100671
+6.0,6.0,5,6.0,Privileged Global Teacher,p95_success_delay,predictive_break_225_link_loss,0.0
+1.5554515597360175,1.3003210148477289,5,1.4278862872918732,Privileged Global Teacher,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.1027538259198081
+12.905446194275429,10.228430491331215,5,11.566938342803322,Privileged Global Teacher,energy_per_delivered_packet,predictive_break_225_link_loss,1.0781680635118234
+0.7878277480331558,0.7501722519668442,5,0.769,Privileged Global Teacher,connected_pair_pdr,ood_link_loss_30,0.015165750888103114
+0.7855873670001776,0.7444126329998224,5,0.765,Privileged Global Teacher,deadline_delivery_ratio,ood_link_loss_30,0.016583123951777013
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,ood_link_loss_30,0.0
+1.2067907746120583,1.154583760335639,5,1.1806872674738487,Privileged Global Teacher,mean_transmission_energy_proxy,ood_link_loss_30,0.021026374788252037
+1.5701026360981816,1.5010978574340204,5,1.535600246766101,Privileged Global Teacher,energy_per_delivered_packet,ood_link_loss_30,0.02779167432734003
+0.976612841168293,0.9533871588317071,5,0.9650000000000001,Privileged Global Teacher,connected_pair_pdr,ood_extreme_mobility,0.009354143466934861
+0.9690933612300453,0.9529066387699546,5,0.961,Privileged Global Teacher,deadline_delivery_ratio,ood_extreme_mobility,0.006519202405202654
+4.0,4.0,5,4.0,Privileged Global Teacher,p95_success_delay,ood_extreme_mobility,0.0
+1.245307355344665,1.1996253175344165,5,1.2224663364395407,Privileged Global Teacher,mean_transmission_energy_proxy,ood_extreme_mobility,0.018398440542945187
+1.2879765863040789,1.245684403535044,5,1.2668304949195615,Privileged Global Teacher,energy_per_delivered_packet,ood_extreme_mobility,0.017033176438834202
+0.9351548781697336,0.9068451218302664,5,0.921,Privileged Global Teacher,connected_pair_pdr,ood_nodes_16,0.011401754250991391
+0.9269297961954164,0.8890702038045837,5,0.908,Privileged Global Teacher,deadline_delivery_ratio,ood_nodes_16,0.015247950681976919
+6.574665025316226,4.545334974683768,5,5.559999999999997,Privileged Global Teacher,p95_success_delay,ood_nodes_16,0.8173126696680956
+1.8576264415920194,1.7928095359026177,5,1.8252179887473186,Privileged Global Teacher,mean_transmission_energy_proxy,ood_nodes_16,0.026105008503727416
+2.023151376727251,1.940770028804866,5,1.9819607027660584,Privileged Global Teacher,energy_per_delivered_packet,ood_nodes_16,0.03317908754187936
+0.8392761653056346,0.8167238346943653,5,0.828,Privileged Global Teacher,connected_pair_pdr,ood_nodes_24,0.009082951062292483
+0.8123868409056846,0.7916131590943157,5,0.8020000000000002,Privileged Global Teacher,deadline_delivery_ratio,ood_nodes_24,0.00836660026534072
+7.0,7.0,5,7.0,Privileged Global Teacher,p95_success_delay,ood_nodes_24,0.0
+2.398941068117492,2.255743676274804,5,2.327342372196148,Privileged Global Teacher,mean_transmission_energy_proxy,ood_nodes_24,0.05767274898431627
+2.907274035579825,2.7149245432389404,5,2.8110992894093827,Privileged Global Teacher,energy_per_delivered_packet,ood_nodes_24,0.07746875726076975
+0.8508763707304838,0.7682304253860213,5,0.8095533980582525,Privileged Global Teacher,connected_pair_pdr,ALL_POOLED,0.033285654152548784
+0.7772388733080354,0.7049039838348218,5,0.7410714285714286,Privileged Global Teacher,deadline_delivery_ratio,ALL_POOLED,0.02913287644219014
+5.877848278462742,4.122151721537258,5,5.0,Privileged Global Teacher,p95_success_delay,ALL_POOLED,0.7071067811865476
+1.6734274906857693,1.4142781812628675,5,1.5438528359743184,Privileged Global Teacher,mean_transmission_energy_proxy,ALL_POOLED,0.10437238331983698
+2.091874299675231,1.956185752721331,5,2.024030026198281,Privileged Global Teacher,energy_per_delivered_packet,ALL_POOLED,0.054648561735787464
+0.986776,0.981224,5,0.984,Geo-Residual Student,connected_pair_pdr,heldout_medium,0.0022360679774997916
+0.986776,0.981224,5,0.984,Geo-Residual Student,deadline_delivery_ratio,heldout_medium,0.0022360679774997916
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,heldout_medium,0.0
+1.2942326831434383,1.2816019831740784,5,1.2879173331587583,Geo-Residual Student,mean_transmission_energy_proxy,heldout_medium,0.005087014361472169
+1.3172701042282873,1.3004651227921549,5,1.308867613510221,Geo-Residual Student,energy_per_delivered_packet,heldout_medium,0.006768206205297962
+0.916776,0.911224,5,0.914,Geo-Residual Student,connected_pair_pdr,ood_link_loss,0.0022360679774997916
+0.916776,0.911224,5,0.914,Geo-Residual Student,deadline_delivery_ratio,ood_link_loss,0.0022360679774997916
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,ood_link_loss,0.0
+1.2203042124334842,1.2143575989103073,5,1.2173309056718957,Geo-Residual Student,mean_transmission_energy_proxy,ood_link_loss,0.0023949985723600432
+1.3386246637148487,1.3251390522561404,5,1.3318818579854945,Geo-Residual Student,energy_per_delivered_packet,ood_link_loss,0.0054313299603425845
+0.971776,0.966224,5,0.969,Geo-Residual Student,connected_pair_pdr,ood_fast_mobility,0.002236067977499792
+0.971776,0.966224,5,0.969,Geo-Residual Student,deadline_delivery_ratio,ood_fast_mobility,0.002236067977499792
+3.0,3.0,5,3.0,Geo-Residual Student,p95_success_delay,ood_fast_mobility,0.0
+1.1867101626554952,1.1668889982300639,5,1.1767995804427795,Geo-Residual Student,mean_transmission_energy_proxy,ood_fast_mobility,0.00798297389201462
+1.2239318759679434,1.2049620187989816,5,1.2144469473834625,Geo-Residual Student,energy_per_delivered_packet,ood_fast_mobility,0.007640109897921473
+0.9800000000000002,0.98,5,0.9800000000000001,Geo-Residual Student,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Geo-Residual Student,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,Geo-Residual Student,p95_success_delay,ood_sparse,0.0
+1.197316633036926,1.1918575445794042,5,1.194587088808165,Geo-Residual Student,mean_transmission_energy_proxy,ood_sparse,0.0021986478541432615
+1.2217516663642107,1.2161811679381676,5,1.2189664171511891,Geo-Residual Student,energy_per_delivered_packet,ood_sparse,0.0022435182185136515
+0.9800000000000002,0.98,5,0.9800000000000001,Geo-Residual Student,connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Geo-Residual Student,deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,ood_nodes_10,0.0
+1.4362003531449532,1.4214810455559772,5,1.4288406993504652,Geo-Residual Student,mean_transmission_energy_proxy,ood_nodes_10,0.005928201071808064
+1.4655105644336257,1.450490862812222,5,1.4580007136229238,Geo-Residual Student,energy_per_delivered_packet,ood_nodes_10,0.006049184767151072
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Geo-Residual Student,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,Geo-Residual Student,deadline_delivery_ratio,unconditional_sparse,0.0
+4.07597943496678,2.784020565033217,5,3.4299999999999984,Geo-Residual Student,p95_success_delay,unconditional_sparse,0.5203364296299093
+0.754132942889243,0.7380325063658831,5,0.7460827246275631,Geo-Residual Student,mean_transmission_energy_proxy,unconditional_sparse,0.006484450744534089
+1.8677814000655804,1.8440686689723444,5,1.8559250345189624,Geo-Residual Student,energy_per_delivered_packet,unconditional_sparse,0.009550302351701812
+1.0,1.0,5,1.0,Geo-Residual Student,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Geo-Residual Student,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,Geo-Residual Student,mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Geo-Residual Student,energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Geo-Residual Student,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Geo-Residual Student,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,structural_hole_225_link_loss,0.0
+1.9387289713349576,1.9387289713349571,5,1.9387289713349574,Geo-Residual Student,mean_transmission_energy_proxy,structural_hole_225_link_loss,2.482534153247273e-16
+3.342636157474066,3.342636157474066,5,3.342636157474066,Geo-Residual Student,energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+0.0,0.0,5,0.0,Geo-Residual Student,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,Geo-Residual Student,deadline_delivery_ratio,predictive_break_45,0.0
+,,0,,Geo-Residual Student,p95_success_delay,predictive_break_45,
+0.907029262205383,0.907029262205383,5,0.907029262205383,Geo-Residual Student,mean_transmission_energy_proxy,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,Geo-Residual Student,energy_per_delivered_packet,predictive_break_45,0.0
+0.06395348837209303,0.06395348837209303,5,0.06395348837209303,Geo-Residual Student,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.055000000000000014,0.055,5,0.05500000000000001,Geo-Residual Student,deadline_delivery_ratio,predictive_break_225_link_loss,7.757919228897728e-18
+6.0,6.0,5,6.0,Geo-Residual Student,p95_success_delay,predictive_break_225_link_loss,0.0
+1.297029175895645,1.297029175895645,5,1.297029175895645,Geo-Residual Student,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.0
+12.352658818053762,12.352658818053762,5,12.352658818053762,Geo-Residual Student,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+0.7935802613585269,0.7624197386414734,5,0.7780000000000001,Geo-Residual Student,connected_pair_pdr,ood_link_loss_30,0.012549900398011142
+0.7937712678113494,0.7602287321886508,5,0.7770000000000001,Geo-Residual Student,deadline_delivery_ratio,ood_link_loss_30,0.013509256086106309
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,ood_link_loss_30,0.0
+1.1233320187162863,1.10551527652783,5,1.1144236476220581,Geo-Residual Student,mean_transmission_energy_proxy,ood_link_loss_30,0.0071756928441961245
+1.451783731147476,1.4134435277296198,5,1.4326136294385479,Geo-Residual Student,energy_per_delivered_packet,ood_link_loss_30,0.015441516771162775
+0.972799783525966,0.9592002164740338,5,0.9659999999999999,Geo-Residual Student,connected_pair_pdr,ood_extreme_mobility,0.0054772255750516665
+0.972799783525966,0.9592002164740338,5,0.9659999999999999,Geo-Residual Student,deadline_delivery_ratio,ood_extreme_mobility,0.0054772255750516665
+3.0,3.0,5,3.0,Geo-Residual Student,p95_success_delay,ood_extreme_mobility,0.0
+1.1846296289367,1.170934654395192,5,1.177782141665946,Geo-Residual Student,mean_transmission_energy_proxy,ood_extreme_mobility,0.005515650941091635
+1.2270095757827788,1.2114982440088362,5,1.2192539098958075,Geo-Residual Student,energy_per_delivered_packet,ood_extreme_mobility,0.0062471888090937224
+0.9875519999999999,0.9764479999999999,5,0.9819999999999999,Geo-Residual Student,connected_pair_pdr,ood_nodes_16,0.004472135954999583
+0.9862073247055393,0.9737926752944605,5,0.9799999999999999,Geo-Residual Student,deadline_delivery_ratio,ood_nodes_16,0.0050000000000000044
+5.0,5.0,5,5.0,Geo-Residual Student,p95_success_delay,ood_nodes_16,0.0
+1.7183686012209483,1.6961391321654349,5,1.7072538666931916,Geo-Residual Student,mean_transmission_energy_proxy,ood_nodes_16,0.008952918572020232
+1.7507850058819439,1.726345837879831,5,1.7385654218808875,Geo-Residual Student,energy_per_delivered_packet,ood_nodes_16,0.00984287481380799
+0.9462073247055394,0.9337926752944608,5,0.9400000000000001,Geo-Residual Student,connected_pair_pdr,ood_nodes_24,0.004999999999999949
+0.9426023890981718,0.9273976109018285,5,0.9350000000000002,Geo-Residual Student,deadline_delivery_ratio,ood_nodes_24,0.006123724356957905
+6.0,6.0,5,6.0,Geo-Residual Student,p95_success_delay,ood_nodes_24,0.0
+2.0422903966467474,2.005812163774093,5,2.0240512802104202,Geo-Residual Student,mean_transmission_energy_proxy,ood_nodes_24,0.014691608141628593
+2.1822160481403796,2.124435831474164,5,2.1533259398072717,Geo-Residual Student,energy_per_delivered_packet,ood_nodes_24,0.023270982028156438
+0.8065841761406873,0.8039789306554292,5,0.8052815533980583,Geo-Residual Student,connected_pair_pdr,ALL_POOLED,0.0010492626086296155
+0.7410860555854532,0.7389139444145468,5,0.74,Geo-Residual Student,deadline_delivery_ratio,ALL_POOLED,0.0008748177652797396
+4.0,4.0,5,4.0,Geo-Residual Student,p95_success_delay,ALL_POOLED,0.0
+1.4267188535962345,1.4203275688794956,5,1.423523211237865,Geo-Residual Student,mean_transmission_energy_proxy,ALL_POOLED,0.0025740898937651017
+1.8886065313864524,1.8787566385310184,5,1.8836815849587354,Geo-Residual Student,energy_per_delivered_packet,ALL_POOLED,0.003967044307608134
+0.985,0.985,5,0.985,Predictive Prior Only,connected_pair_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,Predictive Prior Only,deadline_delivery_ratio,heldout_medium,0.0
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,heldout_medium,0.0
+1.2853504994168579,1.2827744976953204,5,1.2840624985560891,Predictive Prior Only,mean_transmission_energy_proxy,heldout_medium,0.0010374846829097183
+1.3049243648902114,1.3023091347160614,5,1.3036167498031364,Predictive Prior Only,energy_per_delivered_packet,heldout_medium,0.0010532839420402936
+0.91,0.9099999999999998,5,0.9099999999999999,Predictive Prior Only,connected_pair_pdr,ood_link_loss,1.2412670766236366e-16
+0.91,0.9099999999999998,5,0.9099999999999999,Predictive Prior Only,deadline_delivery_ratio,ood_link_loss,1.2412670766236366e-16
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,ood_link_loss,0.0
+1.2092947204993119,1.1994620177346353,5,1.2043783691169736,Predictive Prior Only,mean_transmission_energy_proxy,ood_link_loss,0.003960120998625163
+1.3288952972519912,1.3180901293787204,5,1.3234927133153558,Predictive Prior Only,energy_per_delivered_packet,ood_link_loss,0.004351781317170526
+0.9677997835259661,0.9542002164740339,5,0.961,Predictive Prior Only,connected_pair_pdr,ood_fast_mobility,0.005477225575051666
+0.9677997835259661,0.9542002164740339,5,0.961,Predictive Prior Only,deadline_delivery_ratio,ood_fast_mobility,0.005477225575051666
+3.0,3.0,5,3.0,Predictive Prior Only,p95_success_delay,ood_fast_mobility,0.0
+1.1746745776968401,1.1533250122908192,5,1.1639997949938297,Predictive Prior Only,mean_transmission_energy_proxy,ood_fast_mobility,0.008598537380753018
+1.230930158412018,1.1916891868180484,5,1.2113096726150332,Predictive Prior Only,energy_per_delivered_packet,ood_fast_mobility,0.015804301150442148
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Prior Only,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Prior Only,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,Predictive Prior Only,p95_success_delay,ood_sparse,0.0
+1.195202531831321,1.1920111121654184,5,1.1936068219983698,Predictive Prior Only,mean_transmission_energy_proxy,ood_sparse,0.0012853442575086404
+1.2195944202360418,1.2163378695565492,5,1.2179661448962955,Predictive Prior Only,energy_per_delivered_packet,ood_sparse,0.001311575772968032
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Prior Only,connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Prior Only,deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,ood_nodes_10,0.0
+1.4223821476469585,1.4199970758097988,5,1.4211896117283787,Predictive Prior Only,mean_transmission_energy_proxy,ood_nodes_10,0.0009605876727503033
+1.4514103547417943,1.4489766079691822,5,1.4501934813554882,Predictive Prior Only,energy_per_delivered_packet,ood_nodes_10,0.00098019150280641
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Predictive Prior Only,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,Predictive Prior Only,deadline_delivery_ratio,unconditional_sparse,0.0
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,unconditional_sparse,0.0
+0.746993726059925,0.7406514346965664,5,0.7438225803782457,Predictive Prior Only,mean_transmission_energy_proxy,unconditional_sparse,0.0025543578208897452
+1.8437806259831189,1.8204355951878797,5,1.8321081105854993,Predictive Prior Only,energy_per_delivered_packet,unconditional_sparse,0.0094022110581738
+1.0,1.0,5,1.0,Predictive Prior Only,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Predictive Prior Only,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,Predictive Prior Only,mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Predictive Prior Only,energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Predictive Prior Only,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Predictive Prior Only,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,structural_hole_225_link_loss,0.0
+1.9387289713349576,1.9387289713349571,5,1.9387289713349574,Predictive Prior Only,mean_transmission_energy_proxy,structural_hole_225_link_loss,2.482534153247273e-16
+3.342636157474066,3.342636157474066,5,3.342636157474066,Predictive Prior Only,energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+1.0,1.0,5,1.0,Predictive Prior Only,connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,Predictive Prior Only,deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,Predictive Prior Only,p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,Predictive Prior Only,mean_transmission_energy_proxy,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,Predictive Prior Only,energy_per_delivered_packet,predictive_break_45,0.0
+0.5116279069767442,0.5116279069767442,5,0.5116279069767442,Predictive Prior Only,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Predictive Prior Only,deadline_delivery_ratio,predictive_break_225_link_loss,6.206335383118183e-17
+6.0,6.0,5,6.0,Predictive Prior Only,p95_success_delay,predictive_break_225_link_loss,0.0
+3.0102033804513235,3.0102033804513235,5,3.0102033804513235,Predictive Prior Only,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.0
+6.020406760902647,6.020406760902647,5,6.020406760902647,Predictive Prior Only,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+0.786776,0.781224,5,0.784,Predictive Prior Only,connected_pair_pdr,ood_link_loss_30,0.0022360679774997916
+0.7863998917629831,0.779600108237017,5,0.783,Predictive Prior Only,deadline_delivery_ratio,ood_link_loss_30,0.002738612787525833
+4.0,4.0,5,4.0,Predictive Prior Only,p95_success_delay,ood_link_loss_30,0.0
+1.120836923996245,1.1004116576884124,5,1.1106242908423287,Predictive Prior Only,mean_transmission_energy_proxy,ood_link_loss_30,0.00822627592270341
+1.426227226897415,1.4069789002623856,5,1.4166030635799003,Predictive Prior Only,energy_per_delivered_packet,ood_link_loss_30,0.007752263474251642
+0.968776,0.963224,5,0.966,Predictive Prior Only,connected_pair_pdr,ood_extreme_mobility,0.0022360679774997916
+0.968776,0.963224,5,0.966,Predictive Prior Only,deadline_delivery_ratio,ood_extreme_mobility,0.0022360679774997916
+4.251613385427598,3.108386614572393,5,3.6799999999999953,Predictive Prior Only,p95_success_delay,ood_extreme_mobility,0.460434577328857
+1.1928182475311535,1.1590882848613628,5,1.1759532661962582,Predictive Prior Only,mean_transmission_energy_proxy,ood_extreme_mobility,0.013584742328563075
+1.2352252518824443,1.1994718507720667,5,1.2173485513272555,Predictive Prior Only,energy_per_delivered_packet,ood_extreme_mobility,0.014399682152309108
+0.9763998917629831,0.969600108237017,5,0.9730000000000001,Predictive Prior Only,connected_pair_pdr,ood_nodes_16,0.0027386127875258333
+0.9741934204528422,0.9638065795471578,5,0.969,Predictive Prior Only,deadline_delivery_ratio,ood_nodes_16,0.004183300132670382
+5.0,5.0,5,5.0,Predictive Prior Only,p95_success_delay,ood_nodes_16,0.0
+1.699892112529673,1.6871998731585307,5,1.693545992844102,Predictive Prior Only,mean_transmission_energy_proxy,ood_nodes_16,0.005111799355290652
+1.7467265545069892,1.7343644006381231,5,1.7405454775725562,Predictive Prior Only,energy_per_delivered_packet,ood_nodes_16,0.004978857420586588
+0.9413998917629829,0.934600108237017,5,0.938,Predictive Prior Only,connected_pair_pdr,ood_nodes_24,0.002738612787525772
+0.937552,0.926448,5,0.932,Predictive Prior Only,deadline_delivery_ratio,ood_nodes_24,0.004472135954999583
+6.0,6.0,5,6.0,Predictive Prior Only,p95_success_delay,ood_nodes_24,0.0
+1.9897831919799531,1.9563836474298355,5,1.9730834197048943,Predictive Prior Only,mean_transmission_energy_proxy,ood_nodes_24,0.013451666432203828
+2.125366416216067,2.0816878180754146,5,2.103527117145741,Predictive Prior Only,energy_per_delivered_packet,ood_nodes_24,0.01759155522413443
+0.9127215793891797,0.9105017215816938,5,0.9116116504854368,Predictive Prior Only,connected_pair_pdr,ALL_POOLED,0.0008940477229686882
+0.8389162677166541,0.8362265894262032,5,0.8375714285714286,Predictive Prior Only,deadline_delivery_ratio,ALL_POOLED,0.0010832679205787803
+6.0,6.0,5,6.0,Predictive Prior Only,p95_success_delay,ALL_POOLED,0.0
+1.7790361706107047,1.7724629871812265,5,1.7757495788959656,Predictive Prior Only,mean_transmission_energy_proxy,ALL_POOLED,0.0026473495995836234
+2.083409827137036,2.072825447952132,5,2.078117637544584,Predictive Prior Only,energy_per_delivered_packet,ALL_POOLED,0.004262858673825259
+0.985,0.985,5,0.985,Predictive Student (No Switch),connected_pair_pdr,heldout_medium,0.0
+0.986776,0.981224,5,0.984,Predictive Student (No Switch),deadline_delivery_ratio,heldout_medium,0.002236067977499792
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,heldout_medium,0.0
+1.2863842597019335,1.2832648756120382,5,1.2848245676569858,Predictive Student (No Switch),mean_transmission_energy_proxy,heldout_medium,0.0012563319295636499
+1.3059738677176993,1.3028069803167903,5,1.3043904240172448,Predictive Student (No Switch),energy_per_delivered_packet,heldout_medium,0.0012754638878818428
+0.91,0.9099999999999998,5,0.9099999999999999,Predictive Student (No Switch),connected_pair_pdr,ood_link_loss,1.2412670766236366e-16
+0.91,0.9099999999999998,5,0.9099999999999999,Predictive Student (No Switch),deadline_delivery_ratio,ood_link_loss,1.2412670766236366e-16
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,ood_link_loss,0.0
+1.2091096382368356,1.2017069091502015,5,1.2054082736935186,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_link_loss,0.0029814491096414285
+1.3286919101503694,1.3205570430222,5,1.3246244765862847,Predictive Student (No Switch),energy_per_delivered_packet,ood_link_loss,0.003276317702902637
+0.965399891762983,0.9586001082370169,5,0.962,Predictive Student (No Switch),connected_pair_pdr,ood_fast_mobility,0.002738612787525833
+0.965399891762983,0.9586001082370169,5,0.962,Predictive Student (No Switch),deadline_delivery_ratio,ood_fast_mobility,0.002738612787525833
+3.0,3.0,5,3.0,Predictive Student (No Switch),p95_success_delay,ood_fast_mobility,0.0
+1.1707502202519398,1.1559381847274008,5,1.1633442024896703,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_fast_mobility,0.005965547247480303
+1.2212673732394554,1.197371397463705,5,1.2093193853515802,Predictive Student (No Switch),energy_per_delivered_packet,ood_fast_mobility,0.009624104146841962
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Student (No Switch),connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Student (No Switch),deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,Predictive Student (No Switch),p95_success_delay,ood_sparse,0.0
+1.1935960593211097,1.1928649506769298,5,1.1932305049990197,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_sparse,0.0002944540034804844
+1.2179551625725609,1.217209133343806,5,1.2175821479581834,Predictive Student (No Switch),energy_per_delivered_packet,ood_sparse,0.00030046326885767896
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Student (No Switch),connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Predictive Student (No Switch),deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,ood_nodes_10,0.0
+1.428245825198631,1.4171862613112236,5,1.4227160432549273,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_nodes_10,0.004454239310832978
+1.4573936991822765,1.4461084299094116,5,1.451751064545844,Predictive Student (No Switch),energy_per_delivered_packet,ood_nodes_10,0.00454514215391131
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Predictive Student (No Switch),connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,Predictive Student (No Switch),deadline_delivery_ratio,unconditional_sparse,0.0
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,unconditional_sparse,0.0
+0.7473774439756156,0.7404783119997935,5,0.7439278779877045,Predictive Student (No Switch),mean_transmission_energy_proxy,unconditional_sparse,0.002778625375302715
+1.8453764048780625,1.828341511110601,5,1.8368589579943317,Predictive Student (No Switch),energy_per_delivered_packet,unconditional_sparse,0.0068608033958090925
+1.0,1.0,5,1.0,Predictive Student (No Switch),connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Predictive Student (No Switch),deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,Predictive Student (No Switch),mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Predictive Student (No Switch),energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Predictive Student (No Switch),connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Predictive Student (No Switch),deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,structural_hole_225_link_loss,0.0
+1.9387289713349576,1.9387289713349571,5,1.9387289713349574,Predictive Student (No Switch),mean_transmission_energy_proxy,structural_hole_225_link_loss,2.482534153247273e-16
+3.342636157474066,3.342636157474066,5,3.342636157474066,Predictive Student (No Switch),energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+1.3552,0.24480000000000013,5,0.8,Predictive Student (No Switch),connected_pair_pdr,predictive_break_45,0.4472135954999579
+1.3552,0.24480000000000013,5,0.8,Predictive Student (No Switch),deadline_delivery_ratio,predictive_break_45,0.4472135954999579
+6.0,6.0,4,6.0,Predictive Student (No Switch),p95_success_delay,predictive_break_45,0.0
+5.41821572168287,1.7219189060071023,5,3.5700673138449863,Predictive Student (No Switch),mean_transmission_energy_proxy,predictive_break_45,1.488683527533687
+138.03463017069066,-58.69496627145219,5,39.66983194961924,Predictive Student (No Switch),energy_per_delivered_packet,predictive_break_45,79.23284416980047
+0.5364093023255814,0.4589395348837209,5,0.49767441860465117,Predictive Student (No Switch),connected_pair_pdr,predictive_break_225_link_loss,0.031200948523252885
+0.46131200000000006,0.39468800000000004,5,0.42800000000000005,Predictive Student (No Switch),deadline_delivery_ratio,predictive_break_225_link_loss,0.026832815729997475
+6.0,6.0,5,6.0,Predictive Student (No Switch),p95_success_delay,predictive_break_225_link_loss,0.0
+3.0978837951280735,2.823783760057512,5,2.960833777592793,Predictive Student (No Switch),mean_transmission_energy_proxy,predictive_break_225_link_loss,0.11039378801384207
+6.216718239894032,5.9280738195126315,5,6.072396029703332,Predictive Student (No Switch),energy_per_delivered_packet,predictive_break_225_link_loss,0.11625153913883987
+0.787552,0.776448,5,0.782,Predictive Student (No Switch),connected_pair_pdr,ood_link_loss_30,0.004472135954999583
+0.787552,0.776448,5,0.782,Predictive Student (No Switch),deadline_delivery_ratio,ood_link_loss_30,0.004472135954999583
+4.0,4.0,5,4.0,Predictive Student (No Switch),p95_success_delay,ood_link_loss_30,0.0
+1.112014216791485,1.10704256774493,5,1.1095283922682075,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_link_loss_30,0.0020023316333518154
+1.4287102304408796,1.4090270968117082,5,1.418868663626294,Predictive Student (No Switch),energy_per_delivered_packet,ood_link_loss_30,0.007927381989380339
+0.9711934204528422,0.9608065795471578,5,0.966,Predictive Student (No Switch),connected_pair_pdr,ood_extreme_mobility,0.004183300132670382
+0.9711934204528422,0.9608065795471578,5,0.966,Predictive Student (No Switch),deadline_delivery_ratio,ood_extreme_mobility,0.004183300132670382
+3.7552,2.6448000000000005,5,3.2,Predictive Student (No Switch),p95_success_delay,ood_extreme_mobility,0.44721359549995787
+1.1866493406561893,1.155473491455526,5,1.1710614160558577,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_extreme_mobility,0.01255607313922285
+1.2334983540998534,1.191158018930981,5,1.2123281865154172,Predictive Student (No Switch),energy_per_delivered_packet,ood_extreme_mobility,0.0170525698176737
+0.9785520000000001,0.9674480000000001,5,0.9730000000000001,Predictive Student (No Switch),connected_pair_pdr,ood_nodes_16,0.004472135954999583
+0.9757997835259661,0.9622002164740339,5,0.969,Predictive Student (No Switch),deadline_delivery_ratio,ood_nodes_16,0.005477225575051666
+5.0,5.0,5,5.0,Predictive Student (No Switch),p95_success_delay,ood_nodes_16,0.0
+1.717178503298926,1.6898769735846766,5,1.7035277384418013,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_nodes_16,0.010995690981770912
+1.773150589520792,1.7285660185396812,5,1.7508583040302366,Predictive Student (No Switch),energy_per_delivered_packet,ood_nodes_16,0.017956435781957523
+0.940399891762983,0.9336001082370171,5,0.937,Predictive Student (No Switch),connected_pair_pdr,ood_nodes_24,0.002738612787525772
+0.9361934204528423,0.9258065795471578,5,0.931,Predictive Student (No Switch),deadline_delivery_ratio,ood_nodes_24,0.004183300132670382
+6.0,6.0,5,6.0,Predictive Student (No Switch),p95_success_delay,ood_nodes_24,0.0
+2.001878850857714,1.9578779184142139,5,1.979878384635964,Predictive Student (No Switch),mean_transmission_energy_proxy,ood_nodes_24,0.01772137536330012
+2.141335432221199,2.084734456603581,5,2.11303494441239,Predictive Student (No Switch),energy_per_delivered_packet,ood_nodes_24,0.02279604270061277
+0.9420517015470107,0.8479288809772612,5,0.8949902912621359,Predictive Student (No Switch),connected_pair_pdr,ALL_POOLED,0.037907965603021516
+0.8657636723362586,0.77880775623517,5,0.8222857142857143,Predictive Student (No Switch),deadline_delivery_ratio,ALL_POOLED,0.03502149485731321
+6.0,6.0,5,6.0,Predictive Student (No Switch),p95_success_delay,ALL_POOLED,0.0
+1.8636880307741528,1.5875327897828861,5,1.7256104102785195,Predictive Student (No Switch),mean_transmission_energy_proxy,ALL_POOLED,0.11122152219007722
+2.11680878575226,1.9926644397374624,5,2.054736612744861,Predictive Student (No Switch),energy_per_delivered_packet,ALL_POOLED,0.04999913485434849
+0.985,0.985,5,0.985,SwitchGLOBE Exact,connected_pair_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,SwitchGLOBE Exact,deadline_delivery_ratio,heldout_medium,0.0
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,heldout_medium,0.0
+1.2884707549507692,1.2821375897380913,5,1.2853041723444303,SwitchGLOBE Exact,mean_transmission_energy_proxy,heldout_medium,0.0025506822637400522
+1.308092137005857,1.3016625276528846,5,1.3048773323293708,SwitchGLOBE Exact,energy_per_delivered_packet,heldout_medium,0.0025895251408527375
+0.9137760000000001,0.9082240000000001,5,0.9110000000000001,SwitchGLOBE Exact,connected_pair_pdr,ood_link_loss,0.0022360679774997916
+0.9137760000000001,0.9082240000000001,5,0.9110000000000001,SwitchGLOBE Exact,deadline_delivery_ratio,ood_link_loss,0.0022360679774997916
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,ood_link_loss,0.0
+1.213552356128527,1.2044324399186213,5,1.2089923980235742,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_link_loss,0.0036730462165799243
+1.3331996735382197,1.3210208363399103,5,1.327110254939065,SwitchGLOBE Exact,energy_per_delivered_packet,ood_link_loss,0.00490502663226274
+0.9711934204528422,0.9608065795471578,5,0.966,SwitchGLOBE Exact,connected_pair_pdr,ood_fast_mobility,0.004183300132670382
+0.9711934204528422,0.9608065795471578,5,0.966,SwitchGLOBE Exact,deadline_delivery_ratio,ood_fast_mobility,0.004183300132670382
+3.0,3.0,5,3.0,SwitchGLOBE Exact,p95_success_delay,ood_fast_mobility,0.0
+1.179382190246534,1.1597070350952277,5,1.1695446126708808,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_fast_mobility,0.007924168657452402
+1.223442879886393,1.1980175897322747,5,1.2107302348093338,SwitchGLOBE Exact,energy_per_delivered_packet,ood_fast_mobility,0.010240035506531808
+0.9800000000000002,0.98,5,0.9800000000000001,SwitchGLOBE Exact,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,SwitchGLOBE Exact,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,SwitchGLOBE Exact,p95_success_delay,ood_sparse,0.0
+1.193959721189912,1.191187157156875,5,1.1925734391733935,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_sparse,0.001116650153069526
+1.2183262461121551,1.2154970991396679,5,1.2169116726259115,SwitchGLOBE Exact,energy_per_delivered_packet,ood_sparse,0.001139438931703668
+0.9800000000000002,0.98,5,0.9800000000000001,SwitchGLOBE Exact,connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,SwitchGLOBE Exact,deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,ood_nodes_10,0.0
+1.427377974882394,1.416349258342841,5,1.4218636166126175,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_nodes_10,0.00444181554160976
+1.4565081376350963,1.445254345247797,5,1.4508812414414467,SwitchGLOBE Exact,energy_per_delivered_packet,ood_nodes_10,0.00453246483837734
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,SwitchGLOBE Exact,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,SwitchGLOBE Exact,deadline_delivery_ratio,unconditional_sparse,0.0
+4.07597943496678,2.784020565033217,5,3.4299999999999984,SwitchGLOBE Exact,p95_success_delay,unconditional_sparse,0.5203364296299093
+0.7462775064862022,0.7304334172731788,5,0.7383554618796905,SwitchGLOBE Exact,mean_transmission_energy_proxy,unconditional_sparse,0.006381206866334937
+1.8481674267478456,1.8252381087516851,5,1.8367027677497654,SwitchGLOBE Exact,energy_per_delivered_packet,unconditional_sparse,0.009234782730029535
+1.0,1.0,5,1.0,SwitchGLOBE Exact,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,SwitchGLOBE Exact,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,SwitchGLOBE Exact,mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,SwitchGLOBE Exact,energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,SwitchGLOBE Exact,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,SwitchGLOBE Exact,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,structural_hole_225_link_loss,0.0
+1.9387289713349576,1.9387289713349571,5,1.9387289713349574,SwitchGLOBE Exact,mean_transmission_energy_proxy,structural_hole_225_link_loss,2.482534153247273e-16
+3.342636157474066,3.342636157474066,5,3.342636157474066,SwitchGLOBE Exact,energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+1.0,1.0,5,1.0,SwitchGLOBE Exact,connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,SwitchGLOBE Exact,deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,SwitchGLOBE Exact,p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,SwitchGLOBE Exact,mean_transmission_energy_proxy,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,SwitchGLOBE Exact,energy_per_delivered_packet,predictive_break_45,0.0
+0.5116279069767442,0.5116279069767442,5,0.5116279069767442,SwitchGLOBE Exact,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,SwitchGLOBE Exact,deadline_delivery_ratio,predictive_break_225_link_loss,6.206335383118183e-17
+6.0,6.0,5,6.0,SwitchGLOBE Exact,p95_success_delay,predictive_break_225_link_loss,0.0
+3.0102033804513235,3.0102033804513235,5,3.0102033804513235,SwitchGLOBE Exact,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.0
+6.020406760902647,6.020406760902647,5,6.020406760902647,SwitchGLOBE Exact,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+0.7935802613585269,0.7624197386414734,5,0.7780000000000001,SwitchGLOBE Exact,connected_pair_pdr,ood_link_loss_30,0.012549900398011142
+0.7937712678113494,0.7602287321886508,5,0.7770000000000001,SwitchGLOBE Exact,deadline_delivery_ratio,ood_link_loss_30,0.013509256086106309
+4.0,4.0,5,4.0,SwitchGLOBE Exact,p95_success_delay,ood_link_loss_30,0.0
+1.1135291663641624,1.1023958445702682,5,1.1079625054672153,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_link_loss_30,0.004483945307371625
+1.4467825726460015,1.4019119293284268,5,1.4243472509872142,SwitchGLOBE Exact,energy_per_delivered_packet,ood_link_loss_30,0.018071651414308956
+0.9740774390848667,0.9599225609151331,5,0.9669999999999999,SwitchGLOBE Exact,connected_pair_pdr,ood_extreme_mobility,0.005700877125495695
+0.9740774390848667,0.9599225609151331,5,0.9669999999999999,SwitchGLOBE Exact,deadline_delivery_ratio,ood_extreme_mobility,0.005700877125495695
+3.810429523989945,2.7295704760100525,5,3.2699999999999987,SwitchGLOBE Exact,p95_success_delay,ood_extreme_mobility,0.43531597719357806
+1.1827196139647642,1.1651987122850527,5,1.1739591631249084,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_extreme_mobility,0.007056543080498078
+1.2177082349093902,1.2103399330805398,5,1.214024083994965,SwitchGLOBE Exact,energy_per_delivered_packet,ood_extreme_mobility,0.002967583531708471
+0.9803279999999999,0.9636719999999999,5,0.9719999999999999,SwitchGLOBE Exact,connected_pair_pdr,ood_nodes_16,0.006708203932499375
+0.9776023890981717,0.9623976109018283,5,0.97,SwitchGLOBE Exact,deadline_delivery_ratio,ood_nodes_16,0.006123724356957951
+5.0,5.0,5,5.0,SwitchGLOBE Exact,p95_success_delay,ood_nodes_16,0.0
+1.7169284592519318,1.6866600475958875,5,1.7017942534239097,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_nodes_16,0.012190602671805174
+1.7618073210553509,1.7398579130646668,5,1.7508326170600088,SwitchGLOBE Exact,energy_per_delivered_packet,ood_nodes_16,0.008840123979295166
+0.9435519999999998,0.932448,5,0.938,SwitchGLOBE Exact,connected_pair_pdr,ood_nodes_24,0.004472135954999528
+0.9390933612300453,0.9229066387699548,5,0.931,SwitchGLOBE Exact,deadline_delivery_ratio,ood_nodes_24,0.006519202405202616
+6.0,6.0,5,6.0,SwitchGLOBE Exact,p95_success_delay,ood_nodes_24,0.0
+2.0193581435555963,2.0027511163895246,5,2.0110546299725605,SwitchGLOBE Exact,mean_transmission_energy_proxy,ood_nodes_24,0.006688480123833194
+2.1630682266008505,2.1250027376177774,5,2.144035482109314,SwitchGLOBE Exact,energy_per_delivered_packet,ood_nodes_24,0.015330875533667347
+0.9131589551635756,0.910064345807298,5,0.9116116504854368,SwitchGLOBE Exact,connected_pair_pdr,ALL_POOLED,0.0012463539056995214
+0.8389949854425297,0.8362907288431846,5,0.8376428571428571,SwitchGLOBE Exact,deadline_delivery_ratio,ALL_POOLED,0.001089139334426923
+6.0,6.0,5,6.0,SwitchGLOBE Exact,p95_success_delay,ALL_POOLED,0.0
+1.7805771316006154,1.7776559699532752,5,1.7791165507769453,SwitchGLOBE Exact,mean_transmission_energy_proxy,ALL_POOLED,0.0011764978416278385
+2.086504043350657,2.0790060835267807,5,2.082755063438719,SwitchGLOBE Exact,energy_per_delivered_packet,ALL_POOLED,0.003019803288679782
+0.9854139008360532,0.9485860991639468,5,0.967,FastSwitchGLOBE,connected_pair_pdr,heldout_medium,0.014832396974191338
+0.9867736818113689,0.945226318188631,5,0.966,FastSwitchGLOBE,deadline_delivery_ratio,heldout_medium,0.016733200530681527
+4.2664,3.4336,5,3.85,FastSwitchGLOBE,p95_success_delay,heldout_medium,0.33541019662496846
+1.3889854824972567,1.2638695614812234,5,1.32642752198924,FastSwitchGLOBE,mean_transmission_energy_proxy,heldout_medium,0.050390436682158736
+1.4633797536422566,1.2817703960918554,5,1.372575074867056,FastSwitchGLOBE,energy_per_delivered_packet,heldout_medium,0.07314316801742834
+0.9210500622326872,0.8789499377673129,5,0.9,FastSwitchGLOBE,connected_pair_pdr,ood_link_loss,0.016955824957813188
+0.919304689507599,0.878695310492401,5,0.899,FastSwitchGLOBE,deadline_delivery_ratio,ood_link_loss,0.01635542723379614
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,ood_link_loss,0.0
+1.3142629500386764,1.214620642258685,5,1.2644417961486807,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_link_loss,0.04013093905457799
+1.4931250152235986,1.3188083829227255,5,1.405966699073162,FastSwitchGLOBE,energy_per_delivered_packet,ood_link_loss,0.07020602295273558
+0.9690774390848668,0.9549225609151332,5,0.962,FastSwitchGLOBE,connected_pair_pdr,ood_fast_mobility,0.005700877125495695
+0.9698717824717481,0.944128217528252,5,0.9570000000000001,FastSwitchGLOBE,deadline_delivery_ratio,ood_fast_mobility,0.01036822067666387
+4.096294146867108,2.8437058531328896,5,3.469999999999999,FastSwitchGLOBE,p95_success_delay,ood_fast_mobility,0.5044799302251779
+1.3267974446249453,1.1762926267098233,5,1.2515450356673843,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_fast_mobility,0.06061581480537483
+1.3877778043085858,1.2147687214600968,5,1.3012732628843413,FastSwitchGLOBE,energy_per_delivered_packet,ood_fast_mobility,0.0696794074160869
+0.9857514017690717,0.9642485982309282,5,0.975,FastSwitchGLOBE,connected_pair_pdr,ood_sparse,0.008660254037844395
+0.9858717824717481,0.9601282175282521,5,0.9730000000000001,FastSwitchGLOBE,deadline_delivery_ratio,ood_sparse,0.01036822067666387
+3.1887999999999996,2.9112,5,3.05,FastSwitchGLOBE,p95_success_delay,ood_sparse,0.11180339887498948
+1.2361358661977935,1.1869957908091808,5,1.2115658285034872,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_sparse,0.019791165163617154
+1.2785773432909362,1.2070290840538995,5,1.2428032136724179,FastSwitchGLOBE,energy_per_delivered_packet,ood_sparse,0.02881606111775777
+0.9806479972074837,0.9233520027925162,5,0.952,FastSwitchGLOBE,connected_pair_pdr,ood_nodes_10,0.023075961518428615
+0.9806479972074837,0.9233520027925162,5,0.952,FastSwitchGLOBE,deadline_delivery_ratio,ood_nodes_10,0.023075961518428615
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,ood_nodes_10,0.0
+1.5184384356951726,1.4209309738481393,5,1.469684704771656,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_nodes_10,0.03927112986373093
+1.6424475264054508,1.4481109440821742,5,1.5452792352438125,FastSwitchGLOBE,energy_per_delivered_packet,ood_nodes_10,0.0782690577431251
+0.9838337662337662,0.9694129870129871,5,0.9766233766233766,FastSwitchGLOBE,connected_pair_pdr,unconditional_sparse,0.005807968772726728
+0.378776,0.373224,5,0.376,FastSwitchGLOBE,deadline_delivery_ratio,unconditional_sparse,0.0022360679774997916
+4.251980517336951,3.028019482663045,5,3.639999999999998,FastSwitchGLOBE,p95_success_delay,unconditional_sparse,0.4929503017546526
+0.7821784328773393,0.7410736427127471,5,0.7616260377950432,FastSwitchGLOBE,mean_transmission_energy_proxy,unconditional_sparse,0.01655495407220697
+1.9824127556294193,1.8363908599958656,5,1.9094018078126425,FastSwitchGLOBE,energy_per_delivered_packet,unconditional_sparse,0.058810317874640756
+1.0,1.0,5,1.0,FastSwitchGLOBE,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,FastSwitchGLOBE,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,structural_hole_45,0.0
+2.7114682796428804,2.7114682796428804,5,2.7114682796428804,FastSwitchGLOBE,mean_transmission_energy_proxy,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,FastSwitchGLOBE,energy_per_delivered_packet,structural_hole_45,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,FastSwitchGLOBE,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,FastSwitchGLOBE,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,structural_hole_225_link_loss,0.0
+1.9914407032899364,1.9357528070966143,5,1.9635967551932754,FastSwitchGLOBE,mean_transmission_energy_proxy,structural_hole_225_link_loss,0.02242829996617802
+3.342981557506464,3.3024357015191237,5,3.322708629512794,FastSwitchGLOBE,energy_per_delivered_packet,structural_hole_225_link_loss,0.016329843334584045
+1.0,1.0,5,1.0,FastSwitchGLOBE,connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,FastSwitchGLOBE,deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,FastSwitchGLOBE,p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,FastSwitchGLOBE,mean_transmission_energy_proxy,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,FastSwitchGLOBE,energy_per_delivered_packet,predictive_break_45,0.0
+0.521953488372093,0.48967441860465116,5,0.5058139534883721,FastSwitchGLOBE,connected_pair_pdr,predictive_break_225_link_loss,0.013000395218022034
+0.44887999999999995,0.42111999999999994,5,0.43499999999999994,FastSwitchGLOBE,deadline_delivery_ratio,predictive_break_225_link_loss,0.011180339887498959
+6.0,6.0,5,6.0,FastSwitchGLOBE,p95_success_delay,predictive_break_225_link_loss,0.0
+3.0298412308044034,2.9834816330882417,5,3.0066614319463225,FastSwitchGLOBE,mean_transmission_energy_proxy,predictive_break_225_link_loss,0.018671327792305743
+6.2543657109853905,5.900263268259681,5,6.077314489622536,FastSwitchGLOBE,energy_per_delivered_packet,predictive_break_225_link_loss,0.14261475737273308
+0.798225682336586,0.7517743176634141,5,0.775,FastSwitchGLOBE,connected_pair_pdr,ood_link_loss_30,0.018708286933869722
+0.7955954226635771,0.746404577336423,5,0.771,FastSwitchGLOBE,deadline_delivery_ratio,ood_link_loss_30,0.019811612756158968
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,ood_link_loss_30,0.0
+1.2295020981223532,1.133952449736962,5,1.1817272739296576,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_link_loss_30,0.038482620499988796
+1.6149785033450699,1.4367469540529791,5,1.5258627286990245,FastSwitchGLOBE,energy_per_delivered_packet,ood_link_loss_30,0.07178275575508275
+0.9808831290326944,0.9451168709673053,5,0.9629999999999999,FastSwitchGLOBE,connected_pair_pdr,ood_extreme_mobility,0.014404860290887946
+0.9841149336252032,0.9258850663747965,5,0.9549999999999998,FastSwitchGLOBE,deadline_delivery_ratio,ood_extreme_mobility,0.02345207879911711
+4.0,4.0,5,4.0,FastSwitchGLOBE,p95_success_delay,ood_extreme_mobility,0.0
+1.324956192229742,1.184006571825275,5,1.2544813820275085,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_extreme_mobility,0.05676745904668211
+1.3992067116910416,1.2078717839233062,5,1.303539247807174,FastSwitchGLOBE,energy_per_delivered_packet,ood_extreme_mobility,0.0770601413830454
+0.9737574140002556,0.8462425859997442,5,0.9099999999999999,FastSwitchGLOBE,connected_pair_pdr,ood_nodes_16,0.051356596460435326
+0.9668402510704074,0.8211597489295924,5,0.8939999999999999,FastSwitchGLOBE,deadline_delivery_ratio,ood_nodes_16,0.05867282164682381
+6.07997835259661,4.7200216474033905,5,5.4,FastSwitchGLOBE,p95_success_delay,ood_nodes_16,0.5477225575051662
+2.1226824534587516,1.6885705949823542,5,1.905626524220553,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_nodes_16,0.1748385492420737
+2.5038124650290987,1.7129781252336829,5,2.1083952951313907,FastSwitchGLOBE,energy_per_delivered_packet,ood_nodes_16,0.31850852714764355
+0.9334965029936971,0.7385034970063028,5,0.836,FastSwitchGLOBE,connected_pair_pdr,ood_nodes_24,0.07853343237118827
+0.9262562686208731,0.657743731379127,5,0.792,FastSwitchGLOBE,deadline_delivery_ratio,ood_nodes_24,0.10814342328593081
+8.815487816973357,5.984512183026643,5,7.4,FastSwitchGLOBE,p95_success_delay,ood_nodes_24,1.1401754250991378
+3.0556657748871654,2.0414334550206528,5,2.548549614953909,FastSwitchGLOBE,mean_transmission_energy_proxy,ood_nodes_24,0.4084820627159281
+4.116504201131541,2.10174667579025,5,3.1091254384608953,FastSwitchGLOBE,energy_per_delivered_packet,ood_nodes_24,0.8114435851661351
+0.9130881457964377,0.8719215629414263,5,0.892504854368932,FastSwitchGLOBE,connected_pair_pdr,ALL_POOLED,0.016579841078022874
+0.8389856058365626,0.7910143941634376,5,0.8150000000000001,FastSwitchGLOBE,deadline_delivery_ratio,ALL_POOLED,0.019320405306941416
+6.0,6.0,5,6.0,FastSwitchGLOBE,p95_success_delay,ALL_POOLED,0.0
+1.9440683729072503,1.7835357718848195,5,1.863802072396035,FastSwitchGLOBE,mean_transmission_energy_proxy,ALL_POOLED,0.06465450441120447
+2.373748159269517,2.0805370062778548,5,2.227142582773686,FastSwitchGLOBE,energy_per_delivered_packet,ALL_POOLED,0.11809079067911521

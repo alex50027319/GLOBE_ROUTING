@@ -1,0 +1,5 @@
+input_bytes,method
+2001.0,DiSwitch
+2001.0,Early Exit
+2001.0,Fast-DiSwitch
+2001.0,Fast-DiSwitch + Top-2

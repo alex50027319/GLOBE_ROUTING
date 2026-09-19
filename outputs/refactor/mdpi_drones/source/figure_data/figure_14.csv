@@ -1,0 +1,5 @@
+checkpoint_kib,method,parameters
+163.2568359375,Exact,37776.0
+163.2568359375,Early Exit,37776.0
+34.8916015625,Fast,7011.0
+34.8916015625,Fast + Top-2,7011.0

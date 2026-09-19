@@ -1,24 +1,20 @@
 {
   "main": {
-    "id": "3995f1f68d2b48f4",
+    "id": "4b0888028e0a2af6",
     "type": "split",
     "children": [
       {
-        "id": "1a2d818c475cd609",
+        "id": "81441642731f6717",
         "type": "tabs",
         "children": [
           {
-            "id": "0c507fdb9e4c010a",
+            "id": "e14960a8acf2a60d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ResearchAIWorkspace/vault/06_Experiments/Lite-GLOBE/Comparison_Methods_Guide.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Comparison_Methods_Guide"
+              "title": "새 탭"
             }
           }
         ]
@@ -27,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "3fd6667ba1a4e1ac",
+    "id": "d8dd7fa646111ff5",
     "type": "split",
     "children": [
       {
-        "id": "cd633ad4d82df210",
+        "id": "a0169b0b9967aa21",
         "type": "tabs",
         "children": [
           {
-            "id": "bd2b0cc451d912c9",
+            "id": "237ee19e031d397c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +44,7 @@
             }
           },
           {
-            "id": "6225e114e776c2b0",
+            "id": "eca650a635fd6656",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +61,7 @@
             }
           },
           {
-            "id": "12f2c57692b64e61",
+            "id": "0492fc94808a3059",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "56569615d3e05d2f",
+    "id": "8790991837ee9441",
     "type": "split",
     "children": [
       {
-        "id": "8e255460ad855e4a",
+        "id": "22b627d5ad0d73ec",
         "type": "tabs",
         "children": [
           {
-            "id": "64d377543191b800",
+            "id": "781f8d825204e1f0",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "lite_globe_phase_1_5_progress 의 백링크"
+              "title": "백링크"
             }
           },
           {
-            "id": "515a6c7f97ed79c0",
+            "id": "9666bbad10ec6c8f",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "lite_globe_phase_1_5_progress 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
-            "id": "df0e2d3a7b8b06f0",
+            "id": "0a9dd49ac058c0d0",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +131,7 @@
             }
           },
           {
-            "id": "f19857dc32bb619a",
+            "id": "1e0eff33a011a5aa",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,18 +145,17 @@
             }
           },
           {
-            "id": "628520ff32d31700",
+            "id": "8f16de88f95ab42c",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "ResearchAIWorkspace/vault/06_Experiments/lite_globe_phase_1_5_progress.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "lite_globe_phase_1_5_progress 의 개요"
+              "title": "개요"
             }
           }
         ]
@@ -183,56 +176,6 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "0c507fdb9e4c010a",
-  "lastOpenFiles": [
-    "ResearchAIWorkspace/vault/06_Experiments/Lite-GLOBE/00_Overview.md",
-    "ResearchAIWorkspace/vault/04_GLOBE_PlusPlus/theory_notes.md",
-    "ResearchAIWorkspace/vault/04_GLOBE_PlusPlus/reviewer_attack_list.md",
-    "ResearchAIWorkspace/vault/04_GLOBE_PlusPlus/problem_formulation.md",
-    "ResearchAIWorkspace/vault/04_GLOBE_PlusPlus/novelty_claims.md",
-    "ResearchAIWorkspace/vault/03_Papers/Paper_Cards/alam_thesis.md",
-    "ResearchAIWorkspace/vault/03_Papers/Literature_Matrix/literature_matrix.md",
-    "ResearchAIWorkspace/vault/02_Concepts/Theory/Dec-POMDP.md",
-    "ResearchAIWorkspace/artifacts/lite_globe/phase13_smoke/figures/risk_switch_plus_switch_steps.svg",
-    "ResearchAIWorkspace/outputs/visualizations/lite_globe_full_method_infographic.png",
-    "ResearchAIWorkspace/vault/00_Index/index.md",
-    "ResearchAIWorkspace/vault/00_Index/dashboard.md",
-    "ResearchAIWorkspace/vault/02_Concepts/Routing/UAV Routing.md",
-    "ResearchAIWorkspace/vault/02_Concepts/Theory/KL Divergence.md",
-    "ResearchAIWorkspace/vault/03_Papers/Paper_Cards/drama.md",
-    "ResearchAIWorkspace/colab_args.json",
-    "ResearchAIWorkspace/scripts/__pycache__/merge_phase13_artifacts.cpython-312.pyc",
-    "ResearchAIWorkspace/scripts/merge_phase13_artifacts.py",
-    "ResearchAIWorkspace/scripts/__pycache__/colab_run.cpython-312.pyc",
-    "ResearchAIWorkspace/README_COLAB_CLI.md",
-    "ResearchAIWorkspace/scripts/colab_run.py",
-    "ResearchAIWorkspace/scripts/colab_bootstrap.py",
-    "kci_paper/manuscript.blg",
-    "kci_paper/manuscript.bbl",
-    "kci_paper/manuscript.pdf",
-    "kci_paper/manuscript.aux",
-    "kci_paper/manuscript.md",
-    "kci_paper/sections/10_conclusion.md",
-    "kci_paper/sections/09_discussion.md",
-    "kci_paper/sections/08_results_and_analysis.md",
-    "kci_paper/sections/07_simulation_setup.md",
-    "kci_paper/sections/06_proposed_method.md",
-    "kci_paper/sections/05_problem_formulation.md",
-    "kci_paper/sections/04_related_work.md",
-    "kci_paper/sections/03_introduction.md",
-    "kci_paper/sections/02_abstract_en.md",
-    "kci_paper/sections/01_abstract_ko.md",
-    "kci_paper/notes/submission_checklist.md",
-    "tmp/pdfs/kci_preview2/page-7.png",
-    "tmp/pdfs/kci_preview2/page-6.png",
-    "tmp/pdfs/kci_preview2/page-5.png",
-    "tmp/pdfs/kci_preview2/page-4.png",
-    "tmp/pdfs/kci_preview2/page-3.png",
-    "tmp/pdfs/kci_preview2/page-2.png",
-    "tmp/pdfs/kci_preview2/page-1.png",
-    "tmp/pdfs/kci_preview/page-7.png",
-    "무제.canvas",
-    "무제 1.canvas",
-    "무제 2.canvas"
-  ]
+  "active": "e14960a8acf2a60d",
+  "lastOpenFiles": []
 }

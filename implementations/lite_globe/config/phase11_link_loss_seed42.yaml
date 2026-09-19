@@ -1,0 +1,25 @@
+runtime:
+  device: auto
+
+campaign:
+  training_seeds: [42]
+  evaluation_episodes: 200
+  hidden_dim: 64
+
+training:
+  dataset_episodes_per_stage: 300
+  distillation_epochs: 150
+  oracle_coefficient: 0.30
+  risk_oracle_coefficient: 1.00
+  teacher_action_coefficient: 0.05
+  early_stopping_patience: 15
+  initial_prior_strength: 8.0
+  initial_predictive_strength: [0.75, 3.0, 0.25, 6.0]
+  initial_break_penalty: 18.0
+  initial_residual_bound: 1.5
+  calibration_episodes_per_stage: 80
+  structural_hole_episodes_per_variant: 150
+  calibration_pdr_tolerance: 0.005
+  predictive_replay_multiplier: 3
+  predictive_pretraining_epochs: 40
+  include_link_loss_training: true

@@ -1,0 +1,29 @@
+connected_pair_pdr,method,scenario
+0.985,SwitchGLOBE Exact,heldout_medium
+0.967,FastSwitchGLOBE,heldout_medium
+0.9669999999999999,SwitchGLOBE Exact,ood_extreme_mobility
+0.9629999999999999,FastSwitchGLOBE,ood_extreme_mobility
+0.966,SwitchGLOBE Exact,ood_fast_mobility
+0.962,FastSwitchGLOBE,ood_fast_mobility
+0.9110000000000001,SwitchGLOBE Exact,ood_link_loss
+0.9,FastSwitchGLOBE,ood_link_loss
+0.7780000000000001,SwitchGLOBE Exact,ood_link_loss_30
+0.775,FastSwitchGLOBE,ood_link_loss_30
+0.9800000000000001,SwitchGLOBE Exact,ood_nodes_10
+0.952,FastSwitchGLOBE,ood_nodes_10
+0.9719999999999999,SwitchGLOBE Exact,ood_nodes_16
+0.9099999999999999,FastSwitchGLOBE,ood_nodes_16
+0.938,SwitchGLOBE Exact,ood_nodes_24
+0.836,FastSwitchGLOBE,ood_nodes_24
+0.9800000000000001,SwitchGLOBE Exact,ood_sparse
+0.975,FastSwitchGLOBE,ood_sparse
+0.5116279069767442,SwitchGLOBE Exact,predictive_break_225_link_loss
+0.5058139534883721,FastSwitchGLOBE,predictive_break_225_link_loss
+1.0,SwitchGLOBE Exact,predictive_break_45
+1.0,FastSwitchGLOBE,predictive_break_45
+0.6984126984126984,SwitchGLOBE Exact,structural_hole_225_link_loss
+0.6984126984126984,FastSwitchGLOBE,structural_hole_225_link_loss
+1.0,SwitchGLOBE Exact,structural_hole_45
+1.0,FastSwitchGLOBE,structural_hole_45
+0.9870129870129871,SwitchGLOBE Exact,unconditional_sparse
+0.9766233766233766,FastSwitchGLOBE,unconditional_sparse

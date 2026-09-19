@@ -1,0 +1,36 @@
+baseline,ci95_high,ci95_low,count,mean,metric,positive_means_variant_better,question,standard_deviation,variant
+Fixed Manual Prior,0.014959408861993897,0.01377845521567602,5,0.014368932038834959,connected_pair_pdr,1,risk supervision vs fixed manual,0.0004756290762685545,Risk-Oracle Only
+Fixed Manual Prior,0.018985698823283267,0.018014301176716745,5,0.018500000000000006,deadline_delivery_ratio,1,risk supervision vs fixed manual,0.0003912303982179501,Risk-Oracle Only
+Fixed Manual Prior,0.0,0.0,5,0.0,p95_success_delay,1,risk supervision vs fixed manual,0.0,Risk-Oracle Only
+Fixed Manual Prior,0.014663386403301504,0.013881360250568374,5,0.014272373326934939,mean_transmission_energy_proxy,1,risk supervision vs fixed manual,0.0003149610298440045,Risk-Oracle Only
+Fixed Manual Prior,0.05025375490397432,0.04754186331078381,5,0.048897809107379064,energy_per_delivered_packet,1,risk supervision vs fixed manual,0.0010922143281671811,Risk-Oracle Only
+Fixed Manual Prior,-0.0892582692407016,-0.0903145462932789,5,-0.08978640776699025,connected_pair_pdr,1,shortest supervision vs fixed manual,0.00042541557864480845,Shortest-Oracle Only
+Fixed Manual Prior,-0.07637144403385954,-0.07734284168042621,5,-0.07685714285714287,deadline_delivery_ratio,1,shortest supervision vs fixed manual,0.00039123039821801093,Shortest-Oracle Only
+Fixed Manual Prior,2.0,2.0,5,2.0,p95_success_delay,1,shortest supervision vs fixed manual,0.0,Shortest-Oracle Only
+Fixed Manual Prior,0.372456769988941,0.3719312717821575,5,0.37219402088554926,mean_transmission_energy_proxy,1,shortest supervision vs fixed manual,0.0002116444006523907,Shortest-Oracle Only
+Fixed Manual Prior,0.258706646856683,0.25699290895071036,5,0.2578497779036967,energy_per_delivered_packet,1,shortest supervision vs fixed manual,0.0006902079346853254,Shortest-Oracle Only
+Risk-Oracle Only,0.0033089234251006752,0.0021279697787828,5,0.0027184466019417376,connected_pair_pdr,1,add shortest label without teacher,0.0004756290762685545,Shortest+Risk (No Teacher)
+Risk-Oracle Only,0.0034142702518547194,0.002442872605288197,5,0.0029285714285714583,deadline_delivery_ratio,1,add shortest label without teacher,0.0003912303982179501,Shortest+Risk (No Teacher)
+Risk-Oracle Only,0.0,0.0,5,0.0,p95_success_delay,1,add shortest label without teacher,0.0,Shortest+Risk (No Teacher)
+Risk-Oracle Only,-0.0013376321271203126,-0.002445807473687135,5,-0.0018917198004037238,mean_transmission_energy_proxy,1,add shortest label without teacher,0.00044631761633876155,Shortest+Risk (No Teacher)
+Risk-Oracle Only,0.005372559537373055,0.0023765610126164093,5,0.003874560274994732,energy_per_delivered_packet,1,add shortest label without teacher,0.0012066383937040608,Shortest+Risk (No Teacher)
+Fixed Manual Prior,0.04219242807954929,-0.07823126303100562,5,-0.01801941747572817,connected_pair_pdr,1,teacher distillation vs fixed manual,0.048500641106743146,Teacher Distillation Only
+Fixed Manual Prior,0.04459641160143277,-0.06602498303000412,5,-0.010714285714285676,deadline_delivery_ratio,1,teacher distillation vs fixed manual,0.04455276623950346,Teacher Distillation Only
+Fixed Manual Prior,0.7552000000000001,-0.3552000000000001,5,0.2,p95_success_delay,1,teacher distillation vs fixed manual,0.44721359549995804,Teacher Distillation Only
+Fixed Manual Prior,0.33371950665141037,-0.0665264621821263,5,0.13359652223464202,mean_transmission_energy_proxy,1,teacher distillation vs fixed manual,0.16119906232565745,Teacher Distillation Only
+Fixed Manual Prior,0.2321551639422038,0.013257292205795093,5,0.12270622807399945,energy_per_delivered_packet,1,teacher distillation vs fixed manual,0.0881611169547262,Teacher Distillation Only
+Shortest+Risk (No Teacher),0.0007847766990291615,-0.0009401165048544114,5,-7.766990291262488e-05,connected_pair_pdr,1,primary teacher contribution,0.0006947007308737525,Teacher+Shortest+Risk
+Shortest+Risk (No Teacher),0.000721714285714263,-0.0008645714285714853,5,-7.142857142861114e-05,deadline_delivery_ratio,1,primary teacher contribution,0.0006388765649999538,Teacher+Shortest+Risk
+Shortest+Risk (No Teacher),0.0,0.0,5,0.0,p95_success_delay,1,primary teacher contribution,0.0,Teacher+Shortest+Risk
+Shortest+Risk (No Teacher),0.0025254707785590295,-0.00048669010128204364,5,0.001019390338638493,mean_transmission_energy_proxy,1,primary teacher contribution,0.0012131477821488142,Teacher+Shortest+Risk
+Shortest+Risk (No Teacher),0.00231008156183488,7.574411044050785e-05,5,0.001192912836137694,energy_per_delivered_packet,1,primary teacher contribution,0.0008998793994941372,Teacher+Shortest+Risk
+Teacher Distillation Only,0.09551808997835443,-0.025459837551169935,5,0.03502912621359224,connected_pair_pdr,1,add oracle labels to teacher,0.048723859822236974,Teacher+Shortest+Risk
+Teacher Distillation Only,0.08764221605652985,-0.023499358913672788,5,0.03207142857142853,deadline_delivery_ratio,1,add oracle labels to teacher,0.04476226886883326,Teacher+Shortest+Risk
+Teacher Distillation Only,0.3552000000000001,-0.7552000000000001,5,-0.2,p95_success_delay,1,add oracle labels to teacher,0.44721359549995804,Teacher+Shortest+Risk
+Teacher Distillation Only,0.07977202922675211,-0.32016498596569676,5,-0.12019647836947231,mean_transmission_energy_proxy,1,add oracle labels to teacher,0.16107463124796143,Teacher+Shortest+Risk
+Teacher Distillation Only,0.039583883720224394,-0.1770657754312003,5,-0.06874094585548796,energy_per_delivered_packet,1,add oracle labels to teacher,0.08725564934523507,Teacher+Shortest+Risk
+Teacher+Shortest+Risk,0.0016219906044811973,-0.0011559711870054482,5,0.00023300970873787463,connected_pair_pdr,1,historical Phase11 reference vs matched full,0.001118824100263191,Existing Phase11 Predictive Prior
+Teacher+Shortest+Risk,0.0018771488350096664,-0.0015914345492953996,5,0.00014285714285713346,deadline_delivery_ratio,1,historical Phase11 reference vs matched full,0.0013969719439719751,Existing Phase11 Predictive Prior
+Teacher+Shortest+Risk,0.0,0.0,5,0.0,p95_success_delay,1,historical Phase11 reference vs matched full,0.0,Existing Phase11 Predictive Prior
+Teacher+Shortest+Risk,-0.0005560034483384898,-0.004856582772673794,5,-0.002706293110506142,mean_transmission_energy_proxy,1,historical Phase11 reference vs matched full,0.0017320583054473804,Existing Phase11 Predictive Prior
+Teacher+Shortest+Risk,0.002193874303163252,-0.007490984138625596,5,-0.002648554917731172,energy_per_delivered_packet,1,historical Phase11 reference vs matched full,0.0039005766981812964,Existing Phase11 Predictive Prior

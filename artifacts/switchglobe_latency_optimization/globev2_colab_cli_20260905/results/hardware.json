@@ -1,0 +1,12 @@
+{
+  "requested_accelerator": "A100",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "source_git_commit": "92d17df3f4451e0412858a9927a898a2696023b3",
+  "torch_num_threads": 1,
+  "batch_size": 1
+}

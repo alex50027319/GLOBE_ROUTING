@@ -1,0 +1,673 @@
+ci95_high,ci95_low,count,mean,method,metric,scenario,standard_deviation
+0.985,0.985,5,0.985,AODV,connected_pair_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,AODV,overall_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,AODV,deadline_delivery_ratio,heldout_medium,0.0
+4.0,4.0,5,4.0,AODV,p95_success_delay,heldout_medium,0.0
+1.3048253591998646,1.3048253591998646,5,1.3048253591998646,AODV,energy_per_delivered_packet,heldout_medium,0.0
+132.525,132.525,5,132.525,AODV,mean_policy_input_bytes,heldout_medium,0.0
+0.9800000000000002,0.98,5,0.9800000000000001,OLSR,connected_pair_pdr,heldout_medium,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,OLSR,overall_pdr,heldout_medium,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,OLSR,deadline_delivery_ratio,heldout_medium,1.2412670766236366e-16
+3.0,3.0,5,3.0,OLSR,p95_success_delay,heldout_medium,0.0
+1.3147625495970952,1.3147625495970952,5,1.3147625495970952,OLSR,energy_per_delivered_packet,heldout_medium,0.0
+131.1,131.1,5,131.1,OLSR,mean_policy_input_bytes,heldout_medium,0.0
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,connected_pair_pdr,heldout_medium,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,overall_pdr,heldout_medium,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,deadline_delivery_ratio,heldout_medium,1.2412670766236366e-16
+4.0,4.0,5,4.0,Greedy Geographic,p95_success_delay,heldout_medium,0.0
+1.2986763478350054,1.2986763478350054,5,1.2986763478350054,Greedy Geographic,energy_per_delivered_packet,heldout_medium,0.0
+2220.49,2220.49,5,2220.49,Greedy Geographic,mean_policy_input_bytes,heldout_medium,0.0
+0.9748146421228694,0.9551853578771308,5,0.9650000000000001,Evo-QGeo (Adapted),connected_pair_pdr,heldout_medium,0.007905694150420955
+0.9748146421228694,0.9551853578771308,5,0.9650000000000001,Evo-QGeo (Adapted),overall_pdr,heldout_medium,0.007905694150420955
+0.9733868409056843,0.9526131590943154,5,0.9629999999999999,Evo-QGeo (Adapted),deadline_delivery_ratio,heldout_medium,0.008366600265340763
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,heldout_medium,0.0
+1.363577413479742,1.3387154840300954,5,1.3511464487549187,Evo-QGeo (Adapted),energy_per_delivered_packet,heldout_medium,0.010013141985088965
+4981.808946097638,4911.099053902363,5,4946.454000000001,Evo-QGeo (Adapted),mean_policy_input_bytes,heldout_medium,28.478408795085443
+0.9558309255599706,0.7421690744400293,5,0.849,RDQN-HERP (Adapted),connected_pair_pdr,heldout_medium,0.08605230967266364
+0.9558309255599706,0.7421690744400293,5,0.849,RDQN-HERP (Adapted),overall_pdr,heldout_medium,0.08605230967266364
+0.8681582863530014,0.5578417136469985,5,0.713,RDQN-HERP (Adapted),deadline_delivery_ratio,heldout_medium,0.12497999839974396
+7.07997835259661,5.7200216474033905,5,6.4,RDQN-HERP (Adapted),p95_success_delay,heldout_medium,0.5477225575051662
+2.427470666801973,1.5230196378021972,5,1.9752451523020853,RDQN-HERP (Adapted),energy_per_delivered_packet,heldout_medium,0.3642676482642531
+5146.919211897606,3895.902788102394,5,4521.411,RDQN-HERP (Adapted),mean_policy_input_bytes,heldout_medium,503.8468596136132
+0.9242018712463764,0.6477981287536236,5,0.786,GAT-GRU-DDQN,connected_pair_pdr,heldout_medium,0.11132160616879366
+0.9242018712463764,0.6477981287536236,5,0.786,GAT-GRU-DDQN,overall_pdr,heldout_medium,0.11132160616879366
+0.850237980271057,0.5937620197289432,5,0.7220000000000001,GAT-GRU-DDQN,deadline_delivery_ratio,heldout_medium,0.10329569206893384
+6.259125418438124,4.920874581561872,5,5.589999999999998,GAT-GRU-DDQN,p95_success_delay,heldout_medium,0.5389805191284728
+2.181987648701163,1.671843859371445,5,1.926915754036304,GAT-GRU-DDQN,energy_per_delivered_packet,heldout_medium,0.20546040908511914
+4528.310083994012,3611.9559160059885,5,4070.1330000000003,GAT-GRU-DDQN,mean_policy_input_bytes,heldout_medium,369.0616374435306
+0.985,0.985,5,0.985,DiSwitch,connected_pair_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,DiSwitch,overall_pdr,heldout_medium,0.0
+0.985,0.985,5,0.985,DiSwitch,deadline_delivery_ratio,heldout_medium,0.0
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,heldout_medium,0.0
+1.308092137005857,1.3016625276528846,5,1.3048773323293708,DiSwitch,energy_per_delivered_packet,heldout_medium,0.0025895251408527375
+3616.2409632609674,3508.091036739033,5,3562.166,DiSwitch,mean_policy_input_bytes,heldout_medium,43.5573824684174
+0.9854139008360532,0.9485860991639468,5,0.967,Fast-DiSwitch,connected_pair_pdr,heldout_medium,0.014832396974191338
+0.9854139008360532,0.9485860991639468,5,0.967,Fast-DiSwitch,overall_pdr,heldout_medium,0.014832396974191338
+0.9867736818113689,0.945226318188631,5,0.966,Fast-DiSwitch,deadline_delivery_ratio,heldout_medium,0.016733200530681527
+4.2664,3.4336,5,3.85,Fast-DiSwitch,p95_success_delay,heldout_medium,0.33541019662496846
+1.4633797536422566,1.2817703960918554,5,1.372575074867056,Fast-DiSwitch,energy_per_delivered_packet,heldout_medium,0.07314316801742834
+4991.608834877188,4657.213165122812,5,4824.411,Fast-DiSwitch,mean_policy_input_bytes,heldout_medium,134.67785463839257
+0.895,0.8949999999999998,5,0.8949999999999999,AODV,connected_pair_pdr,ood_link_loss,1.2412670766236366e-16
+0.895,0.8949999999999998,5,0.8949999999999999,AODV,overall_pdr,ood_link_loss,1.2412670766236366e-16
+0.895,0.8949999999999998,5,0.8949999999999999,AODV,deadline_delivery_ratio,ood_link_loss,1.2412670766236366e-16
+4.0,4.0,5,4.0,AODV,p95_success_delay,ood_link_loss,0.0
+1.327744889596975,1.327744889596975,5,1.327744889596975,AODV,energy_per_delivered_packet,ood_link_loss,0.0
+136.515,136.515,5,136.515,AODV,mean_policy_input_bytes,ood_link_loss,0.0
+0.8100000000000003,0.81,5,0.8100000000000002,OLSR,connected_pair_pdr,ood_link_loss,1.2412670766236366e-16
+0.8100000000000003,0.81,5,0.8100000000000002,OLSR,overall_pdr,ood_link_loss,1.2412670766236366e-16
+0.8100000000000003,0.81,5,0.8100000000000002,OLSR,deadline_delivery_ratio,ood_link_loss,1.2412670766236366e-16
+3.9499999999999886,3.9499999999999886,5,3.9499999999999886,OLSR,p95_success_delay,ood_link_loss,0.0
+1.3627690916430857,1.3627690916430857,5,1.3627690916430857,OLSR,energy_per_delivered_packet,ood_link_loss,0.0
+128.535,128.535,5,128.535,OLSR,mean_policy_input_bytes,ood_link_loss,0.0
+0.91,0.9099999999999998,5,0.9099999999999999,Greedy Geographic,connected_pair_pdr,ood_link_loss,1.2412670766236366e-16
+0.91,0.9099999999999998,5,0.9099999999999999,Greedy Geographic,overall_pdr,ood_link_loss,1.2412670766236366e-16
+0.91,0.9099999999999998,5,0.9099999999999999,Greedy Geographic,deadline_delivery_ratio,ood_link_loss,1.2412670766236366e-16
+4.0,4.0,5,4.0,Greedy Geographic,p95_success_delay,ood_link_loss,0.0
+1.3320270720244316,1.3320270720244316,5,1.3320270720244316,Greedy Geographic,energy_per_delivered_packet,ood_link_loss,0.0
+2325.32,2325.32,5,2325.32,Greedy Geographic,mean_policy_input_bytes,ood_link_loss,0.0
+0.9141003034672688,0.889899696532731,5,0.9019999999999999,Evo-QGeo (Adapted),connected_pair_pdr,ood_link_loss,0.009746794344808973
+0.9141003034672688,0.889899696532731,5,0.9019999999999999,Evo-QGeo (Adapted),overall_pdr,ood_link_loss,0.009746794344808973
+0.9059400274706553,0.882059972529345,5,0.8940000000000001,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_link_loss,0.00961769203083568
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,ood_link_loss,0.0
+1.3715497371872192,1.3421827157494786,5,1.3568662264683489,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_link_loss,0.011827567765036314
+5085.662228930774,5048.439771069225,5,5067.0509999999995,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_link_loss,14.991344752889887
+0.8572941389724273,0.6487058610275724,5,0.7529999999999999,RDQN-HERP (Adapted),connected_pair_pdr,ood_link_loss,0.08400892809695884
+0.8572941389724273,0.6487058610275724,5,0.7529999999999999,RDQN-HERP (Adapted),overall_pdr,ood_link_loss,0.08400892809695884
+0.826412611601653,0.5435873883983469,5,0.6849999999999999,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_link_loss,0.11390785749894515
+5.909627044626684,4.850372955373307,5,5.3799999999999955,RDQN-HERP (Adapted),p95_success_delay,ood_link_loss,0.4266145801540309
+2.442301638708019,1.4973084388783409,5,1.96980503879318,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_link_loss,0.3805960074016937
+4440.59156578657,3527.054434213429,5,3983.8229999999994,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_link_loss,367.927076038853
+0.8066694563120234,0.5353305436879767,5,0.671,GAT-GRU-DDQN,connected_pair_pdr,ood_link_loss,0.10928174595969814
+0.8066694563120234,0.5353305436879767,5,0.671,GAT-GRU-DDQN,overall_pdr,ood_link_loss,0.10928174595969814
+0.7499636765025147,0.5100363234974853,5,0.63,GAT-GRU-DDQN,deadline_delivery_ratio,ood_link_loss,0.09663074045043843
+5.0,5.0,5,5.0,GAT-GRU-DDQN,p95_success_delay,ood_link_loss,0.0
+2.4736572278002624,1.6070950006151923,5,2.0403761142077275,GAT-GRU-DDQN,energy_per_delivered_packet,ood_link_loss,0.34900793348692966
+4117.351652767428,3445.8703472325715,5,3781.611,GAT-GRU-DDQN,mean_policy_input_bytes,ood_link_loss,270.4390930828974
+0.9137760000000001,0.9082240000000001,5,0.9110000000000001,DiSwitch,connected_pair_pdr,ood_link_loss,0.0022360679774997916
+0.9137760000000001,0.9082240000000001,5,0.9110000000000001,DiSwitch,overall_pdr,ood_link_loss,0.0022360679774997916
+0.9137760000000001,0.9082240000000001,5,0.9110000000000001,DiSwitch,deadline_delivery_ratio,ood_link_loss,0.0022360679774997916
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,ood_link_loss,0.0
+1.3331996735382197,1.3210208363399103,5,1.327110254939065,DiSwitch,energy_per_delivered_packet,ood_link_loss,0.00490502663226274
+3810.842284756503,3678.001715243497,5,3744.422,DiSwitch,mean_policy_input_bytes,ood_link_loss,53.501538833009214
+0.9210500622326872,0.8789499377673129,5,0.9,Fast-DiSwitch,connected_pair_pdr,ood_link_loss,0.016955824957813188
+0.9210500622326872,0.8789499377673129,5,0.9,Fast-DiSwitch,overall_pdr,ood_link_loss,0.016955824957813188
+0.919304689507599,0.878695310492401,5,0.899,Fast-DiSwitch,deadline_delivery_ratio,ood_link_loss,0.01635542723379614
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,ood_link_loss,0.0
+1.4931250152235986,1.3188083829227255,5,1.405966699073162,Fast-DiSwitch,energy_per_delivered_packet,ood_link_loss,0.07020602295273558
+5051.616415822156,4873.343584177845,5,4962.4800000000005,Fast-DiSwitch,mean_policy_input_bytes,ood_link_loss,71.79938222227265
+0.955,0.9549999999999997,5,0.9549999999999998,AODV,connected_pair_pdr,ood_fast_mobility,1.2412670766236366e-16
+0.955,0.9549999999999997,5,0.9549999999999998,AODV,overall_pdr,ood_fast_mobility,1.2412670766236366e-16
+0.955,0.9549999999999997,5,0.9549999999999998,AODV,deadline_delivery_ratio,ood_fast_mobility,1.2412670766236366e-16
+3.0,3.0,5,3.0,AODV,p95_success_delay,ood_fast_mobility,0.0
+1.1819888756615409,1.1819888756615409,5,1.1819888756615409,AODV,energy_per_delivered_packet,ood_fast_mobility,0.0
+132.525,132.525,5,132.525,AODV,mean_policy_input_bytes,ood_fast_mobility,0.0
+0.9350000000000003,0.935,5,0.9350000000000002,OLSR,connected_pair_pdr,ood_fast_mobility,1.2412670766236366e-16
+0.9350000000000003,0.935,5,0.9350000000000002,OLSR,overall_pdr,ood_fast_mobility,1.2412670766236366e-16
+0.9350000000000003,0.935,5,0.9350000000000002,OLSR,deadline_delivery_ratio,ood_fast_mobility,1.2412670766236366e-16
+3.0,3.0,5,3.0,OLSR,p95_success_delay,ood_fast_mobility,0.0
+1.1875869204864191,1.1875869204864191,5,1.1875869204864191,OLSR,energy_per_delivered_packet,ood_fast_mobility,0.0
+125.97,125.97,5,125.97,OLSR,mean_policy_input_bytes,ood_fast_mobility,0.0
+0.97,0.97,5,0.97,Greedy Geographic,connected_pair_pdr,ood_fast_mobility,0.0
+0.97,0.97,5,0.97,Greedy Geographic,overall_pdr,ood_fast_mobility,0.0
+0.97,0.97,5,0.97,Greedy Geographic,deadline_delivery_ratio,ood_fast_mobility,0.0
+3.0,3.0,5,3.0,Greedy Geographic,p95_success_delay,ood_fast_mobility,0.0
+1.2037847065190133,1.2037847065190133,5,1.2037847065190133,Greedy Geographic,energy_per_delivered_packet,ood_fast_mobility,0.0
+2187.135,2187.135,5,2187.135,Greedy Geographic,mean_policy_input_bytes,ood_fast_mobility,0.0
+0.9700774390848667,0.9559225609151331,5,0.9629999999999999,Evo-QGeo (Adapted),connected_pair_pdr,ood_fast_mobility,0.005700877125495695
+0.9700774390848667,0.9559225609151331,5,0.9629999999999999,Evo-QGeo (Adapted),overall_pdr,ood_fast_mobility,0.005700877125495695
+0.9650774390848668,0.9509225609151332,5,0.958,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_fast_mobility,0.005700877125495695
+4.111352892968237,2.8686471070317583,5,3.4899999999999975,Evo-QGeo (Adapted),p95_success_delay,ood_fast_mobility,0.5004997502496882
+1.2414974488455772,1.2177205854481243,5,1.2296090171468508,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_fast_mobility,0.009576131636965357
+4869.0613010062325,4660.078698993767,5,4764.57,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_fast_mobility,84.16774211359136
+0.9410294483337289,0.6149705516662711,5,0.778,RDQN-HERP (Adapted),connected_pair_pdr,ood_fast_mobility,0.13132021931142213
+0.9410294483337289,0.6149705516662711,5,0.778,RDQN-HERP (Adapted),overall_pdr,ood_fast_mobility,0.13132021931142213
+0.8821847207764206,0.39981527922357935,5,0.641,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_fast_mobility,0.19427429063054125
+7.3552,6.2448,5,6.8,RDQN-HERP (Adapted),p95_success_delay,ood_fast_mobility,0.4472135954999579
+3.1057371231824833,1.254069698330006,5,2.1799034107562445,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_fast_mobility,0.7457590478552094
+5629.45405599846,3630.3759440015424,5,4629.915000000001,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_fast_mobility,805.1287015052314
+0.9148464346002297,0.6191535653997703,5,0.767,GAT-GRU-DDQN,connected_pair_pdr,ood_fast_mobility,0.11909030187215079
+0.9148464346002297,0.6191535653997703,5,0.767,GAT-GRU-DDQN,overall_pdr,ood_fast_mobility,0.11909030187215079
+0.8429376746234286,0.5550623253765715,5,0.6990000000000001,GAT-GRU-DDQN,deadline_delivery_ratio,ood_fast_mobility,0.11594179574251899
+6.323982682077286,5.236017317922711,5,5.7799999999999985,GAT-GRU-DDQN,p95_success_delay,ood_fast_mobility,0.4381780460041323
+2.283668566526529,1.5452972061396428,5,1.9144828863330858,GAT-GRU-DDQN,energy_per_delivered_packet,ood_fast_mobility,0.29737906240347134
+4399.161036930986,3642.4649630690137,5,4020.8129999999996,GAT-GRU-DDQN,mean_policy_input_bytes,ood_fast_mobility,304.75934068129874
+0.9711934204528422,0.9608065795471578,5,0.966,DiSwitch,connected_pair_pdr,ood_fast_mobility,0.004183300132670382
+0.9711934204528422,0.9608065795471578,5,0.966,DiSwitch,overall_pdr,ood_fast_mobility,0.004183300132670382
+0.9711934204528422,0.9608065795471578,5,0.966,DiSwitch,deadline_delivery_ratio,ood_fast_mobility,0.004183300132670382
+3.0,3.0,5,3.0,DiSwitch,p95_success_delay,ood_fast_mobility,0.0
+1.223442879886393,1.1980175897322747,5,1.2107302348093338,DiSwitch,energy_per_delivered_packet,ood_fast_mobility,0.010240035506531808
+3700.757841511365,3435.970158488635,5,3568.364,DiSwitch,mean_policy_input_bytes,ood_fast_mobility,106.64323826431756
+0.9690774390848668,0.9549225609151332,5,0.962,Fast-DiSwitch,connected_pair_pdr,ood_fast_mobility,0.005700877125495695
+0.9690774390848668,0.9549225609151332,5,0.962,Fast-DiSwitch,overall_pdr,ood_fast_mobility,0.005700877125495695
+0.9698717824717481,0.944128217528252,5,0.9570000000000001,Fast-DiSwitch,deadline_delivery_ratio,ood_fast_mobility,0.01036822067666387
+4.096294146867108,2.8437058531328896,5,3.469999999999999,Fast-DiSwitch,p95_success_delay,ood_fast_mobility,0.5044799302251779
+1.3877778043085858,1.2147687214600968,5,1.3012732628843413,Fast-DiSwitch,energy_per_delivered_packet,ood_fast_mobility,0.0696794074160869
+4984.349467305821,4644.462532694179,5,4814.406,Fast-DiSwitch,mean_policy_input_bytes,ood_fast_mobility,136.8894615374023
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,overall_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,AODV,p95_success_delay,ood_sparse,0.0
+1.226515730653376,1.226515730653376,5,1.226515730653376,AODV,energy_per_delivered_packet,ood_sparse,0.0
+126.825,126.825,5,126.825,AODV,mean_policy_input_bytes,ood_sparse,0.0
+0.97,0.97,5,0.97,OLSR,connected_pair_pdr,ood_sparse,0.0
+0.97,0.97,5,0.97,OLSR,overall_pdr,ood_sparse,0.0
+0.97,0.97,5,0.97,OLSR,deadline_delivery_ratio,ood_sparse,0.0
+3.0,3.0,5,3.0,OLSR,p95_success_delay,ood_sparse,0.0
+1.22866330403841,1.22866330403841,5,1.22866330403841,OLSR,energy_per_delivered_packet,ood_sparse,0.0
+125.685,125.68499999999997,5,125.68499999999999,OLSR,mean_policy_input_bytes,ood_sparse,1.5888218580782548e-14
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,overall_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,Greedy Geographic,p95_success_delay,ood_sparse,0.0
+1.2178239841701772,1.2178239841701772,5,1.2178239841701772,Greedy Geographic,energy_per_delivered_packet,ood_sparse,0.0
+2125.19,2125.19,5,2125.19,Greedy Geographic,mean_policy_input_bytes,ood_sparse,0.0
+0.9776023890981717,0.9623976109018283,5,0.97,Evo-QGeo (Adapted),connected_pair_pdr,ood_sparse,0.006123724356957951
+0.9776023890981717,0.9623976109018283,5,0.97,Evo-QGeo (Adapted),overall_pdr,ood_sparse,0.006123724356957951
+0.9776023890981717,0.9623976109018283,5,0.97,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_sparse,0.006123724356957951
+4.27997835259661,2.9200216474033898,5,3.6,Evo-QGeo (Adapted),p95_success_delay,ood_sparse,0.5477225575051661
+1.2585730107998239,1.2373232262582792,5,1.2479481185290515,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_sparse,0.008558350637989522
+4625.447094953825,4547.832905046175,5,4586.64,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_sparse,31.25911467076433
+1.0871656250901007,0.5948343749098993,5,0.841,RDQN-HERP (Adapted),connected_pair_pdr,ood_sparse,0.19828640901483896
+1.0871656250901007,0.5948343749098993,5,0.841,RDQN-HERP (Adapted),overall_pdr,ood_sparse,0.19828640901483896
+1.0729755779762686,0.5490244220237314,5,0.8109999999999999,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_sparse,0.21102132593650338
+5.2799783525966095,3.9200216474033898,5,4.6,RDQN-HERP (Adapted),p95_success_delay,ood_sparse,0.5477225575051661
+2.3700665227227757,0.9525541443815712,5,1.6613103335521735,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_sparse,0.5709031046322649
+3717.9745641172844,3078.321435882716,5,3398.148,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_sparse,257.6202948041942
+1.0186052692322807,0.6593947307677195,5,0.8390000000000001,GAT-GRU-DDQN,connected_pair_pdr,ood_sparse,0.1446720429108541
+1.0186052692322807,0.6593947307677195,5,0.8390000000000001,GAT-GRU-DDQN,overall_pdr,ood_sparse,0.1446720429108541
+1.008089774700828,0.6419102252991719,5,0.825,GAT-GRU-DDQN,deadline_delivery_ratio,ood_sparse,0.14747881203752627
+5.07997835259661,3.7200216474033905,5,4.4,GAT-GRU-DDQN,p95_success_delay,ood_sparse,0.5477225575051661
+1.9990545308249,1.1589173982312373,5,1.5789859645280686,GAT-GRU-DDQN,energy_per_delivered_packet,ood_sparse,0.3383652267473314
+3493.438136763882,3002.0058632361183,5,3247.722,GAT-GRU-DDQN,mean_policy_input_bytes,ood_sparse,197.92434617171287
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,connected_pair_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,overall_pdr,ood_sparse,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,deadline_delivery_ratio,ood_sparse,1.2412670766236366e-16
+3.0,3.0,5,3.0,DiSwitch,p95_success_delay,ood_sparse,0.0
+1.2183262461121551,1.2154970991396679,5,1.2169116726259115,DiSwitch,energy_per_delivered_packet,ood_sparse,0.001139438931703668
+3478.922352105307,3338.0256478946944,5,3408.4740000000006,DiSwitch,mean_policy_input_bytes,ood_sparse,56.74614704982174
+0.9857514017690717,0.9642485982309282,5,0.975,Fast-DiSwitch,connected_pair_pdr,ood_sparse,0.008660254037844395
+0.9857514017690717,0.9642485982309282,5,0.975,Fast-DiSwitch,overall_pdr,ood_sparse,0.008660254037844395
+0.9858717824717481,0.9601282175282521,5,0.9730000000000001,Fast-DiSwitch,deadline_delivery_ratio,ood_sparse,0.01036822067666387
+3.1887999999999996,2.9112,5,3.05,Fast-DiSwitch,p95_success_delay,ood_sparse,0.11180339887498948
+1.2785773432909362,1.2070290840538995,5,1.2428032136724179,Fast-DiSwitch,energy_per_delivered_packet,ood_sparse,0.02881606111775777
+4558.109398378375,4442.388601621627,5,4500.249000000001,Fast-DiSwitch,mean_policy_input_bytes,ood_sparse,46.60655042480633
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,overall_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,AODV,deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,AODV,p95_success_delay,ood_nodes_10,0.0
+1.4439749636645096,1.4439749636645096,5,1.4439749636645096,AODV,energy_per_delivered_packet,ood_nodes_10,0.0
+147.06,147.06,5,147.06,AODV,mean_policy_input_bytes,ood_nodes_10,0.0
+0.975,0.975,5,0.975,OLSR,connected_pair_pdr,ood_nodes_10,0.0
+0.975,0.975,5,0.975,OLSR,overall_pdr,ood_nodes_10,0.0
+0.975,0.975,5,0.975,OLSR,deadline_delivery_ratio,ood_nodes_10,0.0
+4.0,4.0,5,4.0,OLSR,p95_success_delay,ood_nodes_10,0.0
+1.4494258363173884,1.4494258363173884,5,1.4494258363173884,OLSR,energy_per_delivered_packet,ood_nodes_10,0.0
+145.065,145.065,5,145.065,OLSR,mean_policy_input_bytes,ood_nodes_10,0.0
+0.97,0.97,5,0.97,Greedy Geographic,connected_pair_pdr,ood_nodes_10,0.0
+0.97,0.97,5,0.97,Greedy Geographic,overall_pdr,ood_nodes_10,0.0
+0.97,0.97,5,0.97,Greedy Geographic,deadline_delivery_ratio,ood_nodes_10,0.0
+4.0,4.0,5,4.0,Greedy Geographic,p95_success_delay,ood_nodes_10,0.0
+1.446311811736852,1.446311811736852,5,1.446311811736852,Greedy Geographic,energy_per_delivered_packet,ood_nodes_10,0.0
+2449.21,2449.21,5,2449.21,Greedy Geographic,mean_policy_input_bytes,ood_nodes_10,0.0
+0.94729033463569,0.9187096653643101,5,0.933,Evo-QGeo (Adapted),connected_pair_pdr,ood_nodes_10,0.011510864433221302
+0.94729033463569,0.9187096653643101,5,0.933,Evo-QGeo (Adapted),overall_pdr,ood_nodes_10,0.011510864433221302
+0.94729033463569,0.9187096653643101,5,0.933,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_nodes_10,0.011510864433221302
+5.07997835259661,3.72002164740339,5,4.4,Evo-QGeo (Adapted),p95_success_delay,ood_nodes_10,0.5477225575051662
+1.5419313309857994,1.4837033202095185,5,1.512817325597659,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_nodes_10,0.02345133110417041
+5645.596632689631,5366.293367310368,5,5505.945,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_nodes_10,112.48938899958509
+0.9264729061252104,0.7035270938747893,5,0.8149999999999998,RDQN-HERP (Adapted),connected_pair_pdr,ood_nodes_10,0.08979142498033987
+0.9264729061252104,0.7035270938747893,5,0.8149999999999998,RDQN-HERP (Adapted),overall_pdr,ood_nodes_10,0.08979142498033987
+0.8558439483394746,0.5501560516605253,5,0.703,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_nodes_10,0.12311579914860642
+7.899602222825748,6.1403977771742495,5,7.019999999999999,RDQN-HERP (Adapted),p95_success_delay,ood_nodes_10,0.7085195833567339
+2.9061066153597634,1.822709578620385,5,2.3644080969900743,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_nodes_10,0.4363381521561756
+5636.464578354647,4375.495421645354,5,5005.9800000000005,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_nodes_10,507.85532275442387
+0.8414167879191522,0.6405832120808478,5,0.741,GAT-GRU-DDQN,connected_pair_pdr,ood_nodes_10,0.08088572185497261
+0.8414167879191522,0.6405832120808478,5,0.741,GAT-GRU-DDQN,overall_pdr,ood_nodes_10,0.08088572185497261
+0.7708518299335347,0.6151481700664654,5,0.6930000000000001,GAT-GRU-DDQN,deadline_delivery_ratio,ood_nodes_10,0.06270964838045259
+6.3552,5.2448,5,5.8,GAT-GRU-DDQN,p95_success_delay,ood_nodes_10,0.4472135954999579
+2.4315258849367454,1.992432925561801,5,2.211979405249273,GAT-GRU-DDQN,energy_per_delivered_packet,ood_nodes_10,0.17684468760877683
+4908.830584855516,3894.7894151444857,5,4401.81,GAT-GRU-DDQN,mean_policy_input_bytes,ood_nodes_10,408.40507699158206
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,connected_pair_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,overall_pdr,ood_nodes_10,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,DiSwitch,deadline_delivery_ratio,ood_nodes_10,1.2412670766236366e-16
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,ood_nodes_10,0.0
+1.4565081376350963,1.445254345247797,5,1.4508812414414467,DiSwitch,energy_per_delivered_packet,ood_nodes_10,0.00453246483837734
+4046.4610565258545,3891.9529434741453,5,3969.207,DiSwitch,mean_policy_input_bytes,ood_nodes_10,62.22814190541132
+0.9806479972074837,0.9233520027925162,5,0.952,Fast-DiSwitch,connected_pair_pdr,ood_nodes_10,0.023075961518428615
+0.9806479972074837,0.9233520027925162,5,0.952,Fast-DiSwitch,overall_pdr,ood_nodes_10,0.023075961518428615
+0.9806479972074837,0.9233520027925162,5,0.952,Fast-DiSwitch,deadline_delivery_ratio,ood_nodes_10,0.023075961518428615
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,ood_nodes_10,0.0
+1.6424475264054508,1.4481109440821742,5,1.5452792352438125,Fast-DiSwitch,energy_per_delivered_packet,ood_nodes_10,0.0782690577431251
+5489.021839666826,5216.328160333174,5,5352.675,Fast-DiSwitch,mean_policy_input_bytes,ood_nodes_10,109.82737824650094
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,AODV,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,AODV,overall_pdr,unconditional_sparse,0.0
+0.38,0.38,5,0.38,AODV,deadline_delivery_ratio,unconditional_sparse,0.0
+3.0,3.0,5,3.0,AODV,p95_success_delay,unconditional_sparse,0.0
+0.7832492714047109,0.7832492714047109,5,0.7832492714047109,AODV,energy_per_delivered_packet,unconditional_sparse,0.0
+67.26,67.26,5,67.26,AODV,mean_policy_input_bytes,unconditional_sparse,0.0
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,OLSR,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.38,0.38,5,0.38,OLSR,overall_pdr,unconditional_sparse,0.0
+0.38,0.38,5,0.38,OLSR,deadline_delivery_ratio,unconditional_sparse,0.0
+3.0,3.0,5,3.0,OLSR,p95_success_delay,unconditional_sparse,0.0
+0.7857194523192362,0.7857194523192362,5,0.7857194523192362,OLSR,energy_per_delivered_packet,unconditional_sparse,0.0
+66.975,66.975,5,66.975,OLSR,mean_policy_input_bytes,unconditional_sparse,0.0
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,Greedy Geographic,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.41,0.41,5,0.41,Greedy Geographic,overall_pdr,unconditional_sparse,0.0
+0.38,0.38,5,0.38,Greedy Geographic,deadline_delivery_ratio,unconditional_sparse,0.0
+3.950000000000003,3.950000000000003,5,3.950000000000003,Greedy Geographic,p95_success_delay,unconditional_sparse,0.0
+1.7827021841276784,1.782702184127678,5,1.7827021841276782,Greedy Geographic,energy_per_delivered_packet,unconditional_sparse,2.482534153247273e-16
+1972.71,1972.7099999999996,5,1972.7099999999998,Greedy Geographic,mean_policy_input_bytes,unconditional_sparse,2.5421149729252077e-13
+0.9906490695142417,0.9729872941221219,5,0.9818181818181818,Evo-QGeo (Adapted),connected_pair_pdr,unconditional_sparse,0.007113279967599562
+0.40938924139231364,0.4006107586076863,5,0.40499999999999997,Evo-QGeo (Adapted),overall_pdr,unconditional_sparse,0.003535533905932721
+0.381399891762983,0.3746001082370169,5,0.37799999999999995,Evo-QGeo (Adapted),deadline_delivery_ratio,unconditional_sparse,0.0027386127875258333
+3.037759999999998,2.982240000000001,5,3.0099999999999993,Evo-QGeo (Adapted),p95_success_delay,unconditional_sparse,0.022360679774996627
+1.7842659398993481,1.7061252263628996,5,1.7451955831311239,Evo-QGeo (Adapted),energy_per_delivered_packet,unconditional_sparse,0.031471172060129095
+4182.516224559351,4101.113775440648,5,4141.815,Evo-QGeo (Adapted),mean_policy_input_bytes,unconditional_sparse,32.7848360526631
+1.1065166751184072,0.5973794287776966,5,0.8519480519480519,RDQN-HERP (Adapted),connected_pair_pdr,unconditional_sparse,0.20505502390037558
+0.45593599999999995,0.256064,5,0.356,RDQN-HERP (Adapted),overall_pdr,unconditional_sparse,0.08049844718999243
+0.425814242744229,0.208185757255771,5,0.317,RDQN-HERP (Adapted),deadline_delivery_ratio,unconditional_sparse,0.0876498716485084
+5.938526329573331,3.8214736704266636,5,4.879999999999997,RDQN-HERP (Adapted),p95_success_delay,unconditional_sparse,0.8526429498916861
+3.475039531955204,1.1362923162114733,5,2.3056659240833386,RDQN-HERP (Adapted),energy_per_delivered_packet,unconditional_sparse,0.9419304316627067
+3163.651158705935,2387.3148412940654,5,2775.483,RDQN-HERP (Adapted),mean_policy_input_bytes,unconditional_sparse,312.66944869142554
+0.940439922293219,0.6959237140704172,5,0.8181818181818181,GAT-GRU-DDQN,connected_pair_pdr,unconditional_sparse,0.09847890187079934
+0.3865579925564568,0.29144200744354315,5,0.33899999999999997,GAT-GRU-DDQN,overall_pdr,unconditional_sparse,0.038307962618755916
+0.3525601673802716,0.25543983261972836,5,0.304,GAT-GRU-DDQN,deadline_delivery_ratio,unconditional_sparse,0.039115214431215885
+4.8552,3.7447999999999997,5,4.3,GAT-GRU-DDQN,p95_success_delay,unconditional_sparse,0.4472135954999579
+2.633907077177131,1.7097408803486456,5,2.1718239787628884,GAT-GRU-DDQN,energy_per_delivered_packet,unconditional_sparse,0.37220793202736757
+2838.476409607524,2433.831590392476,5,2636.154,GAT-GRU-DDQN,mean_policy_input_bytes,unconditional_sparse,162.97069929898433
+0.9870129870129872,0.987012987012987,5,0.9870129870129871,DiSwitch,connected_pair_pdr,unconditional_sparse,1.2412670766236366e-16
+0.4053998917629831,0.39860010823701697,5,0.402,DiSwitch,overall_pdr,unconditional_sparse,0.002738612787525833
+0.38,0.38,5,0.38,DiSwitch,deadline_delivery_ratio,unconditional_sparse,0.0
+4.07597943496678,2.784020565033217,5,3.4299999999999984,DiSwitch,p95_success_delay,unconditional_sparse,0.5203364296299093
+1.8481674267478456,1.8252381087516851,5,1.8367027677497654,DiSwitch,energy_per_delivered_packet,unconditional_sparse,0.009234782730029535
+3468.3790962097387,3121.4709037902617,5,3294.925,DiSwitch,mean_policy_input_bytes,unconditional_sparse,139.7172730910534
+0.9838337662337662,0.9694129870129871,5,0.9766233766233766,Fast-DiSwitch,connected_pair_pdr,unconditional_sparse,0.005807968772726728
+0.40709336123004525,0.3909066387699548,5,0.399,Fast-DiSwitch,overall_pdr,unconditional_sparse,0.006519202405202631
+0.378776,0.373224,5,0.376,Fast-DiSwitch,deadline_delivery_ratio,unconditional_sparse,0.0022360679774997916
+4.251980517336951,3.028019482663045,5,3.639999999999998,Fast-DiSwitch,p95_success_delay,unconditional_sparse,0.4929503017546526
+1.9824127556294193,1.8363908599958656,5,1.9094018078126425,Fast-DiSwitch,energy_per_delivered_packet,unconditional_sparse,0.058810317874640756
+4226.886068652275,4185.317931347727,5,4206.102000000001,Fast-DiSwitch,mean_policy_input_bytes,unconditional_sparse,16.741567130946603
+1.0,1.0,5,1.0,AODV,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,AODV,overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,AODV,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,AODV,p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,AODV,energy_per_delivered_packet,structural_hole_45,0.0
+228.0,228.0,5,228.0,AODV,mean_policy_input_bytes,structural_hole_45,0.0
+1.0,1.0,5,1.0,OLSR,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,OLSR,overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,OLSR,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,OLSR,p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,OLSR,energy_per_delivered_packet,structural_hole_45,0.0
+228.0,228.0,5,228.0,OLSR,mean_policy_input_bytes,structural_hole_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,connected_pair_pdr,structural_hole_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,overall_pdr,structural_hole_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,deadline_delivery_ratio,structural_hole_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,p95_success_delay,structural_hole_45,0.0
+129.14535490374263,129.14535490374263,5,129.14535490374263,Greedy Geographic,energy_per_delivered_packet,structural_hole_45,0.0
+1906.0,1906.0,5,1906.0,Greedy Geographic,mean_policy_input_bytes,structural_hole_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Evo-QGeo (Adapted),energy_per_delivered_packet,structural_hole_45,0.0
+7908.0,7908.0,5,7908.0,Evo-QGeo (Adapted),mean_policy_input_bytes,structural_hole_45,0.0
+1.190032,0.595968,5,0.893,RDQN-HERP (Adapted),connected_pair_pdr,structural_hole_45,0.23925927359247748
+1.190032,0.595968,5,0.893,RDQN-HERP (Adapted),overall_pdr,structural_hole_45,0.23925927359247748
+1.190032,0.595968,5,0.893,RDQN-HERP (Adapted),deadline_delivery_ratio,structural_hole_45,0.23925927359247748
+4.0,4.0,5,4.0,RDQN-HERP (Adapted),p95_success_delay,structural_hole_45,0.0
+3.2725312477339448,2.4475784938034404,5,2.8600548707686926,RDQN-HERP (Adapted),energy_per_delivered_packet,structural_hole_45,0.3322497183022813
+5400.618912000001,3935.657088000001,5,4668.138000000001,RDQN-HERP (Adapted),mean_policy_input_bytes,structural_hole_45,590.0133686790496
+1.0,1.0,5,1.0,GAT-GRU-DDQN,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,GAT-GRU-DDQN,overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,GAT-GRU-DDQN,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,GAT-GRU-DDQN,p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,GAT-GRU-DDQN,energy_per_delivered_packet,structural_hole_45,0.0
+4932.0,4932.0,5,4932.0,GAT-GRU-DDQN,mean_policy_input_bytes,structural_hole_45,0.0
+1.0,1.0,5,1.0,DiSwitch,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,DiSwitch,overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,DiSwitch,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,DiSwitch,energy_per_delivered_packet,structural_hole_45,0.0
+6555.669262887918,5881.130737112081,5,6218.4,DiSwitch,mean_policy_input_bytes,structural_hole_45,271.67038852256235
+1.0,1.0,5,1.0,Fast-DiSwitch,connected_pair_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Fast-DiSwitch,overall_pdr,structural_hole_45,0.0
+1.0,1.0,5,1.0,Fast-DiSwitch,deadline_delivery_ratio,structural_hole_45,0.0
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,structural_hole_45,0.0
+2.711468279642881,2.711468279642881,5,2.711468279642881,Fast-DiSwitch,energy_per_delivered_packet,structural_hole_45,0.0
+8004.0,8004.0,5,8004.0,Fast-DiSwitch,mean_policy_input_bytes,structural_hole_45,0.0
+0.6904761904761905,0.6904761904761905,5,0.6904761904761905,AODV,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.435,0.4349999999999999,5,0.43499999999999994,AODV,overall_pdr,structural_hole_225_link_loss,6.206335383118183e-17
+0.435,0.4349999999999999,5,0.43499999999999994,AODV,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,AODV,p95_success_delay,structural_hole_225_link_loss,0.0
+3.2249060561237193,3.2249060561237184,5,3.224906056123719,AODV,energy_per_delivered_packet,structural_hole_225_link_loss,4.965068306494546e-16
+153.615,153.615,5,153.615,AODV,mean_policy_input_bytes,structural_hole_225_link_loss,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,OLSR,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,OLSR,overall_pdr,structural_hole_225_link_loss,6.206335383118183e-17
+0.4400000000000001,0.44,5,0.44000000000000006,OLSR,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,OLSR,p95_success_delay,structural_hole_225_link_loss,0.0
+3.2060560661213304,3.2060560661213295,5,3.20605606612133,OLSR,energy_per_delivered_packet,structural_hole_225_link_loss,4.965068306494546e-16
+153.9,153.9,5,153.9,OLSR,mean_policy_input_bytes,structural_hole_225_link_loss,0.0
+0.07936507936507936,0.07936507936507936,5,0.07936507936507936,Greedy Geographic,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.055000000000000014,0.055,5,0.05500000000000001,Greedy Geographic,overall_pdr,structural_hole_225_link_loss,7.757919228897728e-18
+0.05,0.05,5,0.05,Greedy Geographic,deadline_delivery_ratio,structural_hole_225_link_loss,0.0
+4.0,4.0,5,4.0,Greedy Geographic,p95_success_delay,structural_hole_225_link_loss,0.0
+13.76638833403768,13.76638833403768,5,13.76638833403768,Greedy Geographic,energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+2010.83,2010.83,5,2010.83,Greedy Geographic,mean_policy_input_bytes,structural_hole_225_link_loss,0.0
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Evo-QGeo (Adapted),connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.66,0.66,5,0.66,Evo-QGeo (Adapted),overall_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,Evo-QGeo (Adapted),deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,structural_hole_225_link_loss,0.0
+3.2067865603618357,3.2067865603618357,5,3.2067865603618357,Evo-QGeo (Adapted),energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+6998.58,6998.58,5,6998.58,Evo-QGeo (Adapted),mean_policy_input_bytes,structural_hole_225_link_loss,0.0
+0.7931129295244543,0.41958548317395833,5,0.6063492063492063,RDQN-HERP (Adapted),connected_pair_pdr,structural_hole_225_link_loss,0.15043817750389316
+0.6707325574984732,0.34926744250152686,5,0.51,RDQN-HERP (Adapted),overall_pdr,structural_hole_225_link_loss,0.1294700737622405
+0.49966114560040625,0.26433885439959376,5,0.382,RDQN-HERP (Adapted),deadline_delivery_ratio,structural_hole_225_link_loss,0.0947760518274527
+4.0,4.0,5,4.0,RDQN-HERP (Adapted),p95_success_delay,structural_hole_225_link_loss,0.0
+4.1890508304381875,2.9023512309412727,5,3.54570103068973,RDQN-HERP (Adapted),energy_per_delivered_packet,structural_hole_225_link_loss,0.5182182584828631
+4375.246034943795,3402.517965056205,5,3888.882,RDQN-HERP (Adapted),mean_policy_input_bytes,structural_hole_225_link_loss,391.7662262051184
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,GAT-GRU-DDQN,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.6333932844607781,0.5646067155392218,5,0.599,GAT-GRU-DDQN,overall_pdr,structural_hole_225_link_loss,0.027703790354390162
+0.4400000000000001,0.44,5,0.44000000000000006,GAT-GRU-DDQN,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,GAT-GRU-DDQN,p95_success_delay,structural_hole_225_link_loss,0.0
+3.338063351177675,3.2563477245203374,5,3.297205537849006,GAT-GRU-DDQN,energy_per_delivered_packet,structural_hole_225_link_loss,0.03291096830507954
+4307.366726484443,4052.3732735155572,5,4179.87,GAT-GRU-DDQN,mean_policy_input_bytes,structural_hole_225_link_loss,102.69861214982399
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,DiSwitch,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.58,0.58,5,0.58,DiSwitch,overall_pdr,structural_hole_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,DiSwitch,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,structural_hole_225_link_loss,0.0
+3.342636157474066,3.342636157474066,5,3.342636157474066,DiSwitch,energy_per_delivered_packet,structural_hole_225_link_loss,0.0
+5532.692375542446,4915.489624457555,5,5224.091,DiSwitch,mean_policy_input_bytes,structural_hole_225_link_loss,248.57840549814466
+0.6984126984126984,0.6984126984126984,5,0.6984126984126984,Fast-DiSwitch,connected_pair_pdr,structural_hole_225_link_loss,0.0
+0.6029400274706551,0.5790599725293448,5,0.591,Fast-DiSwitch,overall_pdr,structural_hole_225_link_loss,0.00961769203083568
+0.4400000000000001,0.44,5,0.44000000000000006,Fast-DiSwitch,deadline_delivery_ratio,structural_hole_225_link_loss,6.206335383118183e-17
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,structural_hole_225_link_loss,0.0
+3.342981557506464,3.3024357015191237,5,3.322708629512794,Fast-DiSwitch,energy_per_delivered_packet,structural_hole_225_link_loss,0.016329843334584045
+6825.207768453431,6705.554231546568,5,6765.380999999999,Fast-DiSwitch,mean_policy_input_bytes,structural_hole_225_link_loss,48.19046150432697
+0.0,0.0,5,0.0,AODV,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,AODV,overall_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,AODV,deadline_delivery_ratio,predictive_break_45,0.0
+0.0,0.0,5,0.0,AODV,p95_success_delay,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,AODV,energy_per_delivered_packet,predictive_break_45,0.0
+114.0,114.0,5,114.0,AODV,mean_policy_input_bytes,predictive_break_45,0.0
+0.0,0.0,5,0.0,OLSR,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,OLSR,overall_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,OLSR,deadline_delivery_ratio,predictive_break_45,0.0
+0.0,0.0,5,0.0,OLSR,p95_success_delay,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,OLSR,energy_per_delivered_packet,predictive_break_45,0.0
+114.0,114.0,5,114.0,OLSR,mean_policy_input_bytes,predictive_break_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,connected_pair_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,overall_pdr,predictive_break_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,deadline_delivery_ratio,predictive_break_45,0.0
+0.0,0.0,5,0.0,Greedy Geographic,p95_success_delay,predictive_break_45,0.0
+181.40585244107663,181.40585244107663,5,181.40585244107663,Greedy Geographic,energy_per_delivered_packet,predictive_break_45,0.0
+1906.0,1906.0,5,1906.0,Greedy Geographic,mean_policy_input_bytes,predictive_break_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),overall_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,Evo-QGeo (Adapted),deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,Evo-QGeo (Adapted),p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,Evo-QGeo (Adapted),energy_per_delivered_packet,predictive_break_45,0.0
+11862.0,11862.0,5,11862.0,Evo-QGeo (Adapted),mean_policy_input_bytes,predictive_break_45,0.0
+1.031968,0.932032,5,0.982,RDQN-HERP (Adapted),connected_pair_pdr,predictive_break_45,0.0402492235949962
+1.031968,0.932032,5,0.982,RDQN-HERP (Adapted),overall_pdr,predictive_break_45,0.0402492235949962
+1.031968,0.932032,5,0.982,RDQN-HERP (Adapted),deadline_delivery_ratio,predictive_break_45,0.0402492235949962
+6.0,6.0,5,6.0,RDQN-HERP (Adapted),p95_success_delay,predictive_break_45,0.0
+4.4666717711081105,4.127251450385362,5,4.296961610746736,RDQN-HERP (Adapted),energy_per_delivered_packet,predictive_break_45,0.13670153279554126
+7437.416544,7314.1954559999995,5,7375.806,RDQN-HERP (Adapted),mean_policy_input_bytes,predictive_break_45,49.62729269263045
+1.137398151556834,-0.08339815155683428,5,0.5269999999999999,GAT-GRU-DDQN,connected_pair_pdr,predictive_break_45,0.4916757061315924
+1.137398151556834,-0.08339815155683428,5,0.5269999999999999,GAT-GRU-DDQN,overall_pdr,predictive_break_45,0.4916757061315924
+1.137398151556834,-0.08339815155683428,5,0.5269999999999999,GAT-GRU-DDQN,deadline_delivery_ratio,predictive_break_45,0.4916757061315924
+8.1312,1.4688000000000003,5,4.8,GAT-GRU-DDQN,p95_success_delay,predictive_break_45,2.6832815729997477
+469.98938382169985,-204.06114865575051,5,132.96411758297467,GAT-GRU-DDQN,energy_per_delivered_packet,predictive_break_45,271.4738492236147
+8451.701567587206,3902.958432412793,5,6177.33,GAT-GRU-DDQN,mean_policy_input_bytes,predictive_break_45,1832.0062792571155
+1.0,1.0,5,1.0,DiSwitch,connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,DiSwitch,overall_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,DiSwitch,deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,DiSwitch,p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,DiSwitch,energy_per_delivered_packet,predictive_break_45,0.0
+9526.0,9526.0,5,9526.0,DiSwitch,mean_policy_input_bytes,predictive_break_45,0.0
+1.0,1.0,5,1.0,Fast-DiSwitch,connected_pair_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,Fast-DiSwitch,overall_pdr,predictive_break_45,0.0
+1.0,1.0,5,1.0,Fast-DiSwitch,deadline_delivery_ratio,predictive_break_45,0.0
+6.0,6.0,5,6.0,Fast-DiSwitch,p95_success_delay,predictive_break_45,0.0
+4.235826826754887,4.235826826754887,5,4.235826826754887,Fast-DiSwitch,energy_per_delivered_packet,predictive_break_45,0.0
+12006.0,12006.0,5,12006.0,Fast-DiSwitch,mean_policy_input_bytes,predictive_break_45,0.0
+0.0872093023255814,0.0872093023255814,5,0.0872093023255814,AODV,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.075,0.075,5,0.075,AODV,overall_pdr,predictive_break_225_link_loss,0.0
+0.075,0.075,5,0.075,AODV,deadline_delivery_ratio,predictive_break_225_link_loss,0.0
+6.0,6.0,5,6.0,AODV,p95_success_delay,predictive_break_225_link_loss,0.0
+14.867116631026581,14.867116631026581,5,14.867116631026581,AODV,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+129.105,129.105,5,129.105,AODV,mean_policy_input_bytes,predictive_break_225_link_loss,0.0
+0.0,0.0,5,0.0,OLSR,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.0,0.0,5,0.0,OLSR,overall_pdr,predictive_break_225_link_loss,0.0
+0.0,0.0,5,0.0,OLSR,deadline_delivery_ratio,predictive_break_225_link_loss,0.0
+0.0,0.0,5,0.0,OLSR,p95_success_delay,predictive_break_225_link_loss,0.0
+179.149613793116,179.149613793116,5,179.149613793116,OLSR,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+114.855,114.85499999999998,5,114.85499999999999,OLSR,mean_policy_input_bytes,predictive_break_225_link_loss,1.5888218580782548e-14
+0.02906976744186047,0.029069767441860465,5,0.029069767441860468,Greedy Geographic,connected_pair_pdr,predictive_break_225_link_loss,3.878959614448864e-18
+0.05,0.05,5,0.05,Greedy Geographic,overall_pdr,predictive_break_225_link_loss,0.0
+0.025,0.025,5,0.025,Greedy Geographic,deadline_delivery_ratio,predictive_break_225_link_loss,0.0
+6.0,6.0,5,6.0,Greedy Geographic,p95_success_delay,predictive_break_225_link_loss,0.0
+21.575958585746395,21.575958585746395,5,21.575958585746395,Greedy Geographic,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+2106.13,2106.13,5,2106.13,Greedy Geographic,mean_policy_input_bytes,predictive_break_225_link_loss,0.0
+0.5581395348837209,0.5581395348837209,5,0.5581395348837209,Evo-QGeo (Adapted),connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.55,0.55,5,0.55,Evo-QGeo (Adapted),overall_pdr,predictive_break_225_link_loss,0.0
+0.48,0.48,5,0.48,Evo-QGeo (Adapted),deadline_delivery_ratio,predictive_break_225_link_loss,0.0
+6.0,6.0,5,6.0,Evo-QGeo (Adapted),p95_success_delay,predictive_break_225_link_loss,0.0
+5.830631504423986,5.830631504423986,5,5.830631504423986,Evo-QGeo (Adapted),energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+9499.485,9499.485,5,9499.485,Evo-QGeo (Adapted),mean_policy_input_bytes,predictive_break_225_link_loss,0.0
+0.5122582251093808,0.39704410047201455,5,0.45465116279069767,RDQN-HERP (Adapted),connected_pair_pdr,predictive_break_225_link_loss,0.046402488230778874
+0.5045385669965275,0.38546143300347246,5,0.445,RDQN-HERP (Adapted),overall_pdr,predictive_break_225_link_loss,0.04795831523312719
+0.4405420735940675,0.34145792640593253,5,0.391,RDQN-HERP (Adapted),deadline_delivery_ratio,predictive_break_225_link_loss,0.03990613987846983
+6.0,6.0,5,6.0,RDQN-HERP (Adapted),p95_success_delay,predictive_break_225_link_loss,0.0
+7.243167258919656,5.850326599666597,5,6.546746929293127,RDQN-HERP (Adapted),energy_per_delivered_packet,predictive_break_225_link_loss,0.5609665698694999
+5743.760348699068,5205.279651300931,5,5474.5199999999995,RDQN-HERP (Adapted),mean_policy_input_bytes,predictive_break_225_link_loss,216.87309869483587
+0.5197043912222878,0.015179329707944611,5,0.26744186046511625,GAT-GRU-DDQN,connected_pair_pdr,predictive_break_225_link_loss,0.20319746648024758
+0.5004585235805064,0.013541476419493631,5,0.257,GAT-GRU-DDQN,overall_pdr,predictive_break_225_link_loss,0.19610583877080254
+0.4469457764511676,0.013054223548832428,5,0.23000000000000004,GAT-GRU-DDQN,deadline_delivery_ratio,predictive_break_225_link_loss,0.17474982117301294
+6.0,6.0,5,6.0,GAT-GRU-DDQN,p95_success_delay,predictive_break_225_link_loss,0.0
+50.151404634435494,-8.949747701492768,5,20.600828466471363,GAT-GRU-DDQN,energy_per_delivered_packet,predictive_break_225_link_loss,23.802988863779916
+6069.717964889541,3947.174035110459,5,5008.446,GAT-GRU-DDQN,mean_policy_input_bytes,predictive_break_225_link_loss,854.854559116637
+0.5116279069767442,0.5116279069767442,5,0.5116279069767442,DiSwitch,connected_pair_pdr,predictive_break_225_link_loss,0.0
+0.5,0.5,5,0.5,DiSwitch,overall_pdr,predictive_break_225_link_loss,0.0
+0.4400000000000001,0.44,5,0.44000000000000006,DiSwitch,deadline_delivery_ratio,predictive_break_225_link_loss,6.206335383118183e-17
+6.0,6.0,5,6.0,DiSwitch,p95_success_delay,predictive_break_225_link_loss,0.0
+6.020406760902647,6.020406760902647,5,6.020406760902647,DiSwitch,energy_per_delivered_packet,predictive_break_225_link_loss,0.0
+7431.970681252009,7136.87131874799,5,7284.420999999999,DiSwitch,mean_policy_input_bytes,predictive_break_225_link_loss,118.85126705256455
+0.521953488372093,0.48967441860465116,5,0.5058139534883721,Fast-DiSwitch,connected_pair_pdr,predictive_break_225_link_loss,0.013000395218022034
+0.5125569655692549,0.47744303443074515,5,0.495,Fast-DiSwitch,overall_pdr,predictive_break_225_link_loss,0.014142135623730963
+0.44887999999999995,0.42111999999999994,5,0.43499999999999994,Fast-DiSwitch,deadline_delivery_ratio,predictive_break_225_link_loss,0.011180339887498959
+6.0,6.0,5,6.0,Fast-DiSwitch,p95_success_delay,predictive_break_225_link_loss,0.0
+6.2543657109853905,5.900263268259681,5,6.077314489622536,Fast-DiSwitch,energy_per_delivered_packet,predictive_break_225_link_loss,0.14261475737273308
+9175.001208,9086.124792,5,9130.563,Fast-DiSwitch,mean_policy_input_bytes,predictive_break_225_link_loss,35.794976183816466
+0.735,0.735,5,0.735,AODV,connected_pair_pdr,ood_link_loss_30,0.0
+0.735,0.735,5,0.735,AODV,overall_pdr,ood_link_loss_30,0.0
+0.735,0.735,5,0.735,AODV,deadline_delivery_ratio,ood_link_loss_30,0.0
+4.0,4.0,5,4.0,AODV,p95_success_delay,ood_link_loss_30,0.0
+1.4298621714480475,1.4298621714480475,5,1.4298621714480475,AODV,energy_per_delivered_packet,ood_link_loss_30,0.0
+135.375,135.375,5,135.375,AODV,mean_policy_input_bytes,ood_link_loss_30,0.0
+0.625,0.625,5,0.625,OLSR,connected_pair_pdr,ood_link_loss_30,0.0
+0.625,0.625,5,0.625,OLSR,overall_pdr,ood_link_loss_30,0.0
+0.625,0.625,5,0.625,OLSR,deadline_delivery_ratio,ood_link_loss_30,0.0
+3.0,3.0,5,3.0,OLSR,p95_success_delay,ood_link_loss_30,0.0
+1.4626528579784193,1.4626528579784193,5,1.4626528579784193,OLSR,energy_per_delivered_packet,ood_link_loss_30,0.0
+123.69000000000003,123.69,5,123.69000000000001,OLSR,mean_policy_input_bytes,ood_link_loss_30,1.5888218580782548e-14
+0.78,0.78,5,0.78,Greedy Geographic,connected_pair_pdr,ood_link_loss_30,0.0
+0.78,0.78,5,0.78,Greedy Geographic,overall_pdr,ood_link_loss_30,0.0
+0.78,0.78,5,0.78,Greedy Geographic,deadline_delivery_ratio,ood_link_loss_30,0.0
+4.0,4.0,5,4.0,Greedy Geographic,p95_success_delay,ood_link_loss_30,0.0
+1.4262833442204115,1.4262833442204115,5,1.4262833442204115,Greedy Geographic,energy_per_delivered_packet,ood_link_loss_30,0.0
+2411.09,2411.09,5,2411.09,Greedy Geographic,mean_policy_input_bytes,ood_link_loss_30,0.0
+0.7464138740165779,0.7275861259834221,5,0.737,Evo-QGeo (Adapted),connected_pair_pdr,ood_link_loss_30,0.007582875444051557
+0.7464138740165779,0.7275861259834221,5,0.737,Evo-QGeo (Adapted),overall_pdr,ood_link_loss_30,0.007582875444051557
+0.74729033463569,0.71870966536431,5,0.733,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_link_loss_30,0.011510864433221349
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,ood_link_loss_30,0.0
+1.523478883044871,1.482751060847832,5,1.5031149719463515,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_link_loss_30,0.01640313022480246
+5218.180642430738,5101.759357569263,5,5159.97,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_link_loss_30,46.88867200614667
+0.7057794443026322,0.48422055569736777,5,0.595,RDQN-HERP (Adapted),connected_pair_pdr,ood_link_loss_30,0.08923284148787373
+0.7057794443026322,0.48422055569736777,5,0.595,RDQN-HERP (Adapted),overall_pdr,ood_link_loss_30,0.08923284148787373
+0.6875907013549968,0.4444092986450034,5,0.5660000000000001,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_link_loss_30,0.09794130895592522
+5.3552,4.2448,5,4.8,RDQN-HERP (Adapted),p95_success_delay,ood_link_loss_30,0.44721359549995787
+2.6378938981267885,1.449648659691754,5,2.0437712789092712,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_link_loss_30,0.47856576496419023
+3927.916404927896,3262.9395950721037,5,3595.428,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_link_loss_30,267.81940747451443
+0.7210172013134154,0.45898279868658476,5,0.5900000000000001,GAT-GRU-DDQN,connected_pair_pdr,ood_link_loss_30,0.10553435459602718
+0.7210172013134154,0.45898279868658476,5,0.5900000000000001,GAT-GRU-DDQN,overall_pdr,ood_link_loss_30,0.10553435459602718
+0.7034985156592756,0.45050148434072435,5,0.577,GAT-GRU-DDQN,deadline_delivery_ratio,ood_link_loss_30,0.10189455333824278
+5.315562874306748,3.904437125693251,5,4.609999999999999,GAT-GRU-DDQN,p95_success_delay,ood_link_loss_30,0.5683308895353132
+2.49482268827399,1.46631005784359,5,1.98056637305879,GAT-GRU-DDQN,energy_per_delivered_packet,ood_link_loss_30,0.41423345773766107
+3810.450915867127,3111.6110841328727,5,3461.031,GAT-GRU-DDQN,mean_policy_input_bytes,ood_link_loss_30,281.4577393988305
+0.7935802613585269,0.7624197386414734,5,0.7780000000000001,DiSwitch,connected_pair_pdr,ood_link_loss_30,0.012549900398011142
+0.7935802613585269,0.7624197386414734,5,0.7780000000000001,DiSwitch,overall_pdr,ood_link_loss_30,0.012549900398011142
+0.7937712678113494,0.7602287321886508,5,0.7770000000000001,DiSwitch,deadline_delivery_ratio,ood_link_loss_30,0.013509256086106309
+4.0,4.0,5,4.0,DiSwitch,p95_success_delay,ood_link_loss_30,0.0
+1.4467825726460015,1.4019119293284268,5,1.4243472509872142,DiSwitch,energy_per_delivered_packet,ood_link_loss_30,0.018071651414308956
+3958.225740590883,3803.9682594091173,5,3881.097,DiSwitch,mean_policy_input_bytes,ood_link_loss_30,62.12719992080757
+0.798225682336586,0.7517743176634141,5,0.775,Fast-DiSwitch,connected_pair_pdr,ood_link_loss_30,0.018708286933869722
+0.798225682336586,0.7517743176634141,5,0.775,Fast-DiSwitch,overall_pdr,ood_link_loss_30,0.018708286933869722
+0.7955954226635771,0.746404577336423,5,0.771,Fast-DiSwitch,deadline_delivery_ratio,ood_link_loss_30,0.019811612756158968
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,ood_link_loss_30,0.0
+1.6149785033450699,1.4367469540529791,5,1.5258627286990245,Fast-DiSwitch,energy_per_delivered_packet,ood_link_loss_30,0.07178275575508275
+5325.5039710848205,5059.686028915178,5,5192.594999999999,Fast-DiSwitch,mean_policy_input_bytes,ood_link_loss_30,107.05817513156124
+0.945,0.945,5,0.945,AODV,connected_pair_pdr,ood_extreme_mobility,0.0
+0.945,0.945,5,0.945,AODV,overall_pdr,ood_extreme_mobility,0.0
+0.945,0.945,5,0.945,AODV,deadline_delivery_ratio,ood_extreme_mobility,0.0
+4.0,4.0,5,4.0,AODV,p95_success_delay,ood_extreme_mobility,0.0
+1.2200177665750596,1.2200177665750596,5,1.2200177665750596,AODV,energy_per_delivered_packet,ood_extreme_mobility,0.0
+136.23,136.23,5,136.23,AODV,mean_policy_input_bytes,ood_extreme_mobility,0.0
+0.8800000000000002,0.88,5,0.8800000000000001,OLSR,connected_pair_pdr,ood_extreme_mobility,1.2412670766236366e-16
+0.8800000000000002,0.88,5,0.8800000000000001,OLSR,overall_pdr,ood_extreme_mobility,1.2412670766236366e-16
+0.8800000000000002,0.88,5,0.8800000000000001,OLSR,deadline_delivery_ratio,ood_extreme_mobility,1.2412670766236366e-16
+3.0,3.0,5,3.0,OLSR,p95_success_delay,ood_extreme_mobility,0.0
+1.2183169994387328,1.2183169994387328,5,1.2183169994387328,OLSR,energy_per_delivered_packet,ood_extreme_mobility,0.0
+124.83,124.83,5,124.83,OLSR,mean_policy_input_bytes,ood_extreme_mobility,0.0
+0.96,0.96,5,0.96,Greedy Geographic,connected_pair_pdr,ood_extreme_mobility,0.0
+0.96,0.96,5,0.96,Greedy Geographic,overall_pdr,ood_extreme_mobility,0.0
+0.96,0.96,5,0.96,Greedy Geographic,deadline_delivery_ratio,ood_extreme_mobility,0.0
+3.0,3.0,5,3.0,Greedy Geographic,p95_success_delay,ood_extreme_mobility,0.0
+1.2194425725375375,1.2194425725375375,5,1.2194425725375375,Greedy Geographic,energy_per_delivered_packet,ood_extreme_mobility,0.0
+2201.43,2201.43,5,2201.43,Greedy Geographic,mean_policy_input_bytes,ood_extreme_mobility,0.0
+0.9561934204528422,0.9458065795471577,5,0.951,Evo-QGeo (Adapted),connected_pair_pdr,ood_extreme_mobility,0.004183300132670382
+0.9561934204528422,0.9458065795471577,5,0.951,Evo-QGeo (Adapted),overall_pdr,ood_extreme_mobility,0.004183300132670382
+0.9541934204528423,0.9438065795471579,5,0.9490000000000001,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_extreme_mobility,0.004183300132670382
+4.0,4.0,5,4.0,Evo-QGeo (Adapted),p95_success_delay,ood_extreme_mobility,0.0
+1.2504214812504166,1.2039096787512777,5,1.2271655800008472,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_extreme_mobility,0.018732628268033045
+4824.413539303928,4716.588460696073,5,4770.501,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_extreme_mobility,43.426549972338144
+0.9454104555060573,0.5685895444939427,5,0.757,RDQN-HERP (Adapted),connected_pair_pdr,ood_extreme_mobility,0.15176462038301286
+0.9454104555060573,0.5685895444939427,5,0.757,RDQN-HERP (Adapted),overall_pdr,ood_extreme_mobility,0.15176462038301286
+0.8687427479236007,0.3112572520763994,5,0.5900000000000001,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_extreme_mobility,0.22452728119317705
+7.510400000000001,5.2896,5,6.4,RDQN-HERP (Adapted),p95_success_delay,ood_extreme_mobility,0.8944271909999159
+3.533440666388426,1.2698064661172985,5,2.401623566252862,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_extreme_mobility,0.9116786649855214
+6189.911855111503,3659.2921448884963,5,4924.602,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_extreme_mobility,1019.2070780366471
+0.8633402306407912,0.5706597693592087,5,0.717,GAT-GRU-DDQN,connected_pair_pdr,ood_extreme_mobility,0.11787705459503132
+0.8633402306407912,0.5706597693592087,5,0.717,GAT-GRU-DDQN,overall_pdr,ood_extreme_mobility,0.11787705459503132
+0.7435025563902505,0.5244974436097495,5,0.634,GAT-GRU-DDQN,deadline_delivery_ratio,ood_extreme_mobility,0.08820430828479978
+6.3552,5.2448,5,5.8,GAT-GRU-DDQN,p95_success_delay,ood_extreme_mobility,0.44721359549995787
+2.4020225765100456,1.7501603461629587,5,2.0760914613365022,GAT-GRU-DDQN,energy_per_delivered_packet,ood_extreme_mobility,0.2625375106305319
+4497.888062037785,3787.8719379622135,5,4142.879999999999,GAT-GRU-DDQN,mean_policy_input_bytes,ood_extreme_mobility,285.9589910940027
+0.9740774390848667,0.9599225609151331,5,0.9669999999999999,DiSwitch,connected_pair_pdr,ood_extreme_mobility,0.005700877125495695
+0.9740774390848667,0.9599225609151331,5,0.9669999999999999,DiSwitch,overall_pdr,ood_extreme_mobility,0.005700877125495695
+0.9740774390848667,0.9599225609151331,5,0.9669999999999999,DiSwitch,deadline_delivery_ratio,ood_extreme_mobility,0.005700877125495695
+3.810429523989945,2.7295704760100525,5,3.2699999999999987,DiSwitch,p95_success_delay,ood_extreme_mobility,0.43531597719357806
+1.2177082349093902,1.2103399330805398,5,1.214024083994965,DiSwitch,energy_per_delivered_packet,ood_extreme_mobility,0.002967583531708471
+3897.069718648915,3412.502281351085,5,3654.786,DiSwitch,mean_policy_input_bytes,ood_extreme_mobility,195.15953340792768
+0.9808831290326944,0.9451168709673053,5,0.9629999999999999,Fast-DiSwitch,connected_pair_pdr,ood_extreme_mobility,0.014404860290887946
+0.9808831290326944,0.9451168709673053,5,0.9629999999999999,Fast-DiSwitch,overall_pdr,ood_extreme_mobility,0.014404860290887946
+0.9841149336252032,0.9258850663747965,5,0.9549999999999998,Fast-DiSwitch,deadline_delivery_ratio,ood_extreme_mobility,0.02345207879911711
+4.0,4.0,5,4.0,Fast-DiSwitch,p95_success_delay,ood_extreme_mobility,0.0
+1.3992067116910416,1.2078717839233062,5,1.303539247807174,Fast-DiSwitch,energy_per_delivered_packet,ood_extreme_mobility,0.0770601413830454
+4997.101937509842,4619.704062490158,5,4808.403,Fast-DiSwitch,mean_policy_input_bytes,ood_extreme_mobility,151.99699263472291
+0.99,0.99,5,0.99,AODV,connected_pair_pdr,ood_nodes_16,0.0
+0.99,0.99,5,0.99,AODV,overall_pdr,ood_nodes_16,0.0
+0.99,0.99,5,0.99,AODV,deadline_delivery_ratio,ood_nodes_16,0.0
+5.0,5.0,5,5.0,AODV,p95_success_delay,ood_nodes_16,0.0
+1.7282074553777926,1.7282074553777922,5,1.7282074553777924,AODV,energy_per_delivered_packet,ood_nodes_16,2.482534153247273e-16
+166.155,166.155,5,166.155,AODV,mean_policy_input_bytes,ood_nodes_16,0.0
+0.975,0.975,5,0.975,OLSR,connected_pair_pdr,ood_nodes_16,0.0
+0.975,0.975,5,0.975,OLSR,overall_pdr,ood_nodes_16,0.0
+0.975,0.975,5,0.975,OLSR,deadline_delivery_ratio,ood_nodes_16,0.0
+5.0,5.0,5,5.0,OLSR,p95_success_delay,ood_nodes_16,0.0
+1.7359794514151916,1.7359794514151912,5,1.7359794514151914,OLSR,energy_per_delivered_packet,ood_nodes_16,2.482534153247273e-16
+161.595,161.595,5,161.595,OLSR,mean_policy_input_bytes,ood_nodes_16,0.0
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,connected_pair_pdr,ood_nodes_16,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,overall_pdr,ood_nodes_16,1.2412670766236366e-16
+0.9800000000000002,0.98,5,0.9800000000000001,Greedy Geographic,deadline_delivery_ratio,ood_nodes_16,1.2412670766236366e-16
+5.0,5.0,5,5.0,Greedy Geographic,p95_success_delay,ood_nodes_16,0.0
+1.7155006137990056,1.7155006137990056,5,1.7155006137990056,Greedy Geographic,energy_per_delivered_packet,ood_nodes_16,0.0
+2744.64,2744.64,5,2744.64,Greedy Geographic,mean_policy_input_bytes,ood_nodes_16,0.0
+0.9228277480331559,0.8851722519668443,5,0.9040000000000001,Evo-QGeo (Adapted),connected_pair_pdr,ood_nodes_16,0.015165750888103116
+0.9228277480331559,0.8851722519668443,5,0.9040000000000001,Evo-QGeo (Adapted),overall_pdr,ood_nodes_16,0.015165750888103116
+0.9115028035381436,0.8684971964618564,5,0.89,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_nodes_16,0.017320508075688787
+6.0,6.0,5,6.0,Evo-QGeo (Adapted),p95_success_delay,ood_nodes_16,0.0
+1.9575493709842702,1.8656430778227353,5,1.9115962244035027,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_nodes_16,0.03701525919834581
+6826.475072028026,6640.848927971972,5,6733.661999999999,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_nodes_16,74.76092876630148
+0.7005495252499979,0.5154504747500023,5,0.6080000000000001,RDQN-HERP (Adapted),connected_pair_pdr,ood_nodes_16,0.07454864183873504
+0.7005495252499979,0.5154504747500023,5,0.6080000000000001,RDQN-HERP (Adapted),overall_pdr,ood_nodes_16,0.07454864183873504
+0.5937990352977008,0.3282009647022991,5,0.46099999999999997,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_nodes_16,0.10696962185592691
+10.7104,8.4896,5,9.6,RDQN-HERP (Adapted),p95_success_delay,ood_nodes_16,0.8944271909999157
+5.2671310121089965,3.187180826424208,5,4.227155919266602,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_nodes_16,0.8376999288552771
+7712.343599101489,6070.130400898509,5,6891.236999999999,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_nodes_16,661.4013589209657
+0.6856039724756405,0.5303960275243592,5,0.6079999999999999,GAT-GRU-DDQN,connected_pair_pdr,ood_nodes_16,0.06250999920012797
+0.6856039724756405,0.5303960275243592,5,0.6079999999999999,GAT-GRU-DDQN,overall_pdr,ood_nodes_16,0.06250999920012797
+0.6115693719510545,0.4384306280489457,5,0.5250000000000001,GAT-GRU-DDQN,deadline_delivery_ratio,ood_nodes_16,0.06973162840490678
+9.70497971732273,6.115020282677268,5,7.909999999999999,GAT-GRU-DDQN,p95_success_delay,ood_nodes_16,1.445856147754678
+4.282881057054375,2.60633193986407,5,3.4446064984592226,GAT-GRU-DDQN,energy_per_delivered_packet,ood_nodes_16,0.6752301501539596
+6612.881975346841,4540.836024653158,5,5576.8589999999995,GAT-GRU-DDQN,mean_policy_input_bytes,ood_nodes_16,834.516498244642
+0.9803279999999999,0.9636719999999999,5,0.9719999999999999,DiSwitch,connected_pair_pdr,ood_nodes_16,0.006708203932499375
+0.9803279999999999,0.9636719999999999,5,0.9719999999999999,DiSwitch,overall_pdr,ood_nodes_16,0.006708203932499375
+0.9776023890981717,0.9623976109018283,5,0.97,DiSwitch,deadline_delivery_ratio,ood_nodes_16,0.006123724356957951
+5.0,5.0,5,5.0,DiSwitch,p95_success_delay,ood_nodes_16,0.0
+1.7618073210553509,1.7398579130646668,5,1.7508326170600088,DiSwitch,energy_per_delivered_packet,ood_nodes_16,0.008840123979295166
+4595.94789369923,4415.448106300769,5,4505.697999999999,DiSwitch,mean_policy_input_bytes,ood_nodes_16,72.6962886432312
+0.9737574140002556,0.8462425859997442,5,0.9099999999999999,Fast-DiSwitch,connected_pair_pdr,ood_nodes_16,0.051356596460435326
+0.9737574140002556,0.8462425859997442,5,0.9099999999999999,Fast-DiSwitch,overall_pdr,ood_nodes_16,0.051356596460435326
+0.9668402510704074,0.8211597489295924,5,0.8939999999999999,Fast-DiSwitch,deadline_delivery_ratio,ood_nodes_16,0.05867282164682381
+6.07997835259661,4.7200216474033905,5,5.4,Fast-DiSwitch,p95_success_delay,ood_nodes_16,0.5477225575051662
+2.5038124650290987,1.7129781252336829,5,2.1083952951313907,Fast-DiSwitch,energy_per_delivered_packet,ood_nodes_16,0.31850852714764355
+7341.067812661492,6017.608187338509,5,6679.338000000001,Fast-DiSwitch,mean_policy_input_bytes,ood_nodes_16,533.0233587353372
+0.945,0.945,5,0.945,AODV,connected_pair_pdr,ood_nodes_24,0.0
+0.945,0.945,5,0.945,AODV,overall_pdr,ood_nodes_24,0.0
+0.945,0.945,5,0.945,AODV,deadline_delivery_ratio,ood_nodes_24,0.0
+6.0,6.0,5,6.0,AODV,p95_success_delay,ood_nodes_24,0.0
+2.0184287976237707,2.0184287976237707,5,2.0184287976237707,AODV,energy_per_delivered_packet,ood_nodes_24,0.0
+192.945,192.945,5,192.945,AODV,mean_policy_input_bytes,ood_nodes_24,0.0
+0.885,0.885,5,0.885,OLSR,connected_pair_pdr,ood_nodes_24,0.0
+0.885,0.885,5,0.885,OLSR,overall_pdr,ood_nodes_24,0.0
+0.885,0.885,5,0.885,OLSR,deadline_delivery_ratio,ood_nodes_24,0.0
+5.0,5.0,5,5.0,OLSR,p95_success_delay,ood_nodes_24,0.0
+2.071521736195497,2.071521736195497,5,2.071521736195497,OLSR,energy_per_delivered_packet,ood_nodes_24,0.0
+183.54,183.54,5,183.54,OLSR,mean_policy_input_bytes,ood_nodes_24,0.0
+0.94,0.9399999999999997,5,0.9399999999999998,Greedy Geographic,connected_pair_pdr,ood_nodes_24,1.2412670766236366e-16
+0.94,0.9399999999999997,5,0.9399999999999998,Greedy Geographic,overall_pdr,ood_nodes_24,1.2412670766236366e-16
+0.9350000000000003,0.935,5,0.9350000000000002,Greedy Geographic,deadline_delivery_ratio,ood_nodes_24,1.2412670766236366e-16
+6.0,6.0,5,6.0,Greedy Geographic,p95_success_delay,ood_nodes_24,0.0
+2.112598111406013,2.112598111406013,5,2.112598111406013,Greedy Geographic,energy_per_delivered_packet,ood_nodes_24,0.0
+3406.975,3406.975,5,3406.975,Greedy Geographic,mean_policy_input_bytes,ood_nodes_24,0.0
+0.8642761653056347,0.8417238346943653,5,0.853,Evo-QGeo (Adapted),connected_pair_pdr,ood_nodes_24,0.009082951062292483
+0.8642761653056347,0.8417238346943653,5,0.853,Evo-QGeo (Adapted),overall_pdr,ood_nodes_24,0.009082951062292483
+0.8448831290326944,0.8091168709673056,5,0.827,Evo-QGeo (Adapted),deadline_delivery_ratio,ood_nodes_24,0.014404860290887913
+7.8552,6.7448,5,7.3,Evo-QGeo (Adapted),p95_success_delay,ood_nodes_24,0.4472135954999579
+2.49087440154756,2.3191146235553304,5,2.404994512551445,Evo-QGeo (Adapted),energy_per_delivered_packet,ood_nodes_24,0.06917624989029146
+8569.338648246161,8183.75935175384,5,8376.549,Evo-QGeo (Adapted),mean_policy_input_bytes,ood_nodes_24,155.29206009967174
+0.46220011498931407,0.2737998850106859,5,0.368,RDQN-HERP (Adapted),connected_pair_pdr,ood_nodes_24,0.0758781918603758
+0.46220011498931407,0.2737998850106859,5,0.368,RDQN-HERP (Adapted),overall_pdr,ood_nodes_24,0.0758781918603758
+0.362440926987339,0.155559073012661,5,0.259,RDQN-HERP (Adapted),deadline_delivery_ratio,ood_nodes_24,0.08332166584988565
+11.815487816973357,8.984512183026643,5,10.4,RDQN-HERP (Adapted),p95_success_delay,ood_nodes_24,1.1401754250991378
+11.860789138416951,5.13249998883309,5,8.49664456362502,RDQN-HERP (Adapted),energy_per_delivered_packet,ood_nodes_24,2.709818427727623
+9768.802474568967,7330.441525431032,5,8549.622,RDQN-HERP (Adapted),mean_policy_input_bytes,ood_nodes_24,982.0498623835248
+0.5125737885352888,0.34942621146471137,5,0.43100000000000005,GAT-GRU-DDQN,connected_pair_pdr,ood_nodes_24,0.06570768600399804
+0.5125737885352888,0.34942621146471137,5,0.43100000000000005,GAT-GRU-DDQN,overall_pdr,ood_nodes_24,0.06570768600399804
+0.4256310697412738,0.25036893025872614,5,0.33799999999999997,GAT-GRU-DDQN,deadline_delivery_ratio,ood_nodes_24,0.07058682596632321
+10.372184767080833,7.487815232919166,5,8.93,GAT-GRU-DDQN,p95_success_delay,ood_nodes_24,1.1616798181943249
+7.518113608626742,3.9934013722806876,5,5.755757490453715,GAT-GRU-DDQN,energy_per_delivered_packet,ood_nodes_24,1.419577838904014
+8214.919412591798,5145.868587408198,5,6680.393999999998,GAT-GRU-DDQN,mean_policy_input_bytes,ood_nodes_24,1236.060207404963
+0.9435519999999998,0.932448,5,0.938,DiSwitch,connected_pair_pdr,ood_nodes_24,0.004472135954999528
+0.9435519999999998,0.932448,5,0.938,DiSwitch,overall_pdr,ood_nodes_24,0.004472135954999528
+0.9390933612300453,0.9229066387699548,5,0.931,DiSwitch,deadline_delivery_ratio,ood_nodes_24,0.006519202405202616
+6.0,6.0,5,6.0,DiSwitch,p95_success_delay,ood_nodes_24,0.0
+2.1630682266008505,2.1250027376177774,5,2.144035482109314,DiSwitch,energy_per_delivered_packet,ood_nodes_24,0.015330875533667347
+5740.234210988226,5575.141789011775,5,5657.688,DiSwitch,mean_policy_input_bytes,ood_nodes_24,66.49097228195716
+0.9334965029936971,0.7385034970063028,5,0.836,Fast-DiSwitch,connected_pair_pdr,ood_nodes_24,0.07853343237118827
+0.9334965029936971,0.7385034970063028,5,0.836,Fast-DiSwitch,overall_pdr,ood_nodes_24,0.07853343237118827
+0.9262562686208731,0.657743731379127,5,0.792,Fast-DiSwitch,deadline_delivery_ratio,ood_nodes_24,0.10814342328593081
+8.815487816973357,5.984512183026643,5,7.4,Fast-DiSwitch,p95_success_delay,ood_nodes_24,1.1401754250991378
+4.116504201131541,2.10174667579025,5,3.1091254384608953,Fast-DiSwitch,energy_per_delivered_packet,ood_nodes_24,0.8114435851661351
+10250.674682195144,7490.191317804855,5,8870.432999999999,Fast-DiSwitch,mean_policy_input_bytes,ood_nodes_24,1111.7846638209667

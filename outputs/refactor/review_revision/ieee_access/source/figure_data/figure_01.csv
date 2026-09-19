@@ -1,0 +1,13 @@
+component,mean_seed_p95_ms,variant
+preprocess,0.014381029999999994,DiSwitch
+preprocess,0.015262379999999996,Early Exit
+preprocess,0.014228339999999997,Fast-DiSwitch
+preprocess,0.01592935,Fast-DiSwitch + Top-2
+model,0.9773052899999994,DiSwitch
+model,0.990051889999999,Early Exit
+model,0.23586102999999978,Fast-DiSwitch
+model,0.2806539399999997,Fast-DiSwitch + Top-2
+action_extraction,0.002851669999999999,DiSwitch
+action_extraction,0.00227561,Early Exit
+action_extraction,0.0025004199999999997,Fast-DiSwitch
+action_extraction,0.0027504199999999995,Fast-DiSwitch + Top-2
